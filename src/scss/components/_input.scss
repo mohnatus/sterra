@@ -1,0 +1,19 @@
+input {
+  @include form-control();
+  @include text-form-control();
+}
+
+textarea {
+  @include form-control();
+  @include text-form-control();
+}
+
+select {
+  @include form-control();
+  @include text-form-control();
+}
+
+.form-control {
+  @include form-control();
+  @include text-form-control();
+}

@@ -1,0 +1,32 @@
+$minWidth: 360px;
+$maxWidth: 1440px;
+
+@mixin lg-phone-up {
+  @media (min-width: 480px) {
+    @content;
+  }
+}
+
+@mixin tablet-up {
+  @media (min-width: 768px) {
+    @content;
+  }
+}
+
+@mixin lg-tablet-up {
+  @media (min-width: 1024px) {
+    @content;
+  }
+}
+
+@mixin sm-desktop-up {
+  @media (min-width: 1280px) {
+    @content;
+  }
+}
+
+@mixin desktop-up {
+  @media (min-width: 1440px) {
+    @content;
+  }
+}

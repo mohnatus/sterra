@@ -1,0 +1,23 @@
+/* CARD */
+
+.card {
+  border: 1px solid var(--border);
+
+  &:hover {
+    box-shadow: 0 5px 15px var(--shadow);
+  }
+
+  &.disabled {
+    opacity: 0.3;
+    cursor: default;
+  }
+
+  &-dark {
+    background: var(--dark-block-background);
+    color: var(--white);
+  }
+
+  &-body {
+    padding: 35px 30px;
+  }
+}

@@ -1,0 +1,71 @@
+/* COLORS */
+
+:root {
+  --white: #ffffff;
+  --black: #000000;
+  --red: #e42d24;
+  --red-2: #9B130C;
+  --blue: #1e1d85;
+  --dark-blue: #000066;
+  --light-blue: #7373ba;
+  --grey: #dedef4;
+  --light-grey: #cfcfff;
+
+  --shadow: rgba(0, 0, 102, 0.15);
+  --white-shadow: rgba(246, 246, 255, 0.5);
+
+  --primary: --blue;
+  --primary-contrast: --white;
+  --primary-variant: --dark-blue;
+  --primary-shadow: rgba(30, 29, 133, 0.5);
+
+  /* Активный элемент меню, основное действие */
+  --accent: --red;
+  --accent-contrast: --white;
+  --accent-variant: --red-2;
+  --accent-shadow: --accent-variant;
+
+  --error: --red;
+
+  /* Фон */
+  --background: --white;
+  /* Cплошной текст */
+  --text: --black;
+  /* Доп. фон для блоков */
+  --block-background: --light-grey;
+  /* Подписи, даты, лейблы */
+  --label: --light-blue;
+  /* Ссылки */
+  --link: --blue;
+  --link-variant: --dark-blue;
+  /* Фон синих блоков */
+  --dark-block-background: --blue;
+  /* Заголовки */
+  --header: --dark-blue;
+  /* Обводка блоков, разделители */
+  --border: --grey;
+
+  --active-control: --blue;
+}
+
+.color-text {
+  color: var(--text);
+}
+.color-header {
+  color: var(--header);
+}
+.color-label {
+  color: var(--label);
+}
+.color-link {
+  color: var(--link);
+}
+.color-accent {
+  color: var(--accent);
+}
+.bg-block {
+  color: var(--block-background);
+}
+.bg-block-dark {
+  color: var(--dark-block-background);
+}

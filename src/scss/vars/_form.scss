@@ -1,0 +1,52 @@
+@mixin form-control-view {
+  border: 1px solid var(--border);
+}
+
+@mixin form-control-invalid {
+  &:invalid,
+  &.invalid,
+  .invalid & {
+    border-color: var(--error);
+  }
+}
+
+@mixin form-control-focus {
+  border-color: #918cff;
+  box-shadow: 0px 0px 6px rgba(30, 29, 133, 0.5);
+}
+
+@mixin form-control-disabled {
+  opacity: 0.5;
+}
+
+@mixin form-control {
+  border: 1px solid var(--border);
+
+  &:focus,
+  &.focus {
+    border-color: #918cff;
+    box-shadow: 0px 0px 6px rgba(30, 29, 133, 0.5);
+  }
+
+  &:invalid,
+  &.invalid,
+  .invalid & {
+    border-color: var(--error);
+  }
+
+  &[disabled], &.disabled, .disabled & {
+    opacity: 0.5;
+  }
+}
+
+@mixin text-form-control {
+  padding-left: 20px;
+  padding-right: 20px;
+  font-size: 15px;
+  line-height: 1.2;
+  min-height: 50px;
+
+  &::placeholder {
+    color: var(--label);
+  }
+}

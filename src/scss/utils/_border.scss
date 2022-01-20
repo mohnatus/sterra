@@ -1,0 +1,32 @@
+/* BORDER */
+
+.border {
+  border: 1px solid var(--border);
+}
+.border-left {
+  border-left: 1px solid var(--border);
+}
+.border-right {
+  border-right: 1px solid var(--border);
+}
+.border-top {
+  border-top: 1px solid var(--border);
+}
+.border-bottom {
+  border-bottom: 1px solid var(--border);
+}
+.border-none {
+  border: none;
+}
+.border-left-none {
+  border-left: none;
+}
+.border-right-none {
+  border-right: none;
+}
+.border-top-none {
+  border-top: none;
+}
+.border-bottom-none {
+  border-bottom: none;
+}
