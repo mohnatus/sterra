@@ -1,5 +1,5 @@
-$minWidth: 360px;
-$maxWidth: 1440px;
+$minContentWidth: 360px;
+$maxContentWidth: 1360px;
 
 @mixin lg-phone-up {
   @media (min-width: 480px) {

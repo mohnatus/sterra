@@ -4,7 +4,7 @@
   --white: #ffffff;
   --black: #000000;
   --red: #e42d24;
-  --red-2: #9B130C;
+  --red-2: #9b130c;
   --blue: #1e1d85;
   --dark-blue: #000066;
   --light-blue: #7373ba;
@@ -14,38 +14,38 @@
   --shadow: rgba(0, 0, 102, 0.15);
   --white-shadow: rgba(246, 246, 255, 0.5);
 
-  --primary: --blue;
-  --primary-contrast: --white;
-  --primary-variant: --dark-blue;
+  --primary: var(--blue);
+  --primary-contrast: var(--white);
+  --primary-variant: var(--dark-blue);
   --primary-shadow: rgba(30, 29, 133, 0.5);
 
   /* Активный элемент меню, основное действие */
-  --accent: --red;
-  --accent-contrast: --white;
-  --accent-variant: --red-2;
-  --accent-shadow: --accent-variant;
+  --accent: var(--red);
+  --accent-contrast: var(--white);
+  --accent-variant: var(--red-2);
+  --accent-shadow: var(--accent-variant);
 
-  --error: --red;
+  --error: var(--red);
 
   /* Фон */
-  --background: --white;
+  --background: var(--white);
   /* Cплошной текст */
-  --text: --black;
+  --text: var(--black);
   /* Доп. фон для блоков */
-  --block-background: --light-grey;
+  --block-background: var(--light-grey);
   /* Подписи, даты, лейблы */
-  --label: --light-blue;
+  --label: var(--light-blue);
   /* Ссылки */
-  --link: --blue;
-  --link-variant: --dark-blue;
+  --link: var(--blue);
+  --link-variant: var(--dark-blue);
   /* Фон синих блоков */
-  --dark-block-background: --blue;
+  --dark-block-background: var(--blue);
   /* Заголовки */
-  --header: --dark-blue;
+  --header: var(--dark-blue);
   /* Обводка блоков, разделители */
-  --border: --grey;
+  --border: var(--grey);
 
-  --active-control: --blue;
+  --active-control: var(--blue);
 }
 
 .color-text {
@@ -63,9 +63,13 @@
 .color-accent {
   color: var(--accent);
 }
+.color-white {
+  color: var(--white);
+}
 .bg-block {
   color: var(--block-background);
 }
 .bg-block-dark {
   color: var(--dark-block-background);
 }
+

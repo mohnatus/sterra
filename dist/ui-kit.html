@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="./css/style.css" rel="stylesheet">
+    <style type="text/css">
+      .block {
+        width: 100%;
+        height: 100px;
+        background: pink;
+        margin-bottom: 20px;
+        padding: 20px;
+      }
+      th {
+        padding: 10px;
+        border-bottom: 2px solid var(--border);
+      }
+      td {
+        padding: 10px;
+        border-bottom: 1px solid var(--border);
+      }
+      .color {
+        width: 50px;
+        height: 30px;
+        border: 1px solid var(--border);
+      }
+      
+    </style>
+  </head>
+  <body><!-- SVG SPRITE -->
+<svg style="display: none">
+  <symbol
+    id="i-upload"
+    viewBox="0 0 22 21"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M11 1V17M11 17L17.5 10.5M11 17L4.5 10.5M1 20H21"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+  </symbol>
+  <symbol
+    id="i-link"
+    viewBox="0 0 17 17"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M8 9L16 1M16 1V6M16 1H11.0607M6 1H1V16H16V11"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+  </symbol>
+  <symbol
+    id="i-chevron-left"
+    viewBox="0 0 7 12"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M0.29337 6.70845C-0.0977902 6.31718 -0.0977902 5.68282 0.29337 5.29155L5.29011 0.29345C5.68127 -0.0978163 6.31547 -0.097817 6.70663 0.29345C7.09779 0.684716 7.09779 1.31908 6.70663 1.71035L1.70989 6.70845C1.31873 7.09972 0.684531 7.09972 0.29337 6.70845Z"
+      fill="currentColor"
+    />
+    <path
+      d="M0.29337 5.29155C-0.0977902 5.68282 -0.0977902 6.31718 0.29337 6.70845L5.29011 11.7066C5.68127 12.0978 6.31547 12.0978 6.70663 11.7066C7.09779 11.3153 7.09779 10.6809 6.70663 10.2896L1.70989 5.29155C1.31873 4.90028 0.684531 4.90028 0.29337 5.29155Z"
+      fill="currentColor"
+    />
+  </symbol>
+  <symbol
+    id="i-chevron-right"
+    viewBox="0 0 7 12"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M6.70663 6.70845C7.09779 6.31718 7.09779 5.68282 6.70663 5.29155L1.70989 0.29345C1.31873 -0.0978163 0.684531 -0.097817 0.29337 0.29345C-0.0977898 0.684716 -0.0977898 1.31908 0.29337 1.71035L5.29011 6.70845C5.68127 7.09972 6.31547 7.09972 6.70663 6.70845Z"
+      fill="currentColor"
+    />
+    <path
+      d="M6.70663 5.29155C7.09779 5.68282 7.09779 6.31718 6.70663 6.70845L1.70989 11.7066C1.31873 12.0978 0.68453 12.0978 0.29337 11.7066C-0.0977901 11.3153 -0.0977901 10.6809 0.29337 10.2896L5.29011 5.29155C5.68127 4.90028 6.31547 4.90028 6.70663 5.29155Z"
+      fill="currentColor"
+    />
+  </symbol>
+  <symbol
+    id="i-arrow-top"
+    viewBox="0 0 13 14"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M6.5 13V1M6.5 1L11.375 5.875M6.5 1L1.625 5.875"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+  </symbol>
+</svg>
+<!-- /SVG SPRITE -->
+
+    <div class="container">
+      <h1 class="m-b">UI Kit</h1>
+      <h2 class="m-b">Цвета</h2>
+      <div class="row m-b">
+        <div class="col col-6 col-md-4 col-lg-3">
+          <div class="d-flex m-b">
+            <div class="color m-r" style="background-color: var(--primary)"></div>
+            <div>--primary</div>
+          </div>
+        </div>
+        <div class="col col-6 col-md-4 col-lg-3">
+          <div class="d-flex m-b">
+            <div class="color m-r" style="background-color: var(--primary-contract)"></div>
+            <div>--primary-contract</div>
+          </div>
+        </div>
+        <div class="col col-6 col-md-4 col-lg-3">
+          <div class="d-flex m-b">
+            <div class="color m-r" style="background-color: var(--primary-variant)"></div>
+            <div>--primary-variant</div>
+          </div>
+        </div>
+        <div class="col col-6 col-md-4 col-lg-3">
+          <div class="d-flex m-b">
+            <div class="color m-r" style="background-color: var(--accent)"></div>
+            <div>--accent</div>
+          </div>
+        </div>
+        <div class="col col-6 col-md-4 col-lg-3">
+          <div class="d-flex m-b">
+            <div class="color m-r" style="background-color: var(--accent-contrast)"></div>
+            <div>--accent-contrast</div>
+          </div>
+        </div>
+        <div class="col col-6 col-md-4 col-lg-3">
+          <div class="d-flex m-b">
+            <div class="color m-r" style="background-color: var(--accent-variant)"></div>
+            <div>--accent-variant</div>
+          </div>
+        </div>
+        <div class="col col-6 col-md-4 col-lg-3">
+          <div class="d-flex m-b">
+            <div class="color m-r" style="background-color: var(--error)"></div>
+            <div>--error</div>
+          </div>
+        </div>
+        <div class="col col-6 col-md-4 col-lg-3">
+          <div class="d-flex m-b">
+            <div class="color m-r" style="background-color: var(--background)"></div>
+            <div>--background</div>
+          </div>
+        </div>
+        <div class="col col-6 col-md-4 col-lg-3">
+          <div class="d-flex m-b">
+            <div class="color m-r" style="background-color: var(--text)"></div>
+            <div>--text</div>
+          </div>
+        </div>
+        <div class="col col-6 col-md-4 col-lg-3">
+          <div class="d-flex m-b">
+            <div class="color m-r" style="background-color: var(--block-background)"></div>
+            <div>--block-background</div>
+          </div>
+        </div>
+        <div class="col col-6 col-md-4 col-lg-3">
+          <div class="d-flex m-b">
+            <div class="color m-r" style="background-color: var(--label)"></div>
+            <div>--label</div>
+          </div>
+        </div>
+        <div class="col col-6 col-md-4 col-lg-3">
+          <div class="d-flex m-b">
+            <div class="color m-r" style="background-color: var(--link)"></div>
+            <div>--link</div>
+          </div>
+        </div>
+        <div class="col col-6 col-md-4 col-lg-3">
+          <div class="d-flex m-b">
+            <div class="color m-r" style="background-color: var(--link-variant)"></div>
+            <div>--link-variant</div>
+          </div>
+        </div>
+        <div class="col col-6 col-md-4 col-lg-3">
+          <div class="d-flex m-b">
+            <div class="color m-r" style="background-color: var(--dark-block-background)"></div>
+            <div>--dark-block-background</div>
+          </div>
+        </div>
+        <div class="col col-6 col-md-4 col-lg-3">
+          <div class="d-flex m-b">
+            <div class="color m-r" style="background-color: var(--header)"></div>
+            <div>--header</div>
+          </div>
+        </div>
+        <div class="col col-6 col-md-4 col-lg-3">
+          <div class="d-flex m-b">
+            <div class="color m-r" style="background-color: var(--border)"></div>
+            <div>--border</div>
+          </div>
+        </div>
+        <div class="col col-6 col-md-4 col-lg-3">
+          <div class="d-flex m-b">
+            <div class="color m-r" style="background-color: var(--active-control)"></div>
+            <div>--active-control</div>
+          </div>
+        </div>
+      </div>
+      <h2 class="m-b">Кнопки</h2>
+      <div class="m-b">
+        <button class="btn btn-accent btn-lg m-b">Выбрать решение</button>
+        <button class="btn btn-accent btn-lg m-b">
+          <div class="btn-icon">
+            <svg>
+              <use xlink:href="#i-upload" href="#i-upload"></use>
+            </svg>
+          </div>Презентация о компании
+        </button>
+        <button class="btn btn-accent btn-lg m-b" disabled>
+          <div class="btn-icon">
+            <svg>
+              <use xlink:href="#i-upload" href="#i-upload"></use>
+            </svg>
+          </div>Презентация о компании
+        </button><br>
+        <button class="btn btn-accent m-b">Перейти в каталог</button>
+        <button class="btn btn-accent m-b">
+          <div class="btn-icon">
+            <svg>
+              <use xlink:href="#i-upload" href="#i-upload"></use>
+            </svg>
+          </div>Презентация о компании
+        </button>
+        <button class="btn btn-accent m-b" disabled>
+          <div class="btn-icon">
+            <svg>
+              <use xlink:href="#i-upload" href="#i-upload"></use>
+            </svg>
+          </div>Презентация о компании
+        </button><br>
+        <button class="btn btn-primary btn-lg m-b">Записаться на курс</button>
+        <button class="btn btn-primary btn-lg m-b" disabled>Записаться на курс</button><br>
+        <button class="btn btn-primary m-b">Записаться на курс</button><br>
+        <button class="btn btn-primary-inverse btn-lg m-b">
+          <div class="btn-icon">
+            <svg>
+              <use xlink:href="#i-link" href="#i-link"></use>
+            </svg>
+          </div>Программа
+        </button>
+        <button class="btn btn-primary-inverse btn-lg m-b" disabled>
+          <div class="btn-icon">
+            <svg>
+              <use xlink:href="#i-link" href="#i-link"></use>
+            </svg>
+          </div>Программа
+        </button><br>
+        <button class="btn btn-primary-inverse m-b">Подробнее</button>
+        <button class="btn btn-primary-inverse m-b">
+          <div class="btn-icon">
+            <svg>
+              <use xlink:href="#i-upload" href="#i-upload"></use>
+            </svg>
+          </div>Скачать
+        </button>
+        <button class="btn btn-primary-inverse m-b" disabled>
+          <div class="btn-icon">
+            <svg>
+              <use xlink:href="#i-upload" href="#i-upload"></use>
+            </svg>
+          </div>Скачать
+        </button>
+      </div>
+      <h2 class="m-b">Сетка</h2>
+      <p class="m-b">12 колонок</p>
+      <table class="m-b">
+        <thead>
+          <tr>
+            <th>Префикс</th>
+            <th>Разрешение</th>
+            <th>Пример</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>-</td>
+            <td>&gt;0 пикселей</td>
+            <td>.col-6</td>
+          </tr>
+          <tr>
+            <td>md</td>
+            <td>&gt;768 пикселей (tablet-up)</td>
+            <td>.col-md-6</td>
+          </tr>
+          <tr>
+            <td>lg</td>
+            <td>&gt;1280 пикселей (sm-desktop-up)</td>
+            <td>.col-lg-6</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="row">
+        <div class="col col-1">
+          <div class="block">.col-1</div>
+        </div>
+        <div class="col col-1">
+          <div class="block">.col-1</div>
+        </div>
+        <div class="col col-1">
+          <div class="block">.col-1</div>
+        </div>
+        <div class="col col-1">
+          <div class="block">.col-1</div>
+        </div>
+        <div class="col col-1">
+          <div class="block">.col-1</div>
+        </div>
+        <div class="col col-1">
+          <div class="block">.col-1</div>
+        </div>
+        <div class="col col-2">
+          <div class="block">.col-2</div>
+        </div>
+        <div class="col col-2">
+          <div class="block">.col-2</div>
+        </div>
+        <div class="col col-2">
+          <div class="block">.col-2</div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col col-12 col-md-6 col-lg-3">
+          <div class="block">.col-12.col-md-6.col-lg-3</div>
+        </div>
+        <div class="col col-12 col-md-6 col-lg-3">
+          <div class="block">.col-12.col-md-6.col-lg-3</div>
+        </div>
+        <div class="col col-12 col-md-6 col-lg-3">
+          <div class="block">.col-12.col-md-6.col-lg-3</div>
+        </div>
+        <div class="col col-12 col-md-6 col-lg-3">
+          <div class="block">.col-12.col-md-6.col-lg-3</div>
+        </div>
+        <div class="col col-12 col-md-6 col-lg-3">
+          <div class="block">.col-12.col-md-6.col-lg-3</div>
+        </div>
+        <div class="col col-12 col-md-6 col-lg-3">
+          <div class="block">.col-12.col-md-6.col-lg-3</div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

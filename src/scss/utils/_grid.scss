@@ -13,30 +13,38 @@
   }
 }
 
+:root {
+  --gap: 10px;
+
+  @include tablet-up {
+    --gap: 15px;
+  }
+}
+
+.container {
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: calc(2 * var(--gap));
+  padding-right: calc(2 * var(--gap));
+  max-width: $maxContentWidth;
+}
+
 .row {
   display: flex;
   flex-wrap: wrap;
-  margin-left: -10px;
-  margin-right: -10px;
+  margin-left: calc(-1 * var(--gap));
+  margin-right: calc(-1 * var(--gap));
 }
 
 .col {
-  padding-left: 10px;
-  padding-right: 10px;
+  padding-left: var(--gap);
+  padding-right: var(--gap);
 }
 
 @include grid-generator('');
 
 /* md GRID: TABLET-UP */
 @include tablet-up {
-  .row {
-    margin-left: 15px;
-    margin-right: 15px;
-  }
-  .col {
-    padding-left: 15px;
-    padding-right: 15px;
-  }
   @include grid-generator('-md');
 }
 

@@ -8,6 +8,7 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  vertical-align: middle;
 
   height: 42px;
   padding-left: 30px;
@@ -34,8 +35,13 @@
   align-items: center;
   color: inherit;
 
-  &:first-child:not(:last-child) {
+  &:first-child {
     margin-right: 15px;
+  }
+
+  svg {
+    max-width: 100%;
+    max-height: 100%;
   }
 }
 
@@ -46,7 +52,8 @@
   .btn-icon {
     width: 20px;
     height: 20px;
-    &:first-child:not(:last-child) {
+
+    &:first-child {
       margin-right: 20px;
     }
   }
@@ -117,4 +124,5 @@
 .btn.disabled {
   opacity: 0.5;
   cursor: not-allowed;
+  box-shadow: none;
 }

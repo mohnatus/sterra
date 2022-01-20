@@ -1,0 +1,56 @@
+:root {
+  --space-unit: 20px;
+  --space-xxs: calc(0.25 * var(--space-unit)); // 5px
+  --space-xs: calc(0.5 * var(--space-unit)); // 10px
+  --space-sm: calc(0.75 * var(--space-unit)); // 15px
+  --space-md: calc(1.25 * var(--space-unit)); // 25px
+  --space-lg: calc(2 * var(--space-unit)); // 40px
+  --space-xl: calc(3.25 * var(--space-unit)); // 65px
+  --space-xxl: calc(5.25 * var(--space-unit)); // 105px
+}
+
+@mixin generateSpacings($property, $size: null) {
+  $className: 'm';
+  $sizePostfix: '';
+  $var: --space-unit;
+
+  @if $property == 'padding' {
+    $className: 'p';
+  }
+
+  @if $size {
+    $sizePostfix: '-' + $size;
+    $var: --space-#{$size};
+  }
+
+  $value: var($var);
+
+  .#{$className}#{$sizePostfix} {
+    #{$property}: $value;
+  }
+  .#{$className}-t#{$sizePostfix} {
+    #{$property}-top: $value;
+  }
+  .#{$className}-b#{$sizePostfix} {
+    #{$property}-bottom: $value;
+  }
+  .#{$className}-l#{$sizePostfix} {
+    #{$property}-left: $value;
+  }
+  .#{$className}-r#{$sizePostfix} {
+    #{$property}-right: $value;
+  }
+  .#{$className}-x#{$sizePostfix} {
+    #{$property}-left: $value;
+    #{$property}-right: $value;
+  }
+  .#{$className}-y#{$sizePostfix} {
+    #{$property}-top: $value;
+    #{$property}-bottom: $value;
+  }
+}
+
+@each $size in [null, 'xxs', 'xs', 'sm', 'md', 'lg', 'xl', 'xxl' ] {
+  @include generateSpacings(margin, $size);
+  @include generateSpacings(padding, $size);
+}
