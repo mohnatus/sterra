@@ -1,0 +1,9 @@
+.header-contacts
+  a.header-contact__phone(href="tel:84999409061") +7 (499) 940-90-61
+  button.header-contacts__trigger(type="button")
+    |Написать нам
+    svg.color-accent(width="20" height="20")
+      use(xlink:href="#i-chevron-bottom" href="#i-chevron-bottom")
+
+  .header-contacts__pane(hidden)
+    include components/contacts.pug

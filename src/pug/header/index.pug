@@ -1,0 +1,42 @@
+
+<!-- HEADER -->
+header.header
+  .container
+
+    a.header-logo(href="/")
+      img(src="./img/logo.png")
+
+    include _header-navigation.pug
+
+    include _header-contacts.pug
+
+    include _header-search.pug
+
+    a.btn.btn-round.btn-primary-inverse.header-account(href="#")
+      svg(width="20" height="20")
+        use(xlink:href="#i-user" href="#i-user")
+
+    button.icon-btn.header-toggler(type="button" data-closed)
+      svg(width="20" height="20")
+        use(xlink:href="#i-burger" href="#i-burger")
+      svg.color-accent(width="20" height="20")
+        use(xlink:href="#i-times" href="#i-times")
+<!-- /HEADER -->
+
+
+<!-- HEADER DROPDOWN -->
+.header-pane(hidden)
+  .container
+    .header-pane__search
+      include components/search.pug
+    .header-pane__menu
+      include _mixins.pug
+      include data/menu.pug
+
+      .header-menu
+        each section in [ menu.about, menu.catalog, menu.support, menu.press ]
+          +menu-section(section)
+
+    .header-pane__contacts
+      include components/contacts.pug
+<!-- /HEADER DROPDOWN -->

@@ -1,0 +1,25 @@
+<!-- SEARCH -->
+
+div.search(data-search)
+  .search-field
+    svg(width="20" height="20")
+        use(xlink:href="#i-search" href="#i-search")
+    input.form-control(value="" placeholder='Поиск' data-field)
+    button.icon-btn.search-field__reset(type='button' data-reset)
+      svg(width="20" height="20")
+        use(xlink:href="#i-times" href="#i-times")
+  ul.search-list
+    -
+      var options = [
+        { link: '#', name: 'С-Терра Шлюз 10G' },
+        { link: '#', name: 'С-Терра Шлюз 4.3' },
+        { link: '#', name: 'С-Терра Шлюз 4.2' },
+        { link: '#', name: 'С-Терра Шлюз 4.1' },
+        { link: '#', name: 'С-Терра Шлюз DP 4.3' },
+        { link: '#', name: 'С-Терра Шлюз DP 4.2' },
+        { link: '#', name: 'С-Терра Шлюз 8000' },
+      ]
+    each option in options
+      li
+        a(href=option.link)= option.name
+<!-- /SEARCH -->

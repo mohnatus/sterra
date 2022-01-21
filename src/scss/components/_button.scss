@@ -1,14 +1,7 @@
 /* BUTTON */
 
 .btn {
-  border: none;
-  outline: none;
-  font: inherit;
-  text-decoration: none;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  vertical-align: middle;
+  @include button;
 
   height: 42px;
   padding-left: 30px;

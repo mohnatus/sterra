@@ -4,21 +4,21 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "pug": "pug src/pages --out dist --pretty",
-    "pug:watch": "pug src/pages --out dist --pretty --watch",
-    "scss": "node-sass src/scss -o dist/css --output-style expanded",
-    "scss:watch": "node-sass src/scss -o dist/css --output-style expanded --watch",
-    "es6": "babel src/js/script.js --out-dir dist/js/script.js",
-    "es6:watch": "babel src/js/script.js --watch --out-file dist/js/script.js"
+    "start": "gulp"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@babel/cli": "^7.16.8",
     "@babel/core": "^7.16.10",
     "@babel/preset-env": "^7.16.10",
-    "node-sass": "^7.0.1",
-    "pug-cli": "^1.0.0-alpha6"
+    "@babel/register": "^7.16.9",
+    "browser-sync": "^2.27.7",
+    "del": "^6.0.0",
+    "gulp": "^4.0.2",
+    "gulp-babel": "^8.0.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-pug": "^5.0.0",
+    "gulp-sass": "^5.1.0",
+    "sass": "^1.49.0"
   }
 }
