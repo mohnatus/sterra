@@ -1,159 +1,145 @@
-doctype html
-html(lang="en")
-  head
-    meta(charset="UTF-8")
-    meta(http-equiv="X-UA-Compatible", content="IE=edge")
-    meta(name="viewport", content="width=device-width, initial-scale=1.0")
-    title Document
-    link(href="./css/style.css" rel="stylesheet")
+extends _layout.pug
 
-    style(type="text/css").
-      .block {
-        width: 100%;
-        height: 100px;
-        background: pink;
-        margin-bottom: 20px;
-        padding: 20px;
-      }
-      th {
-        padding: 10px;
-        border-bottom: 2px solid var(--border);
-      }
-      td {
-        padding: 10px;
-        border-bottom: 1px solid var(--border);
-      }
-      .color {
-        width: 50px;
-        height: 30px;
-        border: 1px solid var(--border);
-      }
+block append head
+  style(type="text/css").
+    .block {
+      width: 100%;
+      height: 100px;
+      background: pink;
+      margin-bottom: 20px;
+      padding: 20px;
+    }
+    th {
+      padding: 10px;
+      border-bottom: 2px solid var(--border);
+    }
+    td {
+      padding: 10px;
+      border-bottom: 1px solid var(--border);
+    }
+    .color {
+      width: 50px;
+      height: 30px;
+      border: 1px solid var(--border);
+    }
 
-  body
-    include _sprite.html
+block content
+  include mixins/icon.pug
 
-    .container
-      h1.m-b UI Kit
+  .container
+    h1.m-b UI Kit
 
-      h2.m-b Цвета
+    h2.m-b Цвета
 
-      -
-        var colors = [
+    -
+      var colors = [
 
-          'primary', 'primary-contract', 'primary-variant',
-          'accent', 'accent-contrast', 'accent-variant', 'error',
-          'background', 'text', 'block-background', 'label', 'link', 'link-variant', 'dark-block-background', 'header', 'border', 'active-control'
-        ]
-      .row.m-b
-        each color in colors
-          .col.col-6.col-md-4.col-lg-3
-            .d-flex.m-b
-              div.color.m-r(style="background-color: var(--" + color + ")")
-              div --#{color}
+        'primary', 'primary-contract', 'primary-variant',
+        'accent', 'accent-contrast', 'accent-variant', 'error',
+        'background', 'text', 'block-background', 'label', 'link', 'link-variant', 'dark-block-background', 'header', 'border', 'active-control'
+      ]
+    .row.m-b
+      each color in colors
+        .col.col-6.col-md-4.col-lg-3
+          .d-flex.m-b
+            div.color.m-r(style="background-color: var(--" + color + ")")
+            div --#{color}
 
-      h2.m-b Кнопки
+    h2.m-b Кнопки
 
-      .m-b
-        button.btn.btn-accent.btn-lg.m-b Выбрать решение
-        button.btn.btn-accent.btn-lg.m-b
-          .btn-icon
-            svg
-              use(xlink:href="#i-upload" href="#i-upload")
-          |Презентация о компании
-        button.btn.btn-accent.btn-lg.m-b(disabled)
-          .btn-icon
-            svg
-              use(xlink:href="#i-upload" href="#i-upload")
-          |Презентация о компании
-        br
-        button.btn.btn-accent.m-b Перейти в каталог
-        button.btn.btn-accent.m-b
-          .btn-icon
-            svg
-              use(xlink:href="#i-upload" href="#i-upload")
-          |Презентация о компании
-        button.btn.btn-accent.m-b(disabled)
-          .btn-icon
-            svg
-              use(xlink:href="#i-upload" href="#i-upload")
-          |Презентация о компании
-        br
-        button.btn.btn-primary.btn-lg.m-b Записаться на курс
-        button.btn.btn-primary.btn-lg.m-b(disabled) Записаться на курс
-        br
-        button.btn.btn-primary.m-b Записаться на курс
-        br
-        button.btn.btn-primary-inverse.btn-lg.m-b
-          .btn-icon
-            svg
-              use(xlink:href="#i-link" href="#i-link")
-          |Программа
-        button.btn.btn-primary-inverse.btn-lg.m-b(disabled)
-          .btn-icon
-            svg
-              use(xlink:href="#i-link" href="#i-link")
-          |Программа
-        br
-        button.btn.btn-primary-inverse.m-b Подробнее
-        button.btn.btn-primary-inverse.m-b
-          .btn-icon
-            svg
-              use(xlink:href="#i-upload" href="#i-upload")
-          |Скачать
-        button.btn.btn-primary-inverse.m-b(disabled)
-          .btn-icon
-            svg
-              use(xlink:href="#i-upload" href="#i-upload")
-          |Скачать
+    .m-b
+      button.btn.btn-accent.btn-lg.m-b Выбрать решение
+      button.btn.btn-accent.btn-lg.m-b
+        .btn-icon
+          +svg-icon('upload')
+        |Презентация о компании
+      button.btn.btn-accent.btn-lg.m-b(disabled)
+        .btn-icon
+          +svg-icon('upload')
+        |Презентация о компании
+      br
+      button.btn.btn-accent.m-b Перейти в каталог
+      button.btn.btn-accent.m-b
+        .btn-icon
+          +svg-icon('upload')
+        |Презентация о компании
+      button.btn.btn-accent.m-b(disabled)
+        .btn-icon
+          +svg-icon('upload')
+        |Презентация о компании
+      br
+      button.btn.btn-primary.btn-lg.m-b Записаться на курс
+      button.btn.btn-primary.btn-lg.m-b(disabled) Записаться на курс
+      br
+      button.btn.btn-primary.m-b Записаться на курс
+      br
+      button.btn.btn-primary-inverse.btn-lg.m-b
+        .btn-icon
+          +svg-icon('link')
+        |Программа
+      button.btn.btn-primary-inverse.btn-lg.m-b(disabled)
+        .btn-icon
+          +svg-icon('link')
+        |Программа
+      br
+      button.btn.btn-primary-inverse.m-b Подробнее
+      button.btn.btn-primary-inverse.m-b
+        .btn-icon
+          +svg-icon('upload')
+        |Скачать
+      button.btn.btn-primary-inverse.m-b(disabled)
+        .btn-icon
+          +svg-icon('upload')
+        |Скачать
 
 
 
 
-      h2.m-b Сетка
+    h2.m-b Сетка
 
-      p.m-b 12 колонок
+    p.m-b 12 колонок
 
-      table.m-b
-        thead
-          tr
-            th Префикс
-            th Разрешение
-            th Пример
+    table.m-b
+      thead
+        tr
+          th Префикс
+          th Разрешение
+          th Пример
 
-        tbody
-          tr
-            td -
-            td &gt;0 пикселей
-            td .col-6
+      tbody
+        tr
+          td -
+          td &gt;0 пикселей
+          td .col-6
 
-          tr
-            td md
-            td &gt;768 пикселей (tablet-up)
-            td .col-md-6
+        tr
+          td md
+          td &gt;768 пикселей (tablet-up)
+          td .col-md-6
 
-          tr
-            td lg
-            td &gt;1280 пикселей (sm-desktop-up)
-            td .col-lg-6
+        tr
+          td lg
+          td &gt;1280 пикселей (sm-desktop-up)
+          td .col-lg-6
 
 
-      .row
-        - var n = 0;
-        while n < 6
-          - n++
-          .col.col-1
-            .block
-              |.col-1
-        - var n = 0;
-        while n < 3
-          - n++
-          .col.col-2
-            .block
-              |.col-2
-      .row
-        - var n = 0;
-        while n < 6
-          - n++
-          .col.col-12.col-md-6.col-lg-3
-            .block
-              |.col-12.col-md-6.col-lg-3
+    .row
+      - var n = 0;
+      while n < 6
+        - n++
+        .col.col-1
+          .block
+            |.col-1
+      - var n = 0;
+      while n < 3
+        - n++
+        .col.col-2
+          .block
+            |.col-2
+    .row
+      - var n = 0;
+      while n < 6
+        - n++
+        .col.col-12.col-md-6.col-lg-3
+          .block
+            |.col-12.col-md-6.col-lg-3

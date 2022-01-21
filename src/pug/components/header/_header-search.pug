@@ -1,7 +1,8 @@
+include ../../mixins/icon.pug
+
 .header-search
   button.btn.btn-round.btn-primary-inverse.header-search__trigger(type="button")
-    svg(width="20" height="20")
-        use(xlink:href="#i-search" href="#i-search")
+    +svg-icon('search', 20, 20)
 
   .header-search__search(hidden)
     include components/search.pug

@@ -7,13 +7,14 @@ mixin list-item(item)
           +list-item(subItem)
 
 mixin menu-section(item)
+  include ../../mixins/icon.pug
+
   .header-menu-section(data-section=item.id)
     .header-menu-section__title
       a(href=item.link)= item.name
       if item.items
         button.icon-btn.header-menu-section__toggler
-          svg(width="20" height="20")
-            use(xlink:href="#i-chevron-bottom" href="#i-chevron-bottom")
+          +svg-icon('chevron-bottom', 20, 20)
     if item.items
       .header-menu-section__items
         ul

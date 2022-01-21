@@ -1,45 +1,38 @@
-doctype html
-html(lang="en")
-  head
-    meta(charset="UTF-8")
-    meta(http-equiv="X-UA-Compatible", content="IE=edge")
-    meta(name="viewport", content="width=device-width, initial-scale=1.0")
-    title Document
-    link(href="./css/style.css" rel="stylesheet")
-  body
-    include _sprite.html
+extends _layout.pug
 
-    .page.home-page
+block content
 
-      include components/header/index.pug
+  .page.home-page
 
-      main.page-main
+    include components/header/index.pug
 
-        .home-page__jumbotrone
-          include pages/home/jumbotron.pug
-        .home-page__stats
-          include pages/home/stats.pug
-        .home-page__info
-          include pages/home/info.pug
-        .home-page__clients
-          include pages/home/clients.pug
-          
-        .bg-white
-          .home-page__solutions
-            include pages/home/solutions.pug
-          .home-page__tech
-            include pages/home/tech.pug
-          .home-page__faq
-            include pages/home/faq.pug
+    main.page-main
 
-        .home-page__cases
-          include pages/home/cases.pug
+      .home-page__jumbotron
+        include pages/home/jumbotron/index.pug
+      .home-page__stats
+        include pages/home/stats.pug
+      .home-page__info
+        include pages/home/info.pug
+      .home-page__clients
+        include pages/home/clients.pug
 
-        .bg-white
-          .home-page__news
-            include pages/home/news.pug
-        .home-page__form
-          include pages/home/form.pug
+      .bg-white
+        .home-page__solutions
+          include pages/home/solutions.pug
+        .home-page__tech
+          include pages/home/tech/index.pug
+        .home-page__faq
+          include pages/home/faq.pug
 
-      include components/top-button/index.pug
-      include components/footer/index.pug
+      .home-page__cases
+        include pages/home/cases.pug
+
+      .bg-white
+        .home-page__news
+          include pages/home/news.pug
+      .home-page__form
+        include pages/home/form.pug
+
+    include components/top-button/index.pug
+    include components/footer/index.pug

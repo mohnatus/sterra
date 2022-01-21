@@ -1,0 +1,17 @@
+.home-stats
+  .container
+    .home-stats__wrapper
+      -
+        var stats = [
+          { value: '18', text: 'лет<br>работы'},
+          { value: '23', text: 'продукта в реестре<br>российского ПО'},
+          { value: '5000+', text: 'сетей защищают<br>продукты С-Терра'},
+          { value: '300+', text: 'партнеров во всех<br>регионах России'},
+          { value: '39', text: 'сертификатов ФСБ, ФСТЭК<br>и Минкомсвязи России'},
+        ]
+
+      each item in stats
+        .home-stat
+          .home-stat__bullet
+          .home-stat__value= item.value
+          .home-stat__text !{item.text}

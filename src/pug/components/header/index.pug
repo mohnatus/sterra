@@ -1,5 +1,7 @@
 
 <!-- HEADER -->
+include ../../mixins/icon.pug
+
 header.header
   .container
 
@@ -13,14 +15,11 @@ header.header
     include _header-search.pug
 
     a.btn.btn-round.btn-primary-inverse.header-account(href="#")
-      svg(width="20" height="20")
-        use(xlink:href="#i-user" href="#i-user")
+      +svg-icon('user', 20, 20)
 
     button.icon-btn.header-toggler(type="button" data-closed)
-      svg(width="20" height="20")
-        use(xlink:href="#i-burger" href="#i-burger")
-      svg.color-accent(width="20" height="20")
-        use(xlink:href="#i-times" href="#i-times")
+      +svg-icon('burger', 20, 20)
+      +svg-icon('times', 20, 20)
 <!-- /HEADER -->
 
 
