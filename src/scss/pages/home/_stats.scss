@@ -1,0 +1,36 @@
+.achievements {
+  &__wrapper {
+    display: flex;
+    padding-right: 50px;
+  }
+
+  .achievement {
+    position: relative;
+    padding-left: 30px;
+    margin-top: 55px;
+
+    &:not(:last-child) {
+      margin-right: 100px;
+    }
+
+    &__bullet {
+      width: 10px;
+      height: 10px;
+      background: var(--accent);
+      border-radius: 50%;
+      position: absolute;
+      left: 0;
+      top: 25px;
+    }
+
+    &__value {
+      font-size: 50px;
+      font-weight: 700;
+      color: var(--blue3);
+    }
+
+    &__text {
+      font-size: 14px;
+    }
+  }
+}

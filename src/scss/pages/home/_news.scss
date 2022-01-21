@@ -1,0 +1,38 @@
+.news {
+  padding-top: 102px;
+  padding-bottom: 106px;
+
+  &__title {
+    font-size: 38px;
+    color: var(--dark);
+    margin-bottom: 36px;
+  }
+
+  .article {
+
+    &__img {
+      width: 100%;
+      height: 155px;
+      margin-bottom: 20px;
+    }
+
+    &__date {
+      color:var(--secondary);
+      font-size: 12px;
+      font-weight: 400;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+
+    &__title {
+      margin-bottom: 12px;
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--dark);
+    }
+
+    &__text {
+      color: black;
+    }
+  }
+}

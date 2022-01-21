@@ -1,0 +1,150 @@
+.docs {
+  margin-top: 104px;
+
+  .docs__wrapper {
+    display: flex;
+    margin-left: -12px;
+    margin-right: -12px;
+  }
+
+  .docs-item {
+    margin-left: 12px;
+    margin-right: 12px;
+    flex-basis: 50%;
+    flex-grow: 1;
+
+    background: var(--primary);
+    color: white;
+
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    min-height: 290px;
+
+    &__title {
+      font-size: 28px;
+      font-weight: 500;
+    }
+
+    &__link {
+      margin-top: auto;
+
+      a {
+        color: inherit;
+
+        svg {
+          margin-left: 15px;
+          display: inline-block;
+        }
+      }
+    }
+
+    &__icon {
+      position: absolute;
+      right: 40px;
+      top: 0;
+      bottom: 0;
+      display: flex;
+      align-items: center;
+    }
+
+    &:hover {
+      .envelope,
+      .box {
+        animation-name: docsMove;
+        animation-duration: 2000ms;
+        animation-iteration-count: infinite;
+        animation-timing-function: linear;
+      }
+      .envelope-1 {
+        animation-delay: 107ms;
+      }
+      .envelope-2 {
+        animation-delay: 213ms;
+      }
+      .envelope-2 {
+        animation-delay: 379ms;
+      }
+      .box-1 {
+        animation-delay: 301ms;
+      }
+      .line {
+        animation-name: linesMove;
+        animation-duration: 1400ms;
+        animation-iteration-count: infinite;
+
+        &-2 {
+          animation-delay: 310ms;
+        }
+        &-3 {
+          animation-delay: 178ms;
+        }
+      }
+      .tablet {
+        animation-name: tablet1Move;
+        animation-duration: 2500ms;
+        animation-iteration-count: infinite;
+        animation-timing-function: linear;
+
+        &-1 {
+          animation-name: tablet2Move;
+        }
+      }
+    }
+  }
+}
+
+@keyframes docsMove {
+  from {
+    transform: translateY(0);
+  }
+  25% {
+    transform: translateY(4px);
+  }
+  75% {
+    transform: translateY(-4px);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes tablet1Move {
+  from {
+    transform: translateY(0);
+  }
+  25% {
+    transform: translateY(-9px);
+  }
+  75% {
+    transform: translateY(4px);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes tablet2Move {
+  from {
+    transform: translateY(0);
+  }
+  25% {
+    transform: translateY(-3px);
+  }
+  75% {
+    transform: translateY(3px);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes linesMove {
+  from {
+    transform: translateX(16px);
+  }
+  to {
+    transform: translateX(0px);
+  }
+}

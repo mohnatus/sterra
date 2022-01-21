@@ -1,0 +1,138 @@
+$circleAnimationDuration: 4000ms;
+$circleDelay: 800ms;
+$circleGroupDelay: 357ms;
+
+.info {
+  margin-top: 55px;
+
+  &__wrapper {
+    display: flex;
+  }
+
+  .info-company {
+    width: calc((100% + 24px) * 2 / 3 - 24px);
+    margin-right: 24px;
+    flex-shrink: 0;
+
+    background: white;
+
+    &__container {
+      padding: 50px;
+      display: flex;
+    }
+
+    &__icons {
+      margin-right: 40px;
+
+      .circles {
+        .circle {
+          opacity: 0;
+          animation-name: circleMove;
+          animation-duration: $circleAnimationDuration;
+          animation-timing-function: ease-in-out;
+          animation-iteration-count: infinite;
+        }
+
+        &-1 {
+          .circle {
+            transform-origin: 70% 76%;
+
+            &-1 {
+              animation-delay: 0ms;
+            }
+            &-2 {
+              animation-delay: 0ms + $circleDelay;
+            }
+            &-3 {
+              animation-delay: 0ms + $circleDelay * 2;
+            }
+          }
+        }
+
+        &-2 {
+          .circle {
+            transform-origin: 68% 36%;
+
+            &-1 {
+              animation-delay: $circleGroupDelay * 2;
+            }
+            &-2 {
+              animation-delay: $circleGroupDelay * 2 + $circleDelay;
+            }
+            &-3 {
+              animation-delay: $circleGroupDelay * 2 + $circleDelay * 2;
+            }
+          }
+        }
+
+        &-3 {
+          .circle {
+            transform-origin: 23% 66%;
+
+            &-1 {
+              animation-delay: $circleGroupDelay;
+            }
+            &-2 {
+              animation-delay: $circleGroupDelay + $circleDelay;
+            }
+            &-3 {
+              animation-delay: $circleGroupDelay + $circleDelay * 2;
+            }
+          }
+        }
+      }
+    }
+
+    &__title {
+      font-size: 24px;
+      font-weight: 700;
+      margin-bottom: 14px;
+      color: var(--dark);
+    }
+
+    &__text {
+      margin-bottom: 32px;
+    }
+  }
+
+  .info-products {
+    min-height: 370px;
+    color: white;
+    position: relative;
+    background-color: var(--primary);
+    background-image: url('./img/products.png');
+    background-position: bottom 30px right 0;
+    background-repeat: no-repeat;
+
+    &__container {
+      padding: 50px 40px;
+    }
+
+    &__title {
+      font-size: 28px;
+      font-weight: 500;
+      margin-bottom: 14px;
+    }
+
+    &__text {
+      margin-bottom: 32px;
+    }
+  }
+}
+
+@keyframes circleMove {
+  from {
+    transform: scale(0);
+    opacity: 0.55;
+  }
+  50% {
+    transform: scale(1);
+    opacity: 0.01;
+  }
+  51% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}

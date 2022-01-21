@@ -1,0 +1,38 @@
+.partners {
+  margin-top: 80px;
+  padding-bottom: 84px;
+  .partner {
+    background: white;
+    height: 116px;
+    cursor: pointer;
+
+    img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      margin: auto;
+      transition: opacity 250ms ease-in-out;
+
+      &.colored {
+        opacity: 0;
+      }
+    }
+
+    &:not([data-invisible]):hover {
+      img.bw {
+        opacity: 0;
+      }
+      img.colored {
+        opacity: 1;
+      }
+    }
+  }
+
+  &-slider {
+    .swiper-control {
+      border: none!important;
+    }
+  }
+}

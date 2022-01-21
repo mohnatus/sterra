@@ -1,0 +1,70 @@
+.partners
+  .container
+    .partners-slider.swiper
+      .swiper-wrapper
+        -
+          var partners = [
+            {
+              img: "../img/partners/1.png",
+              coloredImg: "../img/partners/1-colored.png",
+              alt: ''
+            },
+            {
+              img: "../img/partners/2.png",
+              coloredImg: "../img/partners/2-colored.png",
+              alt: ''
+            },
+            {
+              img: "../img/partners/3.png",
+              coloredImg: "../img/partners/3-colored.png",
+              alt: ''
+            },
+            {
+              img: "../img/partners/4.png",
+              coloredImg: "../img/partners/4-colored.png",
+              alt: ''
+            },
+            {
+              img: "../img/partners/5.png",
+              coloredImg: "../img/partners/5-colored.png",
+              alt: ''
+            },
+            {
+              img: "../img/partners/1.png",
+              coloredImg: "../img/partners/1-colored.png",
+              alt: ''
+            },
+            {
+              img: "../img/partners/2.png",
+              coloredImg: "../img/partners/2-colored.png",
+              alt: ''
+            },
+            {
+              img: "../img/partners/3.png",
+              coloredImg: "../img/partners/3-colored.png",
+              alt: ''
+            },
+            {
+              img: "../img/partners/4.png",
+              coloredImg: "../img/partners/4-colored.png",
+              alt: ''
+            },
+            {
+              img: "../img/partners/5.png",
+              coloredImg: "../img/partners/5-colored.png",
+              alt: ''
+            },
+          ]
+
+        each partner in partners
+          .swiper-slide.partner
+            img.bw(src=partner.img alt=partner.alt)
+            img.colored(src=partner.coloredImg alt=partner.alt)
+
+      .swiper-controls
+        button.swiper-control.swiper-prev.btn.btn-circle(type="button")
+          svg(width="7" height="12")
+            use(xlink:href="#arrow-left" href="#arrow-left")
+        button.swiper-control.swiper-next.btn.btn-circle(type="button")
+          svg(width="7" height="12")
+            use(xlink:href="#arrow-right" href="#arrow-right")

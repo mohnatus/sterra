@@ -1,0 +1,55 @@
+.footer {
+  background: var(--primary);
+  color: white;
+  padding-top: 60px;
+  padding-bottom: 60px;
+
+  &__wrapper {
+    display: flex;
+  }
+
+  &__column {
+    margin-right: 50px;
+  }
+
+  &__logo {
+    margin-bottom: 30px;
+  }
+
+  &__link {
+    margin-bottom: 26px;
+    font-size: 12px;
+  }
+
+  &__copyright {
+    font-size: 12px;
+  }
+
+  p {
+    margin-bottom: 20px;
+  }
+
+  a {
+    color: inherit;
+
+    &.underlined {
+      text-decoration: underline;
+    }
+  }
+
+  &-menu {
+    &__header {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+
+    &__list {
+      list-style: none;
+
+      li {
+        margin-bottom: 20px;
+      }
+    }
+  }
+}

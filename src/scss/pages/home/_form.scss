@@ -1,0 +1,145 @@
+.form {
+  padding-top: 102px;
+  padding-bottom: 125px;
+
+  &__title {
+    color: var(--dark);
+    font-size: 40px;
+    font-weight: 500;
+    margin-bottom: 12;
+    text-align: center;
+  }
+
+  &__subtitle {
+    font-size: 17px;
+    margin-bottom: 57px;
+    text-align: center;
+  }
+
+  &__wrapper {
+    max-width: 862px;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+  }
+
+  &__image {
+    margin-left: -30px;
+    padding-right: 80px;
+
+    .phone {
+      animation-name: phoneMove;
+      animation-timing-function: ease-in-out;
+      animation-iteration-count: infinite;
+      animation-duration: 2000ms;
+    }
+
+    .envelope {
+      animation-name: envelopeMove;
+      animation-timing-function: ease-in-out;
+      animation-iteration-count: infinite;
+      animation-duration: 3000ms;
+
+
+      .envelope-inner {
+        animation-name: envelopeScale;
+        animation-timing-function: ease-in-out;
+        animation-iteration-count: infinite;
+        animation-duration: 3000ms;
+        transform-origin: 80% 20%;
+      }
+
+
+    }
+
+    .computer {
+      animation-name: computerMove;
+      animation-timing-function: ease-in-out;
+      animation-iteration-count: infinite;
+      animation-duration: 2000ms;
+    }
+
+    .ellipses {
+      animation-name: ellipsesMove;
+      animation-timing-function: ease-in-out;
+      animation-iteration-count: infinite;
+      animation-duration: 2000ms;
+      transform-origin: 50% 80%;
+    }
+  }
+
+  &__fields {
+    width: 607px;
+    flex-shrink: 0;
+  }
+
+  &__field {
+    margin-bottom: 20px;
+  }
+
+  &__submit {
+    margin-top: 32px;
+  }
+}
+
+@keyframes computerMove {
+  from {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(15px)
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes phoneMove {
+  from {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(8px)
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes ellipsesMove {
+  from {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(0.8);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+@keyframes envelopeMove {
+  from {
+    transform: translate(0, 0);
+  }
+  to {
+    transform: translate(100px, -40px);
+  }
+}
+
+@keyframes envelopeScale {
+  from {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    opacity: 1;
+  }
+  90% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  to {
+    transform: scale(0)
+  }
+}

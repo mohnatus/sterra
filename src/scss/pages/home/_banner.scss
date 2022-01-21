@@ -1,0 +1,130 @@
+.banner {
+  background: $primary;
+
+  .container {
+    height: 580px;
+    position: relative;
+    display: flex;
+  }
+
+  .banner__slider {
+    width: 50%;
+    display: flex;
+
+    .swiper {
+      overflow: hidden;
+
+      &-wrapper {
+        flex-shrink: 1;
+        flex-grow: 1;
+        height: auto;
+      }
+
+      &-pagination {
+        position: static;
+        flex-shrink: 0;
+        text-align: left;
+
+        &-bullet {
+          background: white;
+          opacity: 1;
+          vertical-align: middle;
+          margin-left: 0;
+          margin-right: 20px;
+
+          &-active {
+            width: 20px;
+            height: 20px;
+            background-color: $accent;
+          }
+        }
+      }
+    }
+
+    .banner-slider {
+      display: flex;
+      flex-direction: column;
+      padding-top: 150px;
+      padding-bottom: 64px;
+    }
+
+    .banner__header {
+      font-size: 42px;
+      color: white;
+      margin-bottom: 34px;
+    }
+
+    .banner__button {
+
+    }
+  }
+
+
+
+  .banner-img {
+    position: absolute;
+    bottom: -5px;
+    right: 0;
+
+    .light {
+      animation-name: lightRotation;
+      animation-duration: 8.5s;
+      animation-iteration-count: infinite;
+      animation-timing-function: ease-in-out;
+      transform-origin: 73.5% center;
+    }
+
+    .cloud {
+      animation-name: cloudMove;
+      animation-iteration-count: infinite;
+      animation-timing-function: ease-in-out;
+
+      &-1 {
+        animation-delay: 3s;
+        animation-duration: 6s;
+      }
+
+      &-2 {
+        animation-delay: 1.4s;
+        animation-duration: 10s;
+      }
+
+      &-2 {
+        animation-delay: 0s;
+        animation-duration: 12s;
+      }
+    }
+  }
+}
+
+@keyframes lightRotation {
+  from {
+    transform: rotateY(0deg);
+  }
+  25% {
+    opacity: 0.2;
+  }
+  50% {
+    transform: rotateY(180deg);
+    opacity: 1;
+  }
+  75% {
+    opacity: 0.2;
+  }
+  to {
+    transform: rotateY(360deg);
+    opacity: 1;
+  }
+}
+
+@keyframes cloudMove {
+  from {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(10px)
+  }
+  to {
+    transform: translateY(0px);
+  }
+}
