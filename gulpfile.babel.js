@@ -15,7 +15,7 @@ function assets() {
 exports.assets = assets;
 
 function html() {
-  return src('src/pages/*.pug')
+  return src('src/pug/*.pug')
     .pipe(
       pug({
         pretty: true
