@@ -182,16 +182,496 @@
 
     <div class="page home-page"><!-- HEADER -->
       <header class="header">
-        <div class="container"><a class="header-logo" href="/"><img src="./img/logo.png"></a>
-          <div class="header-navigation">
+        <div class="header-view">
+          <div class="container">
+            <div class="header-view__wrapper"><a class="header-logo" href="/"><img src="./img/logo.png"></a>
+              <nav class="header-navigation">
+                <ul>
+                  <li><a href="javascript:void(0)" data-submenu="about">О компании
+                                    <svg width="10" height="10">
+                                      <use xlink:href="#i-chevron-bottom" href="#i-chevron-bottom"></use>
+                                    </svg></a></li>
+                  <li><a href="javascript:void(0)" data-submenu="catalog">Каталог
+                                    <svg width="10" height="10">
+                                      <use xlink:href="#i-chevron-bottom" href="#i-chevron-bottom"></use>
+                                    </svg></a></li>
+                  <li><a href="javascript:void(0)" data-submenu="support">Поддержка
+                                    <svg width="10" height="10">
+                                      <use xlink:href="#i-chevron-bottom" href="#i-chevron-bottom"></use>
+                                    </svg></a></li>
+                  <li><a href="javascript:void(0)" data-submenu="press">Пресс-центр
+                                    <svg width="10" height="10">
+                                      <use xlink:href="#i-chevron-bottom" href="#i-chevron-bottom"></use>
+                                    </svg></a></li>
+                  <li><a href="#">Партнеры</a></li>
+                  <li><a href="#">Контакты</a></li>
+                </ul>
+              </nav>
+              <div class="header-navigation-pane" data-pane="about" hidden>
+                <div class="container">
+                  <div class="header-section">
+                    <div class="header-section__info"><a class="header-section__name" href="#">О компании</a>
+                      <div class="header-section__description">Описание раздела О компании</div>
+                    </div>
+                    <div class="header-section__list">
+                      <ul>
+                                      <li><a href="#">Основная информация</a>
+                                      </li>
+                                      <li><a href="#">Награды и благодарности</a>
+                                      </li>
+                                      <li><a href="#">Работа у нас</a>
+                                      </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="header-navigation-pane" data-pane="catalog" hidden>
+                <div class="container">
+                  <div class="header-section">
+                    <div class="header-section__info"><a class="header-section__name" href="#">Каталог</a>
+                      <div class="header-section__description">Поможем защитить информационную систему любого масштаба</div>
+                    </div>
+                    <div class="header-section__list">
+                      <ul>
+                                      <li><a href="#">Продукты</a>
+                                        <ul>
+                                                        <li><a href="#">Программные средства</a>
+                                                          <ul>
+                                                                          <li><a href="#">С-Терра Клиент</a>
+                                                                          </li>
+                                                                          <li><a href="#">С-Терра Клиент А</a>
+                                                                          </li>
+                                                          </ul>
+                                                        </li>
+                                                        <li><a href="#">Шлюзы безопасности</a>
+                                                          <ul>
+                                                                          <li><a href="#">С-Терра Шлюз</a>
+                                                                          </li>
+                                                                          <li><a href="#">С-Терра Шлюз DP</a>
+                                                                          </li>
+                                                                          <li><a href="#">С-Терра Юнит</a>
+                                                                          </li>
+                                                                          <li><a href="#">С-Терра Виртуальный Шлюз</a>
+                                                                          </li>
+                                                                          <li><a href="#">С-Терра для Cisco</a>
+                                                                          </li>
+                                                                          <li><a href="#">Криптомаршрутизатор ESR-ST</a>
+                                                                          </li>
+                                                                          <li><a href="#">С-Терра Шлюз Е</a>
+                                                                          </li>
+                                                                          <li><a href="#">С-Терра Виртуальный Шлюз Е</a>
+                                                                          </li>
+                                                          </ul>
+                                                        </li>
+                                                        <li><a href="#">Специальные решения</a>
+                                                          <ul>
+                                                                          <li><a href="#">С-Терра L2</a>
+                                                                          </li>
+                                                                          <li><a href="#">С-Терра СОВ</a>
+                                                                          </li>
+                                                          </ul>
+                                                        </li>
+                                                        <li><a href="#">Система управления</a>
+                                                          <ul>
+                                                                          <li><a href="#">С-Терра КП</a>
+                                                                          </li>
+                                                          </ul>
+                                                        </li>
+                                        </ul>
+                                      </li>
+                                      <li><a href="#">Прайс-листы</a>
+                                      </li>
+                      </ul>
+                    </div>
+                    <div class="header-section__list">
+                      <ul>
+                                      <li><a href="#">Отраслевые решения</a>
+                                        <ul>
+                                                        <li><a href="#">Финансовый сектор</a>
+                                                        </li>
+                                                        <li><a href="#">Государственный сектор</a>
+                                                        </li>
+                                                        <li><a href="#">Топливно-энергетическая отрасль</a>
+                                                        </li>
+                                                        <li><a href="#">Телекоммуникационная отрасль</a>
+                                                        </li>
+                                        </ul>
+                                      </li>
+                      </ul>
+                    </div>
+                    <div class="header-section__list">
+                      <ul>
+                                      <li><a href="#">Комплексные решения</a>
+                                        <ul>
+                                                        <li><a href="#">Защита канала 10 Гбит и больше</a>
+                                                        </li>
+                                                        <li><a href="#">Обнаружение вторжений</a>
+                                                        </li>
+                                                        <li><a href="#">Защита удаленного доступа</a>
+                                                        </li>
+                                                        <li><a href="#">Защита персональных данных</a>
+                                                        </li>
+                                                        <li><a href="#">Защита межфилиальных взаимодействий</a>
+                                                        </li>
+                                                        <li><a href="#">Защита виртуализации</a>
+                                                        </li>
+                                                        <li><a href="#">Защита подключения к СМЭВ</a>
+                                                        </li>
+                                                        <li><a href="#">Защита подключения к ИС ЕПТ</a>
+                                                        </li>
+                                        </ul>
+                                      </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="header-navigation-pane" data-pane="support" hidden>
+                <div class="container">
+                  <div class="header-section">
+                    <div class="header-section__info"><a class="header-section__name" href="#">Поддержка</a>
+                      <div class="header-section__description">Описание раздела Поддержка</div>
+                    </div>
+                    <div class="header-section__list">
+                      <ul>
+                                      <li><a href="#">Техническая поддержка</a>
+                                      </li>
+                                      <li><a href="#">Часто задаваемые вопросы (FAQ)</a>
+                                      </li>
+                                      <li><a href="#">Загрузки</a>
+                                      </li>
+                                      <li><a href="#">Документация</a>
+                                        <ul>
+                                                        <li><a href="#">Сертификаты на продукцию</a>
+                                                        </li>
+                                                        <li><a href="#">Лицензии и свидетельства</a>
+                                                        </li>
+                                                        <li><a href="#">Нормативные документы</a>
+                                                        </li>
+                                        </ul>
+                                      </li>
+                                      <li><a href="#">Обучение</a>
+                                        <ul>
+                                                        <li><a href="#">Курсы</a>
+                                                        </li>
+                                                        <li><a href="#">Видеоуроки</a>
+                                                        </li>
+                                        </ul>
+                                      </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="header-navigation-pane" data-pane="press" hidden>
+                <div class="container">
+                  <div class="header-section">
+                    <div class="header-section__info"><a class="header-section__name" href="#">Пресс-центр</a>
+                      <div class="header-section__description">Описание раздела Пресс-центр</div>
+                    </div>
+                    <div class="header-section__list">
+                      <ul>
+                                      <li><a href="#">Новости</a>
+                                      </li>
+                                      <li><a href="#">Объявления</a>
+                                      </li>
+                                      <li><a href="#">Мероприятия</a>
+                                      </li>
+                                      <li><a href="#">Вебинары</a>
+                                      </li>
+                                      <li><a href="#">Публикации</a>
+                                      </li>
+                                      <li><a href="#">Маркетинговые материалы</a>
+                                      </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="header-contacts"><a class="header-contact__phone" href="tel:84999409061">+7 (499) 940-90-61</a>
+                <button class="header-contacts__trigger" type="button">Написать нам
+                                <svg width="20" height="20">
+                                  <use xlink:href="#i-chevron-bottom" href="#i-chevron-bottom"></use>
+                                </svg>
+                </button>
+                <div class="header-contacts__pane" hidden>
+                  <div class="contacts-block">
+                    <div class="contacts-block__question">
+                      <button class="btn btn-primary-inverse" type="button">Задать вопрос</button>
+                    </div>
+                    <div class="contacts-block__mail">
+                      <div class="contacts-block__label">Напишите нам</div><a href="mailto:information@s-terra.ru">information@s-terra.ru</a>
+                    </div>
+                    <div class="contacts-block__apps">
+                      <div class="contacts-block__label">Мы в мессенджерах</div>
+                      <ul class="contacts-block__list">
+                        <li><a href="#">whatsapp</a></li>
+                        <li><a href="#">telegram</a></li>
+                      </ul>
+                    </div>
+                    <div class="contacts-block__socials">
+                      <div class="contacts-block__label">Мы в соцсетях</div>
+                      <ul class="contacts-block__list">
+                        <li><a href="#">fb</a></li>
+                        <li><a href="#">yt</a></li>
+                        <li><a href="#">vk</a></li>
+                        <li><a href="#">in</a></li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="header-search">
+                <button class="btn btn-round btn-primary-inverse header-search__trigger" type="button">
+                                <svg width="20" height="20">
+                                  <use xlink:href="#i-search" href="#i-search"></use>
+                                </svg>
+                </button>
+                <div class="header-search__search" hidden><!-- SEARCH -->
+                  <div class="search" data-search>
+                    <div class="search-field">
+                                        <svg width="20" height="20">
+                                          <use xlink:href="#i-search" href="#i-search"></use>
+                                        </svg>
+                      <input class="form-control" value="" placeholder="Поиск" data-field>
+                      <button class="icon-btn search-field__reset" type="button" data-reset>
+                                          <svg width="20" height="20">
+                                            <use xlink:href="#i-times" href="#i-times"></use>
+                                          </svg>
+                      </button>
+                    </div>
+                    <ul class="search-list">
+                      <li><a href="#">С-Терра Шлюз 10G</a></li>
+                      <li><a href="#">С-Терра Шлюз 4.3</a></li>
+                      <li><a href="#">С-Терра Шлюз 4.2</a></li>
+                      <li><a href="#">С-Терра Шлюз 4.1</a></li>
+                      <li><a href="#">С-Терра Шлюз DP 4.3</a></li>
+                      <li><a href="#">С-Терра Шлюз DP 4.2</a></li>
+                      <li><a href="#">С-Терра Шлюз 8000</a></li>
+                    </ul>
+                  </div><!-- /SEARCH -->
+                </div>
+              </div><a class="btn btn-round btn-primary-inverse header-account" href="#">
+                                  <svg width="20" height="20">
+                                    <use xlink:href="#i-user" href="#i-user"></use>
+                                  </svg></a>
+              <button class="icon-btn header-toggler" type="button" data-closed>
+                                  <svg width="20" height="20">
+                                    <use xlink:href="#i-burger" href="#i-burger"></use>
+                                  </svg>
+                                  <svg width="20" height="20">
+                                    <use xlink:href="#i-times" href="#i-times"></use>
+                                  </svg>
+              </button>
+            </div>
           </div>
-          <div class="header-contacts"><a class="header-contact__phone" href="tel:84999409061">+7 (499) 940-90-61</a>
-            <button class="header-contacts__trigger" type="button">Написать нам
-                        <svg width="20" height="20">
-                          <use xlink:href="#i-chevron-bottom" href="#i-chevron-bottom"></use>
-                        </svg>
-            </button>
-            <div class="header-contacts__pane" hidden>
+        </div>
+        <div class="header-pane" hidden>
+          <div class="container">
+            <div class="header-pane__search"><!-- SEARCH -->
+              <div class="search" data-search>
+                <div class="search-field">
+                                <svg width="20" height="20">
+                                  <use xlink:href="#i-search" href="#i-search"></use>
+                                </svg>
+                  <input class="form-control" value="" placeholder="Поиск" data-field>
+                  <button class="icon-btn search-field__reset" type="button" data-reset>
+                                  <svg width="20" height="20">
+                                    <use xlink:href="#i-times" href="#i-times"></use>
+                                  </svg>
+                  </button>
+                </div>
+                <ul class="search-list">
+                  <li><a href="#">С-Терра Шлюз 10G</a></li>
+                  <li><a href="#">С-Терра Шлюз 4.3</a></li>
+                  <li><a href="#">С-Терра Шлюз 4.2</a></li>
+                  <li><a href="#">С-Терра Шлюз 4.1</a></li>
+                  <li><a href="#">С-Терра Шлюз DP 4.3</a></li>
+                  <li><a href="#">С-Терра Шлюз DP 4.2</a></li>
+                  <li><a href="#">С-Терра Шлюз 8000</a></li>
+                </ul>
+              </div><!-- /SEARCH -->
+            </div>
+            <div class="header-pane__nav">
+              <div class="header-menu">
+                              <div class="header-menu-section" data-section="about">
+                                <div class="header-menu-section__title"><a href="#">О компании</a>
+                                  <button class="icon-btn header-menu-section__toggler">
+                                                  <svg width="20" height="20">
+                                                    <use xlink:href="#i-chevron-bottom" href="#i-chevron-bottom"></use>
+                                                  </svg>
+                                  </button>
+                                </div>
+                                <div class="header-menu-section__items">
+                                  <ul>
+                                                  <li><a href="#">Основная информация</a>
+                                                  </li>
+                                                  <li><a href="#">Награды и благодарности</a>
+                                                  </li>
+                                                  <li><a href="#">Работа у нас</a>
+                                                  </li>
+                                  </ul>
+                                </div>
+                              </div>
+                              <div class="header-menu-section" data-section="catalog">
+                                <div class="header-menu-section__title"><a href="#">Каталог</a>
+                                  <button class="icon-btn header-menu-section__toggler">
+                                                  <svg width="20" height="20">
+                                                    <use xlink:href="#i-chevron-bottom" href="#i-chevron-bottom"></use>
+                                                  </svg>
+                                  </button>
+                                </div>
+                                <div class="header-menu-section__items">
+                                  <ul>
+                                                  <li><a href="#">Продукты</a>
+                                                    <ul>
+                                                                    <li><a href="#">Программные средства</a>
+                                                                      <ul>
+                                                                                      <li><a href="#">С-Терра Клиент</a>
+                                                                                      </li>
+                                                                                      <li><a href="#">С-Терра Клиент А</a>
+                                                                                      </li>
+                                                                      </ul>
+                                                                    </li>
+                                                                    <li><a href="#">Шлюзы безопасности</a>
+                                                                      <ul>
+                                                                                      <li><a href="#">С-Терра Шлюз</a>
+                                                                                      </li>
+                                                                                      <li><a href="#">С-Терра Шлюз DP</a>
+                                                                                      </li>
+                                                                                      <li><a href="#">С-Терра Юнит</a>
+                                                                                      </li>
+                                                                                      <li><a href="#">С-Терра Виртуальный Шлюз</a>
+                                                                                      </li>
+                                                                                      <li><a href="#">С-Терра для Cisco</a>
+                                                                                      </li>
+                                                                                      <li><a href="#">Криптомаршрутизатор ESR-ST</a>
+                                                                                      </li>
+                                                                                      <li><a href="#">С-Терра Шлюз Е</a>
+                                                                                      </li>
+                                                                                      <li><a href="#">С-Терра Виртуальный Шлюз Е</a>
+                                                                                      </li>
+                                                                      </ul>
+                                                                    </li>
+                                                                    <li><a href="#">Специальные решения</a>
+                                                                      <ul>
+                                                                                      <li><a href="#">С-Терра L2</a>
+                                                                                      </li>
+                                                                                      <li><a href="#">С-Терра СОВ</a>
+                                                                                      </li>
+                                                                      </ul>
+                                                                    </li>
+                                                                    <li><a href="#">Система управления</a>
+                                                                      <ul>
+                                                                                      <li><a href="#">С-Терра КП</a>
+                                                                                      </li>
+                                                                      </ul>
+                                                                    </li>
+                                                    </ul>
+                                                  </li>
+                                                  <li><a href="#">Отраслевые решения</a>
+                                                    <ul>
+                                                                    <li><a href="#">Финансовый сектор</a>
+                                                                    </li>
+                                                                    <li><a href="#">Государственный сектор</a>
+                                                                    </li>
+                                                                    <li><a href="#">Топливно-энергетическая отрасль</a>
+                                                                    </li>
+                                                                    <li><a href="#">Телекоммуникационная отрасль</a>
+                                                                    </li>
+                                                    </ul>
+                                                  </li>
+                                                  <li><a href="#">Комплексные решения</a>
+                                                    <ul>
+                                                                    <li><a href="#">Защита канала 10 Гбит и больше</a>
+                                                                    </li>
+                                                                    <li><a href="#">Обнаружение вторжений</a>
+                                                                    </li>
+                                                                    <li><a href="#">Защита удаленного доступа</a>
+                                                                    </li>
+                                                                    <li><a href="#">Защита персональных данных</a>
+                                                                    </li>
+                                                                    <li><a href="#">Защита межфилиальных взаимодействий</a>
+                                                                    </li>
+                                                                    <li><a href="#">Защита виртуализации</a>
+                                                                    </li>
+                                                                    <li><a href="#">Защита подключения к СМЭВ</a>
+                                                                    </li>
+                                                                    <li><a href="#">Защита подключения к ИС ЕПТ</a>
+                                                                    </li>
+                                                    </ul>
+                                                  </li>
+                                                  <li><a href="#">Прайс-листы</a>
+                                                  </li>
+                                  </ul>
+                                </div>
+                              </div>
+                              <div class="header-menu-section" data-section="support">
+                                <div class="header-menu-section__title"><a href="#">Поддержка</a>
+                                  <button class="icon-btn header-menu-section__toggler">
+                                                  <svg width="20" height="20">
+                                                    <use xlink:href="#i-chevron-bottom" href="#i-chevron-bottom"></use>
+                                                  </svg>
+                                  </button>
+                                </div>
+                                <div class="header-menu-section__items">
+                                  <ul>
+                                                  <li><a href="#">Техническая поддержка</a>
+                                                  </li>
+                                                  <li><a href="#">Часто задаваемые вопросы (FAQ)</a>
+                                                  </li>
+                                                  <li><a href="#">Загрузки</a>
+                                                  </li>
+                                                  <li><a href="#">Документация</a>
+                                                    <ul>
+                                                                    <li><a href="#">Сертификаты на продукцию</a>
+                                                                    </li>
+                                                                    <li><a href="#">Лицензии и свидетельства</a>
+                                                                    </li>
+                                                                    <li><a href="#">Нормативные документы</a>
+                                                                    </li>
+                                                    </ul>
+                                                  </li>
+                                                  <li><a href="#">Обучение</a>
+                                                    <ul>
+                                                                    <li><a href="#">Курсы</a>
+                                                                    </li>
+                                                                    <li><a href="#">Видеоуроки</a>
+                                                                    </li>
+                                                    </ul>
+                                                  </li>
+                                  </ul>
+                                </div>
+                              </div>
+                              <div class="header-menu-section" data-section="press">
+                                <div class="header-menu-section__title"><a href="#">Пресс-центр</a>
+                                  <button class="icon-btn header-menu-section__toggler">
+                                                  <svg width="20" height="20">
+                                                    <use xlink:href="#i-chevron-bottom" href="#i-chevron-bottom"></use>
+                                                  </svg>
+                                  </button>
+                                </div>
+                                <div class="header-menu-section__items">
+                                  <ul>
+                                                  <li><a href="#">Новости</a>
+                                                  </li>
+                                                  <li><a href="#">Объявления</a>
+                                                  </li>
+                                                  <li><a href="#">Мероприятия</a>
+                                                  </li>
+                                                  <li><a href="#">Вебинары</a>
+                                                  </li>
+                                                  <li><a href="#">Публикации</a>
+                                                  </li>
+                                                  <li><a href="#">Маркетинговые материалы</a>
+                                                  </li>
+                                  </ul>
+                                </div>
+                              </div>
+              </div>
+            </div>
+            <div class="header-pane__contacts">
               <div class="contacts-block">
                 <div class="contacts-block__question">
                   <button class="btn btn-primary-inverse" type="button">Задать вопрос</button>
@@ -218,318 +698,45 @@
               </div>
             </div>
           </div>
-          <div class="header-search">
-            <button class="btn btn-round btn-primary-inverse header-search__trigger" type="button">
-                        <svg width="20" height="20">
-                          <use xlink:href="#i-search" href="#i-search"></use>
-                        </svg>
-            </button>
-            <div class="header-search__search" hidden><!-- SEARCH -->
-              <div class="search" data-search>
-                <div class="search-field">
-                                <svg width="20" height="20">
-                                  <use xlink:href="#i-search" href="#i-search"></use>
-                                </svg>
-                  <input class="form-control" value="" placeholder="Поиск" data-field>
-                  <button class="icon-btn search-field__reset" type="button" data-reset>
-                                  <svg width="20" height="20">
-                                    <use xlink:href="#i-times" href="#i-times"></use>
-                                  </svg>
-                  </button>
-                </div>
-                <ul class="search-list">
-                  <li><a href="#">С-Терра Шлюз 10G</a></li>
-                  <li><a href="#">С-Терра Шлюз 4.3</a></li>
-                  <li><a href="#">С-Терра Шлюз 4.2</a></li>
-                  <li><a href="#">С-Терра Шлюз 4.1</a></li>
-                  <li><a href="#">С-Терра Шлюз DP 4.3</a></li>
-                  <li><a href="#">С-Терра Шлюз DP 4.2</a></li>
-                  <li><a href="#">С-Терра Шлюз 8000</a></li>
-                </ul>
-              </div><!-- /SEARCH -->
-            </div>
-          </div><a class="btn btn-round btn-primary-inverse header-account" href="#">
-                          <svg width="20" height="20">
-                            <use xlink:href="#i-user" href="#i-user"></use>
-                          </svg></a>
-          <button class="icon-btn header-toggler" type="button" data-closed>
-                          <svg width="20" height="20">
-                            <use xlink:href="#i-burger" href="#i-burger"></use>
-                          </svg>
-                          <svg width="20" height="20">
-                            <use xlink:href="#i-times" href="#i-times"></use>
-                          </svg>
-          </button>
         </div>
       </header><!-- /HEADER -->
-<!-- HEADER DROPDOWN -->
-      <div class="header-pane" hidden>
-        <div class="container">
-          <div class="header-pane__search"><!-- SEARCH -->
-            <div class="search" data-search>
-              <div class="search-field">
-                            <svg width="20" height="20">
-                              <use xlink:href="#i-search" href="#i-search"></use>
-                            </svg>
-                <input class="form-control" value="" placeholder="Поиск" data-field>
-                <button class="icon-btn search-field__reset" type="button" data-reset>
-                              <svg width="20" height="20">
-                                <use xlink:href="#i-times" href="#i-times"></use>
-                              </svg>
-                </button>
-              </div>
-              <ul class="search-list">
-                <li><a href="#">С-Терра Шлюз 10G</a></li>
-                <li><a href="#">С-Терра Шлюз 4.3</a></li>
-                <li><a href="#">С-Терра Шлюз 4.2</a></li>
-                <li><a href="#">С-Терра Шлюз 4.1</a></li>
-                <li><a href="#">С-Терра Шлюз DP 4.3</a></li>
-                <li><a href="#">С-Терра Шлюз DP 4.2</a></li>
-                <li><a href="#">С-Терра Шлюз 8000</a></li>
-              </ul>
-            </div><!-- /SEARCH -->
-          </div>
-          <div class="header-pane__menu">
-            <div class="header-menu">
-                          <div class="header-menu-section" data-section="about">
-                            <div class="header-menu-section__title"><a href="#">О компании</a>
-                              <button class="icon-btn header-menu-section__toggler">
-                                            <svg width="20" height="20">
-                                              <use xlink:href="#i-chevron-bottom" href="#i-chevron-bottom"></use>
-                                            </svg>
-                              </button>
-                            </div>
-                            <div class="header-menu-section__items">
-                              <ul>
-                                            <li><a href="#">Основная информация</a>
-                                            </li>
-                                            <li><a href="#">Награды и благодарности</a>
-                                            </li>
-                                            <li><a href="#">Работа у нас</a>
-                                            </li>
-                              </ul>
-                            </div>
-                          </div>
-                          <div class="header-menu-section" data-section="catalog">
-                            <div class="header-menu-section__title"><a href="#">Каталог</a>
-                              <button class="icon-btn header-menu-section__toggler">
-                                            <svg width="20" height="20">
-                                              <use xlink:href="#i-chevron-bottom" href="#i-chevron-bottom"></use>
-                                            </svg>
-                              </button>
-                            </div>
-                            <div class="header-menu-section__items">
-                              <ul>
-                                            <li><a href="#">Продукты</a>
-                                              <ul>
-                                                            <li><a href="#">Программные средства</a>
-                                                              <ul>
-                                                                            <li><a href="#">С-Терра Клиент</a>
-                                                                            </li>
-                                                                            <li><a href="#">С-Терра Клиент А</a>
-                                                                            </li>
-                                                              </ul>
-                                                            </li>
-                                                            <li><a href="#">Шлюзы безопасности</a>
-                                                              <ul>
-                                                                            <li><a href="#">С-Терра Шлюз</a>
-                                                                            </li>
-                                                                            <li><a href="#">С-Терра Шлюз DP</a>
-                                                                            </li>
-                                                                            <li><a href="#">С-Терра Юнит</a>
-                                                                            </li>
-                                                                            <li><a href="#">С-Терра Виртуальный Шлюз</a>
-                                                                            </li>
-                                                                            <li><a href="#">С-Терра для Cisco</a>
-                                                                            </li>
-                                                                            <li><a href="#">Криптомаршрутизатор ESR-ST</a>
-                                                                            </li>
-                                                                            <li><a href="#">С-Терра Шлюз Е</a>
-                                                                            </li>
-                                                                            <li><a href="#">С-Терра Виртуальный Шлюз Е</a>
-                                                                            </li>
-                                                              </ul>
-                                                            </li>
-                                                            <li><a href="#">Специальные решения</a>
-                                                              <ul>
-                                                                            <li><a href="#">С-Терра L2</a>
-                                                                            </li>
-                                                                            <li><a href="#">С-Терра СОВ</a>
-                                                                            </li>
-                                                              </ul>
-                                                            </li>
-                                                            <li><a href="#">Система управления</a>
-                                                              <ul>
-                                                                            <li><a href="#">С-Терра КП</a>
-                                                                            </li>
-                                                              </ul>
-                                                            </li>
-                                              </ul>
-                                            </li>
-                                            <li><a href="#">Отраслевые решения</a>
-                                              <ul>
-                                                            <li><a href="#">Финансовый сектор</a>
-                                                            </li>
-                                                            <li><a href="#">Государственный сектор</a>
-                                                            </li>
-                                                            <li><a href="#">Топливно-энергетическая отрасль</a>
-                                                            </li>
-                                                            <li><a href="#">Телекоммуникационная отрасль</a>
-                                                            </li>
-                                              </ul>
-                                            </li>
-                                            <li><a href="#">Комплексные решения</a>
-                                              <ul>
-                                                            <li><a href="#">Защита канала 10 Гбит и больше</a>
-                                                            </li>
-                                                            <li><a href="#">Обнаружение вторжений</a>
-                                                            </li>
-                                                            <li><a href="#">Защита удаленного доступа</a>
-                                                            </li>
-                                                            <li><a href="#">Защита персональных данных</a>
-                                                            </li>
-                                                            <li><a href="#">Защита межфилиальных взаимодействий</a>
-                                                            </li>
-                                                            <li><a href="#">Защита виртуализации</a>
-                                                            </li>
-                                                            <li><a href="#">Защита подключения к СМЭВ</a>
-                                                            </li>
-                                                            <li><a href="#">Защита подключения к ИС ЕПТ</a>
-                                                            </li>
-                                              </ul>
-                                            </li>
-                                            <li><a href="#">Прайс-листы</a>
-                                            </li>
-                              </ul>
-                            </div>
-                          </div>
-                          <div class="header-menu-section" data-section="support">
-                            <div class="header-menu-section__title"><a href="#">Поддержка</a>
-                              <button class="icon-btn header-menu-section__toggler">
-                                            <svg width="20" height="20">
-                                              <use xlink:href="#i-chevron-bottom" href="#i-chevron-bottom"></use>
-                                            </svg>
-                              </button>
-                            </div>
-                            <div class="header-menu-section__items">
-                              <ul>
-                                            <li><a href="#">Техническая поддержка</a>
-                                            </li>
-                                            <li><a href="#">Часто задаваемые вопросы (FAQ)</a>
-                                            </li>
-                                            <li><a href="#">Загрузки</a>
-                                            </li>
-                                            <li><a href="#">Документация</a>
-                                              <ul>
-                                                            <li><a href="#">Сертификаты на продукцию</a>
-                                                            </li>
-                                                            <li><a href="#">Лицензии и свидетельства</a>
-                                                            </li>
-                                                            <li><a href="#">Нормативные документы</a>
-                                                            </li>
-                                              </ul>
-                                            </li>
-                                            <li><a href="#">Обучение</a>
-                                              <ul>
-                                                            <li><a href="#">Курсы</a>
-                                                            </li>
-                                                            <li><a href="#">Видеоуроки</a>
-                                                            </li>
-                                              </ul>
-                                            </li>
-                              </ul>
-                            </div>
-                          </div>
-                          <div class="header-menu-section" data-section="press">
-                            <div class="header-menu-section__title"><a href="#">Пресс-центр</a>
-                              <button class="icon-btn header-menu-section__toggler">
-                                            <svg width="20" height="20">
-                                              <use xlink:href="#i-chevron-bottom" href="#i-chevron-bottom"></use>
-                                            </svg>
-                              </button>
-                            </div>
-                            <div class="header-menu-section__items">
-                              <ul>
-                                            <li><a href="#">Новости</a>
-                                            </li>
-                                            <li><a href="#">Объявления</a>
-                                            </li>
-                                            <li><a href="#">Мероприятия</a>
-                                            </li>
-                                            <li><a href="#">Вебинары</a>
-                                            </li>
-                                            <li><a href="#">Публикации</a>
-                                            </li>
-                                            <li><a href="#">Маркетинговые материалы</a>
-                                            </li>
-                              </ul>
-                            </div>
-                          </div>
-            </div>
-          </div>
-          <div class="header-pane__contacts">
-            <div class="contacts-block">
-              <div class="contacts-block__question">
-                <button class="btn btn-primary-inverse" type="button">Задать вопрос</button>
-              </div>
-              <div class="contacts-block__mail">
-                <div class="contacts-block__label">Напишите нам</div><a href="mailto:information@s-terra.ru">information@s-terra.ru</a>
-              </div>
-              <div class="contacts-block__apps">
-                <div class="contacts-block__label">Мы в мессенджерах</div>
-                <ul class="contacts-block__list">
-                  <li><a href="#">whatsapp</a></li>
-                  <li><a href="#">telegram</a></li>
-                </ul>
-              </div>
-              <div class="contacts-block__socials">
-                <div class="contacts-block__label">Мы в соцсетях</div>
-                <ul class="contacts-block__list">
-                  <li><a href="#">fb</a></li>
-                  <li><a href="#">yt</a></li>
-                  <li><a href="#">vk</a></li>
-                  <li><a href="#">in</a></li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div><!-- /HEADER DROPDOWN -->
       <main class="page-main">
         <div class="home-page__jumbotron">
           <div class="jumbotron">
             <div class="jumbotron__slider">
-              <div class="c-slider">
-                <div class="c-slider-wrapper">
-                  <section class="c-slider-slide">
-                    <div class="jumbotron-banner">
-                      <div class="jumbotron-banner__text">
-                        <h2>Обеспечиваем<br>современными решениями<br>для построения VPN</h2>
-                        <button class="btn btn-lg btn-accent" type="button">Выбрать решение</button>
+              <div class="s-slider">
+                <div class="s-slider-wrapper">
+                  <div class="s-slider-slides">
+                    <section class="s-slider-slide">
+                      <div class="jumbotron-banner">
+                        <div class="jumbotron-banner__text">
+                          <h2>1Обеспечиваем<br>современными решениями<br>для построения VPN</h2>
+                          <button class="btn btn-lg btn-accent" type="button">Выбрать решение</button>
+                        </div>
+                        <div class="jumbotron-banner__img"><img src="./img/icons/lighthouse.png" alt="" width="200"></div>
                       </div>
-                      <div class="jumbotron-banner__img"><img src="./img/icons/lighthouse.png" alt=""></div>
-                    </div>
-                  </section>
-                  <section class="c-slider-slide">
-                    <div class="jumbotron-banner">
-                      <div class="jumbotron-banner__text">
-                        <h2>Обеспечиваем<br>современными решениями<br>для построения VPN</h2>
-                        <button class="btn btn-lg btn-accent" type="button">Выбрать решение</button>
+                    </section>
+                    <section class="s-slider-slide">
+                      <div class="jumbotron-banner">
+                        <div class="jumbotron-banner__text">
+                          <h2>2Обеспечиваем<br>современными решениями<br>для построения VPN</h2>
+                          <button class="btn btn-lg btn-accent" type="button">Выбрать решение</button>
+                        </div>
+                        <div class="jumbotron-banner__img"><img src="./img/icons/lighthouse.png" alt="" width="200"></div>
                       </div>
-                      <div class="jumbotron-banner__img"><img src="./img/icons/lighthouse.png" alt=""></div>
-                    </div>
-                  </section>
-                  <section class="c-slider-slide">
-                    <div class="jumbotron-banner">
-                      <div class="jumbotron-banner__text">
-                        <h2>Обеспечиваем<br>современными решениями<br>для построения VPN</h2>
-                        <button class="btn btn-lg btn-accent" type="button">Выбрать решение</button>
+                    </section>
+                    <section class="s-slider-slide">
+                      <div class="jumbotron-banner">
+                        <div class="jumbotron-banner__text">
+                          <h2>3Обеспечиваем<br>современными решениями<br>для построения VPN</h2>
+                          <button class="btn btn-lg btn-accent" type="button">Выбрать решение</button>
+                        </div>
+                        <div class="jumbotron-banner__img"><img src="./img/icons/lighthouse.png" alt="" width="200"></div>
                       </div>
-                      <div class="jumbotron-banner__img"><img src="./img/icons/lighthouse.png" alt=""></div>
-                    </div>
-                  </section>
+                    </section>
+                  </div>
                 </div>
-                <div class="c-slider-pagination"></div>
+                <div class="s-slider-pagination"></div>
               </div>
             </div>
           </div>
@@ -1079,5 +1286,6 @@
         </div>
       </footer>
     </div>
+    <script src="./js/script.js" async></script>
   </body>
 </html>

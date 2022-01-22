@@ -1,11 +1,14 @@
 <!-- SEARCH -->
 include ../../../mixins/icon.pug
+
 div.search(data-search)
+
   .search-field
     +svg-icon('search', 20, 20)
     input.form-control(value="" placeholder='Поиск' data-field)
     button.icon-btn.search-field__reset(type='button' data-reset)
       +svg-icon('times', 20, 20)
+
   ul.search-list
     -
       var options = [

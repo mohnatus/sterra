@@ -1,58 +1,58 @@
-"use strict";
-
-var header = document.getElementById('header-2');
-"use strict";
-
-(function () {
-  var selectors = {
+(() => {
+  const selectors = {
     slider: '.s-slider',
     wrapper: '.s-slider-wrapper',
     container: '.s-slider-slides',
     slide: '.s-slider-slide',
     pagination: '.s-slider-pagination'
   };
-  var states = {
+
+  const states = {
     shifting: 'shifting',
     loaded: 'loaded'
   };
-  var threshold = 100;
+
+  const threshold = 100;
 
   function SingleSlider($slider) {
     if (!$slider) return;
-    var $container = $slider.querySelector(selectors.container);
+    const $container = $slider.querySelector(selectors.container);
     if (!$container) return;
-    var $slides = $container.querySelectorAll(selectors.slide);
-    var slidesCount = $slides.length;
+    const $slides = $container.querySelectorAll(selectors.slide);
+    const slidesCount = $slides.length;
     if (slidesCount < 2) return;
-    var sliderWidth = $container.offsetWidth;
-    var currentIndex = 0;
-    var allowShift = true;
-    var slideChangeCallbacks = [];
+
+    let sliderWidth = $container.offsetWidth;
+    let currentIndex = 0;
+    let allowShift = true;
+
+    const slideChangeCallbacks = [];
 
     function changeIndex(newIndex) {
       currentIndex = newIndex;
-      var event = new Event('change');
+      const event = new Event('change');
       event.details = newIndex;
       $slider.dispatchEvent(event);
-      slideChangeCallbacks.forEach(function (cb) {
-        return cb(newIndex);
-      });
+      slideChangeCallbacks.forEach((cb) => cb(newIndex));
     }
 
-    var x1 = 0,
-        x2 = 0,
-        initialX,
-        finalX;
-    var $firstSlide = $slides[0];
-    var $lastSlide = $slides[slidesCount - 1];
-    var $firstSlideClone = $firstSlide.cloneNode(true);
-    var $lastSlideClone = $lastSlide.cloneNode(true);
+    let x1 = 0,
+      x2 = 0,
+      initialX,
+      finalX;
+
+    const $firstSlide = $slides[0];
+    const $lastSlide = $slides[slidesCount - 1];
+    const $firstSlideClone = $firstSlide.cloneNode(true);
+    const $lastSlideClone = $lastSlide.cloneNode(true);
+
     $container.appendChild($firstSlideClone);
     $container.insertBefore($lastSlideClone, $firstSlide);
     $container.style.left = -1 * sliderWidth + 'px';
 
     function shiftToSlide(slideIndex) {
       if (currentIndex === slideIndex) return;
+
       $container.classList.add(states.shifting);
 
       if (allowShift) {
@@ -121,13 +121,11 @@ var header = document.getElementById('header-2');
         x2 = x1 - e.clientX;
         x1 = e.clientX;
       }
-
       $container.style.left = $container.offsetLeft - x2 + 'px';
     }
 
     function onDragEnd(e) {
       finalX = $container.offsetLeft;
-
       if (finalX - initialX < -threshold) {
         shiftSlide(1, 'drag');
       } else if (finalX - initialX > threshold) {
@@ -140,32 +138,36 @@ var header = document.getElementById('header-2');
       document.onmousemove = null;
     }
 
-    window.addEventListener('resize', function () {
-      sliderWidth = $container.offsetWidth; // TODO
-
-      var offset = currentIndex * sliderWidth;
+    window.addEventListener('resize', () => {
+      sliderWidth = $container.offsetWidth;
+      // TODO
+      let offset = currentIndex * sliderWidth;
       $container.style.left = -1 * offset + 'px';
     });
+
     $container.onmousedown = onDragStart;
     $container.addEventListener('touchstart', onDragStart);
     $container.addEventListener('touchend', onDragEnd);
     $container.addEventListener('touchmove', onDragAction);
     $container.addEventListener('transitionend', checkIndex);
-    var $pagination = $slider.querySelector(selectors.pagination);
+
+    let $pagination = $slider.querySelector(selectors.pagination);
 
     if ($pagination) {
-      var $paginationItems = Array(slidesCount).fill(null).map(function (_, i) {
-        var $item = document.createElement('div');
-        $item.dataset.slide = i;
-        $pagination.appendChild($item);
-        $item.addEventListener('click', function () {
-          shiftToSlide(i);
+      const $paginationItems = Array(slidesCount)
+        .fill(null)
+        .map((_, i) => {
+          let $item = document.createElement('div');
+          $item.dataset.slide = i;
+          $pagination.appendChild($item);
+          $item.addEventListener('click', () => {
+            shiftToSlide(i);
+          });
+          return $item;
         });
-        return $item;
-      });
       $paginationItems[0].classList.add('active');
-      slideChangeCallbacks.push(function (index) {
-        $paginationItems.forEach(function ($item, i) {
+      slideChangeCallbacks.push((index) => {
+        $paginationItems.forEach(($item, i) => {
           $item.classList.toggle('active', i === index);
         });
       });
@@ -175,17 +177,12 @@ var header = document.getElementById('header-2');
       shiftSlide(1);
       setTimeout(autoMove, 4000);
     }
-
     setTimeout(autoMove, 4000);
+
     $slider.classList.add(states.loaded);
   }
 
-  document.querySelectorAll(selectors.slider).forEach(function (el) {
+  document.querySelectorAll(selectors.slider).forEach((el) => {
     SingleSlider(el);
   });
 })();
-"use strict";
-
-var i = 5;
-var k = 10;
-var k2 = 10;

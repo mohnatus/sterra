@@ -29,6 +29,7 @@
   padding-left: calc(2 * var(--gap));
   padding-right: calc(2 * var(--gap));
   max-width: $maxContentWidth;
+  width: 100%;
 }
 
 .row {

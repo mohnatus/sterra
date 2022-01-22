@@ -3,39 +3,38 @@
 include ../../mixins/icon.pug
 
 header.header
-  .container
+  .header-view
+    .container
+      .header-view__wrapper
+        a.header-logo(href="/")
+          img(src="./img/logo.png")
 
-    a.header-logo(href="/")
-      img(src="./img/logo.png")
+        include _header-navigation.pug
 
-    include _header-navigation.pug
+        include _header-contacts.pug
 
-    include _header-contacts.pug
+        include _header-search.pug
 
-    include _header-search.pug
+        a.btn.btn-round.btn-primary-inverse.header-account(href="#")
+          +svg-icon('user', 20, 20)
 
-    a.btn.btn-round.btn-primary-inverse.header-account(href="#")
-      +svg-icon('user', 20, 20)
+        button.icon-btn.header-toggler(type="button" data-closed)
+          +svg-icon('burger', 20, 20)
+          +svg-icon('times', 20, 20)
 
-    button.icon-btn.header-toggler(type="button" data-closed)
-      +svg-icon('burger', 20, 20)
-      +svg-icon('times', 20, 20)
+
+  .header-pane(hidden)
+    .container
+      .header-pane__search
+        include components/search.pug
+      .header-pane__nav
+        include _mixins.pug
+        include data/menu.pug
+
+        .header-menu
+          each section in [ menu.about, menu.catalog, menu.support, menu.press ]
+            +menu-section(section)
+
+      .header-pane__contacts
+        include components/contacts.pug
 <!-- /HEADER -->
-
-
-<!-- HEADER DROPDOWN -->
-.header-pane(hidden)
-  .container
-    .header-pane__search
-      include components/search.pug
-    .header-pane__menu
-      include _mixins.pug
-      include data/menu.pug
-
-      .header-menu
-        each section in [ menu.about, menu.catalog, menu.support, menu.press ]
-          +menu-section(section)
-
-    .header-pane__contacts
-      include components/contacts.pug
-<!-- /HEADER DROPDOWN -->
