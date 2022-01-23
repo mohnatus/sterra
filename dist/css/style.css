@@ -1474,6 +1474,9 @@ select::placeholder {
   background: blue;
   margin: 5px;
 }
+.s-slider-pagination div.active {
+  background: red;
+}
 
 .achievements__wrapper {
   display: flex;

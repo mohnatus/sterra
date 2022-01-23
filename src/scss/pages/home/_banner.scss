@@ -59,8 +59,6 @@
 //     }
 //   }
 
-
-
 //   .banner-img {
 //     position: absolute;
 //     bottom: -5px;
@@ -136,6 +134,9 @@
       height: 10px;
       background: blue;
       margin: 5px;
+      &.active {
+        background: red;
+      }
     }
   }
 }

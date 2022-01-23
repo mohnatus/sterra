@@ -41,7 +41,7 @@ function css() {
 exports.css = css;
 
 function js() {
-  return src(['src/js/header.js', 'src/js/s-slider.js', 'src/js/script.js'])
+  return src(['src/js/utils.js', 'src/js/header.js', 'src/js/s-slider.js', 'src/js/script.js'])
     .pipe(
       babel({
         presets: ['@babel/preset-env']

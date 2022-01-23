@@ -12,9 +12,19 @@
     loaded: 'loaded'
   };
 
-  const threshold = 100;
+  const events = {
+    changeSlide: 's-slider_change_slide',
+    clickPagination: 's-slider_click_pagination',
+    touched: 's-slider_touched'
+  };
 
-  function SingleSlider($slider) {
+  const THRESHOLD = 100;
+
+  const AUTO_MOVE_PERIOD = 4000;
+
+
+
+  function SingleSlider($slider, config = {}) {
     if (!$slider) return;
     const $container = $slider.querySelector(selectors.container);
     if (!$container) return;
@@ -22,18 +32,15 @@
     const slidesCount = $slides.length;
     if (slidesCount < 2) return;
 
+    const emitter = utils.createEmitter();
+
     let sliderWidth = $container.offsetWidth;
     let currentIndex = 0;
     let allowShift = true;
 
-    const slideChangeCallbacks = [];
-
     function changeIndex(newIndex) {
       currentIndex = newIndex;
-      const event = new Event('change');
-      event.details = newIndex;
-      $slider.dispatchEvent(event);
-      slideChangeCallbacks.forEach((cb) => cb(newIndex));
+      emitter.emit(events.changeSlide, newIndex);
     }
 
     let x1 = 0,
@@ -126,10 +133,12 @@
 
     function onDragEnd(e) {
       finalX = $container.offsetLeft;
-      if (finalX - initialX < -threshold) {
+      if (finalX - initialX < -THRESHOLD) {
         shiftSlide(1, 'drag');
-      } else if (finalX - initialX > threshold) {
+        emitter.emit(events.touched);
+      } else if (finalX - initialX > THRESHOLD) {
         shiftSlide(-1, 'drag');
+        emitter.emit(events.touched);
       } else {
         $container.style.left = initialX + 'px';
       }
@@ -140,9 +149,9 @@
 
     window.addEventListener('resize', () => {
       sliderWidth = $container.offsetWidth;
-      // TODO
-      let offset = currentIndex * sliderWidth;
-      $container.style.left = -1 * offset + 'px';
+
+      let offset = -1 * (currentIndex * sliderWidth) - sliderWidth;
+      $container.style.left = offset + 'px';
     });
 
     $container.onmousedown = onDragStart;
@@ -162,27 +171,43 @@
           $pagination.appendChild($item);
           $item.addEventListener('click', () => {
             shiftToSlide(i);
+            emitter.emit(events.clickPagination);
           });
           return $item;
         });
       $paginationItems[0].classList.add('active');
-      slideChangeCallbacks.push((index) => {
+
+      emitter.on(events.changeSlide, (index) => {
         $paginationItems.forEach(($item, i) => {
           $item.classList.toggle('active', i === index);
         });
       });
     }
 
-    function autoMove() {
-      shiftSlide(1);
-      setTimeout(autoMove, 4000);
+    if (config.autoMove) {
+      let timerId = null;
+
+      const cb = () => {
+        clearTimeout(timerId);
+        emitter.off([events.touched, events.clickPagination], cb);
+      };
+
+      function autoMove() {
+        shiftSlide(1);
+        timerId = setTimeout(autoMove, AUTO_MOVE_PERIOD);
+      }
+
+      timerId = setTimeout(autoMove, AUTO_MOVE_PERIOD);
+
+      emitter.on([events.touched, events.clickPagination], cb);
     }
-    setTimeout(autoMove, 4000);
 
     $slider.classList.add(states.loaded);
   }
 
   document.querySelectorAll(selectors.slider).forEach((el) => {
-    SingleSlider(el);
+    SingleSlider(el, {
+      autoMove: true
+    });
   });
 })();
