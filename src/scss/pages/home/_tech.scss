@@ -1,13 +1,13 @@
-.docs {
+.home-tech {
   margin-top: 104px;
 
-  .docs__wrapper {
+  .home-tech__wrapper {
     display: flex;
     margin-left: -12px;
     margin-right: -12px;
   }
 
-  .docs-item {
+  .home-tech-item {
     margin-left: 12px;
     margin-right: 12px;
     flex-basis: 50%;
@@ -33,7 +33,7 @@
       a {
         color: inherit;
 
-        svg {
+        img {
           margin-left: 15px;
           display: inline-block;
         }
@@ -49,102 +49,102 @@
       align-items: center;
     }
 
-    &:hover {
-      .envelope,
-      .box {
-        animation-name: docsMove;
-        animation-duration: 2000ms;
-        animation-iteration-count: infinite;
-        animation-timing-function: linear;
-      }
-      .envelope-1 {
-        animation-delay: 107ms;
-      }
-      .envelope-2 {
-        animation-delay: 213ms;
-      }
-      .envelope-2 {
-        animation-delay: 379ms;
-      }
-      .box-1 {
-        animation-delay: 301ms;
-      }
-      .line {
-        animation-name: linesMove;
-        animation-duration: 1400ms;
-        animation-iteration-count: infinite;
+    // &:hover {
+    //   .envelope,
+    //   .box {
+    //     animation-name: docsMove;
+    //     animation-duration: 2000ms;
+    //     animation-iteration-count: infinite;
+    //     animation-timing-function: linear;
+    //   }
+    //   .envelope-1 {
+    //     animation-delay: 107ms;
+    //   }
+    //   .envelope-2 {
+    //     animation-delay: 213ms;
+    //   }
+    //   .envelope-2 {
+    //     animation-delay: 379ms;
+    //   }
+    //   .box-1 {
+    //     animation-delay: 301ms;
+    //   }
+    //   .line {
+    //     animation-name: linesMove;
+    //     animation-duration: 1400ms;
+    //     animation-iteration-count: infinite;
 
-        &-2 {
-          animation-delay: 310ms;
-        }
-        &-3 {
-          animation-delay: 178ms;
-        }
-      }
-      .tablet {
-        animation-name: tablet1Move;
-        animation-duration: 2500ms;
-        animation-iteration-count: infinite;
-        animation-timing-function: linear;
+    //     &-2 {
+    //       animation-delay: 310ms;
+    //     }
+    //     &-3 {
+    //       animation-delay: 178ms;
+    //     }
+    //   }
+    //   .tablet {
+    //     animation-name: tablet1Move;
+    //     animation-duration: 2500ms;
+    //     animation-iteration-count: infinite;
+    //     animation-timing-function: linear;
 
-        &-1 {
-          animation-name: tablet2Move;
-        }
-      }
-    }
+    //     &-1 {
+    //       animation-name: tablet2Move;
+    //     }
+    //   }
+    // }
   }
 }
 
-@keyframes docsMove {
-  from {
-    transform: translateY(0);
-  }
-  25% {
-    transform: translateY(4px);
-  }
-  75% {
-    transform: translateY(-4px);
-  }
-  to {
-    transform: translateY(0);
-  }
-}
+// @keyframes docsMove {
+//   from {
+//     transform: translateY(0);
+//   }
+//   25% {
+//     transform: translateY(4px);
+//   }
+//   75% {
+//     transform: translateY(-4px);
+//   }
+//   to {
+//     transform: translateY(0);
+//   }
+// }
 
-@keyframes tablet1Move {
-  from {
-    transform: translateY(0);
-  }
-  25% {
-    transform: translateY(-9px);
-  }
-  75% {
-    transform: translateY(4px);
-  }
-  to {
-    transform: translateY(0);
-  }
-}
+// @keyframes tablet1Move {
+//   from {
+//     transform: translateY(0);
+//   }
+//   25% {
+//     transform: translateY(-9px);
+//   }
+//   75% {
+//     transform: translateY(4px);
+//   }
+//   to {
+//     transform: translateY(0);
+//   }
+// }
 
-@keyframes tablet2Move {
-  from {
-    transform: translateY(0);
-  }
-  25% {
-    transform: translateY(-3px);
-  }
-  75% {
-    transform: translateY(3px);
-  }
-  to {
-    transform: translateY(0);
-  }
-}
+// @keyframes tablet2Move {
+//   from {
+//     transform: translateY(0);
+//   }
+//   25% {
+//     transform: translateY(-3px);
+//   }
+//   75% {
+//     transform: translateY(3px);
+//   }
+//   to {
+//     transform: translateY(0);
+//   }
+// }
 
-@keyframes linesMove {
-  from {
-    transform: translateX(16px);
-  }
-  to {
-    transform: translateX(0px);
-  }
-}
+// @keyframes linesMove {
+//   from {
+//     transform: translateX(16px);
+//   }
+//   to {
+//     transform: translateX(0px);
+//   }
+// }

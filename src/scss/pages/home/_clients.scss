@@ -1,10 +1,13 @@
-.partners {
+.home-clients {
   margin-top: 80px;
   padding-bottom: 84px;
-  .partner {
+
+  .client-block {
     background: white;
     height: 116px;
+    width: 200px;
     cursor: pointer;
+    position: relative;
 
     img {
       position: absolute;
@@ -27,12 +30,6 @@
       img.colored {
         opacity: 1;
       }
-    }
-  }
-
-  &-slider {
-    .swiper-control {
-      border: none!important;
     }
   }
 }

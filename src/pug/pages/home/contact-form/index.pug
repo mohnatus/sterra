@@ -1,0 +1,27 @@
+.home-contact-form.colored-block
+  .container
+    h2.home-contact-form__title Хотите, чтобы мы с вами связались?
+    .home-contact-form__subtitle Оставьте свои контакты
+
+  .home-contact-form__wrapper
+    .home-contact-form__image
+      img(src="./img/icons/contacts.png")
+
+    .home-contact-form__fields
+      .home-contact-form__field
+        input(type="text" placeholder="Ваше имя")
+      .home-contact-form__field
+        input(type="text" placeholder="Название компании")
+      .home-contact-form__field
+        input(type="text" placeholder="Электронная почта")
+      .home-contact-form__field
+        input(type="text" placeholder="Номер телефона")
+      .home-contact-form__field
+        textarea(placeholder="Комментарий (необязательно)")
+      .home-contact-form__confirm
+        label.checkbox
+          input(type="checkbox" checked)
+          span.checkbox__box
+          label.checkbox__label Даю согласие на обработку своих персональных данных в соответствии с #[a(href="#") Политикой обработки персональных данных ООО «С-Терра СиЭсПи»].
+      .home-contact-form__submit
+        button.btn.btn-primary.btn-block(type="submit") Отправить

@@ -1,7 +1,9 @@
-.partners
-  .container
-    .partners-slider.swiper
-      .swiper-wrapper
+include ../../mixins/slider.pug
+
+.home-clients
+  .c-slider
+    .c-slider-container
+      .c-slider-slides
         -
           var partners = [
             {
@@ -57,14 +59,8 @@
           ]
 
         each partner in partners
-          .swiper-slide.partner
+          .c-slider-slide.client-block
             img.bw(src=partner.img alt=partner.alt)
             img.colored(src=partner.coloredImg alt=partner.alt)
 
-      .swiper-controls
-        button.swiper-control.swiper-prev.btn.btn-circle(type="button")
-          svg(width="7" height="12")
-            use(xlink:href="#arrow-left" href="#arrow-left")
-        button.swiper-control.swiper-next.btn.btn-circle(type="button")
-          svg(width="7" height="12")
-            use(xlink:href="#arrow-right" href="#arrow-right")
+      +slider-controls()
