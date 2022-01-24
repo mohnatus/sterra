@@ -1,0 +1,32 @@
+.scroll-slider {
+  &-viewport {
+    width: 100%;
+    overflow: auto;
+  }
+  &-slides {
+    display: flex;
+    margin-left: calc(-1 * var(--gap));
+    margin-right: calc(-1 * var(--gap));
+  }
+  &-slide {
+    padding-left: var(--gap);
+    padding-right: var(--gap);
+  }
+  &-offset {
+    width: calc(2 * var(--gap));
+    flex-shrink: 0;
+
+    @include max-width-up {
+      width: calc((100vw - var(--max-content-width)) / 2 + 2 * var(--gap));
+    }
+
+    &:last-child {
+      margin-left: calc(-1 * var(--gap));
+    }
+  }
+  &-prev {
+    margin-right: var(--space-xs);
+  }
+}
+
+

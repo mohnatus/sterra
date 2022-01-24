@@ -18,12 +18,25 @@
     margin-top: 40px;
   }
 
+  &__clients {
+    margin-top: 40px;
+  }
+
+  @include lg-phone-up {
+    &__clients {
+      margin-top: 50px;
+    }
+  }
+
   @include tablet-up {
     &__stats {
       margin-top: 40px;
     }
     &__info {
       margin-top: 50px;
+    }
+    &__clients {
+      margin-top: 60px;
     }
   }
 
@@ -33,6 +46,9 @@
     }
     &__info {
       margin-top: 55px;
+    }
+    &__clients {
+      margin-top: 80px;
     }
   }
 

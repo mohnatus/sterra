@@ -4,8 +4,13 @@
     .classList.contains('home-page');
   if (!isHomePage) return;
 
-  const slider = document.getElementById('home-slider');
-  if (slider) {
-    fadeSlider(slider);
+  const homeSlider = document.getElementById('home-slider');
+  if (homeSlider) {
+    fadeSlider(homeSlider);
   }
+
+  const sliders = document.querySelectorAll('.scroll-slider');
+  sliders.forEach((s) => {
+    scrollSlider(s);
+  });
 })();

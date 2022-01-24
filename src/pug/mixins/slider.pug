@@ -1,9 +1,9 @@
 mixin slider-controls(link)
   include icon.pug
-  .c-slider-controls
-    button.c-slider-control.c-slider-prev.btn.btn-round.btn-primary-inverse(type="button")
+  .scroll-slider-controls
+    button.scroll-slider-control.scroll-slider-prev.btn.btn-round.btn-primary-inverse(type="button")
       +svg-icon('chevron-left', 7, 12)
-    button.c-slider-control.c-slider-next.btn.btn-round.btn-primary-inverse(type="button")
+    button.scroll-slider-control.scroll-slider-next.btn.btn-round.btn-primary-inverse(type="button")
       +svg-icon('chevron-right', 7, 12)
     if (link)
-      a.btn.btn-round.btn-primary-inverse.c-slider-link(href=link.link)= link.name
+      a.btn.btn-round.btn-primary-inverse.scroll-slider-link(href=link.link)= link.name

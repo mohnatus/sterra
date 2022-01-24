@@ -25,6 +25,12 @@ $maxContentWidth: 1360px;
   }
 }
 
+@mixin max-width-up {
+  @media (min-width: 1360px) {
+    @content;
+  }
+}
+
 @mixin desktop-up {
   @media (min-width: 1440px) {
     @content;

@@ -306,14 +306,49 @@ var header = document.getElementById('header-2');
 
 })();
 "use strict";
+
+(function () {
+  var selectors = {
+    container: '.scroll-slider-slides',
+    slide: '.scroll-slider-slide',
+    pagination: '.scroll-slider-pagination'
+  };
+  var classes = {
+    offset: 'scroll-slider-offset'
+  };
+  var events = {
+    changeSlide: 'scroll-slider_change_slide'
+  };
+
+  function scrollSlider(element) {
+    if (!element) return;
+    var $container = element.querySelector(selectors.container);
+    if (!$container) return;
+    var $slides = $container.querySelectorAll(selectors.slide);
+    var emitter = utils.createEmitter();
+    var slidesCount = $slides.length;
+    var $offset = document.createElement('div');
+    $offset.classList.add(classes.offset);
+    $container.insertBefore($offset, $slides[0]);
+    $container.appendChild($offset.cloneNode(true));
+  }
+
+  window.scrollSlider = scrollSlider;
+})();
+"use strict";
 "use strict";
 
 (function () {
   var isHomePage = document.querySelector('.page').classList.contains('home-page');
   if (!isHomePage) return;
-  var slider = document.getElementById('home-slider');
+  var homeSlider = document.getElementById('home-slider');
 
-  if (slider) {
-    fadeSlider(slider);
+  if (homeSlider) {
+    fadeSlider(homeSlider);
   }
+
+  var sliders = document.querySelectorAll('.scroll-slider');
+  sliders.forEach(function (s) {
+    scrollSlider(s);
+  });
 })();

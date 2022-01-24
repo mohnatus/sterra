@@ -21,6 +21,9 @@
   @include tablet-up {
     --gap: var(--space-sm);
   }
+
+  --max-content-width: 1360px;
+  --content-width: calc(min(100vw, var(--max-content-width)) - 2 * var(--gap));
 }
 
 .container {
@@ -54,4 +57,66 @@
 /* lg GRID: SM-DESKTOP-UP */
 @include sm-desktop-up {
   @include grid-generator('-lg');
+}
+
+@mixin generate-content-grid($prefix: null) {
+  $classPrefix: '';
+  @if ($prefix) {
+    $classPrefix: '-' + $prefix;
+  }
+
+  &#{$classPrefix} {
+    &-1 {
+      width: calc(var(--content-width) / 12 * 1);
+    }
+    &-2 {
+      width: calc(var(--content-width) / 12 * 2);
+    }
+    &-3 {
+      width: calc(var(--content-width) / 12 * 3);
+    }
+    &-4 {
+      width: calc(var(--content-width) / 12 * 4);
+    }
+    &-5 {
+      width: calc(var(--content-width) / 12 * 5);
+    }
+    &-6 {
+      width: calc(var(--content-width) / 12 * 6);
+    }
+    &-7 {
+      width: calc(var(--content-width) / 12 * 7);
+    }
+    &-8 {
+      width: calc(var(--content-width) / 12 * 8);
+    }
+    &-9 {
+      width: calc(var(--content-width) / 12 * 9);
+    }
+    &-10 {
+      width: calc(var(--content-width) / 12 * 10);
+    }
+    &-11 {
+      width: calc(var(--content-width) / 12 * 11);
+    }
+    &-12 {
+      width: calc(var(--content-width) / 12 * 12);
+    }
+  }
+}
+
+.c-col {
+  @include generate-content-grid();
+
+  @include tablet-up {
+    @include generate-content-grid(('sm'));
+  }
+
+  @include lg-tablet-up {
+    @include generate-content-grid(('md'));
+  }
+
+  @include sm-desktop-up {
+    @include generate-content-grid(('lg'));
+  }
 }

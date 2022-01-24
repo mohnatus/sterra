@@ -1,9 +1,9 @@
 include ../../mixins/slider.pug
 
 .home-clients
-  .c-slider
-    .c-slider-container
-      .c-slider-slides
+  .scroll-slider
+    .scroll-slider-viewport
+      .scroll-slider-slides
         -
           var partners = [
             {
@@ -59,8 +59,10 @@ include ../../mixins/slider.pug
           ]
 
         each partner in partners
-          .c-slider-slide.client-block
-            img.bw(src=partner.img alt=partner.alt)
-            img.colored(src=partner.coloredImg alt=partner.alt)
+          .scroll-slider-slide.c-col-4.c-col-md-3.c-col-lg-2
+            .client-block
+              img.bw(src=partner.img alt=partner.alt)
+              img.colored(src=partner.coloredImg alt=partner.alt)
 
+    .container
       +slider-controls()
