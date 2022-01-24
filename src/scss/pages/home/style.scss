@@ -14,14 +14,24 @@
     margin-top: 30px;
   }
 
+  &__info {
+    margin-top: 40px;
+  }
+
   @include tablet-up {
     &__stats {
       margin-top: 40px;
+    }
+    &__info {
+      margin-top: 50px;
     }
   }
 
   @include lg-tablet-up {
     &__stats {
+      margin-top: 55px;
+    }
+    &__info {
       margin-top: 55px;
     }
   }

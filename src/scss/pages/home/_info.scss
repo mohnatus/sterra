@@ -3,140 +3,236 @@ $circleDelay: 800ms;
 $circleGroupDelay: 357ms;
 
 .home-info {
-  margin-top: 55px;
-
-  &__wrapper {
-    display: flex;
-  }
-
-  .home-info-company {
-    width: calc((100% + 24px) * 2 / 3 - 24px);
-    margin-right: 24px;
-    flex-shrink: 0;
-
-    background: white;
-
+  .home-info-company,
+  .home-info-products {
     &__container {
-      padding: 50px;
-      display: flex;
-    }
-
-    &__icons {
-      margin-right: 40px;
-
-      img {
-        width: 240px;
-      }
-
-      // .circles {
-      //   .circle {
-      //     opacity: 0;
-      //     animation-name: circleMove;
-      //     animation-duration: $circleAnimationDuration;
-      //     animation-timing-function: ease-in-out;
-      //     animation-iteration-count: infinite;
-      //   }
-
-      //   &-1 {
-      //     .circle {
-      //       transform-origin: 70% 76%;
-
-      //       &-1 {
-      //         animation-delay: 0ms;
-      //       }
-      //       &-2 {
-      //         animation-delay: 0ms + $circleDelay;
-      //       }
-      //       &-3 {
-      //         animation-delay: 0ms + $circleDelay * 2;
-      //       }
-      //     }
-      //   }
-
-      //   &-2 {
-      //     .circle {
-      //       transform-origin: 68% 36%;
-
-      //       &-1 {
-      //         animation-delay: $circleGroupDelay * 2;
-      //       }
-      //       &-2 {
-      //         animation-delay: $circleGroupDelay * 2 + $circleDelay;
-      //       }
-      //       &-3 {
-      //         animation-delay: $circleGroupDelay * 2 + $circleDelay * 2;
-      //       }
-      //     }
-      //   }
-
-      //   &-3 {
-      //     .circle {
-      //       transform-origin: 23% 66%;
-
-      //       &-1 {
-      //         animation-delay: $circleGroupDelay;
-      //       }
-      //       &-2 {
-      //         animation-delay: $circleGroupDelay + $circleDelay;
-      //       }
-      //       &-3 {
-      //         animation-delay: $circleGroupDelay + $circleDelay * 2;
-      //       }
-      //     }
-      //   }
-      // }
+      padding: 35px 30px 50px;
     }
 
     &__title {
-      font-size: 24px;
-      font-weight: 700;
-      margin-bottom: 14px;
-      color: var(--dark);
+      font-size: 20px;
+      font-weight: 500;
+      margin-bottom: var(--space-xs);
     }
 
     &__text {
-      margin-bottom: 32px;
+      margin-bottom: calc(2 * var(--space-sm));
+      font-size: 13px;
+    }
+  }
+
+  .home-info-company {
+    background: white;
+    margin-bottom: var(--space-lg);
+
+    &__icons {
+      display: none;
     }
   }
 
   .home-info-products {
-    min-height: 370px;
-    color: white;
-    position: relative;
     background-color: var(--primary);
-    background-image: url('./img/products/products.png');
-    background-position: bottom 30px right 0;
-    background-repeat: no-repeat;
+    color: var(--primary-contrast);
+    position: relative;
+    overflow: hidden;
+    min-height: 240px;
+
+    &:before {
+      content: '';
+      display: block;
+      background-image: url('../img/products/products.png');
+      min-width: 300px;
+      height: 125px;
+      background-repeat: no-repeat;
+      background-position: right bottom;
+      position: absolute;
+      top: 100px;
+      left: 100px;
+      right: 0;
+    }
 
     &__container {
-      padding: 50px 40px;
+      position: relative;
     }
 
     &__title {
-      font-size: 28px;
-      font-weight: 500;
-      margin-bottom: 14px;
-    }
-
-    &__text {
-      margin-bottom: 32px;
+      color: inherit;
     }
   }
+
+  @include tablet-up {
+    &__wrapper {
+      display: flex;
+      margin-left: calc(-1 * var(--space-sm));
+      margin-right: calc(-1 * var(--space-sm));
+    }
+    .home-info-company,
+    .home-info-products {
+      margin-left: var(--space-sm);
+      margin-right: var(--space-sm);
+      flex-basis: 50%;
+      min-height: 400px;
+    }
+    .home-info-company {
+      margin-bottom: 0;
+    }
+    .home-info-products {
+      &:before {
+        top: 200px;
+      }
+    }
+  }
+
+  @include lg-tablet-up {
+    .home-info-company,
+    .home-info-products {
+      min-height: 370px;
+
+      &__container {
+        padding-top: 50px;
+        padding-bottom: 64px;
+      }
+      &__title {
+        margin-bottom: var(--space-xs);
+      }
+      &__text {
+        font-size: 15px;
+      }
+    }
+    .home-info-company {
+      flex-basis: 58.33%;
+
+      &__title {
+        font-size: 24px;
+      }
+    }
+    .home-info-products {
+      flex-basis: 41.66%;
+
+      &__title {
+        font-size: 28px;
+      }
+    }
+  }
+
+  @include sm-desktop-up {
+    .home-info-company {
+      flex-basis: 66.66%;
+
+      &__container {
+        display: flex;
+        margin-left: calc(-1 * var(--gap));
+        margin-right: calc(-1 * var(--gap));
+      }
+
+      &__icons, &__content {
+        padding-left: var(--gap);
+        padding-right: var(--gap);
+      }
+
+      &__icons {
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        width: 37.5%;
+      }
+
+      &__content {
+        width: 62.5%;
+      }
+
+
+    }
+    .home-info-products {
+      flex-basis: 33.33%;
+    }
+  }
+
+  /*
+  .home-info-products {
+    min-height: 370px;
+  }
+    .home-info-company {
+      width: calc((100% + 24px) * 2 / 3 - 24px);
+    margin-right: 24px;
+    flex-shrink: 0;
+
+
+    }
+  */
 }
 
-@keyframes circleMove {
-  from {
-    transform: scale(0);
-    opacity: 0.55;
-  }
-  50% {
-    transform: scale(1);
-    opacity: 0.01;
-  }
-  51% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 0;
-  }
-}
+// @keyframes circleMove {
+//   from {
+//     transform: scale(0);
+//     opacity: 0.55;
+//   }
+//   50% {
+//     transform: scale(1);
+//     opacity: 0.01;
+//   }
+//   51% {
+//     opacity: 0;
+//   }
+//   100% {
+//     opacity: 0;
+//   }
+// }
+
+// .circles {
+//   .circle {
+//     opacity: 0;
+//     animation-name: circleMove;
+//     animation-duration: $circleAnimationDuration;
+//     animation-timing-function: ease-in-out;
+//     animation-iteration-count: infinite;
+//   }
+
+//   &-1 {
+//     .circle {
+//       transform-origin: 70% 76%;
+
+//       &-1 {
+//         animation-delay: 0ms;
+//       }
+//       &-2 {
+//         animation-delay: 0ms + $circleDelay;
+//       }
+//       &-3 {
+//         animation-delay: 0ms + $circleDelay * 2;
+//       }
+//     }
+//   }
+
+//   &-2 {
+//     .circle {
+//       transform-origin: 68% 36%;
+
+//       &-1 {
+//         animation-delay: $circleGroupDelay * 2;
+//       }
+//       &-2 {
+//         animation-delay: $circleGroupDelay * 2 + $circleDelay;
+//       }
+//       &-3 {
+//         animation-delay: $circleGroupDelay * 2 + $circleDelay * 2;
+//       }
+//     }
+//   }
+
+//   &-3 {
+//     .circle {
+//       transform-origin: 23% 66%;
+
+//       &-1 {
+//         animation-delay: $circleGroupDelay;
+//       }
+//       &-2 {
+//         animation-delay: $circleGroupDelay + $circleDelay;
+//       }
+//       &-3 {
+//         animation-delay: $circleGroupDelay + $circleDelay * 2;
+//       }
+//     }
+//   }
+// }
