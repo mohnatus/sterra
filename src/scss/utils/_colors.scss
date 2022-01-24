@@ -1,5 +1,6 @@
 /* COLORS */
 
+// colors
 :root {
   --white: #ffffff;
   --black: #000000;
@@ -10,40 +11,52 @@
   --light-blue: #7373ba;
   --grey: #dedef4;
   --light-grey: #cfcfff;
+}
 
+// concepts
+:root {
   --shadow: rgba(0, 0, 102, 0.15);
   --white-shadow: rgba(246, 246, 255, 0.5);
 
   --primary: var(--blue);
   --primary-contrast: var(--white);
-  --primary-variant: var(--dark-blue);
+  --primary-dark: var(--dark-blue);
   --primary-shadow: rgba(30, 29, 133, 0.5);
 
   /* Активный элемент меню, основное действие */
   --accent: var(--red);
   --accent-contrast: var(--white);
-  --accent-variant: var(--red-2);
+  --accent-dark: var(--red-2);
   --accent-shadow: var(--accent-variant);
 
   --error: var(--red);
 
+  --border: var(--grey);
+}
+
+// entities
+:root {
   /* Фон */
   --background: var(--white);
+
   /* Cплошной текст */
   --text: var(--black);
+
   /* Доп. фон для блоков */
   --block-background: var(--light-grey);
+
   /* Подписи, даты, лейблы */
   --label: var(--light-blue);
+
   /* Ссылки */
   --link: var(--blue);
   --link-variant: var(--dark-blue);
+
   /* Фон синих блоков */
   --dark-block-background: var(--blue);
+
   /* Заголовки */
   --header: var(--dark-blue);
-  /* Обводка блоков, разделители */
-  --border: var(--grey);
 
   --active-control: var(--blue);
 }
@@ -72,4 +85,3 @@
 .bg-block-dark {
   color: var(--dark-block-background);
 }
-

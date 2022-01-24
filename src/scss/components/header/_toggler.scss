@@ -1,0 +1,27 @@
+.header-toggler {
+  &:not([data-closed]) {
+    color: var(--accent);
+
+    &:hover,
+    &:active {
+      color: var(--accent-dark);
+    }
+
+    .burger {
+      display: none;
+    }
+  }
+
+  &[data-closed] {
+    color: var(--primary);
+
+    &:hover,
+    &.active {
+      color: var(--primary-dark);
+    }
+
+    .times {
+      display: none;
+    }
+  }
+}

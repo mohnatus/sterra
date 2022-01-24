@@ -68,7 +68,7 @@
   }
 
   &:active {
-    background-color: var(--accent-variant);
+    background-color: var(--accent-dark);
   }
 }
 
@@ -81,7 +81,7 @@
   }
 
   &:active {
-    background-color: var(--primary-variant);
+    background-color: var(--primary-dark);
   }
 }
 
@@ -95,7 +95,7 @@
   }
 
   &:active {
-    color: var(--primary-variant);
+    color: var(--primary-dark);
   }
 }
 
@@ -109,7 +109,7 @@
   }
 
   &:active {
-    color: var(--primary-variant);
+    color: var(--primary-dark);
   }
 }
 

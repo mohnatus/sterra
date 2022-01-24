@@ -1,10 +1,11 @@
 include ../../mixins/icon.pug
 
 .header-contacts
-  a.header-contact__phone(href="tel:84999409061") +7 (499) 940-90-61
-  button.header-contacts__trigger(type="button")
-    |Написать нам
-    +svg-icon('chevron-bottom', 20, 20)
+  .header-contacts__view
+    a.header-contacts__phone(href="tel:84999409061") +7 (499) 940-90-61
+    button.header-contacts__trigger(type="button")
+      |Написать нам
+      +svg-icon('chevron-bottom', 12, 7)
 
   .header-contacts__pane(hidden)
     include components/contacts.pug

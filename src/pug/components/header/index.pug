@@ -7,20 +7,25 @@ header.header
     .container
       .header-view__wrapper
         a.header-logo(href="/")
-          img(src="./img/logo.png")
+          img(src="./img/logo.png" alt="S-Terra logo")
 
-        include _header-navigation.pug
+        .header__navigation
+          include _header-navigation.pug
 
-        include _header-contacts.pug
+        .header__contacts
+          include _header-contacts.pug
 
-        include _header-search.pug
+        .header__actions
+          include _header-search.pug
 
-        a.btn.btn-round.btn-primary-inverse.header-account(href="#")
-          +svg-icon('user', 20, 20)
+          a.btn.btn-round.btn-primary-inverse.header-account(href="#")
+            +svg-icon('user', 16, 16)
 
         button.icon-btn.header-toggler(type="button" data-closed)
-          +svg-icon('burger', 20, 20)
-          +svg-icon('times', 20, 20)
+          span.burger
+            +svg-icon('burger', 20, 17)
+          span.times
+            +svg-icon('times', 16, 16)
 
 
   .header-pane(hidden)
