@@ -1,13 +1,14 @@
 .home-stats {
+
   &__wrapper {
     display: flex;
     flex-wrap: wrap;
+    margin-bottom: -20px;
   }
 
   .home-stat {
     position: relative;
     width: 50%;
-    flex-shrink: 0;
     padding-left: var(--space-md);
     margin-bottom: var(--space-sm);
 
@@ -50,6 +51,64 @@
       font-size: 11px;
       color: var(--text);
       padding-right: var(--space-xs);
+    }
+  }
+
+  @include tablet-up {
+    &__wrapper {
+      flex-wrap: nowrap;
+      overflow: hidden;
+    }
+
+    .home-stat {
+      width: auto;
+
+      &:not(:last-child) {
+        margin-right: var(--space-unit);
+      }
+
+      &[data-index] {
+        order: 1;
+      }
+    }
+  }
+
+  @include lg-tablet-up {
+    .home-stat {
+      &:not(:last-child) {
+        margin-right: 50px;
+      }
+      &__value {
+        font-size: 40px;
+      }
+      &__text {
+        font-size: 13px;
+      }
+      &__bullet {
+        top: 20px;
+      }
+    }
+  }
+
+  @include sm-desktop-up {
+    .home-stat {
+      &:not(:last-child) {
+        margin-right: 80px;
+      }
+      &__value {
+        font-size: 65px;
+      }
+      &__bullet {
+        top: 32.5px;
+      }
+    }
+  }
+
+  @include desktop-up {
+    .home-stat {
+      &:not(:last-child) {
+        margin-right: 100px;
+      }
     }
   }
 }

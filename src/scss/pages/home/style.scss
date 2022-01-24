@@ -13,4 +13,22 @@
   &__stats {
     margin-top: 30px;
   }
+
+  @include tablet-up {
+    &__stats {
+      margin-top: 40px;
+    }
+  }
+
+  @include lg-tablet-up {
+    &__stats {
+      margin-top: 55px;
+    }
+  }
+
+  @include sm-desktop-up {
+    &__stats {
+      margin-top: 40px;
+    }
+  }
 }
