@@ -1494,6 +1494,9 @@ select::placeholder {
 .home-page__jumbotron .fade-slider-pagination {
   padding-bottom: var(--space-md);
 }
+.home-page__jumbotron .jumbotron {
+  overflow: hidden;
+}
 .home-page__jumbotron .home-banner {
   height: 100%;
 }
@@ -1501,7 +1504,8 @@ select::placeholder {
   display: none;
 }
 .home-page__jumbotron .home-banner__content {
-  padding: var(--space-xs);
+  padding-top: var(--space-xs);
+  padding-bottom: var(--space-xs);
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -1517,6 +1521,7 @@ select::placeholder {
 @media (min-width: 768px) {
   .home-page__jumbotron .fade-slider {
     height: 450px;
+    position: relative;
   }
   .home-page__jumbotron .fade-slider-pagination {
     position: absolute;
@@ -1524,6 +1529,7 @@ select::placeholder {
     left: 0;
     right: 0;
     justify-content: flex-start;
+    padding-bottom: calc(2 * var(--gap));
   }
   .home-page__jumbotron .home-banner {
     display: flex;
@@ -1532,13 +1538,48 @@ select::placeholder {
     width: 50%;
     flex-shrink: 0;
     flex-grow: 0;
+    align-items: flex-start;
+    text-align: left;
+    padding-bottom: calc(2 * var(--space-xs));
   }
   .home-page__jumbotron .home-banner__img {
+    width: 50%;
+    flex-shrink: 0;
+    flex-grow: 0;
     display: block;
+    position: relative;
+  }
+  .home-page__jumbotron .home-banner__img img {
+    display: block;
+    position: absolute;
+    right: 0;
+    bottom: var(--space-md);
+    max-height: calc(100% - 2 * var(--space-md));
+    width: auto;
   }
   .home-page__jumbotron .home-banner__text {
     font-size: 32px;
-    text-align: left;
+    margin-bottom: 30px;
+  }
+}
+@media (min-width: 1024px) {
+  .home-page__jumbotron .fade-slider {
+    height: 580px;
+  }
+  .home-page__jumbotron .fade-slider-pagination {
+    padding-bottom: 70px;
+  }
+  .home-page__jumbotron .home-banner__text {
+    font-size: 42px;
+  }
+  .home-page__jumbotron .home-banner__content {
+    padding-bottom: 90px;
+  }
+}
+@media (min-width: 1440px) {
+  .home-page__jumbotron .home-banner__img img {
+    left: 0;
+    margin: auto;
   }
 }
 
