@@ -1,16 +1,30 @@
 .home-stats {
   &__wrapper {
     display: flex;
-    padding-right: 50px;
+    flex-wrap: wrap;
   }
 
   .home-stat {
     position: relative;
-    padding-left: 30px;
-    margin-top: 55px;
+    width: 50%;
+    flex-shrink: 0;
+    padding-left: var(--space-md);
+    margin-bottom: var(--space-sm);
 
-    &:not(:last-child) {
-      margin-right: 100px;
+    &[data-index='1'] {
+      order: 1;
+    }
+    &[data-index='2'] {
+      order: 3;
+    }
+    &[data-index='3'] {
+      order: 5;
+    }
+    &[data-index='4'] {
+      order: 2;
+    }
+    &[data-index='5'] {
+      order: 4;
     }
 
     &__bullet {
@@ -20,17 +34,22 @@
       border-radius: 50%;
       position: absolute;
       left: 0;
-      top: 25px;
+      top: 18px;
+      transform: translateY(-50%);
     }
 
     &__value {
-      font-size: 50px;
+      font-size: 36px;
       font-weight: 700;
-      color: var(--blue3);
+      color: var(--primary);
+      line-height: 1;
+      margin-bottom: 2px;
     }
 
     &__text {
-      font-size: 14px;
+      font-size: 11px;
+      color: var(--text);
+      padding-right: var(--space-xs);
     }
   }
 }

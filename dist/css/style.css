@@ -86,7 +86,7 @@ h3, .h3 {
   --dark-blue: #000066;
   --light-blue: #7373ba;
   --grey: #dedef4;
-  --light-grey: #cfcfff;
+  --light-grey: #f6f6ff;
 }
 
 :root {
@@ -107,7 +107,7 @@ h3, .h3 {
 
 :root {
   /* Фон */
-  --background: var(--white);
+  --background: var(--light-grey);
   /* Cплошной текст */
   --text: var(--black);
   /* Доп. фон для блоков */
@@ -154,6 +154,10 @@ h3, .h3 {
 
 .bg-block-dark {
   color: var(--dark-block-background);
+}
+
+body {
+  background: var(--background);
 }
 
 :root {
@@ -1595,15 +1599,29 @@ select::placeholder {
 
 .home-stats__wrapper {
   display: flex;
-  padding-right: 50px;
+  flex-wrap: wrap;
 }
 .home-stats .home-stat {
   position: relative;
-  padding-left: 30px;
-  margin-top: 55px;
+  width: 50%;
+  flex-shrink: 0;
+  padding-left: var(--space-md);
+  margin-bottom: var(--space-sm);
 }
-.home-stats .home-stat:not(:last-child) {
-  margin-right: 100px;
+.home-stats .home-stat[data-index="1"] {
+  order: 1;
+}
+.home-stats .home-stat[data-index="2"] {
+  order: 3;
+}
+.home-stats .home-stat[data-index="3"] {
+  order: 5;
+}
+.home-stats .home-stat[data-index="4"] {
+  order: 2;
+}
+.home-stats .home-stat[data-index="5"] {
+  order: 4;
 }
 .home-stats .home-stat__bullet {
   width: 10px;
@@ -1612,15 +1630,20 @@ select::placeholder {
   border-radius: 50%;
   position: absolute;
   left: 0;
-  top: 25px;
+  top: 18px;
+  transform: translateY(-50%);
 }
 .home-stats .home-stat__value {
-  font-size: 50px;
+  font-size: 36px;
   font-weight: 700;
-  color: var(--blue3);
+  color: var(--primary);
+  line-height: 1;
+  margin-bottom: 2px;
 }
 .home-stats .home-stat__text {
-  font-size: 14px;
+  font-size: 11px;
+  color: var(--text);
+  padding-right: var(--space-xs);
 }
 
 .home-info {
@@ -1967,4 +1990,8 @@ select::placeholder {
 }
 .home-contact-form__submit {
   margin-top: 32px;
+}
+
+.home-page__stats {
+  margin-top: 30px;
 }

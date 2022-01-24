@@ -8,3 +8,9 @@
 @import 'cases';
 @import 'news';
 @import 'form';
+
+.home-page {
+  &__stats {
+    margin-top: 30px;
+  }
+}

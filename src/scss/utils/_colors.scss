@@ -10,7 +10,7 @@
   --dark-blue: #000066;
   --light-blue: #7373ba;
   --grey: #dedef4;
-  --light-grey: #cfcfff;
+  --light-grey: #f6f6ff;
 }
 
 // concepts
@@ -37,7 +37,7 @@
 // entities
 :root {
   /* Фон */
-  --background: var(--white);
+  --background: var(--light-grey);
 
   /* Cплошной текст */
   --text: var(--black);
@@ -84,4 +84,8 @@
 }
 .bg-block-dark {
   color: var(--dark-block-background);
+}
+
+body {
+  background: var(--background);
 }
