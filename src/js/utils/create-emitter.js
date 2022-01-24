@@ -1,5 +1,5 @@
-window.utils = {
-  createEmitter: function createEmitter() {
+(() => {
+  function createEmitter() {
     const cbs = {};
 
     function addEventCb(eventName, cb) {
@@ -44,4 +44,7 @@ window.utils = {
       emit
     };
   }
-};
+
+  window.utils = window.utils || {};
+  window.utils.createEmitter = createEmitter;
+})();

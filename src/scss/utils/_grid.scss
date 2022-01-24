@@ -16,10 +16,10 @@
 }
 
 :root {
-  --gap: 10px;
+  --gap: var(--space-xs);
 
   @include tablet-up {
-    --gap: 15px;
+    --gap: var(--space-sm);
   }
 }
 

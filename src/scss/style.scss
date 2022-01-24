@@ -5,8 +5,8 @@
 @import 'utils/reset';
 @import 'utils/typography';
 @import 'utils/colors';
-@import 'utils/grid';
 @import 'utils/spacing';
+@import 'utils/grid';
 @import 'utils/layout';
 @import 'utils/border';
 @import 'utils/helpers';
@@ -17,8 +17,10 @@
 @import 'components/input';
 @import 'components/check';
 @import 'components/form';
+@import 'components/jumbotron';
 @import 'components/slider';
 @import 'components/s-slider';
+@import 'components/fade-slider';
 @import 'components/accordion';
 
 @import 'components/header/style';

@@ -1,7 +1,7 @@
 "use strict";
 
-window.utils = {
-  createEmitter: function createEmitter() {
+(function () {
+  function createEmitter() {
     var cbs = {};
 
     function addEventCb(eventName, cb) {
@@ -51,7 +51,58 @@ window.utils = {
       emit: emit
     };
   }
-};
+
+  window.utils = window.utils || {};
+  window.utils.createEmitter = createEmitter;
+})();
+"use strict";
+
+(function () {
+  var selectors = {
+    container: '.fade-slider-slides',
+    slide: '.fade-slider-slide',
+    pagination: '.fade-slider-pagination'
+  };
+  var events = {
+    changeSlide: 'fade-slider_change_slide'
+  };
+  var states = {
+    paginationActive: 'active'
+  };
+
+  function fadeSlider(element) {
+    if (!element) return;
+    var $container = element.querySelector(selectors.container);
+    if (!$container) return;
+    var $slides = $container.querySelectorAll(selectors.slide);
+    if ($slides.length < 2) return;
+    var emitter = utils.createEmitter();
+    var slidesCount = $slides.length;
+    var $pagination = element.querySelector(selectors.pagination);
+
+    if ($pagination) {
+      var setActivePaginationItem = function setActivePaginationItem(index) {
+        $paginationItems.forEach(function ($item, i) {
+          $item.classList.toggle(states.paginationActive, index === i);
+        });
+      };
+
+      var $paginationItems = Array(slidesCount).fill(null).map(function (el, i) {
+        var $item = document.createElement('div');
+        $item.classList.add('fade-slider-pagination__item');
+        $item.dataset.slide = i;
+        $pagination.appendChild($item);
+        return $item;
+      });
+      setActivePaginationItem(0);
+      emitter.on(events.changeSlide, function (slideIndex) {
+        return setActivePaginationItem(slideIndex);
+      });
+    }
+  }
+
+  window.fadeSlider = fadeSlider;
+})();
 "use strict";
 
 var header = document.getElementById('header-2');
@@ -247,16 +298,22 @@ var header = document.getElementById('header-2');
     }
 
     $slider.classList.add(states.loaded);
-  }
+  } // document.querySelectorAll(selectors.slider).forEach((el) => {
+  //   SingleSlider(el, {
+  //     autoMove: true
+  //   });
+  // });
 
-  document.querySelectorAll(selectors.slider).forEach(function (el) {
-    SingleSlider(el, {
-      autoMove: true
-    });
-  });
 })();
 "use strict";
+"use strict";
 
-var i = 5;
-var k = 10;
-var k2 = 10;
+(function () {
+  var isHomePage = document.querySelector('.page').classList.contains('home-page');
+  if (!isHomePage) return;
+  var slider = document.getElementById('home-slider');
+
+  if (slider) {
+    fadeSlider(slider);
+  }
+})();

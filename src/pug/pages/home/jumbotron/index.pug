@@ -1,32 +1,30 @@
 .jumbotron
-  .jumbotron__slider
-    .s-slider
-      .s-slider-wrapper
-        .s-slider-slides
-          section.s-slider-slide
+  #home-slider.fade-slider
+    .fade-slider-slides
+      section.fade-slider-slide.active
 
-            .jumbotron-banner
-              .jumbotron-banner__text
-                h2 1Обеспечиваем<br>современными решениями<br>для построения VPN
-                button.btn.btn-lg.btn-accent(type="button") Выбрать решение
-              .jumbotron-banner__img
-                img(src="./img/icons/lighthouse.png", alt="" width="200")
+        .home-banner
+          .home-banner__content
+            .home-banner__text Обеспечиваем<br>современными решениями<br>для построения VPN
+            button.btn.btn-accent(type="button") Выбрать решение
+          .home-banner__img
+            img(src="./img/icons/lighthouse.png", alt="")
 
-          section.s-slider-slide
+      section.fade-slider-slide
 
-            .jumbotron-banner
-              .jumbotron-banner__text
-                h2 2Обеспечиваем<br>современными решениями<br>для построения VPN
-                button.btn.btn-lg.btn-accent(type="button") Выбрать решение
-              .jumbotron-banner__img
-                img(src="./img/icons/lighthouse.png", alt="" width="200")
+        .home-banner
+          .home-banner__content
+            .home-banner__text Обеспечиваем<br>современными решениями<br>для построения VPN (2)
+            button.btn-accent(type="button") Выбрать решение
+          .home-banner__img
+            img(src="./img/icons/lighthouse.png", alt="")
 
-          section.s-slider-slide
-            .jumbotron-banner
-              .jumbotron-banner__text
-                h2 3Обеспечиваем<br>современными решениями<br>для построения VPN
-                button.btn.btn-lg.btn-accent(type="button") Выбрать решение
-              .jumbotron-banner__img
-                img(src="./img/icons/lighthouse.png", alt="" width="200")
+      section.fade-slider-slide
+        .home-banner
+          .home-banner__content
+            .home-banner__text Обеспечиваем<br>современными решениями<br>для построения VPN (3)
+            button.btn.btn-accent(type="button") Выбрать решение
+          .home-banner__img
+            img(src="./img/icons/lighthouse.png", alt="")
 
-      .s-slider-pagination
+    .fade-slider-pagination

@@ -205,9 +205,9 @@
     $slider.classList.add(states.loaded);
   }
 
-  document.querySelectorAll(selectors.slider).forEach((el) => {
-    SingleSlider(el, {
-      autoMove: true
-    });
-  });
+  // document.querySelectorAll(selectors.slider).forEach((el) => {
+  //   SingleSlider(el, {
+  //     autoMove: true
+  //   });
+  // });
 })();

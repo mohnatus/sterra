@@ -4,8 +4,8 @@
   @include button;
 
   height: 42px;
-  padding-left: 30px;
-  padding-right: 30px;
+  padding-left: calc(2 * var(--space-sm));
+  padding-right: calc(2 * var(--space-sm));
   font-size: 15px;
   font-weight: 500;
   border-radius: 40px;
@@ -29,7 +29,7 @@
   color: inherit;
 
   &:first-child {
-    margin-right: 15px;
+    margin-right: var(--space-sm);
   }
 
   svg {
@@ -47,7 +47,7 @@
     height: 20px;
 
     &:first-child {
-      margin-right: 20px;
+      margin-right: var(--space-unit);
     }
   }
 }
