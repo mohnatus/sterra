@@ -2,9 +2,7 @@
   --client-logo-offset: 16px;
 
   .scroll-slider {
-    &-controls {
-      margin-top: calc(2 * var(--space-sm));
-    }
+    
     &-control {
       border: none;
     }

@@ -20,11 +20,17 @@
 
   &__clients {
     margin-top: 40px;
+    padding-bottom: 60px;
+  }
+
+  &__solutions {
+    padding-top: 80px;
   }
 
   @include lg-phone-up {
     &__clients {
       margin-top: 50px;
+      padding-bottom: 70px;
     }
   }
 
@@ -37,6 +43,7 @@
     }
     &__clients {
       margin-top: 60px;
+      padding-bottom: 80px;
     }
   }
 
@@ -49,6 +56,10 @@
     }
     &__clients {
       margin-top: 80px;
+      padding-bottom: 85px;
+    }
+    &__solutions {
+      padding-top: 120px;
     }
   }
 

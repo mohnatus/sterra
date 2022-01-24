@@ -9,6 +9,7 @@
     margin-right: calc(-1 * var(--gap));
   }
   &-slide {
+    flex-shrink: 0;
     padding-left: var(--gap);
     padding-right: var(--gap);
   }
@@ -24,9 +25,12 @@
       margin-left: calc(-1 * var(--gap));
     }
   }
-  &-prev {
-    margin-right: var(--space-xs);
+  &-controls {
+    margin-top: calc(2 * var(--space-sm));
+  }
+  &-control {
+    &:not(:last-child) {
+      margin-right: var(--space-xs);
+    }
   }
 }
-
-

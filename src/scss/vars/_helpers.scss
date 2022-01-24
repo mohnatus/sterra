@@ -19,4 +19,9 @@
   justify-content: center;
   vertical-align: middle;
   line-height: 1;
+  cursor: pointer;
+
+  &:hover {
+    text-decoration: none;
+  }
 }

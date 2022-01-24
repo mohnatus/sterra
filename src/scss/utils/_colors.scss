@@ -37,7 +37,7 @@
 // entities
 :root {
   /* Фон */
-  --background: var(--light-grey);
+  --background: var(--white);
 
   /* Cплошной текст */
   --text: var(--black);
@@ -80,10 +80,13 @@
   color: var(--white);
 }
 .bg-block {
-  color: var(--block-background);
+  background-color: var(--block-background);
 }
 .bg-block-dark {
-  color: var(--dark-block-background);
+  background-color: var(--dark-block-background);
+}
+.bg-white {
+  background-color: white;
 }
 
 body {
