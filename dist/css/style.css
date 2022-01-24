@@ -2016,8 +2016,6 @@ select::placeholder {
 
 .home-clients {
   --client-logo-offset: 16px;
-  margin-top: 80px;
-  padding-bottom: 84px;
 }
 .home-clients .scroll-slider-controls {
   margin-top: calc(2 * var(--space-sm));
