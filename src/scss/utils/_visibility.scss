@@ -1,0 +1,23 @@
+@mixin display($prefix: '') {
+  $classPrefix: '';
+  @if $prefix {
+    $classPrefix: '-' + $prefix;
+  }
+
+  .d#{$classPrefix}-none {
+    display: none;
+  }
+  .d#{$classPrefix}-block {
+    display: block;
+  }
+}
+
+@include display();
+
+@include tablet-up {
+  @include display('md');
+}
+
+@include sm-desktop-up {
+  @include display('-lg');
+}

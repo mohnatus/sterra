@@ -1055,6 +1055,32 @@ body {
   border-bottom: none;
 }
 
+.d--none {
+  display: none;
+}
+
+.d--block {
+  display: block;
+}
+
+@media (min-width: 768px) {
+  .d-md-none {
+    display: none;
+  }
+
+  .d-md-block {
+    display: block;
+  }
+}
+@media (min-width: 1280px) {
+  .d--lg-none {
+    display: none;
+  }
+
+  .d--lg-block {
+    display: block;
+  }
+}
 .visually-hidden {
   position: absolute;
   width: 1px;
@@ -1797,6 +1823,17 @@ select::placeholder {
     display: none !important;
   }
 }
+@media (min-width: 768px) {
+  .header-pane__search {
+    display: none;
+  }
+  .header-pane__contacts {
+    display: none;
+  }
+  .header-pane .header-menu-section[data-section=account] {
+    display: none;
+  }
+}
 
 .search {
   position: relative;
@@ -1875,6 +1912,9 @@ select::placeholder {
   font-weight: 700;
   margin-bottom: calc(-1 * var(--space-sm));
 }
+.header-menu-section__items > ul > li {
+  width: 100%;
+}
 .header-menu-section__items > ul > li > ul {
   font-size: 13px;
   font-weight: 500;
@@ -1885,6 +1925,44 @@ select::placeholder {
 .header-menu-section__items ul.offset {
   padding-left: var(--space-sm);
   font-weight: 400;
+}
+@media (min-width: 768px) {
+  .header-menu-section__toggler {
+    display: none;
+  }
+  .header-menu-section__items {
+    height: auto !important;
+    transition: none !important;
+    overflow: visible !important;
+  }
+  .header-menu-section__items > ul {
+    margin-bottom: 0;
+  }
+  .header-menu-section[data-section=catalog] {
+    float: right;
+    width: calc(50% + 40px);
+    padding-left: 40px;
+  }
+  .header-menu:after {
+    content: "";
+    display: block;
+    clear: both;
+  }
+}
+@media (min-width: 1024px) {
+  .header-menu-section[data-section=catalog] {
+    width: calc(66% + 40px);
+  }
+  .header-menu-section[data-section=catalog] .header-menu-section__items > ul {
+    column-count: 2;
+  }
+  .header-menu-section[data-section=catalog] .header-menu-section__items > ul li {
+    page-break-inside: avoid;
+    break-inside: avoid;
+    width: 100%;
+    margin-bottom: 15px;
+    vertical-align: top;
+  }
 }
 
 .contacts-block__question {

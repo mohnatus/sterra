@@ -54,4 +54,20 @@
   @include sm-desktop-up {
     display: none !important;
   }
+
+  @include tablet-up {
+    &__search {
+      display: none;
+    }
+    &__contacts {
+      display: none;
+    }
+    .header-menu {
+      &-section {
+        &[data-section="account"] {
+          display: none;
+        }
+      }
+    }
+  }
 }

@@ -44,8 +44,13 @@ header.header
               link: '#',
               name: 'Личный кабинет'
             })
-            each section in [ menu.about, menu.catalog, menu.support, menu.press ]
-              +menu-section(section)
+            .d-md-none
+              +menu-section(menu.about)
+            +menu-section(menu.catalog)
+            .d-none.d-md-block
+              +menu-section(menu.about)
+            +menu-section(menu.support)
+            +menu-section(menu.press)
 
         .header-pane__contacts
           include components/contacts.pug

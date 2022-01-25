@@ -51,6 +51,8 @@
         margin-bottom: calc(-1 * var(--space-sm));
 
         & > li {
+          width: 100%;
+
           & > ul {
             font-size: 13px;
             font-weight: 500;
@@ -67,6 +69,55 @@
       ul.offset {
         padding-left: var(--space-sm);
         font-weight: 400;
+      }
+    }
+  }
+
+  @include tablet-up {
+    &-section {
+      &__toggler {
+        display: none;
+      }
+      &__items {
+        height: auto !important;
+        transition: none !important;
+        overflow: visible !important;
+
+        & > ul {
+          margin-bottom: 0;
+        }
+      }
+
+      &[data-section='catalog'] {
+        float: right;
+        width: calc(50% + 40px);
+        padding-left: 40px;
+      }
+    }
+    &:after {
+      content: '';
+      display: block;
+      clear: both;
+    }
+  }
+
+  @include lg-tablet-up {
+    &-section {
+      &[data-section='catalog'] {
+        width: calc(66% + 40px);
+
+        .header-menu-section__items {
+          & > ul {
+            column-count: 2;
+            li {
+              page-break-inside: avoid;
+              break-inside: avoid;
+              width: 100%;
+              margin-bottom: 15px;
+              vertical-align: top;
+            }
+          }
+        }
       }
     }
   }
