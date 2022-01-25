@@ -7,7 +7,7 @@
     margin-bottom: var(--space-sm);
   }
 
-  
+
 
   .scroll-slider {
     &-slide {
@@ -49,9 +49,6 @@
   @include lg-tablet-up {
     &__title {
       margin-bottom: 30px;
-    }
-    &-menu {
-      font-size: 17px;
     }
   }
 

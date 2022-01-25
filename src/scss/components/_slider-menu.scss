@@ -7,7 +7,6 @@
   &__item {
     display: flex;
     align-items: center;
-    color: var(--primary);
 
     &:not(:last-child) {
       margin-right: var(--space-unit);
@@ -16,32 +15,34 @@
     button {
       @include button;
       background: transparent;
-      color: inherit;
+      color: var(--primary);
       transition: color 250ms linear;
 
       &:hover {
         color: var(--primary-dark);
       }
-    }
 
-    &.active {
-      color: var(--accent);
+      &.active {
+        color: var(--accent);
 
-      button {
         &:hover {
           color: var(--accent-dark);
         }
-      }
 
-      &:before {
-        content: '';
-        display: block;
-        width: 8px;
-        height: 8px;
-        border-radius: 50%;
-        margin-right: var(--space-xs);
-        background: currentColor;
+        &:before {
+          content: '';
+          display: block;
+          width: 8px;
+          height: 8px;
+          border-radius: 50%;
+          margin-right: var(--space-xs);
+          background: currentColor;
+        }
       }
     }
+  }
+
+  @include lg-tablet-up {
+    font-size: 17px;
   }
 }
