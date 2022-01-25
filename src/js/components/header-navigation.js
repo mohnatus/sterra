@@ -29,7 +29,6 @@
 
   items.forEach((item) => {
     item.element.addEventListener('click', (e) => {
-      console.log('click', fixedActiveItem === item, activeItem === item);
 
       if (fixedActiveItem === item) {
         if (item.panel.contains(e.target)) return;
