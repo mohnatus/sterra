@@ -3,26 +3,7 @@ include _mixins.pug
 include ../../mixins/icon.pug
 -
   var menu = [
-    {
-      name: 'О компании',
-      id: 'about',
-      withSubmenu: true
-    },
-    {
-      name: 'Каталог',
-      id: 'catalog',
-      withSubmenu: true
-    },
-    {
-      name: 'Поддержка',
-      id: 'support',
-      withSubmenu: true
-    },
-    {
-      name: 'Пресс-центр',
-      id: 'press',
-      withSubmenu: true
-    },
+
     {
       name: 'Партнеры',
       id: 'partners',
@@ -37,61 +18,80 @@ include ../../mixins/icon.pug
 
 nav.header-navigation
   ul
-    each item in menu
-      li
-        a(href=item.link || 'javascript:void(0)' data-submenu=item.withSubmenu && item.id)
-          |#{item.name}
-          if item.withSubmenu
-            +svg-icon('chevron-bottom', 12, 7)
+    li(data-submenu="about")
+      a(href="javascript:void(0)" )
+        |О компании
+        +svg-icon('chevron-bottom', 12, 7)
+      .header-navigation-pane(data-pane="about" hidden)
+        .container
+          .header-section
+            .header-section__info
+              a.header-section__name(href="#") О компании
+              .header-section__description Описание раздела О компании
+            .header-section__list
+              ul
+                each item in about.items
+                  +list-item(item)
 
-.header-navigation-pane(data-pane="about" hidden)
-  .container
-    .header-section
-      .header-section__info
-        a.header-section__name(href="#") О компании
-        .header-section__description Описание раздела О компании
-      .header-section__list
-        ul
-          each item in about.items
-            +list-item(item)
+    li(data-submenu="catalog")
+      a(href="javascript:void(0)")
+        |Каталог
+        +svg-icon('chevron-bottom', 12, 7)
+      .header-navigation-pane(data-pane="catalog" hidden)
+        .container
+          .header-section
+            .header-section__info
+              a.header-section__name(href="#") Каталог
+              .header-section__description Поможем защитить информационную систему любого масштаба
+            .header-section__list
+              ul
+                each item in [catalog.items[0], catalog.items[3]]
+                  +list-item(item)
+            .header-section__list
+              ul
+                each item in [catalog.items[1]]
+                  +list-item(item)
+            .header-section__list
+              ul
+                each item in [catalog.items[2]]
+                  +list-item(item)
 
-.header-navigation-pane(data-pane="catalog" hidden)
-  .container
-    .header-section
-      .header-section__info
-        a.header-section__name(href="#") Каталог
-        .header-section__description Поможем защитить информационную систему любого масштаба
-      .header-section__list
-        ul
-          each item in [catalog.items[0], catalog.items[3]]
-            +list-item(item)
-      .header-section__list
-        ul
-          each item in [catalog.items[1]]
-            +list-item(item)
-      .header-section__list
-        ul
-          each item in [catalog.items[2]]
-            +list-item(item)
+    li(data-submenu="support")
+      a(href="javascript:void(0)")
+        |Поддержка
+        +svg-icon('chevron-bottom', 12, 7)
+      .header-navigation-pane(data-pane="support" hidden)
+        .container
+          .header-section
+            .header-section__info
+              a.header-section__name(href="#") Поддержка
+              .header-section__description Описание раздела Поддержка
+            .header-section__list
+              ul
+                each item in support.items
+                  +list-item(item)
 
-.header-navigation-pane(data-pane="support" hidden)
-  .container
-    .header-section
-      .header-section__info
-        a.header-section__name(href="#") Поддержка
-        .header-section__description Описание раздела Поддержка
-      .header-section__list
-        ul
-          each item in support.items
-            +list-item(item)
 
-.header-navigation-pane(data-pane="press" hidden)
-  .container
-    .header-section
-      .header-section__info
-        a.header-section__name(href="#") Пресс-центр
-        .header-section__description Описание раздела Пресс-центр
-      .header-section__list
-        ul
-          each item in press.items
-            +list-item(item)
+
+    li(data-submenu="press")
+      a(href="javascript:void(0)")
+        |Прессс-центр
+        +svg-icon('chevron-bottom', 12, 7)
+      .header-navigation-pane(data-pane="press" hidden)
+        .container
+          .header-section
+            .header-section__info
+              a.header-section__name(href="#") Пресс-центр
+              .header-section__description Описание раздела Пресс-центр
+            .header-section__list
+              ul
+                each item in press.items
+                  +list-item(item)
+
+    li
+      a(href="#")
+        |Партнеры
+
+    li
+      a(href="#")
+        |Контакты

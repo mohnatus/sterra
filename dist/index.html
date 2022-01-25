@@ -188,208 +188,212 @@
               <div class="header__navigation">
                 <nav class="header-navigation">
                   <ul>
-                    <li><a href="javascript:void(0)" data-submenu="about">О компании
+                    <li data-submenu="about"><a href="javascript:void(0)">О компании
                                         <svg width="12" height="7">
                                           <use xlink:href="#i-chevron-bottom" href="#i-chevron-bottom"></use>
-                                        </svg></a></li>
-                    <li><a href="javascript:void(0)" data-submenu="catalog">Каталог
+                                        </svg></a>
+                      <div class="header-navigation-pane" data-pane="about" hidden>
+                        <div class="container">
+                          <div class="header-section">
+                            <div class="header-section__info"><a class="header-section__name" href="#">О компании</a>
+                              <div class="header-section__description">Описание раздела О компании</div>
+                            </div>
+                            <div class="header-section__list">
+                              <ul>
+                                                <li><a href="#">Основная информация</a>
+                                                </li>
+                                                <li><a href="#">Награды и благодарности</a>
+                                                </li>
+                                                <li><a href="#">Работа у нас</a>
+                                                </li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </li>
+                    <li data-submenu="catalog"><a href="javascript:void(0)">Каталог
                                         <svg width="12" height="7">
                                           <use xlink:href="#i-chevron-bottom" href="#i-chevron-bottom"></use>
-                                        </svg></a></li>
-                    <li><a href="javascript:void(0)" data-submenu="support">Поддержка
+                                        </svg></a>
+                      <div class="header-navigation-pane" data-pane="catalog" hidden>
+                        <div class="container">
+                          <div class="header-section">
+                            <div class="header-section__info"><a class="header-section__name" href="#">Каталог</a>
+                              <div class="header-section__description">Поможем защитить информационную систему любого масштаба</div>
+                            </div>
+                            <div class="header-section__list">
+                              <ul>
+                                                <li><a href="#">Продукты</a>
+                                                  <ul>
+                                                                    <li><a href="#">Программные средства</a>
+                                                                      <ul class="offset">
+                                                                                        <li><a href="#">С-Терра Клиент</a>
+                                                                                        </li>
+                                                                                        <li><a href="#">С-Терра Клиент А</a>
+                                                                                        </li>
+                                                                      </ul>
+                                                                    </li>
+                                                                    <li><a href="#">Шлюзы безопасности</a>
+                                                                      <ul class="offset">
+                                                                                        <li><a href="#">С-Терра Шлюз</a>
+                                                                                        </li>
+                                                                                        <li><a href="#">С-Терра Шлюз DP</a>
+                                                                                        </li>
+                                                                                        <li><a href="#">С-Терра Юнит</a>
+                                                                                        </li>
+                                                                                        <li><a href="#">С-Терра Виртуальный Шлюз</a>
+                                                                                        </li>
+                                                                                        <li><a href="#">С-Терра для Cisco</a>
+                                                                                        </li>
+                                                                                        <li><a href="#">Криптомаршрутизатор ESR-ST</a>
+                                                                                        </li>
+                                                                                        <li><a href="#">С-Терра Шлюз Е</a>
+                                                                                        </li>
+                                                                                        <li><a href="#">С-Терра Виртуальный Шлюз Е</a>
+                                                                                        </li>
+                                                                      </ul>
+                                                                    </li>
+                                                                    <li><a href="#">Специальные решения</a>
+                                                                      <ul class="offset">
+                                                                                        <li><a href="#">С-Терра L2</a>
+                                                                                        </li>
+                                                                                        <li><a href="#">С-Терра СОВ</a>
+                                                                                        </li>
+                                                                      </ul>
+                                                                    </li>
+                                                                    <li><a href="#">Система управления</a>
+                                                                      <ul class="offset">
+                                                                                        <li><a href="#">С-Терра КП</a>
+                                                                                        </li>
+                                                                      </ul>
+                                                                    </li>
+                                                  </ul>
+                                                </li>
+                                                <li><a href="#">Прайс-листы</a>
+                                                </li>
+                              </ul>
+                            </div>
+                            <div class="header-section__list">
+                              <ul>
+                                                <li><a href="#">Отраслевые решения</a>
+                                                  <ul class="offset">
+                                                                    <li><a href="#">Финансовый сектор</a>
+                                                                    </li>
+                                                                    <li><a href="#">Государственный сектор</a>
+                                                                    </li>
+                                                                    <li><a href="#">Топливно-энергетическая отрасль</a>
+                                                                    </li>
+                                                                    <li><a href="#">Телекоммуникационная отрасль</a>
+                                                                    </li>
+                                                  </ul>
+                                                </li>
+                              </ul>
+                            </div>
+                            <div class="header-section__list">
+                              <ul>
+                                                <li><a href="#">Комплексные решения</a>
+                                                  <ul class="offset">
+                                                                    <li><a href="#">Защита канала 10 Гбит и больше</a>
+                                                                    </li>
+                                                                    <li><a href="#">Обнаружение вторжений</a>
+                                                                    </li>
+                                                                    <li><a href="#">Защита удаленного доступа</a>
+                                                                    </li>
+                                                                    <li><a href="#">Защита персональных данных</a>
+                                                                    </li>
+                                                                    <li><a href="#">Защита межфилиальных взаимодействий</a>
+                                                                    </li>
+                                                                    <li><a href="#">Защита виртуализации</a>
+                                                                    </li>
+                                                                    <li><a href="#">Защита подключения к СМЭВ</a>
+                                                                    </li>
+                                                                    <li><a href="#">Защита подключения к ИС ЕПТ</a>
+                                                                    </li>
+                                                  </ul>
+                                                </li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </li>
+                    <li data-submenu="support"><a href="javascript:void(0)">Поддержка
                                         <svg width="12" height="7">
                                           <use xlink:href="#i-chevron-bottom" href="#i-chevron-bottom"></use>
-                                        </svg></a></li>
-                    <li><a href="javascript:void(0)" data-submenu="press">Пресс-центр
+                                        </svg></a>
+                      <div class="header-navigation-pane" data-pane="support" hidden>
+                        <div class="container">
+                          <div class="header-section">
+                            <div class="header-section__info"><a class="header-section__name" href="#">Поддержка</a>
+                              <div class="header-section__description">Описание раздела Поддержка</div>
+                            </div>
+                            <div class="header-section__list">
+                              <ul>
+                                                <li><a href="#">Техническая поддержка</a>
+                                                </li>
+                                                <li><a href="#">Часто задаваемые вопросы (FAQ)</a>
+                                                </li>
+                                                <li><a href="#">Загрузки</a>
+                                                </li>
+                                                <li><a href="#">Документация</a>
+                                                  <ul class="offset">
+                                                                    <li><a href="#">Сертификаты на продукцию</a>
+                                                                    </li>
+                                                                    <li><a href="#">Лицензии и свидетельства</a>
+                                                                    </li>
+                                                                    <li><a href="#">Нормативные документы</a>
+                                                                    </li>
+                                                  </ul>
+                                                </li>
+                                                <li><a href="#">Обучение</a>
+                                                  <ul class="offset">
+                                                                    <li><a href="#">Курсы</a>
+                                                                    </li>
+                                                                    <li><a href="#">Видеоуроки</a>
+                                                                    </li>
+                                                  </ul>
+                                                </li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </li>
+                    <li data-submenu="press"><a href="javascript:void(0)">Прессс-центр
                                         <svg width="12" height="7">
                                           <use xlink:href="#i-chevron-bottom" href="#i-chevron-bottom"></use>
-                                        </svg></a></li>
+                                        </svg></a>
+                      <div class="header-navigation-pane" data-pane="press" hidden>
+                        <div class="container">
+                          <div class="header-section">
+                            <div class="header-section__info"><a class="header-section__name" href="#">Пресс-центр</a>
+                              <div class="header-section__description">Описание раздела Пресс-центр</div>
+                            </div>
+                            <div class="header-section__list">
+                              <ul>
+                                                <li><a href="#">Новости</a>
+                                                </li>
+                                                <li><a href="#">Объявления</a>
+                                                </li>
+                                                <li><a href="#">Мероприятия</a>
+                                                </li>
+                                                <li><a href="#">Вебинары</a>
+                                                </li>
+                                                <li><a href="#">Публикации</a>
+                                                </li>
+                                                <li><a href="#">Маркетинговые материалы</a>
+                                                </li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </li>
                     <li><a href="#">Партнеры</a></li>
                     <li><a href="#">Контакты</a></li>
                   </ul>
                 </nav>
-                <div class="header-navigation-pane" data-pane="about" hidden>
-                  <div class="container">
-                    <div class="header-section">
-                      <div class="header-section__info"><a class="header-section__name" href="#">О компании</a>
-                        <div class="header-section__description">Описание раздела О компании</div>
-                      </div>
-                      <div class="header-section__list">
-                        <ul>
-                                          <li><a href="#">Основная информация</a>
-                                          </li>
-                                          <li><a href="#">Награды и благодарности</a>
-                                          </li>
-                                          <li><a href="#">Работа у нас</a>
-                                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="header-navigation-pane" data-pane="catalog" hidden>
-                  <div class="container">
-                    <div class="header-section">
-                      <div class="header-section__info"><a class="header-section__name" href="#">Каталог</a>
-                        <div class="header-section__description">Поможем защитить информационную систему любого масштаба</div>
-                      </div>
-                      <div class="header-section__list">
-                        <ul>
-                                          <li><a href="#">Продукты</a>
-                                            <ul>
-                                                              <li><a href="#">Программные средства</a>
-                                                                <ul class="offset">
-                                                                                  <li><a href="#">С-Терра Клиент</a>
-                                                                                  </li>
-                                                                                  <li><a href="#">С-Терра Клиент А</a>
-                                                                                  </li>
-                                                                </ul>
-                                                              </li>
-                                                              <li><a href="#">Шлюзы безопасности</a>
-                                                                <ul class="offset">
-                                                                                  <li><a href="#">С-Терра Шлюз</a>
-                                                                                  </li>
-                                                                                  <li><a href="#">С-Терра Шлюз DP</a>
-                                                                                  </li>
-                                                                                  <li><a href="#">С-Терра Юнит</a>
-                                                                                  </li>
-                                                                                  <li><a href="#">С-Терра Виртуальный Шлюз</a>
-                                                                                  </li>
-                                                                                  <li><a href="#">С-Терра для Cisco</a>
-                                                                                  </li>
-                                                                                  <li><a href="#">Криптомаршрутизатор ESR-ST</a>
-                                                                                  </li>
-                                                                                  <li><a href="#">С-Терра Шлюз Е</a>
-                                                                                  </li>
-                                                                                  <li><a href="#">С-Терра Виртуальный Шлюз Е</a>
-                                                                                  </li>
-                                                                </ul>
-                                                              </li>
-                                                              <li><a href="#">Специальные решения</a>
-                                                                <ul class="offset">
-                                                                                  <li><a href="#">С-Терра L2</a>
-                                                                                  </li>
-                                                                                  <li><a href="#">С-Терра СОВ</a>
-                                                                                  </li>
-                                                                </ul>
-                                                              </li>
-                                                              <li><a href="#">Система управления</a>
-                                                                <ul class="offset">
-                                                                                  <li><a href="#">С-Терра КП</a>
-                                                                                  </li>
-                                                                </ul>
-                                                              </li>
-                                            </ul>
-                                          </li>
-                                          <li><a href="#">Прайс-листы</a>
-                                          </li>
-                        </ul>
-                      </div>
-                      <div class="header-section__list">
-                        <ul>
-                                          <li><a href="#">Отраслевые решения</a>
-                                            <ul class="offset">
-                                                              <li><a href="#">Финансовый сектор</a>
-                                                              </li>
-                                                              <li><a href="#">Государственный сектор</a>
-                                                              </li>
-                                                              <li><a href="#">Топливно-энергетическая отрасль</a>
-                                                              </li>
-                                                              <li><a href="#">Телекоммуникационная отрасль</a>
-                                                              </li>
-                                            </ul>
-                                          </li>
-                        </ul>
-                      </div>
-                      <div class="header-section__list">
-                        <ul>
-                                          <li><a href="#">Комплексные решения</a>
-                                            <ul class="offset">
-                                                              <li><a href="#">Защита канала 10 Гбит и больше</a>
-                                                              </li>
-                                                              <li><a href="#">Обнаружение вторжений</a>
-                                                              </li>
-                                                              <li><a href="#">Защита удаленного доступа</a>
-                                                              </li>
-                                                              <li><a href="#">Защита персональных данных</a>
-                                                              </li>
-                                                              <li><a href="#">Защита межфилиальных взаимодействий</a>
-                                                              </li>
-                                                              <li><a href="#">Защита виртуализации</a>
-                                                              </li>
-                                                              <li><a href="#">Защита подключения к СМЭВ</a>
-                                                              </li>
-                                                              <li><a href="#">Защита подключения к ИС ЕПТ</a>
-                                                              </li>
-                                            </ul>
-                                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="header-navigation-pane" data-pane="support" hidden>
-                  <div class="container">
-                    <div class="header-section">
-                      <div class="header-section__info"><a class="header-section__name" href="#">Поддержка</a>
-                        <div class="header-section__description">Описание раздела Поддержка</div>
-                      </div>
-                      <div class="header-section__list">
-                        <ul>
-                                          <li><a href="#">Техническая поддержка</a>
-                                          </li>
-                                          <li><a href="#">Часто задаваемые вопросы (FAQ)</a>
-                                          </li>
-                                          <li><a href="#">Загрузки</a>
-                                          </li>
-                                          <li><a href="#">Документация</a>
-                                            <ul class="offset">
-                                                              <li><a href="#">Сертификаты на продукцию</a>
-                                                              </li>
-                                                              <li><a href="#">Лицензии и свидетельства</a>
-                                                              </li>
-                                                              <li><a href="#">Нормативные документы</a>
-                                                              </li>
-                                            </ul>
-                                          </li>
-                                          <li><a href="#">Обучение</a>
-                                            <ul class="offset">
-                                                              <li><a href="#">Курсы</a>
-                                                              </li>
-                                                              <li><a href="#">Видеоуроки</a>
-                                                              </li>
-                                            </ul>
-                                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="header-navigation-pane" data-pane="press" hidden>
-                  <div class="container">
-                    <div class="header-section">
-                      <div class="header-section__info"><a class="header-section__name" href="#">Пресс-центр</a>
-                        <div class="header-section__description">Описание раздела Пресс-центр</div>
-                      </div>
-                      <div class="header-section__list">
-                        <ul>
-                                          <li><a href="#">Новости</a>
-                                          </li>
-                                          <li><a href="#">Объявления</a>
-                                          </li>
-                                          <li><a href="#">Мероприятия</a>
-                                          </li>
-                                          <li><a href="#">Вебинары</a>
-                                          </li>
-                                          <li><a href="#">Публикации</a>
-                                          </li>
-                                          <li><a href="#">Маркетинговые материалы</a>
-                                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                </div>
               </div>
               <div class="header__contacts">
                 <div class="header-contacts">

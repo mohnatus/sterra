@@ -261,45 +261,74 @@
   var $itemsWithMenu = $navigation.querySelectorAll('[data-submenu]');
   var items = [];
   $itemsWithMenu.forEach(function ($item) {
-    var panelName = $item.dataset.submenu;
-    var $panel = document.querySelector("[data-pane=\"".concat(panelName, "\"]"));
+    var $panel = $item.querySelector(".header-navigation-pane");
     if (!$panel) return;
     items.push({
       element: $item,
       panel: $panel
     });
   });
-  var activeItem = null;
+  var activeItem = null; // открытая вкладка
+
+  var fixedActiveItem = null; // зафиксированная (клик) вкладка
 
   function openItem(item) {
-    activeItem = item;
     item.panel.removeAttribute('hidden');
   }
 
   function closeItem(item) {
-    if (activeItem === item) activeItem = null;
     item.panel.setAttribute('hidden', true);
   }
 
-  function toggleItem(item) {
-    if (activeItem === item) {
-      closeItem(item);
-    } else {
-      if (activeItem) closeItem(activeItem);
-      openItem(item);
-    }
-  }
-
   items.forEach(function (item) {
-    item.element.addEventListener('click', function () {
-      toggleItem(item);
+    item.element.addEventListener('click', function (e) {
+      console.log('click', fixedActiveItem === item, activeItem === item);
+
+      if (fixedActiveItem === item) {
+        if (item.panel.contains(e.target)) return;
+        fixedActiveItem = null;
+        activeItem = null;
+        closeItem(item);
+      } else if (activeItem === item) {
+        fixedActiveItem = item;
+      } else {
+        openItem(item);
+        activeItem = item;
+        fixedActiveItem = item;
+      }
+    });
+    item.element.addEventListener('mouseenter', function (e) {
+      if (e.target === e.currentTarget) {
+        if (activeItem === item) return;
+
+        if (fixedActiveItem && fixedActiveItem !== item) {
+          closeItem(fixedActiveItem);
+          fixedActiveItem = null;
+        }
+
+        activeItem = item;
+        openItem(item);
+      }
+    });
+    item.element.addEventListener('mouseleave', function (e) {
+      if (e.target === e.currentTarget) {
+        if (fixedActiveItem === item) return;
+
+        if (activeItem === item) {
+          closeItem(item, 'mouseleave');
+          activeItem = null;
+          if (fixedActiveItem === item) fixedActiveItem = null;
+        }
+      }
     });
   });
   document.body.addEventListener('click', function (e) {
     if (e.target.closest('.header-navigation-pane')) return;
     if (e.target.closest('[data-submenu]')) return;
     items.forEach(function (item) {
-      return closeItem(item);
+      closeItem(item, 'click outside');
+      activeItem = null;
+      fixedActiveItem = null;
     });
   });
 })();
