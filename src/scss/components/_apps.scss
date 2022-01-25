@@ -1,0 +1,67 @@
+.apps {
+  &-block {
+    &:not(:last-child) {
+      margin-bottom: var(--space-unit);
+    }
+  }
+  &-title {
+    font-size: 13px;
+    font-weight: 700;
+    margin-bottom: 13px;
+  }
+  &-list {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: -7.5px;
+    margin-right: -7.5px;
+
+    li {
+      margin-left: 7.5px;
+      margin-right: 7.5px;
+      flex-shrink: 0;
+    }
+  }
+  .app-icon {
+    background-image: url(../img/apps/sprite.png);
+    background-repeat: no-repeat;
+    display: block;
+    cursor: pointer;
+
+    &-fb {
+      width: 36px;
+      height: 37px;
+      background-position: -5px -5px;
+    }
+
+    &-in {
+      width: 36px;
+      height: 37px;
+      background-position: -51px -5px;
+    }
+
+    &-tg {
+      width: 36px;
+      height: 37px;
+      background-position: -97px -5px;
+    }
+
+    &-vk {
+      width: 36px;
+      height: 37px;
+      background-position: -143px -5px;
+    }
+
+    &-wa {
+      width: 36px;
+      height: 37px;
+      background-position: -189px -5px;
+    }
+
+    &-yt {
+      width: 36px;
+      height: 37px;
+      background-position: -235px -5px;
+    }
+  }
+}
