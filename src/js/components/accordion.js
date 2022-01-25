@@ -20,10 +20,11 @@
     $items.forEach(($item) => {
       let trigger = $item.querySelector(selectors.trigger);
       let panel = $item.querySelector(selectors.panel);
+      let collapsiblePanel = collapsible(panel, 400);
       items.push({
         element: $item,
         trigger,
-        panel
+        panel: collapsiblePanel
       });
     });
 
@@ -31,16 +32,15 @@
 
     function closePanel(item) {
       item.element.classList.remove(states.active);
-      item.panel.style.height = 0;
+      item.panel.close();
     }
 
     function openPanel(item) {
       item.element.classList.add(states.active);
-      item.panel.style.height = item.panel.scrollHeight + 'px';
+      item.panel.open();
     }
 
     function toggleItem(item) {
-      console.log('toggle item', item, activeItem);
       if (item === activeItem) {
         closePanel(item);
         activeItem = null;
@@ -62,12 +62,7 @@
 
     window.addEventListener('resize', () => {
       if (activeItem) {
-        activeItem.panel.style.transition = 'none';
-        activeItem.panel.style.height = 0;
-        activeItem.panel.style.height = activeItem.panel.scrollHeight + 'px';
-        setTimeout(() => {
-          activeItem.panel.style.transition = '';
-        });
+        activeItem.panel.resize();
       }
     });
   }

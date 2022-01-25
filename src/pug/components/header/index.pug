@@ -39,6 +39,11 @@ header.header
           include data/menu.pug
 
           .header-menu
+            +menu-section({
+              id: 'account',
+              link: '#',
+              name: 'Личный кабинет'
+            })
             each section in [ menu.about, menu.catalog, menu.support, menu.press ]
               +menu-section(section)
 

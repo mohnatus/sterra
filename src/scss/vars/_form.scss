@@ -13,6 +13,7 @@
 @mixin form-control-focus {
   border-color: #918cff;
   box-shadow: 0px 0px 6px rgba(30, 29, 133, 0.5);
+
 }
 
 @mixin form-control-disabled {
@@ -23,11 +24,13 @@
 
 
   border: 1px solid var(--border);
+  outline: none;
 
   &:focus,
   &.focus {
     border-color: #918cff;
     box-shadow: 0px 0px 6px rgba(30, 29, 133, 0.5);
+    outline: none;
   }
 
   &:invalid,
@@ -43,7 +46,7 @@
 
 @mixin text-form-control {
   font: inherit;
-  
+
   padding-left: 20px;
   padding-right: 20px;
   font-size: 15px;

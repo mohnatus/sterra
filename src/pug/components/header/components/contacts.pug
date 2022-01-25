@@ -2,10 +2,11 @@ include ../../apps/index.pug
 
 .contacts-block
   .contacts-block__question
-    button.btn.btn-primary-inverse(type="button") Задать вопрос
+    button.btn.btn-primary-inverse.btn-block(type="button") Задать вопрос
+
   .contacts-block__mail
     .contacts-block__label Напишите нам
     a(href="mailto:information@s-terra.ru") information@s-terra.ru
 
-  .contact-block__apps
+  .contacts-block__apps
     +apps('colored')

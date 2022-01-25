@@ -1,6 +1,55 @@
 "use strict";
 
 (function () {
+  function collapsible(el, duration) {
+    el.style.height = 0;
+    el.style.overflow = 'hidden';
+    var transition = "height ".concat(duration, "ms ease-in-out");
+    el.style.transition = transition;
+    var opened = false;
+
+    function open() {
+      setTimeout(function () {
+        opened = true;
+        el.style.height = el.scrollHeight + 'px';
+      });
+    }
+
+    function close() {
+      setTimeout(function () {
+        opened = false;
+        el.style.height = 0;
+      });
+    }
+
+    function toggle() {
+      if (opened) close();else open();
+    }
+
+    function resize() {
+      el.style.transition = '';
+      el.style.height = 0;
+      setTimeout(function () {
+        el.style.height = el.scrollHeight + 'px';
+        setTimeout(function () {
+          el.style.transition = transition;
+        });
+      });
+    }
+
+    return {
+      open: open,
+      close: close,
+      resize: resize,
+      toggle: toggle
+    };
+  }
+
+  window.collapsible = collapsible;
+})();
+"use strict";
+
+(function () {
   function createEmitter() {
     var cbs = {};
 
@@ -99,27 +148,26 @@ window.getScrollbarWidth = function () {
     $items.forEach(function ($item) {
       var trigger = $item.querySelector(selectors.trigger);
       var panel = $item.querySelector(selectors.panel);
+      var collapsiblePanel = collapsible(panel, 400);
       items.push({
         element: $item,
         trigger: trigger,
-        panel: panel
+        panel: collapsiblePanel
       });
     });
     var activeItem = items[0];
 
     function closePanel(item) {
       item.element.classList.remove(states.active);
-      item.panel.style.height = 0;
+      item.panel.close();
     }
 
     function openPanel(item) {
       item.element.classList.add(states.active);
-      item.panel.style.height = item.panel.scrollHeight + 'px';
+      item.panel.open();
     }
 
     function toggleItem(item) {
-      console.log('toggle item', item, activeItem);
-
       if (item === activeItem) {
         closePanel(item);
         activeItem = null;
@@ -141,12 +189,7 @@ window.getScrollbarWidth = function () {
     });
     window.addEventListener('resize', function () {
       if (activeItem) {
-        activeItem.panel.style.transition = 'none';
-        activeItem.panel.style.height = 0;
-        activeItem.panel.style.height = activeItem.panel.scrollHeight + 'px';
-        setTimeout(function () {
-          activeItem.panel.style.transition = '';
-        });
+        activeItem.panel.resize();
       }
     });
   }
@@ -261,6 +304,21 @@ window.getScrollbarWidth = function () {
   }, {
     passive: true
   });
+  var $menu = document.querySelector('.header-menu');
+
+  if ($menu) {
+    var $menuSections = $menu.querySelectorAll('.header-menu-section');
+    $menuSections.forEach(function ($section) {
+      var $toggler = $section.querySelector('.header-menu-section__toggler');
+      if (!$toggler) return;
+      var $sectionList = $section.querySelector('.header-menu-section__items');
+      if (!$sectionList) return;
+      var list = collapsible($sectionList, 400);
+      $toggler.addEventListener('click', function () {
+        list.toggle();
+      });
+    });
+  }
 })();
 "use strict";
 

@@ -238,7 +238,7 @@
                                           <li><a href="#">Продукты</a>
                                             <ul>
                                                               <li><a href="#">Программные средства</a>
-                                                                <ul>
+                                                                <ul class="offset">
                                                                                   <li><a href="#">С-Терра Клиент</a>
                                                                                   </li>
                                                                                   <li><a href="#">С-Терра Клиент А</a>
@@ -246,7 +246,7 @@
                                                                 </ul>
                                                               </li>
                                                               <li><a href="#">Шлюзы безопасности</a>
-                                                                <ul>
+                                                                <ul class="offset">
                                                                                   <li><a href="#">С-Терра Шлюз</a>
                                                                                   </li>
                                                                                   <li><a href="#">С-Терра Шлюз DP</a>
@@ -266,7 +266,7 @@
                                                                 </ul>
                                                               </li>
                                                               <li><a href="#">Специальные решения</a>
-                                                                <ul>
+                                                                <ul class="offset">
                                                                                   <li><a href="#">С-Терра L2</a>
                                                                                   </li>
                                                                                   <li><a href="#">С-Терра СОВ</a>
@@ -274,7 +274,7 @@
                                                                 </ul>
                                                               </li>
                                                               <li><a href="#">Система управления</a>
-                                                                <ul>
+                                                                <ul class="offset">
                                                                                   <li><a href="#">С-Терра КП</a>
                                                                                   </li>
                                                                 </ul>
@@ -288,7 +288,7 @@
                       <div class="header-section__list">
                         <ul>
                                           <li><a href="#">Отраслевые решения</a>
-                                            <ul>
+                                            <ul class="offset">
                                                               <li><a href="#">Финансовый сектор</a>
                                                               </li>
                                                               <li><a href="#">Государственный сектор</a>
@@ -304,7 +304,7 @@
                       <div class="header-section__list">
                         <ul>
                                           <li><a href="#">Комплексные решения</a>
-                                            <ul>
+                                            <ul class="offset">
                                                               <li><a href="#">Защита канала 10 Гбит и больше</a>
                                                               </li>
                                                               <li><a href="#">Обнаружение вторжений</a>
@@ -343,7 +343,7 @@
                                           <li><a href="#">Загрузки</a>
                                           </li>
                                           <li><a href="#">Документация</a>
-                                            <ul>
+                                            <ul class="offset">
                                                               <li><a href="#">Сертификаты на продукцию</a>
                                                               </li>
                                                               <li><a href="#">Лицензии и свидетельства</a>
@@ -353,7 +353,7 @@
                                             </ul>
                                           </li>
                                           <li><a href="#">Обучение</a>
-                                            <ul>
+                                            <ul class="offset">
                                                               <li><a href="#">Курсы</a>
                                                               </li>
                                                               <li><a href="#">Видеоуроки</a>
@@ -403,12 +403,12 @@
                   <div class="header-contacts__pane" hidden>
                     <div class="contacts-block">
                       <div class="contacts-block__question">
-                        <button class="btn btn-primary-inverse" type="button">Задать вопрос</button>
+                        <button class="btn btn-primary-inverse btn-block" type="button">Задать вопрос</button>
                       </div>
                       <div class="contacts-block__mail">
                         <div class="contacts-block__label">Напишите нам</div><a href="mailto:information@s-terra.ru">information@s-terra.ru</a>
                       </div>
-                      <div class="contact-block__apps">
+                      <div class="contacts-block__apps">
                                             <div class="apps colored">
                                               <div class="apps-block">
                                                 <div class="apps-title">Мы в мессенджерах</div>
@@ -442,25 +442,19 @@
                   <div class="header-search__search" hidden><!-- SEARCH -->
                     <div class="search" data-search>
                       <div class="search-field">
-                                            <svg width="20" height="20">
-                                              <use xlink:href="#i-search" href="#i-search"></use>
-                                            </svg>
+                        <div class="search-field__icon">
+                                              <svg width="14" height="14">
+                                                <use xlink:href="#i-search" href="#i-search"></use>
+                                              </svg>
+                        </div>
                         <input class="form-control" value="" placeholder="Поиск" data-field>
                         <button class="icon-btn search-field__reset" type="button" data-reset>
-                                              <svg width="20" height="20">
+                                              <svg width="10" height="10">
                                                 <use xlink:href="#i-times" href="#i-times"></use>
                                               </svg>
                         </button>
                       </div>
-                      <ul class="search-list">
-                        <li><a href="#">С-Терра Шлюз 10G</a></li>
-                        <li><a href="#">С-Терра Шлюз 4.3</a></li>
-                        <li><a href="#">С-Терра Шлюз 4.2</a></li>
-                        <li><a href="#">С-Терра Шлюз 4.1</a></li>
-                        <li><a href="#">С-Терра Шлюз DP 4.3</a></li>
-                        <li><a href="#">С-Терра Шлюз DP 4.2</a></li>
-                        <li><a href="#">С-Терра Шлюз 8000</a></li>
-                      </ul>
+                      <ul class="search-list"></ul>
                     </div><!-- /SEARCH -->
                   </div>
                 </div><a class="btn btn-round btn-primary-inverse header-account" href="#">
@@ -485,37 +479,35 @@
               <div class="header-pane__search"><!-- SEARCH -->
                 <div class="search" data-search>
                   <div class="search-field">
-                                    <svg width="20" height="20">
-                                      <use xlink:href="#i-search" href="#i-search"></use>
-                                    </svg>
+                    <div class="search-field__icon">
+                                      <svg width="14" height="14">
+                                        <use xlink:href="#i-search" href="#i-search"></use>
+                                      </svg>
+                    </div>
                     <input class="form-control" value="" placeholder="Поиск" data-field>
                     <button class="icon-btn search-field__reset" type="button" data-reset>
-                                      <svg width="20" height="20">
+                                      <svg width="10" height="10">
                                         <use xlink:href="#i-times" href="#i-times"></use>
                                       </svg>
                     </button>
                   </div>
-                  <ul class="search-list">
-                    <li><a href="#">С-Терра Шлюз 10G</a></li>
-                    <li><a href="#">С-Терра Шлюз 4.3</a></li>
-                    <li><a href="#">С-Терра Шлюз 4.2</a></li>
-                    <li><a href="#">С-Терра Шлюз 4.1</a></li>
-                    <li><a href="#">С-Терра Шлюз DP 4.3</a></li>
-                    <li><a href="#">С-Терра Шлюз DP 4.2</a></li>
-                    <li><a href="#">С-Терра Шлюз 8000</a></li>
-                  </ul>
+                  <ul class="search-list"></ul>
                 </div><!-- /SEARCH -->
               </div>
               <div class="header-pane__nav">
                 <div class="header-menu">
-                                  <div class="header-menu-section" data-section="about">
-                                    <div class="header-menu-section__title"><a href="#">О компании</a>
+                                  <section class="header-menu-section" data-section="account">
+                                    <header class="header-menu-section__header"><a class="header-menu-section__title" href="#">Личный кабинет</a>
+                                    </header>
+                                  </section>
+                                  <section class="header-menu-section" data-section="about">
+                                    <header class="header-menu-section__header"><a class="header-menu-section__title" href="#">О компании</a>
                                       <button class="icon-btn header-menu-section__toggler">
-                                                        <svg width="20" height="20">
+                                                        <svg width="12" height="7">
                                                           <use xlink:href="#i-chevron-bottom" href="#i-chevron-bottom"></use>
                                                         </svg>
                                       </button>
-                                    </div>
+                                    </header>
                                     <div class="header-menu-section__items">
                                       <ul>
                                                         <li><a href="#">Основная информация</a>
@@ -526,21 +518,21 @@
                                                         </li>
                                       </ul>
                                     </div>
-                                  </div>
-                                  <div class="header-menu-section" data-section="catalog">
-                                    <div class="header-menu-section__title"><a href="#">Каталог</a>
+                                  </section>
+                                  <section class="header-menu-section" data-section="catalog">
+                                    <header class="header-menu-section__header"><a class="header-menu-section__title" href="#">Каталог</a>
                                       <button class="icon-btn header-menu-section__toggler">
-                                                        <svg width="20" height="20">
+                                                        <svg width="12" height="7">
                                                           <use xlink:href="#i-chevron-bottom" href="#i-chevron-bottom"></use>
                                                         </svg>
                                       </button>
-                                    </div>
+                                    </header>
                                     <div class="header-menu-section__items">
                                       <ul>
                                                         <li><a href="#">Продукты</a>
                                                           <ul>
                                                                             <li><a href="#">Программные средства</a>
-                                                                              <ul>
+                                                                              <ul class="offset">
                                                                                                 <li><a href="#">С-Терра Клиент</a>
                                                                                                 </li>
                                                                                                 <li><a href="#">С-Терра Клиент А</a>
@@ -548,7 +540,7 @@
                                                                               </ul>
                                                                             </li>
                                                                             <li><a href="#">Шлюзы безопасности</a>
-                                                                              <ul>
+                                                                              <ul class="offset">
                                                                                                 <li><a href="#">С-Терра Шлюз</a>
                                                                                                 </li>
                                                                                                 <li><a href="#">С-Терра Шлюз DP</a>
@@ -568,7 +560,7 @@
                                                                               </ul>
                                                                             </li>
                                                                             <li><a href="#">Специальные решения</a>
-                                                                              <ul>
+                                                                              <ul class="offset">
                                                                                                 <li><a href="#">С-Терра L2</a>
                                                                                                 </li>
                                                                                                 <li><a href="#">С-Терра СОВ</a>
@@ -576,7 +568,7 @@
                                                                               </ul>
                                                                             </li>
                                                                             <li><a href="#">Система управления</a>
-                                                                              <ul>
+                                                                              <ul class="offset">
                                                                                                 <li><a href="#">С-Терра КП</a>
                                                                                                 </li>
                                                                               </ul>
@@ -584,7 +576,7 @@
                                                           </ul>
                                                         </li>
                                                         <li><a href="#">Отраслевые решения</a>
-                                                          <ul>
+                                                          <ul class="offset">
                                                                             <li><a href="#">Финансовый сектор</a>
                                                                             </li>
                                                                             <li><a href="#">Государственный сектор</a>
@@ -596,7 +588,7 @@
                                                           </ul>
                                                         </li>
                                                         <li><a href="#">Комплексные решения</a>
-                                                          <ul>
+                                                          <ul class="offset">
                                                                             <li><a href="#">Защита канала 10 Гбит и больше</a>
                                                                             </li>
                                                                             <li><a href="#">Обнаружение вторжений</a>
@@ -619,15 +611,15 @@
                                                         </li>
                                       </ul>
                                     </div>
-                                  </div>
-                                  <div class="header-menu-section" data-section="support">
-                                    <div class="header-menu-section__title"><a href="#">Поддержка</a>
+                                  </section>
+                                  <section class="header-menu-section" data-section="support">
+                                    <header class="header-menu-section__header"><a class="header-menu-section__title" href="#">Поддержка</a>
                                       <button class="icon-btn header-menu-section__toggler">
-                                                        <svg width="20" height="20">
+                                                        <svg width="12" height="7">
                                                           <use xlink:href="#i-chevron-bottom" href="#i-chevron-bottom"></use>
                                                         </svg>
                                       </button>
-                                    </div>
+                                    </header>
                                     <div class="header-menu-section__items">
                                       <ul>
                                                         <li><a href="#">Техническая поддержка</a>
@@ -637,7 +629,7 @@
                                                         <li><a href="#">Загрузки</a>
                                                         </li>
                                                         <li><a href="#">Документация</a>
-                                                          <ul>
+                                                          <ul class="offset">
                                                                             <li><a href="#">Сертификаты на продукцию</a>
                                                                             </li>
                                                                             <li><a href="#">Лицензии и свидетельства</a>
@@ -647,7 +639,7 @@
                                                           </ul>
                                                         </li>
                                                         <li><a href="#">Обучение</a>
-                                                          <ul>
+                                                          <ul class="offset">
                                                                             <li><a href="#">Курсы</a>
                                                                             </li>
                                                                             <li><a href="#">Видеоуроки</a>
@@ -656,15 +648,15 @@
                                                         </li>
                                       </ul>
                                     </div>
-                                  </div>
-                                  <div class="header-menu-section" data-section="press">
-                                    <div class="header-menu-section__title"><a href="#">Пресс-центр</a>
+                                  </section>
+                                  <section class="header-menu-section" data-section="press">
+                                    <header class="header-menu-section__header"><a class="header-menu-section__title" href="#">Пресс-центр</a>
                                       <button class="icon-btn header-menu-section__toggler">
-                                                        <svg width="20" height="20">
+                                                        <svg width="12" height="7">
                                                           <use xlink:href="#i-chevron-bottom" href="#i-chevron-bottom"></use>
                                                         </svg>
                                       </button>
-                                    </div>
+                                    </header>
                                     <div class="header-menu-section__items">
                                       <ul>
                                                         <li><a href="#">Новости</a>
@@ -681,18 +673,18 @@
                                                         </li>
                                       </ul>
                                     </div>
-                                  </div>
+                                  </section>
                 </div>
               </div>
               <div class="header-pane__contacts">
                 <div class="contacts-block">
                   <div class="contacts-block__question">
-                    <button class="btn btn-primary-inverse" type="button">Задать вопрос</button>
+                    <button class="btn btn-primary-inverse btn-block" type="button">Задать вопрос</button>
                   </div>
                   <div class="contacts-block__mail">
                     <div class="contacts-block__label">Напишите нам</div><a href="mailto:information@s-terra.ru">information@s-terra.ru</a>
                   </div>
-                  <div class="contact-block__apps">
+                  <div class="contacts-block__apps">
                                     <div class="apps colored">
                                       <div class="apps-block">
                                         <div class="apps-title">Мы в мессенджерах</div>

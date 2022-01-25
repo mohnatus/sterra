@@ -4,23 +4,11 @@ include ../../../mixins/icon.pug
 div.search(data-search)
 
   .search-field
-    +svg-icon('search', 20, 20)
+    .search-field__icon
+      +svg-icon('search', 14, 14)
     input.form-control(value="" placeholder='Поиск' data-field)
     button.icon-btn.search-field__reset(type='button' data-reset)
-      +svg-icon('times', 20, 20)
+      +svg-icon('times', 10, 10)
 
   ul.search-list
-    -
-      var options = [
-        { link: '#', name: 'С-Терра Шлюз 10G' },
-        { link: '#', name: 'С-Терра Шлюз 4.3' },
-        { link: '#', name: 'С-Терра Шлюз 4.2' },
-        { link: '#', name: 'С-Терра Шлюз 4.1' },
-        { link: '#', name: 'С-Терра Шлюз DP 4.3' },
-        { link: '#', name: 'С-Терра Шлюз DP 4.2' },
-        { link: '#', name: 'С-Терра Шлюз 8000' },
-      ]
-    each option in options
-      li
-        a(href=option.link)= option.name
 <!-- /SEARCH -->

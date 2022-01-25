@@ -3,11 +3,6 @@
     cursor: pointer;
   }
   &-item {
-    &-panel {
-      height: 0;
-      overflow: hidden;
 
-      transition: height 400ms ease-in-out;
-    }
   }
 }

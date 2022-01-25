@@ -1,0 +1,22 @@
+.contacts-block {
+  &__question {
+    margin-bottom: 20px;
+  }
+
+  &__mail {
+    margin-bottom: 20px;
+  }
+
+  &__label {
+    font-size: 15px;
+    font-weight: 700;
+  }
+
+  &__apps {
+    .apps {
+      &-title {
+        font-size: 15px;
+      }
+    }
+  }
+}
