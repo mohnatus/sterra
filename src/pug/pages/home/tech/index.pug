@@ -3,20 +3,21 @@ include ../../../mixins/icon.pug
 .home-tech
   .container
     .home-tech__wrapper
-      section.home-tech-item
-        h2.home-tech-item__title Международные<br>технические<br>стандарты IPsec
+      a.home-tech-item(href="#")
+        h2.color-white.home-tech-item__title Международные технические стандарты IPsec
+        .home-tech-item__icon
+          img(src="./img/icons/ipsec.png" width="239")
         .home-tech-item__link
-          a(href="#")
+          span.link.color-white
             |Подробнее
             +svg-icon('chevron-right', 7, 12)
-        .home-tech-item__icon
-          img(src="./img/icons/ipsec.png")
 
-      section.home-tech-item
-        h2.home-tech-item__title Сертификация<br>в органах ФСБ<br>и ФСТЭК России
+
+      a.home-tech-item(href="#")
+        h2.color-white.home-tech-item__title Сертификация в органах ФСБ и ФСТЭК России
+        .home-tech-item__icon
+          img(src="./img/icons/certification.png" width="216")
         .home-tech-item__link
-          a(href="#")
+          span.link.color-white
             |Подробнее
             +svg-icon('chevron-right', 7, 12)
-        .home-tech-item__icon
-          img(src="./img/icons/certification.png")

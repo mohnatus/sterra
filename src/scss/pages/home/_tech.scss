@@ -1,30 +1,27 @@
 .home-tech {
   margin-top: 104px;
 
-  .home-tech__wrapper {
-    display: flex;
-    margin-left: -12px;
-    margin-right: -12px;
+  &__wrapper {
+    margin-bottom: -40px;
   }
 
-  .home-tech-item {
-    margin-left: 12px;
-    margin-right: 12px;
-    flex-basis: 50%;
-    flex-grow: 1;
-
+  &-item {
     background: var(--primary);
     color: white;
+    min-height: 422px;
+    text-decoration: none;
 
-    padding: 40px;
+    padding: var(--space-lg) calc(2 * var(--space-sm));
     display: flex;
     flex-direction: column;
     position: relative;
-    min-height: 290px;
+
+    margin-bottom: 40px;
 
     &__title {
-      font-size: 28px;
+      font-size: 20px;
       font-weight: 500;
+      margin-bottom: calc(2 * var(--space-sm));
     }
 
     &__link {
@@ -41,12 +38,10 @@
     }
 
     &__icon {
-      position: absolute;
-      right: 40px;
-      top: 0;
-      bottom: 0;
       display: flex;
       align-items: center;
+      justify-content: center;
+      margin-bottom: var(--space-md)
     }
 
     // &:hover {
@@ -92,6 +87,50 @@
     //     }
     //   }
     // }
+  }
+
+  @include tablet-up {
+    &__wrapper {
+      display: flex;
+      margin-left: calc(-1 * var(--gap));
+      margin-right: calc(-1 * var(--gap));
+    }
+
+    &-item {
+      margin-left: var(--gap);
+      margin-right: var(--gap);
+      flex-basis: 50%;
+      flex-grow: 1;
+    }
+  }
+
+  @include lg-tablet-up {
+    &__wrapper {
+
+    }
+    &-item {
+      padding: var(--space-lg);
+      &__title {
+        font-size: 28px;
+      }
+    }
+  }
+
+  @include sm-desktop-up {
+    &-item {
+      min-height: 290px;
+
+      &__icon {
+        position: absolute;
+        right: 40px;
+        top: 0;
+        bottom: 0;
+      }
+
+      &__title {
+        max-width: calc(100% - 310px)
+      }
+    }
   }
 }
 
