@@ -29,17 +29,19 @@ header.header
 
 
   .header-pane(hidden)
-    .container
-      .header-pane__search
-        include components/search.pug
-      .header-pane__nav
-        include _mixins.pug
-        include data/menu.pug
+    .header-pane__mask
+    .header-pane__content
+      .container
+        .header-pane__search
+          include components/search.pug
+        .header-pane__nav
+          include _mixins.pug
+          include data/menu.pug
 
-        .header-menu
-          each section in [ menu.about, menu.catalog, menu.support, menu.press ]
-            +menu-section(section)
+          .header-menu
+            each section in [ menu.about, menu.catalog, menu.support, menu.press ]
+              +menu-section(section)
 
-      .header-pane__contacts
-        include components/contacts.pug
+        .header-pane__contacts
+          include components/contacts.pug
 <!-- /HEADER -->

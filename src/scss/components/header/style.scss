@@ -1,17 +1,22 @@
 @import 'toggler';
 @import 'contacts';
 @import 'navigation';
+@import 'pane';
+
+:root {
+  --header-height: 50px;
+}
 
 .header {
   color: var(--primary);
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: $headerZIndex;
-
   &-view {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: $headerZIndex;
     background: white;
+    transition: box-shadow 400ms ease-in-out;
     &__wrapper {
       display: flex;
     }
@@ -27,13 +32,19 @@
   &-toggler {
     margin-left: var(--space-lg);
   }
+
+  &.fixed {
+    .header-view {
+      box-shadow: 0px 5px 15px rgba(0, 0, 102, 0.15);
+    }
+  }
 }
 
 // mobile
 .header {
   &-view {
     &__wrapper {
-      height: 50px;
+      height: var(--header-height);
     }
   }
 
@@ -57,17 +68,14 @@
 }
 
 .header + * {
-  margin-top: 50px;
+  margin-top: var(--header-height);
 }
 
 @include tablet-up {
+  :root {
+    --header-height: 80px;
+  }
   .header {
-    &-view {
-      &__wrapper {
-        height: 80px;
-      }
-    }
-
     &-logo {
       img {
         height: 28px;
@@ -85,10 +93,6 @@
     &-search {
       margin-right: var(--space-unit);
     }
-  }
-
-  .header + * {
-    margin-top: 80px;
   }
 }
 

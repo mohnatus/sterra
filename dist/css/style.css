@@ -1103,6 +1103,7 @@ body {
   font-size: 15px;
   font-weight: 500;
   border-radius: 40px;
+  transition: all 250ms ease-in-out;
 }
 .btn:hover {
   text-decoration: none;
@@ -1737,16 +1738,63 @@ select::placeholder {
   text-decoration: none;
 }
 
+.header-pane {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: all;
+  transition-property: opacity, visibility;
+  transition-timing-function: ease-in-out;
+  transition-duration: 400ms;
+  position: fixed;
+  top: var(--header-height);
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
+  z-index: 90;
+}
+.header-pane[hidden] {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+.header-pane__mask {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  cursor: pointer;
+}
+.header-pane__content {
+  width: 100%;
+  max-height: 100%;
+  overflow: auto;
+  background: var(--white);
+  position: relative;
+}
+@media (min-width: 1280px) {
+  .header-pane {
+    display: none !important;
+  }
+}
+
+:root {
+  --header-height: 50px;
+}
+
 .header {
   color: var(--primary);
+}
+.header-view {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   z-index: 100;
-}
-.header-view {
   background: white;
+  transition: box-shadow 400ms ease-in-out;
 }
 .header-view__wrapper {
   display: flex;
@@ -1760,9 +1808,12 @@ select::placeholder {
 .header-toggler {
   margin-left: var(--space-lg);
 }
+.header.fixed .header-view {
+  box-shadow: 0px 5px 15px rgba(0, 0, 102, 0.15);
+}
 
 .header-view__wrapper {
-  height: 50px;
+  height: var(--header-height);
 }
 .header-logo img {
   height: 20px;
@@ -1778,13 +1829,14 @@ select::placeholder {
 }
 
 .header + * {
-  margin-top: 50px;
+  margin-top: var(--header-height);
 }
 
 @media (min-width: 768px) {
-  .header-view__wrapper {
-    height: 80px;
+  :root {
+    --header-height: 80px;
   }
+
   .header-logo img {
     height: 28px;
   }
@@ -1798,10 +1850,6 @@ select::placeholder {
   }
   .header-search {
     margin-right: var(--space-unit);
-  }
-
-  .header + * {
-    margin-top: 80px;
   }
 }
 @media (min-width: 1280px) {
@@ -2492,6 +2540,7 @@ select::placeholder {
   padding: 45px 30px;
   text-decoration: none;
   display: block;
+  height: 100%;
 }
 .home-cases .home-case__logo {
   margin-bottom: 24px;

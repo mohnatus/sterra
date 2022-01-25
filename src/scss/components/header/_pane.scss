@@ -1,0 +1,45 @@
+.header-pane {
+
+  opacity: 1;
+  visibility: visible;
+  pointer-events: all;
+  transition-property: opacity, visibility;
+  transition-timing-function: ease-in-out;
+  transition-duration: 400ms;
+  position: fixed;
+  top: var(--header-height);
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
+
+  z-index: $headerPaneZIndex;
+
+  &[hidden] {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+
+  &__mask {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    cursor: pointer;
+  }
+
+  &__content {
+    width: 100%;
+    max-height: 100%;
+    overflow: auto;
+    background: var(--white);
+    position: relative;
+  }
+
+  @include sm-desktop-up {
+    display: none !important;
+  }
+}
