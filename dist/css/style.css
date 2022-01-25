@@ -1746,44 +1746,46 @@ select::placeholder {
 .footer {
   background: var(--primary);
   color: white;
-  padding-top: 60px;
-  padding-bottom: 60px;
-}
-.footer__wrapper {
-  display: flex;
-}
-.footer__column {
-  margin-right: 50px;
+  padding-top: 40px;
+  padding-bottom: 50px;
+  font-size: 13px;
 }
 .footer__logo {
   margin-bottom: 30px;
 }
-.footer__link {
-  margin-bottom: 26px;
-  font-size: 12px;
+.footer-contacts {
+  margin-bottom: 35px;
 }
-.footer__copyright {
-  font-size: 12px;
-}
-.footer p {
-  margin-bottom: 20px;
-}
-.footer a {
-  color: inherit;
-}
-.footer a.underlined {
-  text-decoration: underline;
-}
-.footer-menu__header {
-  font-size: 18px;
+.footer-contacts__title {
+  font-size: 15px;
   font-weight: 700;
-  margin-bottom: 20px;
+  margin-bottom: var(--space-sm);
 }
-.footer-menu__list {
-  list-style: none;
+.footer-contacts p {
+  margin-bottom: var(--space-unit);
 }
-.footer-menu__list li {
-  margin-bottom: 20px;
+.footer-contacts a {
+  color: inherit;
+  font-weight: 700;
+}
+.footer-contacts a[href*=tel] {
+  text-decoration: none;
+}
+.footer-apps {
+  margin-bottom: 35px;
+}
+.footer__links {
+  font-size: 12px;
+}
+.footer__links .footer-logo {
+  display: none;
+}
+.footer-link {
+  font-weight: 400;
+  font-size: 12px;
+  display: block;
+  color: inherit;
+  margin-bottom: var(--space-unit);
 }
 
 .home-page__jumbotron .fade-slider {
@@ -2531,6 +2533,10 @@ select::placeholder {
 .home-contact-form__confirm .checkbox-label {
   font-size: 11px;
   padding-top: 4px;
+  font-weight: 300;
+}
+.home-contact-form__confirm .checkbox-label a {
+  font-weight: 400;
 }
 @media (min-width: 768px) {
   .home-contact-form__subtitle {
@@ -2538,6 +2544,9 @@ select::placeholder {
   }
 }
 @media (min-width: 1024px) {
+  .home-contact-form__subtitle {
+    font-size: 17px;
+  }
   .home-contact-form__fields, .home-contact-form__image {
     width: calc(370px + 2 * var(--gap));
     padding-left: var(--gap);
@@ -2647,6 +2656,10 @@ select::placeholder {
     margin-top: 100px;
     margin-bottom: 100px;
   }
+  .home-page__form {
+    padding-top: 100px;
+    padding-bottom: 100px;
+  }
 }
 @media (min-width: 1280px) {
   .home-page__stats {
@@ -2658,5 +2671,8 @@ select::placeholder {
   .home-page__faq {
     margin-top: 110px;
     padding-bottom: 140px;
+  }
+  .home-page__form {
+    padding-bottom: 125px;
   }
 }

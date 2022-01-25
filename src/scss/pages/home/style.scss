@@ -114,6 +114,10 @@
       margin-top: 100px;
       margin-bottom: 100px;
     }
+    &__form {
+      padding-top: 100px;
+      padding-bottom: 100px;
+    }
   }
 
   @include sm-desktop-up {
@@ -126,6 +130,9 @@
     &__faq {
       margin-top: 110px;
       padding-bottom: 140px;
+    }
+    &__form {
+      padding-bottom: 125px;
     }
   }
 }

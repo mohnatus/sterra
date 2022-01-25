@@ -74,6 +74,11 @@
       &-label {
         font-size: 11px;
         padding-top: 4px;
+        font-weight: 300;
+
+        a {
+          font-weight: 400;
+        }
       }
     }
   }
@@ -88,6 +93,9 @@
   }
 
   @include lg-tablet-up {
+    &__subtitle {
+      font-size: 17px;
+    }
     &__fields,
     &__image {
       width: calc(370px + 2 * var(--gap));

@@ -1,55 +1,54 @@
 .footer {
   background: var(--primary);
   color: white;
-  padding-top: 60px;
-  padding-bottom: 60px;
-
-  &__wrapper {
-    display: flex;
-  }
-
-  &__column {
-    margin-right: 50px;
-  }
+  padding-top: 40px;
+  padding-bottom: 50px;
+  font-size: 13px;
 
   &__logo {
     margin-bottom: 30px;
   }
 
-  &__link {
-    margin-bottom: 26px;
-    font-size: 12px;
-  }
+  &-contacts {
+    margin-bottom: 35px;
 
-  &__copyright {
-    font-size: 12px;
-  }
-
-  p {
-    margin-bottom: 20px;
-  }
-
-  a {
-    color: inherit;
-
-    &.underlined {
-      text-decoration: underline;
-    }
-  }
-
-  &-menu {
-    &__header {
-      font-size: 18px;
+    &__title {
+      font-size: 15px;
       font-weight: 700;
-      margin-bottom: 20px;
+      margin-bottom: var(--space-sm);
     }
 
-    &__list {
-      list-style: none;
+    p {
+      margin-bottom: var(--space-unit);
+    }
 
-      li {
-        margin-bottom: 20px;
+    a {
+      color: inherit;
+      font-weight: 700;
+
+      &[href *= 'tel'] {
+        text-decoration: none;
       }
     }
+  }
+
+  &-apps {
+    margin-bottom: 35px;
+  }
+
+  &__links {
+    font-size: 12px;
+
+    .footer-logo {
+      display: none;
+    }
+  }
+
+  &-link {
+    font-weight: 400;
+    font-size: 12px;
+    display: block;
+    color: inherit;
+    margin-bottom: var(--space-unit);
   }
 }

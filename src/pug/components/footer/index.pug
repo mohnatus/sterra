@@ -1,69 +1,49 @@
 footer.footer
   .container
     .footer__wrapper
-      .footer__column
-        .footer__logo
-          img(src='./img/logo-white.png' alt="S-Terra логоти")
-        .footer__link
-          a.underlined(href="#") Предупреждение об <br> информации на сайте
-        .footer__link
-          a.underlined(href="#") Политика обработки персональных<br>данных ООО «С-Терра СиЭсПи»
-        .footer__copyright
+
+      .footer__logo
+        a.footer-logo(href="#")
+          img(src='./img/logo-white.png' alt="S-Terra logo")
+
+      .footer__data
+        .footer-contacts
+          .footer-contacts__title Контакты
+
+          p
+            b Офис:
+            br
+            |124460  г. Зеленоград, ул. Конструктора Лукина, д. 14, стр. 12, Технополис Москва
+
+          p
+            |Телефон/факс:
+            br
+            a(href="tel: 84999409061")
+              b 8 (499) 940-90-61
+
+          p
+            |Почта
+            br
+            a(href="mailto:information@s-terra.ru")
+              b information@s-terra.ru
+
+        .footer-apps
+          include ../apps/index.pug
+
+
+      .footer__links
+        a.footer-logo
+          img(src='./img/logo-white.png' alt="S-Terra logo")
+
+        a.footer-link(href="#") Предупреждение об информации на сайте
+
+        a.footer-link(href="#") Политика обработки персональных данных ООО «С-Терра СиЭсПи»
+
+        .footer-copyright
           |© ООО «С-Терра СиЭсПи», 2021
           br
           |Все права защищены.
-      .footer__column.footer-menu
-        .footer-menu__header Контакты
-        p
-          b Офис:
-          br
-          |Москва, г. Зеленоград,<br>Георгиевский пр-кт, дом 5, эт. 4-й<br>основной, пом. 1.
 
-        p
-          |Телефон/факс:
-          br
-          b 8 (499) 940-90-61
 
-        p
-          |Почта
-          br
-          b
-            a.underlined(href="#") information@s-terra.ru
 
       .footer__column.footer-menu
-        .footer-menu__header Компания
-        ul.footer-menu__list
-          li
-            a(href="#") О компании
-          li
-            a(href="#") Поддержка
-          li
-            a(href="#") Партнеры
-          li
-            a(href="#") Контакты
-          li
-            a(href="#") Карта сайта
-
-      .footer__column.footer-menu
-        .footer-menu__header Каталог
-        ul.footer-menu__list
-          li
-            a(href="#") Продукты
-          li
-            a(href="#") Комплексные решения
-          li
-            a(href="#") Отраслевые решения
-
-      .footer__column.footer-menu
-        .footer-menu__header Мы в соц.сетях
-        ul.footer-menu__list
-          li
-            a(href="#") Вконтакте
-          li
-            a(href="#") Telegram
-          li
-            a(href="#") Youtube
-          li
-            a(href="#") Facebook
-          li
-            a(href="#") Instagram
