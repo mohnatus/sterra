@@ -1356,6 +1356,10 @@ select::placeholder {
   color: var(--label);
 }
 
+textarea.form-control {
+  min-height: 95px;
+}
+
 .checkbox {
   display: flex;
 }

@@ -21,3 +21,7 @@ select {
   @include form-control();
   @include text-form-control();
 }
+
+textarea.form-control {
+  min-height: 95px;
+}
