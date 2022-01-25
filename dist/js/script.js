@@ -73,6 +73,14 @@
 })();
 "use strict";
 
+window.getScrollbarWidth = function () {
+  var documentWidth = parseInt(document.documentElement.clientWidth);
+  var windowsWidth = parseInt(window.innerWidth);
+  var scrollbarWidth = windowsWidth - documentWidth;
+  return scrollbarWidth;
+};
+"use strict";
+
 (function () {
   var selectors = {
     item: '.accordion-item',
@@ -201,6 +209,7 @@
   var $toggler = $header.querySelector('.header-toggler');
   var $pane = $header.querySelector('.header-pane');
   if (!$toggler || !$pane) return;
+  var $headerView = $header.querySelector('.header-view');
   var $paneMask = $pane.querySelector('.header-pane__mask');
   var isLargeScreen = false;
   addMediaQueryListener('(min-width: 1280px)', function (state) {
@@ -213,15 +222,18 @@
 
   function openPane() {
     if (isLargeScreen) return;
+    var scrollbarWidth = getScrollbarWidth();
     $pane.removeAttribute('hidden');
     document.body.style.overflow = 'hidden';
     $toggler.removeAttribute('data-closed');
+    $headerView.style.paddingRight = scrollbarWidth + 'px';
   }
 
   function closePane() {
     $pane.setAttribute('hidden', true);
     document.body.style.overflow = '';
     $toggler.setAttribute('data-closed', true);
+    $headerView.style.paddingRight = '';
   }
 
   function togglePane() {

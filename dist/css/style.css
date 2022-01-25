@@ -1607,6 +1607,12 @@ select::placeholder {
   background-image: url(../img/apps/sprite-color.png);
 }
 
+.header-toggler {
+  width: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 .header-toggler:not([data-closed]) {
   color: var(--accent);
 }

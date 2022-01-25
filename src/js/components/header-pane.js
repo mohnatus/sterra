@@ -6,6 +6,7 @@
   const $pane = $header.querySelector('.header-pane');
   if (!$toggler || !$pane) return;
 
+  const $headerView = $header.querySelector('.header-view');
   const $paneMask = $pane.querySelector('.header-pane__mask');
 
   let isLargeScreen = false;
@@ -18,14 +19,17 @@
 
   function openPane() {
     if (isLargeScreen) return;
+    let scrollbarWidth = getScrollbarWidth();
     $pane.removeAttribute('hidden');
     document.body.style.overflow = 'hidden';
-    $toggler.removeAttribute('data-closed')
+    $toggler.removeAttribute('data-closed');
+    $headerView.style.paddingRight = scrollbarWidth + 'px';
   }
   function closePane() {
     $pane.setAttribute('hidden', true);
     document.body.style.overflow = '';
-    $toggler.setAttribute('data-closed', true)
+    $toggler.setAttribute('data-closed', true);
+    $headerView.style.paddingRight = '';
   }
   function togglePane() {
     let isHidden = $pane.hasAttribute('hidden');
