@@ -24,7 +24,7 @@
       let $sectionList = $section.querySelector('.header-menu-section__items');
       if (!$sectionList) return;
 
-      let list = collapsible($sectionList, 400);
+      let list = utils.collapsible($sectionList, 400);
 
       $toggler.addEventListener('click', () => {
         list.toggle();

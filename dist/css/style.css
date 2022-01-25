@@ -1772,6 +1772,25 @@ select::placeholder {
   text-decoration: none;
 }
 
+.header-navigation-pane {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: var(--white);
+  z-index: 90;
+  opacity: 1;
+  visibility: visible;
+  pointer-events: all;
+  transition: all 400ms ease-in-out;
+}
+.header-navigation-pane[hidden] {
+  display: block;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
 .header-pane {
   opacity: 1;
   visibility: visible;

@@ -10,5 +10,6 @@
     mqList.addEventListener('change', check);
   }
 
-  window.addMediaQueryListener = addMediaQueryListener;
+  window.utils = window.utils || {};
+  window.utils.addMediaQueryListener = addMediaQueryListener;
 })();

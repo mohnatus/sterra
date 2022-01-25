@@ -45,7 +45,8 @@
     };
   }
 
-  window.collapsible = collapsible;
+  window.utils = window.utils || {};
+  window.utils.collapsible = collapsible;
 })();
 "use strict";
 
@@ -118,16 +119,22 @@
     mqList.addEventListener('change', check);
   }
 
-  window.addMediaQueryListener = addMediaQueryListener;
+  window.utils = window.utils || {};
+  window.utils.addMediaQueryListener = addMediaQueryListener;
 })();
 "use strict";
 
-window.getScrollbarWidth = function () {
-  var documentWidth = parseInt(document.documentElement.clientWidth);
-  var windowsWidth = parseInt(window.innerWidth);
-  var scrollbarWidth = windowsWidth - documentWidth;
-  return scrollbarWidth;
-};
+(function () {
+  function getScrollbarWidth() {
+    var documentWidth = parseInt(document.documentElement.clientWidth);
+    var windowsWidth = parseInt(window.innerWidth);
+    var scrollbarWidth = windowsWidth - documentWidth;
+    return scrollbarWidth;
+  }
+
+  window.utils = window.utils || {};
+  window.utils.getScrollbarWidth = getScrollbarWidth;
+})();
 "use strict";
 
 (function () {
@@ -148,7 +155,7 @@ window.getScrollbarWidth = function () {
     $items.forEach(function ($item) {
       var trigger = $item.querySelector(selectors.trigger);
       var panel = $item.querySelector(selectors.panel);
-      var collapsiblePanel = collapsible(panel, 400);
+      var collapsiblePanel = utils.collapsible(panel, 400);
       items.push({
         element: $item,
         trigger: trigger,
@@ -249,13 +256,65 @@ window.getScrollbarWidth = function () {
 (function () {
   var $header = document.querySelector('.header');
   if (!$header) return;
+  var $navigation = $header.querySelector('.header-navigation');
+  if (!$navigation) return;
+  var $itemsWithMenu = $navigation.querySelectorAll('[data-submenu]');
+  var items = [];
+  $itemsWithMenu.forEach(function ($item) {
+    var panelName = $item.dataset.submenu;
+    var $panel = document.querySelector("[data-pane=\"".concat(panelName, "\"]"));
+    if (!$panel) return;
+    items.push({
+      element: $item,
+      panel: $panel
+    });
+  });
+  var activeItem = null;
+
+  function openItem(item) {
+    activeItem = item;
+    item.panel.removeAttribute('hidden');
+  }
+
+  function closeItem(item) {
+    if (activeItem === item) activeItem = null;
+    item.panel.setAttribute('hidden', true);
+  }
+
+  function toggleItem(item) {
+    if (activeItem === item) {
+      closeItem(item);
+    } else {
+      if (activeItem) closeItem(activeItem);
+      openItem(item);
+    }
+  }
+
+  items.forEach(function (item) {
+    item.element.addEventListener('click', function () {
+      toggleItem(item);
+    });
+  });
+  document.body.addEventListener('click', function (e) {
+    if (e.target.closest('.header-navigation-pane')) return;
+    if (e.target.closest('[data-submenu]')) return;
+    items.forEach(function (item) {
+      return closeItem(item);
+    });
+  });
+})();
+"use strict";
+
+(function () {
+  var $header = document.querySelector('.header');
+  if (!$header) return;
   var $toggler = $header.querySelector('.header-toggler');
   var $pane = $header.querySelector('.header-pane');
   if (!$toggler || !$pane) return;
   var $headerView = $header.querySelector('.header-view');
   var $paneMask = $pane.querySelector('.header-pane__mask');
   var isLargeScreen = false;
-  addMediaQueryListener('(min-width: 1280px)', function (state) {
+  utils.addMediaQueryListener('(min-width: 1280px)', function (state) {
     isLargeScreen = state;
 
     if (state) {
@@ -265,7 +324,7 @@ window.getScrollbarWidth = function () {
 
   function openPane() {
     if (isLargeScreen) return;
-    var scrollbarWidth = getScrollbarWidth();
+    var scrollbarWidth = utils.getScrollbarWidth();
     $pane.removeAttribute('hidden');
     document.body.style.overflow = 'hidden';
     $toggler.removeAttribute('data-closed');
@@ -313,7 +372,7 @@ window.getScrollbarWidth = function () {
       if (!$toggler) return;
       var $sectionList = $section.querySelector('.header-menu-section__items');
       if (!$sectionList) return;
-      var list = collapsible($sectionList, 400);
+      var list = utils.collapsible($sectionList, 400);
       $toggler.addEventListener('click', function () {
         list.toggle();
       });

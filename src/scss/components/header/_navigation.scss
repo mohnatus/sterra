@@ -22,3 +22,25 @@
     }
   }
 }
+
+.header-navigation-pane {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: var(--white);
+  z-index: $headerPaneZIndex;
+
+  opacity: 1;
+  visibility: visible;
+  pointer-events: all;
+
+  transition: all 400ms ease-in-out;
+
+  &[hidden] {
+    display: block;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+}

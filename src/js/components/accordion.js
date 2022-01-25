@@ -20,7 +20,7 @@
     $items.forEach(($item) => {
       let trigger = $item.querySelector(selectors.trigger);
       let panel = $item.querySelector(selectors.panel);
-      let collapsiblePanel = collapsible(panel, 400);
+      let collapsiblePanel = utils.collapsible(panel, 400);
       items.push({
         element: $item,
         trigger,

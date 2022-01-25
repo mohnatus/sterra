@@ -10,7 +10,7 @@
   const $paneMask = $pane.querySelector('.header-pane__mask');
 
   let isLargeScreen = false;
-  addMediaQueryListener('(min-width: 1280px)', (state) => {
+  utils.addMediaQueryListener('(min-width: 1280px)', (state) => {
     isLargeScreen = state;
     if (state) {
       closePane();
@@ -19,7 +19,7 @@
 
   function openPane() {
     if (isLargeScreen) return;
-    let scrollbarWidth = getScrollbarWidth();
+    let scrollbarWidth = utils.getScrollbarWidth();
     $pane.removeAttribute('hidden');
     document.body.style.overflow = 'hidden';
     $toggler.removeAttribute('data-closed');

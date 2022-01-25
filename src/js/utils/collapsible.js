@@ -48,5 +48,6 @@
     };
   }
 
-  window.collapsible = collapsible;
+  window.utils = window.utils || {};
+  window.utils.collapsible = collapsible;
 })();
