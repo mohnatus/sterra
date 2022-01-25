@@ -1,16 +1,23 @@
-.cooperation {
-  padding-top: 102px;
-  padding-bottom: 106px;
-
-  &__title {
-    font-size: 46px;
-    color: var(--dark);
-    margin-bottom: 50px;
+.home-cases {
+  .scroll-slider {
+    &-slide {
+      min-width: 340px;
+    }
+    &-control,
+    &-link {
+      border: none;
+    }
   }
 
-  .case {
+  &__title {
+    margin-bottom: 30px;
+  }
+
+  .home-case {
     background: white;
-    padding: 45px 40px 55px;
+    padding: 45px 30px;
+    text-decoration: none;
+    display: block;
 
     &__logo {
       margin-bottom: 24px;
@@ -24,13 +31,21 @@
     }
 
     &__text {
-
     }
   }
 
-  &-slider {
-    .swiper-control, .swiper-link {
-      border: none!important;
+  @include tablet-up {
+    &__title {
+      margin-bottom: 40px;
+    }
+  }
+
+  @include lg-tablet-up {
+    .home-case {
+      padding: 45px 40px;
+    }
+    &__title {
+      margin-bottom: 50px;
     }
   }
 }

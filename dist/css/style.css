@@ -2361,30 +2361,42 @@ select::placeholder {
   }
 }
 
-.cooperation {
-  padding-top: 102px;
-  padding-bottom: 106px;
+.home-cases .scroll-slider-slide {
+  min-width: 340px;
 }
-.cooperation__title {
-  font-size: 46px;
-  color: var(--dark);
-  margin-bottom: 50px;
+.home-cases .scroll-slider-control, .home-cases .scroll-slider-link {
+  border: none;
 }
-.cooperation .case {
+.home-cases__title {
+  margin-bottom: 30px;
+}
+.home-cases .home-case {
   background: white;
-  padding: 45px 40px 55px;
+  padding: 45px 30px;
+  text-decoration: none;
+  display: block;
 }
-.cooperation .case__logo {
+.home-cases .home-case__logo {
   margin-bottom: 24px;
 }
-.cooperation .case__title {
+.home-cases .home-case__title {
   margin-bottom: 12px;
   font-size: 24px;
   font-weight: 700;
   color: var(--dark);
 }
-.cooperation-slider .swiper-control, .cooperation-slider .swiper-link {
-  border: none !important;
+@media (min-width: 768px) {
+  .home-cases__title {
+    margin-bottom: 40px;
+  }
+}
+@media (min-width: 1024px) {
+  .home-cases .home-case {
+    padding: 45px 40px;
+  }
+  .home-cases__title {
+    margin-bottom: 50px;
+  }
 }
 
 .home-news {
@@ -2475,6 +2487,10 @@ select::placeholder {
   margin-top: 90px;
   padding-bottom: 80px;
 }
+.home-page__cases {
+  padding-top: 60px;
+  padding-bottom: 60px;
+}
 @media (min-width: 480px) {
   .home-page__clients {
     margin-top: 50px;
@@ -2494,6 +2510,9 @@ select::placeholder {
   .home-page__clients {
     margin-top: 60px;
     padding-bottom: 80px;
+  }
+  .home-page__cases {
+    padding-top: 55px;
   }
 }
 @media (min-width: 1024px) {
@@ -2515,6 +2534,10 @@ select::placeholder {
   }
   .home-page__faq {
     margin-top: 100px;
+    padding-bottom: 100px;
+  }
+  .home-page__cases {
+    padding-top: 100px;
     padding-bottom: 100px;
   }
 }
