@@ -1,6 +1,6 @@
 section.home-faq
   .container
-    h2.home-faq__title Как начать работать с нами
+    h2.h2.home-faq__title Как начать работать с нами
 
     .home-faq__accordion
       -
@@ -19,11 +19,11 @@ section.home-faq
           }
         ]
 
-      div
+      div.accordion#home-faq
         each item in faq
-          section.home-faq-item.c-accordion
-            header.home-faq-item__header.c-accordion-header
-              .c-accordion-trigger
-                h2.home-faq-item__title !{item.title}
-                .home-faq-item__state
-            .home-faq-item__content.c-accordion-panel !{item.text}
+          section.home-faq-item.accordion-item
+            header.home-faq-item__header.accordion-item-header.accordion-trigger
+              h2.home-faq-item__title !{item.title}
+              .home-faq-item__state
+            .accordion-item-panel
+              .home-faq-item__content !{item.text}

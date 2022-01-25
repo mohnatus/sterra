@@ -59,6 +59,80 @@
 
 (function () {
   var selectors = {
+    item: '.accordion-item',
+    trigger: '.accordion-trigger',
+    panel: '.accordion-item-panel'
+  };
+  var states = {
+    active: 'active'
+  };
+
+  function accordion($element) {
+    if (!$element) return;
+    var $items = $element.querySelectorAll(selectors.item);
+    if (!$items.length) return;
+    var items = [];
+    $items.forEach(function ($item) {
+      var trigger = $item.querySelector(selectors.trigger);
+      var panel = $item.querySelector(selectors.panel);
+      items.push({
+        element: $item,
+        trigger: trigger,
+        panel: panel
+      });
+    });
+    var activeItem = items[0];
+
+    function closePanel(item) {
+      item.element.classList.remove(states.active);
+      item.panel.style.height = 0;
+    }
+
+    function openPanel(item) {
+      item.element.classList.add(states.active);
+      item.panel.style.height = item.panel.scrollHeight + 'px';
+    }
+
+    function toggleItem(item) {
+      console.log('toggle item', item, activeItem);
+
+      if (item === activeItem) {
+        closePanel(item);
+        activeItem = null;
+        return;
+      }
+
+      if (activeItem) closePanel(activeItem);
+      openPanel(item);
+      activeItem = item;
+    }
+
+    openPanel(activeItem);
+    items.forEach(function (item) {
+      if (item.trigger) {
+        item.trigger.addEventListener('click', function () {
+          return toggleItem(item);
+        });
+      }
+    });
+    window.addEventListener('resize', function () {
+      if (activeItem) {
+        activeItem.panel.style.transition = 'none';
+        activeItem.panel.style.height = 0;
+        activeItem.panel.style.height = activeItem.panel.scrollHeight + 'px';
+        setTimeout(function () {
+          activeItem.panel.style.transition = '';
+        });
+      }
+    });
+  }
+
+  window.accordion = accordion;
+})();
+"use strict";
+
+(function () {
+  var selectors = {
     container: '.fade-slider-slides',
     slide: '.fade-slider-slide',
     pagination: '.fade-slider-pagination'
@@ -351,4 +425,9 @@ var header = document.getElementById('header-2');
   sliders.forEach(function (s) {
     scrollSlider(s);
   });
+  var faq = document.getElementById('home-faq');
+
+  if (faq) {
+    accordion(faq);
+  }
 })();

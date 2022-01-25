@@ -13,4 +13,9 @@
   sliders.forEach((s) => {
     scrollSlider(s);
   });
+
+  const faq = document.getElementById('home-faq');
+  if (faq) {
+    accordion(faq);
+  }
 })();
