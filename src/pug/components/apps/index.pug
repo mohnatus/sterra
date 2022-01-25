@@ -1,19 +1,20 @@
-.apps
-  .apps-block
-    .apps-title Мы в мессенджерах
-    ul.apps-list
-      li
-        a.app-icon.app-icon-wa(href="#")
-      li
-        a.app-icon.app-icon-tg(href="#")
-  .apps-block
-    .apps-title Мы в соцсетях
-    ul.apps-list
-      li
-        a.app-icon.app-icon-fb(href="#")
-      li
-        a.app-icon.app-icon-yt(href="#")
-      li
-        a.app-icon.app-icon-vk(href="#")
-      li
-        a.app-icon.app-icon-in(href="#")
+mixin apps(colored)
+  .apps(class=colored && 'colored')
+    .apps-block
+      .apps-title Мы в мессенджерах
+      ul.apps-list
+        li
+          a.app-icon.app-icon-wa(href="#")
+        li
+          a.app-icon.app-icon-tg(href="#")
+    .apps-block
+      .apps-title Мы в соцсетях
+      ul.apps-list
+        li
+          a.app-icon.app-icon-fb(href="#")
+        li
+          a.app-icon.app-icon-yt(href="#")
+        li
+          a.app-icon.app-icon-vk(href="#")
+        li
+          a.app-icon.app-icon-in(href="#")

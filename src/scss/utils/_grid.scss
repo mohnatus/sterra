@@ -53,6 +53,11 @@
 
 @include grid-generator('');
 
+/* sm GRID: LG-PHONE-UP */
+@include lg-phone-up {
+  @include grid-generator('-sm');
+}
+
 /* md GRID: TABLET-UP */
 @include tablet-up {
   @include grid-generator('-md');

@@ -1,48 +1,53 @@
+include ../apps/index.pug
+
 footer.footer
   .container
-    .footer__wrapper
-
-      .footer__logo
+    .row
+      .footer__logo.col.col-12
         a.footer-logo(href="#")
           img(src='./img/logo-white.png' alt="S-Terra logo")
 
-      .footer__data
-        .footer-contacts
-          .footer-contacts__title Контакты
+      .footer__data.col.col-12.col-md-8
+        .row
+          .col.col-12.col-sm-6
+            .footer-contacts
+              .footer-contacts__title Контакты
 
-          p
-            b Офис:
-            br
-            |124460  г. Зеленоград, ул. Конструктора Лукина, д. 14, стр. 12, Технополис Москва
+              p
+                b Офис:
+                br
+                |124460  г. Зеленоград, ул. Конструктора Лукина, д. 14, стр. 12, Технополис Москва
 
-          p
-            |Телефон/факс:
-            br
-            a(href="tel: 84999409061")
-              b 8 (499) 940-90-61
+              p
+                |Телефон/факс:
+                br
+                a(href="tel: 84999409061")
+                  b 8 (499) 940-90-61
 
-          p
-            |Почта
-            br
-            a(href="mailto:information@s-terra.ru")
-              b information@s-terra.ru
+              p
+                |Почта
+                br
+                a(href="mailto:information@s-terra.ru")
+                  b information@s-terra.ru
+          .col.col-12.col-sm-6
+            .footer-apps
+              +apps()
 
-        .footer-apps
-          include ../apps/index.pug
 
+      .footer__links.col.col-12.col-md-4
+        .row
+          .col.col-12.col-sm-8.col-md-12
+            a.footer-logo
+              img(src='./img/logo-white.png' alt="S-Terra logo")
 
-      .footer__links
-        a.footer-logo
-          img(src='./img/logo-white.png' alt="S-Terra logo")
+            a.footer-link(href="#") Предупреждение об информации на сайте
 
-        a.footer-link(href="#") Предупреждение об информации на сайте
+            a.footer-link(href="#") Политика обработки персональных данных ООО «С-Терра СиЭсПи»
 
-        a.footer-link(href="#") Политика обработки персональных данных ООО «С-Терра СиЭсПи»
-
-        .footer-copyright
-          |© ООО «С-Терра СиЭсПи», 2021
-          br
-          |Все права защищены.
+            .footer-copyright
+              |© ООО «С-Терра СиЭсПи», 2021
+              br
+              |Все права защищены.
 
 
 

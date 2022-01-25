@@ -4,6 +4,7 @@
   padding-top: 40px;
   padding-bottom: 50px;
   font-size: 13px;
+  line-height: 1.4;
 
   &__logo {
     margin-bottom: 30px;
@@ -19,7 +20,10 @@
     }
 
     p {
-      margin-bottom: var(--space-unit);
+      &:not(:last-child) {
+        margin-bottom: var(--space-unit);
+      }
+
     }
 
     a {
@@ -50,5 +54,29 @@
     display: block;
     color: inherit;
     margin-bottom: var(--space-unit);
+  }
+
+
+
+  @include tablet-up {
+    &__wrapper {
+      display: flex;
+    }
+
+    &__logo {
+      display: none;
+    }
+
+    &__links {
+      order: 1;
+      .footer-logo {
+        display: inline-block;
+        margin-bottom: 30px;
+      }
+    }
+
+    &__data {
+      order: 2;
+    }
   }
 }

@@ -1,3 +1,5 @@
+include ../../apps/index.pug
+
 .contacts-block
   .contacts-block__question
     button.btn.btn-primary-inverse(type="button") Задать вопрос
@@ -6,4 +8,4 @@
     a(href="mailto:information@s-terra.ru") information@s-terra.ru
 
   .contact-block__apps
-    include ../../apps/index.pug
+    +apps('colored')
