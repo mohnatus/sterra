@@ -206,6 +206,32 @@
 "use strict";
 
 (function () {
+  function autoHeight(element) {
+    var defaultHeight = 50;
+
+    function inputHandler() {
+      element.style.height = defaultHeight + 'px';
+      var height = element.scrollHeight;
+      element.style.height = height + 'px';
+    }
+
+    element.style.resize = 'none';
+    element.style.overflowY = 'hidden';
+    element.style.height = element.scrollHeight + 'px';
+    element.addEventListener('input', inputHandler);
+    element.addEventListener('change', inputHandler);
+    setTimeout(function () {
+      inputHandler();
+    }, 4);
+  }
+
+  document.querySelectorAll('textarea').forEach(function (el) {
+    return autoHeight(el);
+  });
+})();
+"use strict";
+
+(function () {
   var selectors = {
     container: '.fade-slider-slides',
     slide: '.fade-slider-slide',

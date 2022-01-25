@@ -8,6 +8,8 @@ textarea {
   @include text-form-control();
   padding-top: 12px;
   padding-bottom: 12px;
+  resize: vertical;
+  min-height: 95px;
 }
 
 select {
