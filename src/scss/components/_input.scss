@@ -6,6 +6,8 @@ input {
 textarea {
   @include form-control();
   @include text-form-control();
+  padding-top: 12px;
+  padding-bottom: 12px;
 }
 
 select {

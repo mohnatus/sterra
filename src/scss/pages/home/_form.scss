@@ -1,31 +1,27 @@
 .home-contact-form {
-  padding-top: 102px;
-  padding-bottom: 125px;
-
   &__title {
-    color: var(--dark);
-    font-size: 40px;
-    font-weight: 500;
-    margin-bottom: 12;
+    margin-bottom: var(--space-sm);
     text-align: center;
   }
 
   &__subtitle {
-    font-size: 17px;
-    margin-bottom: 57px;
+    font-size: 15px;
+    max-width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: var(--space-lg);
     text-align: center;
   }
 
   &__wrapper {
-    max-width: 862px;
     margin-left: auto;
     margin-right: auto;
     display: flex;
+    justify-content: center;
   }
 
   &__image {
-    margin-left: -30px;
-    padding-right: 80px;
+    display: none;
 
     // .phone {
     //   animation-name: phoneMove;
@@ -67,16 +63,49 @@
   }
 
   &__fields {
-    width: 607px;
-    flex-shrink: 0;
+    max-width: 462px;
   }
 
   &__field {
-    margin-bottom: 20px;
+  }
+
+  &__confirm {
+    .checkbox {
+      &-label {
+        font-size: 11px;
+        padding-top: 4px;
+      }
+    }
   }
 
   &__submit {
-    margin-top: 32px;
+  }
+
+  @include tablet-up {
+    &__subtitle {
+      max-width: none;
+    }
+  }
+
+  @include lg-tablet-up {
+    &__fields,
+    &__image {
+      width: calc(370px + 2 * var(--gap));
+      padding-left: var(--gap);
+      padding-right: var(--gap);
+    }
+    &__fields {
+    }
+    &__image {
+      display: block;
+      position: relative;
+
+      img {
+        position: absolute;
+        right: 85px;
+        top: 40px;
+      }
+    }
   }
 }
 

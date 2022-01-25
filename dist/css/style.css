@@ -1180,11 +1180,14 @@ body {
 
 input {
   border: 1px solid var(--border);
+  font: inherit;
   padding-left: 20px;
   padding-right: 20px;
   font-size: 15px;
   line-height: 1.2;
   min-height: 50px;
+  display: block;
+  width: 100%;
 }
 input:focus, input.focus {
   border-color: #918cff;
@@ -1202,11 +1205,16 @@ input::placeholder {
 
 textarea {
   border: 1px solid var(--border);
+  font: inherit;
   padding-left: 20px;
   padding-right: 20px;
   font-size: 15px;
   line-height: 1.2;
   min-height: 50px;
+  display: block;
+  width: 100%;
+  padding-top: 12px;
+  padding-bottom: 12px;
 }
 textarea:focus, textarea.focus {
   border-color: #918cff;
@@ -1224,11 +1232,14 @@ textarea::placeholder {
 
 select {
   border: 1px solid var(--border);
+  font: inherit;
   padding-left: 20px;
   padding-right: 20px;
   font-size: 15px;
   line-height: 1.2;
   min-height: 50px;
+  display: block;
+  width: 100%;
 }
 select:focus, select.focus {
   border-color: #918cff;
@@ -1246,11 +1257,14 @@ select::placeholder {
 
 .form-control {
   border: 1px solid var(--border);
+  font: inherit;
   padding-left: 20px;
   padding-right: 20px;
   font-size: 15px;
   line-height: 1.2;
   min-height: 50px;
+  display: block;
+  width: 100%;
 }
 .form-control:focus, .form-control.focus {
   border-color: #918cff;
@@ -1268,6 +1282,8 @@ select::placeholder {
 
 .checkbox {
   display: flex;
+}
+.checkbox.disabled {
   opacity: 0.5;
 }
 .checkbox input {
@@ -1287,6 +1303,7 @@ select::placeholder {
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-shrink: 0;
 }
 .checkbox .checkbox-box:invalid, .checkbox .checkbox-box.invalid, .invalid .checkbox .checkbox-box {
   border-color: var(--error);
@@ -1322,10 +1339,14 @@ select::placeholder {
   background: white;
   border-radius: 50%;
 }
-.checkbox .label {
+.checkbox .checkbox-label {
   margin-left: 13px;
   font-size: 14px;
   color: black;
+}
+
+.form-field {
+  margin-bottom: var(--space-unit);
 }
 
 .form-label {
@@ -2483,41 +2504,54 @@ select::placeholder {
   }
 }
 
-.home-contact-form {
-  padding-top: 102px;
-  padding-bottom: 125px;
-}
 .home-contact-form__title {
-  color: var(--dark);
-  font-size: 40px;
-  font-weight: 500;
-  margin-bottom: 12;
+  margin-bottom: var(--space-sm);
   text-align: center;
 }
 .home-contact-form__subtitle {
-  font-size: 17px;
-  margin-bottom: 57px;
+  font-size: 15px;
+  max-width: 300px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: var(--space-lg);
   text-align: center;
 }
 .home-contact-form__wrapper {
-  max-width: 862px;
   margin-left: auto;
   margin-right: auto;
   display: flex;
+  justify-content: center;
 }
 .home-contact-form__image {
-  margin-left: -30px;
-  padding-right: 80px;
+  display: none;
 }
 .home-contact-form__fields {
-  width: 607px;
-  flex-shrink: 0;
+  max-width: 462px;
 }
-.home-contact-form__field {
-  margin-bottom: 20px;
+.home-contact-form__confirm .checkbox-label {
+  font-size: 11px;
+  padding-top: 4px;
 }
-.home-contact-form__submit {
-  margin-top: 32px;
+@media (min-width: 768px) {
+  .home-contact-form__subtitle {
+    max-width: none;
+  }
+}
+@media (min-width: 1024px) {
+  .home-contact-form__fields, .home-contact-form__image {
+    width: calc(370px + 2 * var(--gap));
+    padding-left: var(--gap);
+    padding-right: var(--gap);
+  }
+  .home-contact-form__image {
+    display: block;
+    position: relative;
+  }
+  .home-contact-form__image img {
+    position: absolute;
+    right: 85px;
+    top: 40px;
+  }
 }
 
 .home-page__stats {
@@ -2548,6 +2582,10 @@ select::placeholder {
   margin-top: 80px;
   margin-bottom: 80px;
 }
+.home-page__form {
+  padding-top: 60px;
+  padding-bottom: 80px;
+}
 @media (min-width: 480px) {
   .home-page__clients {
     margin-top: 50px;
@@ -2555,6 +2593,10 @@ select::placeholder {
   }
   .home-page__faq {
     margin-top: 80px;
+  }
+  .home-page__form {
+    padding-top: 55px;
+    padding-bottom: 60px;
   }
 }
 @media (min-width: 768px) {
@@ -2570,6 +2612,10 @@ select::placeholder {
   }
   .home-page__cases {
     padding-top: 55px;
+  }
+  .home-page__form {
+    padding-top: 80px;
+    padding-bottom: 100px;
   }
 }
 @media (min-width: 1024px) {

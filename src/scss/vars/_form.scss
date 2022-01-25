@@ -20,6 +20,8 @@
 }
 
 @mixin form-control {
+
+
   border: 1px solid var(--border);
 
   &:focus,
@@ -40,11 +42,15 @@
 }
 
 @mixin text-form-control {
+  font: inherit;
+  
   padding-left: 20px;
   padding-right: 20px;
   font-size: 15px;
   line-height: 1.2;
   min-height: 50px;
+  display: block;
+  width: 100%;
 
   &::placeholder {
     color: var(--label);

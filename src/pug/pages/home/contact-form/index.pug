@@ -1,27 +1,28 @@
 .home-contact-form.colored-block
   .container
-    h2.home-contact-form__title Хотите, чтобы мы с вами связались?
-    .home-contact-form__subtitle Оставьте свои контакты
+    h2.h1.home-contact-form__title Закажите бесплатную консультацию
+    .home-contact-form__subtitle Оставьте свои контакты, мы свяжемся с вами в ближайшее время
 
-  .home-contact-form__wrapper
-    .home-contact-form__image
-      img(src="./img/icons/contacts.png")
+  .container
+    .home-contact-form__wrapper
+      .home-contact-form__image
+        img(src="./img/icons/contacts.png" width="405")
 
-    .home-contact-form__fields
-      .home-contact-form__field
-        input(type="text" placeholder="Ваше имя")
-      .home-contact-form__field
-        input(type="text" placeholder="Название компании")
-      .home-contact-form__field
-        input(type="text" placeholder="Электронная почта")
-      .home-contact-form__field
-        input(type="text" placeholder="Номер телефона")
-      .home-contact-form__field
-        textarea(placeholder="Комментарий (необязательно)")
-      .home-contact-form__confirm
-        label.checkbox
-          input(type="checkbox" checked)
-          span.checkbox__box
-          label.checkbox__label Даю согласие на обработку своих персональных данных в соответствии с #[a(href="#") Политикой обработки персональных данных ООО «С-Терра СиЭсПи»].
-      .home-contact-form__submit
-        button.btn.btn-primary.btn-block(type="submit") Отправить
+      .home-contact-form__fields
+        .form-field
+          input.form-control(type="text" placeholder="ФИО*")
+        .form-field
+          input.form-control(type="text" placeholder="Название компании*")
+        .form-field
+          input.form-control(type="text" placeholder="Электронная почта*")
+        .form-field
+          input.form-control(type="text" placeholder="Номер телефона*")
+        .form-field
+          textarea.form-control(placeholder="Комментарий")
+        .form-field.home-contact-form__confirm
+          label.checkbox
+            input(type="checkbox" checked)
+            span.checkbox-box
+            label.checkbox-label Даю согласие на обработку своих персональных данных в соответствии с #[a(href="#") Политикой обработки персональных данных ООО «С-Терра СиЭсПи»].
+        .home-contact-form__submit
+          button.btn.btn-primary.btn-block(type="submit") Отправить

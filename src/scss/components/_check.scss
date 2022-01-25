@@ -1,6 +1,8 @@
 .checkbox {
   display: flex;
-  @include form-control-disabled;
+  &.disabled {
+    @include form-control-disabled;
+  }
 
   input {
     @include visually-hidden;
@@ -13,6 +15,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-shrink: 0;
   }
 
   input:focus + .checkbox-box {
@@ -59,7 +62,7 @@
     }
   }
 
-  .label {
+  .checkbox-label {
     margin-left: 13px;
     font-size: 14px;
     color: black;

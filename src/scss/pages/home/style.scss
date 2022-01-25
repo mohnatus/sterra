@@ -46,6 +46,11 @@
     margin-bottom: 80px;
   }
 
+  &__form {
+    padding-top: 60px;
+    padding-bottom: 80px;
+  }
+
   @include lg-phone-up {
     &__clients {
       margin-top: 50px;
@@ -53,6 +58,10 @@
     }
     &__faq {
       margin-top: 80px;
+    }
+    &__form {
+      padding-top: 55px;
+      padding-bottom: 60px;
     }
   }
 
@@ -70,7 +79,10 @@
     &__cases {
       padding-top: 55px;
     }
-
+    &__form {
+      padding-top: 80px;
+      padding-bottom: 100px;
+    }
   }
 
   @include lg-tablet-up {
