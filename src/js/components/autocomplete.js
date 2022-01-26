@@ -21,9 +21,11 @@
     let actualId = null;
 
     function updateList(items) {
+
       if (!items.length) {
-        let el = document.createElement('div');
-        el.textContent('Ничего не найдено');
+        let el = document.createElement('li');
+        el.classList.add('search-list-empty');
+        el.textContent = 'Ничего не найдено';
         $list.innerHTML = '';
         $list.appendChild(el);
         return;
@@ -31,7 +33,10 @@
       let fragment = document.createDocumentFragment();
       items.forEach((item) => {
         let el = document.createElement('div');
-        el.textContent = item.text;
+        let link = document.createElement('a');
+        link.href = item.link;
+        link.textContent = item.text;
+        el.appendChild(link);
         fragment.appendChild(el);
       });
       $list.innerHTML = '';
@@ -93,6 +98,7 @@
 
     if ($reset) {
       $reset.addEventListener('click', () => {
+        utils.emitter.emit('close-search');
         $field.value = '';
         resetList();
       });

@@ -20,6 +20,7 @@
     z-index: $headerZIndex;
     background: white;
     transition: box-shadow 400ms ease-in-out;
+    border-bottom: 1px solid var(--border);
     &__wrapper {
       display: flex;
     }
@@ -39,9 +40,6 @@
   &.fixed {
     .header-view:not(.header-pane-opened) {
       box-shadow: 0px 5px 15px rgba(0, 0, 102, 0.15);
-    }
-    .header-view.header-pane-opened {
-      border-bottom: 1px solid var(--border);
     }
   }
 }
@@ -80,6 +78,12 @@
 @include tablet-up {
   :root {
     --header-height: 80px;
+    --search-right-offset: 115px;
+    --search-left-offset: 315px;
+    --search-right: calc(
+      var(--content-side-offset) + var(--search-right-offset)
+    );
+    --search-left: calc(var(--content-side-offset) + var(--search-left-offset));
   }
   .header {
     &-logo {
@@ -98,11 +102,64 @@
     }
     &-search {
       margin-right: var(--space-unit);
+      &__search {
+        position: absolute;
+
+        top: 12px;
+        right: var(--search-right);
+        left: var(--search-left);
+        display: flex;
+        justify-content: flex-end;
+        pointer-events: none;
+
+        .search {
+          padding: 10px 0;
+          pointer-events: all;
+          width: 0;
+          overflow: hidden;
+          transition: width 500ms ease-in-out, padding 500ms ease-in-out;
+          transition-delay: 100ms;
+
+          &-list {
+            margin-top: 23px;
+          }
+        }
+      }
+    }
+
+    &-view {
+      .header__navigation,
+      .header__contacts {
+        transition: opacity 200ms ease-in-out, visibility 200ms ease-in-out;
+      }
+
+      &.header-search-opened {
+        .header__navigation,
+        .header__contacts {
+          opacity: 0;
+          visibility: hidden;
+        }
+
+        .header-search {
+          &__trigger {
+            opacity: 0;
+          }
+          &__search {
+            .search {
+              width: 100%;
+              padding: 10px;
+            }
+          }
+        }
+      }
     }
   }
 }
 
 @include sm-desktop-up {
+  :root {
+    --search-right-offset: 56px;
+  }
   .header {
     &__navigation {
       display: flex;
@@ -116,6 +173,11 @@
 
     &-toggler {
       display: none;
+    }
+
+    &-view {
+      &.header-search-opened {
+      }
     }
   }
 }

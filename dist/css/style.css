@@ -121,6 +121,7 @@ h3, .h3 {
   --text: var(--black);
   /* Доп. фон для блоков */
   --block-background: var(--light-grey);
+  --hover-background: var(--light-grey);
   /* Подписи, даты, лейблы */
   --label: var(--light-blue);
   /* Ссылки */
@@ -672,6 +673,7 @@ body {
   --gap: var(--space-xs);
   --max-content-width: 1360px;
   --content-width: calc(min(100vw, var(--max-content-width)) - 2 * var(--gap));
+  --content-side-offset: calc((100vw - var(--content-width)) / 2);
 }
 @media (min-width: 768px) {
   :root {
@@ -2019,8 +2021,32 @@ body.modals-shown {
   padding-right: 12px;
   color: var(--primary);
 }
-.search-field input:placeholder-shown ~ .search-field__reset {
-  opacity: 0;
+.search-list {
+  background: var(--white);
+  padding: var(--space-xs) var(--space-md);
+  box-shadow: 0px 10px 15px rgba(0, 0, 102, 0.15);
+}
+.search-list-empty {
+  color: var(--label);
+  height: 30px;
+  display: flex;
+  align-items: center;
+  padding: 4px 20px;
+}
+.search-list a {
+  min-height: 30px;
+  display: flex;
+  align-items: center;
+  padding: 4px 20px;
+  color: var(--text);
+  cursor: pointer;
+  font-size: 13px;
+  text-decoration: none;
+  border-radius: 100px;
+  transition: background 250ms ease-in-out;
+}
+.search-list a:hover {
+  background-color: var(--hover-background);
 }
 
 .header-menu {
@@ -2150,6 +2176,7 @@ body.modals-shown {
   z-index: 100;
   background: white;
   transition: box-shadow 400ms ease-in-out;
+  border-bottom: 1px solid var(--border);
 }
 .header-view__wrapper {
   display: flex;
@@ -2165,9 +2192,6 @@ body.modals-shown {
 }
 .header.fixed .header-view:not(.header-pane-opened) {
   box-shadow: 0px 5px 15px rgba(0, 0, 102, 0.15);
-}
-.header.fixed .header-view.header-pane-opened {
-  border-bottom: 1px solid var(--border);
 }
 
 .header-view__wrapper {
@@ -2193,6 +2217,12 @@ body.modals-shown {
 @media (min-width: 768px) {
   :root {
     --header-height: 80px;
+    --search-right-offset: 115px;
+    --search-left-offset: 315px;
+    --search-right: calc(
+      var(--content-side-offset) + var(--search-right-offset)
+    );
+    --search-left: calc(var(--content-side-offset) + var(--search-left-offset));
   }
 
   .header-logo img {
@@ -2209,8 +2239,48 @@ body.modals-shown {
   .header-search {
     margin-right: var(--space-unit);
   }
+  .header-search__search {
+    position: absolute;
+    top: 12px;
+    right: var(--search-right);
+    left: var(--search-left);
+    display: flex;
+    justify-content: flex-end;
+    pointer-events: none;
+  }
+  .header-search__search .search {
+    padding: 10px 0;
+    pointer-events: all;
+    width: 0;
+    overflow: hidden;
+    transition: width 500ms ease-in-out, padding 500ms ease-in-out;
+    transition-delay: 100ms;
+  }
+  .header-search__search .search-list {
+    margin-top: 23px;
+  }
+  .header-view .header__navigation,
+.header-view .header__contacts {
+    transition: opacity 200ms ease-in-out, visibility 200ms ease-in-out;
+  }
+  .header-view.header-search-opened .header__navigation,
+.header-view.header-search-opened .header__contacts {
+    opacity: 0;
+    visibility: hidden;
+  }
+  .header-view.header-search-opened .header-search__trigger {
+    opacity: 0;
+  }
+  .header-view.header-search-opened .header-search__search .search {
+    width: 100%;
+    padding: 10px;
+  }
 }
 @media (min-width: 1280px) {
+  :root {
+    --search-right-offset: 56px;
+  }
+
   .header__navigation {
     display: flex;
     align-items: center;

@@ -10,4 +10,8 @@
     $headerView.classList.add('header-search-opened');
   });
 
+  utils.emitter.on('close-search', () => {
+    $headerView.classList.remove('header-search-opened');
+  })
+
 })()

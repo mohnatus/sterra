@@ -279,10 +279,11 @@
 
     function updateList(items) {
       if (!items.length) {
-        var _el = document.createElement('div');
+        var _el = document.createElement('li');
 
-        _el.textContent('Ничего не найдено');
+        _el.classList.add('search-list-empty');
 
+        _el.textContent = 'Ничего не найдено';
         $list.innerHTML = '';
         $list.appendChild(_el);
         return;
@@ -291,7 +292,10 @@
       var fragment = document.createDocumentFragment();
       items.forEach(function (item) {
         var el = document.createElement('div');
-        el.textContent = item.text;
+        var link = document.createElement('a');
+        link.href = item.link;
+        link.textContent = item.text;
+        el.appendChild(link);
         fragment.appendChild(el);
       });
       $list.innerHTML = '';
@@ -353,6 +357,7 @@
 
     if ($reset) {
       $reset.addEventListener('click', function () {
+        utils.emitter.emit('close-search');
         $field.value = '';
         resetList();
       });
@@ -902,6 +907,9 @@
   var $trigger = $searchBlock.querySelector('.header-search__trigger');
   $trigger.addEventListener('click', function () {
     $headerView.classList.add('header-search-opened');
+  });
+  utils.emitter.on('close-search', function () {
+    $headerView.classList.remove('header-search-opened');
   });
 })();
 "use strict";
