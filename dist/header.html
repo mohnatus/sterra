@@ -450,22 +450,25 @@
                                     </svg>
                   </button>
                   <div class="header-search__search" hidden><!-- SEARCH -->
-                    <div class="search" data-search>
+                    <form class="search" data-search action="./test/data.json" method="GET">
+                      <!-- TODO: указать экшен для ajax-запроса-->
+                      <!-- @param q {String}-->
+                      <!-- @result items[ <text, link> ]-->
                       <div class="search-field">
                         <div class="search-field__icon">
                                               <svg width="14" height="14">
                                                 <use xlink:href="#i-search" href="#i-search"></use>
                                               </svg>
                         </div>
-                        <input class="form-control" value="" placeholder="Поиск" data-field>
+                        <input class="form-control" value="" placeholder="Поиск" name="q" data-field autocomplete="off">
                         <button class="icon-btn search-field__reset" type="button" data-reset>
                                               <svg width="10" height="10">
                                                 <use xlink:href="#i-times" href="#i-times"></use>
                                               </svg>
                         </button>
                       </div>
-                      <ul class="search-list"></ul>
-                    </div><!-- /SEARCH -->
+                      <ul class="search-list" data-list hidden></ul>
+                    </form><!-- /SEARCH -->
                   </div>
                 </div><a class="btn btn-round btn-primary-inverse header-account" href="#">
                                       <svg width="16" height="16">
@@ -487,22 +490,25 @@
           <div class="header-pane__content">
             <div class="container">
               <div class="header-pane__search"><!-- SEARCH -->
-                <div class="search" data-search>
+                <form class="search" data-search action="./test/data.json" method="GET">
+                  <!-- TODO: указать экшен для ajax-запроса-->
+                  <!-- @param q {String}-->
+                  <!-- @result items[ <text, link> ]-->
                   <div class="search-field">
                     <div class="search-field__icon">
                                       <svg width="14" height="14">
                                         <use xlink:href="#i-search" href="#i-search"></use>
                                       </svg>
                     </div>
-                    <input class="form-control" value="" placeholder="Поиск" data-field>
+                    <input class="form-control" value="" placeholder="Поиск" name="q" data-field autocomplete="off">
                     <button class="icon-btn search-field__reset" type="button" data-reset>
                                       <svg width="10" height="10">
                                         <use xlink:href="#i-times" href="#i-times"></use>
                                       </svg>
                     </button>
                   </div>
-                  <ul class="search-list"></ul>
-                </div><!-- /SEARCH -->
+                  <ul class="search-list" data-list hidden></ul>
+                </form><!-- /SEARCH -->
               </div>
               <div class="header-pane__nav">
                 <div class="header-menu">

@@ -14,6 +14,14 @@ function assets() {
 
 exports.assets = assets;
 
+function test() {
+  return src('src/test/**/*.*')
+    .pipe(dest('dist/test'))
+    .pipe(browserSync.stream());
+}
+
+exports.test = test;
+
 function html() {
   return src('src/pug/*.pug')
     .pipe(
@@ -71,6 +79,7 @@ function myServer() {
   watch('src/scss/**/*.scss', { usePolling: true }, css);
   watch('src/js/**/*.js', { usePolling: true }, js);
   watch('src/img/**/*.*', { usePolling: true }, assets);
+  watch('src/test/**/*.*', { usePolling: true }, test);
 }
 
-exports.default = series(clean, assets, css, js,  html, myServer);
+exports.default = series(clean, assets, test, css, js,  html, myServer);

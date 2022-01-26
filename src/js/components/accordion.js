@@ -67,5 +67,6 @@
     });
   }
 
-  window.accordion = accordion;
+  window.components = window.components || {};
+  window.components.accordion = accordion;
 })();

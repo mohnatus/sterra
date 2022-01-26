@@ -21,5 +21,8 @@
     }, 4);
   }
 
+  window.components = window.components || {};
+  window.components.autoHeight = autoHeight;
+
   document.querySelectorAll('textarea').forEach((el) => autoHeight(el));
 })();

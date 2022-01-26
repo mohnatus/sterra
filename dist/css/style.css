@@ -1448,7 +1448,7 @@ textarea.form-control {
 
 .scroll-slider-viewport {
   width: 100%;
-  overflow: auto;
+  overflow: hidden;
 }
 .scroll-slider-slides {
   display: flex;
@@ -1466,7 +1466,7 @@ textarea.form-control {
 }
 @media (min-width: 1360px) {
   .scroll-slider-offset {
-    width: calc((100vw - var(--max-content-width)) / 2 + 2 * var(--gap));
+    width: calc((100vw - var(--max-content-width) - var(--scrollbar-width, 0px)) / 2 + 2 * var(--gap));
   }
 }
 .scroll-slider-offset:last-child {
@@ -1862,6 +1862,9 @@ textarea.form-control {
 }
 
 .search {
+  position: relative;
+}
+.search-field {
   position: relative;
 }
 .search-field .form-control {

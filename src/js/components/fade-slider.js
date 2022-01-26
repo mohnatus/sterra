@@ -44,5 +44,6 @@
     }
   }
 
-  window.fadeSlider = fadeSlider;
+  window.components = window.components || {};
+  window.components.fadeSlider = fadeSlider;
 })();

@@ -1,7 +1,7 @@
 .scroll-slider {
   &-viewport {
     width: 100%;
-    overflow: auto;
+    overflow: hidden;
   }
   &-slides {
     display: flex;
@@ -18,7 +18,7 @@
     flex-shrink: 0;
 
     @include max-width-up {
-      width: calc((100vw - var(--max-content-width)) / 2 + 2 * var(--gap));
+      width: calc((100vw - var(--max-content-width) - var(--scrollbar-width, 0px)) / 2 + 2 * var(--gap));
     }
 
     &:last-child {

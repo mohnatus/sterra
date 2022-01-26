@@ -6,16 +6,16 @@
 
   const homeSlider = document.getElementById('home-slider');
   if (homeSlider) {
-    fadeSlider(homeSlider);
+    components.fadeSlider(homeSlider);
   }
 
   const sliders = document.querySelectorAll('.scroll-slider');
   sliders.forEach((s) => {
-    scrollSlider(s);
+    components.scrollSlider(s);
   });
 
   const faq = document.getElementById('home-faq');
   if (faq) {
-    accordion(faq);
+    components.accordion(faq);
   }
 })();

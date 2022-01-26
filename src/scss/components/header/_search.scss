@@ -2,6 +2,8 @@
   position: relative;
 
   &-field {
+    position: relative;
+    
     .form-control {
       height: 36px;
       min-height: 0;
