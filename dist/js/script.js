@@ -372,6 +372,9 @@
     slide: '.fade-slider-slide',
     pagination: '.fade-slider-pagination'
   };
+  var classes = {
+    paginationItem: 'fade-slider-pagination__item'
+  };
   var events = {
     changeSlide: 'fade-slider_change_slide'
   };
@@ -398,7 +401,7 @@
 
       var $paginationItems = Array(slidesCount).fill(null).map(function (el, i) {
         var $item = document.createElement('div');
-        $item.classList.add('fade-slider-pagination__item');
+        $item.classList.add(classes.paginationItem);
         $item.dataset.slide = i;
         $pagination.appendChild($item);
         return $item;

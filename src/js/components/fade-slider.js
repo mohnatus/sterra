@@ -5,6 +5,10 @@
     pagination: '.fade-slider-pagination'
   };
 
+  const classes = {
+    paginationItem: 'fade-slider-pagination__item'
+  }
+
   const events = {
     changeSlide: 'fade-slider_change_slide'
   };
@@ -29,7 +33,7 @@
         .fill(null)
         .map((el, i) => {
           let $item = document.createElement('div');
-          $item.classList.add('fade-slider-pagination__item');
+          $item.classList.add(classes.paginationItem);
           $item.dataset.slide = i;
           $pagination.appendChild($item);
           return $item;

@@ -22,8 +22,12 @@ $circleGroupDelay: 357ms;
   }
 
   .home-info-company {
+    @include cardShadow;
+    
     background: white;
     margin-bottom: var(--space-lg);
+    text-decoration: none;
+    color: inherit;
 
     &__icons {
       display: none;
@@ -31,8 +35,11 @@ $circleGroupDelay: 357ms;
   }
 
   .home-info-products {
+    @include cardShadow;
+
     background-color: var(--primary);
     color: var(--primary-contrast);
+    text-decoration: none;
     position: relative;
     overflow: hidden;
     min-height: 240px;

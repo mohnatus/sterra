@@ -109,7 +109,7 @@ h3, .h3 {
   --accent: var(--red);
   --accent-contrast: var(--white);
   --accent-dark: var(--red-2);
-  --accent-shadow: var(--accent-variant);
+  --accent-shadow: var(--accent);
   --error: var(--red);
   --border: var(--grey);
 }
@@ -2388,6 +2388,11 @@ textarea.form-control {
 .home-info .home-info-company {
   background: white;
   margin-bottom: var(--space-lg);
+  text-decoration: none;
+  color: inherit;
+}
+.home-info .home-info-company:hover {
+  box-shadow: 0 5px 15px var(--shadow);
 }
 .home-info .home-info-company__icons {
   display: none;
@@ -2395,9 +2400,13 @@ textarea.form-control {
 .home-info .home-info-products {
   background-color: var(--primary);
   color: var(--primary-contrast);
+  text-decoration: none;
   position: relative;
   overflow: hidden;
   min-height: 240px;
+}
+.home-info .home-info-products:hover {
+  box-shadow: 0 5px 15px var(--shadow);
 }
 .home-info .home-info-products:before {
   content: "";
