@@ -54,6 +54,11 @@
   height: 42px;
   padding-left: 0;
   padding-right: 0;
+
+  &.btn-sm {
+    width: 36px;
+    height: 36px;
+  }
 }
 
 .btn-accent {

@@ -24,12 +24,14 @@
     document.body.style.overflow = 'hidden';
     $toggler.removeAttribute('data-closed');
     $headerView.style.paddingRight = scrollbarWidth + 'px';
+    $headerView.classList.add('header-pane-opened')
   }
   function closePane() {
     $pane.setAttribute('hidden', true);
     document.body.style.overflow = '';
     $toggler.setAttribute('data-closed', true);
     $headerView.style.paddingRight = '';
+    $headerView.classList.remove('header-pane-opened')
   }
   function togglePane() {
     let isHidden = $pane.hasAttribute('hidden');

@@ -18,7 +18,10 @@
     flex-shrink: 0;
 
     @include max-width-up {
-      width: calc((100vw - var(--max-content-width) - var(--scrollbar-width, 0px)) / 2 + 2 * var(--gap));
+      width: calc(
+        (100vw - var(--max-content-width) - var(--scrollbar-width, 0px)) / 2 + 2 *
+          var(--gap)
+      );
     }
 
     &:last-child {
@@ -27,8 +30,10 @@
   }
   &-controls {
     margin-top: calc(2 * var(--space-sm));
+    margin-bottom: calc(-1 * var(--space-sm));
   }
   &-control {
+    margin-bottom: var(--space-sm);
     &:not(:last-child) {
       margin-right: var(--space-xs);
     }

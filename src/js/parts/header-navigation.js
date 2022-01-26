@@ -2,6 +2,7 @@
   const $header = document.querySelector('.header');
   if (!$header) return;
 
+  const $headerView = $header.querySelector('.header-view');
   const $navigation = $header.querySelector('.header-navigation');
   if (!$navigation) return;
 

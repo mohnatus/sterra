@@ -1,10 +1,10 @@
-mixin list-item(item)
-  li
+mixin list-item(item, level = -1, currentLevel = 1)
+  li(data-level=currentLevel class=item.active && 'active')
     a(href=item.link)= item.name
-    if item.items
+    if item.items && (level < 1 || level >= currentLevel)
       ul(class=item.class)
         each subItem in item.items
-          +list-item(subItem)
+          +list-item(subItem, level, currentLevel + 1)
 
 mixin menu-section(item)
   include ../../mixins/icon.pug

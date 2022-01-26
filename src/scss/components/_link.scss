@@ -11,9 +11,6 @@
     color: var(--link-variant);
     text-decoration: none;
   }
-  &.active {
-    color: var(--accent);
-  }
   &[disabled], &.disabled {
     opacity: 0.5;
   }
