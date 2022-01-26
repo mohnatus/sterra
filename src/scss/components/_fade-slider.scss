@@ -18,10 +18,13 @@
     bottom: 0;
     opacity: 0;
 
-    transition: opacity 400ms;
+    transition-property: opacity;
+    transition-duration: 1000ms;
 
     &.active {
       opacity: 1;
+      transition-duration: 2000ms;
+      transition-delay: 500ms;
     }
   }
 
@@ -44,6 +47,10 @@
       }
 
       transition: transform 250ms linear, background 250ms linear;
+
+      &:hover {
+        transform: scale(2.5);
+      }
 
       &.active {
         transform: scale(2.5);

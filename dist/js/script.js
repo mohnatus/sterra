@@ -379,8 +379,10 @@
     changeSlide: 'fade-slider_change_slide'
   };
   var states = {
+    active: 'active',
     paginationActive: 'active'
   };
+  var THRESHOLD = 100;
 
   function fadeSlider(element) {
     if (!element) return;
@@ -390,6 +392,93 @@
     if ($slides.length < 2) return;
     var emitter = utils.createEmitter();
     var slidesCount = $slides.length;
+    var activeSlide = 0;
+    var initialX,
+        x1,
+        x2,
+        offset = 0;
+
+    function changeSlide(index) {
+      activeSlide = index;
+      emitter.emit(events.changeSlide, index);
+    }
+
+    function move(diff) {
+      offset = diff; // element.style.transform = `translateX(${diff}px)`;
+    }
+
+    function toSlide(index) {
+      console.log(index, activeSlide);
+      $slides[activeSlide].classList.remove(states.active);
+      $slides[index].classList.add(states.active);
+      changeSlide(index);
+    }
+
+    function prev() {
+      var index = activeSlide > 0 ? activeSlide - 1 : slidesCount - 1;
+      toSlide(index);
+    }
+
+    function next() {
+      var index = activeSlide + 1;
+      if (index >= slidesCount) index = 0;
+      toSlide(index);
+    }
+
+    function onDragStart(e) {
+      e = e || window.event;
+      e.preventDefault();
+      element.style.userSelect = 'none';
+      element.style.cursor = 'grabbing';
+
+      if (e.type == 'touchstart') {
+        x1 = e.touches[0].clientX;
+      } else {
+        x1 = e.clientX;
+        document.onmouseup = onDragEnd;
+        document.onmousemove = onDragAction;
+      }
+
+      initialX = x1;
+    }
+
+    function onDragAction(e) {
+      e = e || window.event;
+
+      if (e.type == 'touchmove') {
+        x2 = x1 - e.touches[0].clientX;
+        x1 = e.touches[0].clientX;
+      } else {
+        x2 = x1 - e.clientX;
+        x1 = e.clientX;
+      }
+
+      move(offset - x2);
+    }
+
+    function onDragEnd(e) {
+      var finalX = x2;
+      console.log(offset, THRESHOLD);
+
+      if (offset < -1 * THRESHOLD) {
+        next();
+        emitter.emit(events.touched);
+      } else if (offset > THRESHOLD) {
+        prev();
+        emitter.emit(events.touched);
+      }
+
+      move(0);
+      element.style.userSelect = '';
+      element.style.cursor = '';
+      document.onmouseup = null;
+      document.onmousemove = null;
+    }
+
+    $container.onmousedown = onDragStart;
+    $container.addEventListener('touchstart', onDragStart);
+    $container.addEventListener('touchend', onDragEnd);
+    $container.addEventListener('touchmove', onDragAction);
     var $pagination = element.querySelector(selectors.pagination);
 
     if ($pagination) {
@@ -404,9 +493,12 @@
         $item.classList.add(classes.paginationItem);
         $item.dataset.slide = i;
         $pagination.appendChild($item);
+        $item.addEventListener('click', function () {
+          toSlide(i);
+        });
         return $item;
       });
-      setActivePaginationItem(0);
+      setActivePaginationItem(activeSlide);
       emitter.on(events.changeSlide, function (slideIndex) {
         return setActivePaginationItem(slideIndex);
       });
@@ -845,6 +937,8 @@
     }
 
     function onDragStart(e) {
+      element.style.userSelect = 'none';
+      element.style.cursor = 'grabbing';
       e = e || window.event;
       e.preventDefault();
       initialX = $viewport.scrollLeft;
@@ -885,6 +979,8 @@
         scrollTo(initialX, true);
       }
 
+      element.style.userSelect = '';
+      element.style.cursor = '';
       document.onmouseup = null;
       document.onmousemove = null;
     }

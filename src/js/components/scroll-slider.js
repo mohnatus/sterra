@@ -94,6 +94,9 @@
     }
 
     function onDragStart(e) {
+      element.style.userSelect = 'none';
+      element.style.cursor = 'grabbing';
+
       e = e || window.event;
       e.preventDefault();
       initialX = $viewport.scrollLeft;
@@ -133,6 +136,9 @@
       } else {
         scrollTo(initialX, true);
       }
+
+      element.style.userSelect = '';
+      element.style.cursor = '';
 
       document.onmouseup = null;
       document.onmousemove = null;

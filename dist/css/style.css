@@ -1497,10 +1497,13 @@ textarea.form-control {
   right: 0;
   bottom: 0;
   opacity: 0;
-  transition: opacity 400ms;
+  transition-property: opacity;
+  transition-duration: 1000ms;
 }
 .fade-slider-slide.active {
   opacity: 1;
+  transition-duration: 2000ms;
+  transition-delay: 500ms;
 }
 .fade-slider-pagination {
   flex-shrink: 0;
@@ -1518,6 +1521,9 @@ textarea.form-control {
 }
 .fade-slider-pagination__item:not(:last-child) {
   margin-right: var(--space-md);
+}
+.fade-slider-pagination__item:hover {
+  transform: scale(2.5);
 }
 .fade-slider-pagination__item.active {
   transform: scale(2.5);
