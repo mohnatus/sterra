@@ -1,6 +1,4 @@
 (() => {
-  
-
   const selectors = {
     viewport: '.scroll-slider-viewport',
     container: '.scroll-slider-slides',
@@ -15,7 +13,8 @@
 
   const states = {
     shifting: 'shifting',
-    loaded: 'loaded'
+    loaded: 'loaded',
+    active: 'active'
   };
 
   const events = {
@@ -39,6 +38,15 @@
     let slidesCount = $slides.length;
     let activeSlide = 0;
 
+    function orderSlides(index) {
+      $slides.forEach((el, i) => {
+        el.classList.toggle(states.active, i === index);
+        el.setAttribute('data-order', i - index + 1);
+      });
+    }
+
+    orderSlides(activeSlide);
+
     let x1 = 0,
       x2 = 0,
       initialX,
@@ -52,6 +60,8 @@
     function setActiveSlide(index) {
       activeSlide = index;
       emitter.emit(events.changeSlide);
+
+      orderSlides(index);
     }
 
     function scrollTo(x, smooth) {

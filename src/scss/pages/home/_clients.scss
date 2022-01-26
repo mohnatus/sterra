@@ -1,16 +1,48 @@
+@mixin visibleSlide {
+  opacity: 1;
+
+  &:hover {
+    img.bw {
+      opacity: 0;
+    }
+    img.colored {
+      opacity: 1;
+    }
+  }
+
+  .client-block {
+    @include cardShadow;
+  }
+}
+
 .home-clients {
   --client-logo-offset: 16px;
 
   .scroll-slider {
-    
     &-control {
       border: none;
     }
 
+    &-viewport {
+      padding-top: 20px;
+      padding-bottom: 20px;
+      margin-top: -20px;
+      margin-bottom: -20px;
+    }
+
+
     &-slide {
       flex-shrink: 0;
       min-width: 170px;
-      // width: calc((100vw - 2 * var(--gap))/ 12 * 6)
+
+
+      opacity: 0.5;
+      transition: opacity 400ms ease-in-out;
+
+      &[data-order='1'],
+      &[data-order='2'] {
+        @include visibleSlide;
+      }
     }
   }
 
@@ -38,51 +70,32 @@
         opacity: 0;
       }
     }
-
-    &:not([data-invisible]):hover {
-      img.bw {
-        opacity: 0;
-      }
-      img.colored {
-        opacity: 1;
-      }
-    }
   }
 
   @include tablet-up {
     --client-logo-offset: 20px;
-    // .scroll-slider{
-    //   &-slide {
-    //     width: calc((100vw - 2 * var(--gap))/ 12 * 4);
-    //   }
 
-    // }
-
+    .scroll-slider-slide {
+      &[data-order='3'] {
+        @include visibleSlide;
+      }
+    }
   }
 
-  // @include lg-tablet-up {
-  //   .scroll-slider{
-  //     &-slide {
-  //       width: calc((100vw - 2 * var(--gap))/ 12 * 3);
-  //     }
+  @include lg-tablet-up {
+    .scroll-slider-slide {
+      &[data-order='4'] {
+        @include visibleSlide;
+      }
+    }
+  }
 
-  //   }
-  // }
-
-  // @include sm-desktop-up {
-  //   .scroll-slider{
-  //     &-slide {
-  //       width: calc((100vw - 2 * var(--gap))/ 12 * 2);
-  //     }
-
-  //   }
-  // }
-
-  // @include max-width-up {
-  //   .scroll-slider {
-  //     &-slide {
-  //       width: calc((var(--max-content-width) - 2 * var(--gap)) / 12 * 2);
-  //     }
-  //   }
-  // }
+  @include sm-desktop-up {
+    .scroll-slider-slide {
+      &[data-order='5'],
+      &[data-order='6'] {
+        @include visibleSlide;
+      }
+    }
+  }
 }

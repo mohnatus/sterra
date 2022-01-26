@@ -1485,6 +1485,9 @@ textarea.form-control {
 .scroll-slider-control:not(:last-child) {
   margin-right: var(--space-xs);
 }
+.scroll-slider-link {
+  margin-bottom: var(--space-sm);
+}
 
 .fade-slider {
   width: 100%;
@@ -2612,6 +2615,7 @@ body.modals-shown {
   font-size: 13px;
 }
 .home-info .home-info-company {
+  transition: box-shadow 400ms ease-in-out;
   background: white;
   margin-bottom: var(--space-lg);
   color: inherit;
@@ -2623,6 +2627,7 @@ body.modals-shown {
   display: none;
 }
 .home-info .home-info-products {
+  transition: box-shadow 400ms ease-in-out;
   background-color: var(--primary);
   color: var(--primary-contrast);
   position: relative;
@@ -2735,9 +2740,32 @@ body.modals-shown {
 .home-clients .scroll-slider-control {
   border: none;
 }
+.home-clients .scroll-slider-viewport {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  margin-top: -20px;
+  margin-bottom: -20px;
+}
 .home-clients .scroll-slider-slide {
   flex-shrink: 0;
   min-width: 170px;
+  opacity: 0.5;
+  transition: opacity 400ms ease-in-out;
+}
+.home-clients .scroll-slider-slide[data-order="1"], .home-clients .scroll-slider-slide[data-order="2"] {
+  opacity: 1;
+}
+.home-clients .scroll-slider-slide[data-order="1"]:hover img.bw, .home-clients .scroll-slider-slide[data-order="2"]:hover img.bw {
+  opacity: 0;
+}
+.home-clients .scroll-slider-slide[data-order="1"]:hover img.colored, .home-clients .scroll-slider-slide[data-order="2"]:hover img.colored {
+  opacity: 1;
+}
+.home-clients .scroll-slider-slide[data-order="1"] .client-block, .home-clients .scroll-slider-slide[data-order="2"] .client-block {
+  transition: box-shadow 400ms ease-in-out;
+}
+.home-clients .scroll-slider-slide[data-order="1"] .client-block:hover, .home-clients .scroll-slider-slide[data-order="2"] .client-block:hover {
+  box-shadow: 0 5px 15px var(--shadow);
 }
 .home-clients .client-block {
   background: white;
@@ -2762,15 +2790,58 @@ body.modals-shown {
 .home-clients .client-block img.colored {
   opacity: 0;
 }
-.home-clients .client-block:not([data-invisible]):hover img.bw {
-  opacity: 0;
-}
-.home-clients .client-block:not([data-invisible]):hover img.colored {
-  opacity: 1;
-}
 @media (min-width: 768px) {
   .home-clients {
     --client-logo-offset: 20px;
+  }
+  .home-clients .scroll-slider-slide[data-order="3"] {
+    opacity: 1;
+  }
+  .home-clients .scroll-slider-slide[data-order="3"]:hover img.bw {
+    opacity: 0;
+  }
+  .home-clients .scroll-slider-slide[data-order="3"]:hover img.colored {
+    opacity: 1;
+  }
+  .home-clients .scroll-slider-slide[data-order="3"] .client-block {
+    transition: box-shadow 400ms ease-in-out;
+  }
+  .home-clients .scroll-slider-slide[data-order="3"] .client-block:hover {
+    box-shadow: 0 5px 15px var(--shadow);
+  }
+}
+@media (min-width: 1024px) {
+  .home-clients .scroll-slider-slide[data-order="4"] {
+    opacity: 1;
+  }
+  .home-clients .scroll-slider-slide[data-order="4"]:hover img.bw {
+    opacity: 0;
+  }
+  .home-clients .scroll-slider-slide[data-order="4"]:hover img.colored {
+    opacity: 1;
+  }
+  .home-clients .scroll-slider-slide[data-order="4"] .client-block {
+    transition: box-shadow 400ms ease-in-out;
+  }
+  .home-clients .scroll-slider-slide[data-order="4"] .client-block:hover {
+    box-shadow: 0 5px 15px var(--shadow);
+  }
+}
+@media (min-width: 1280px) {
+  .home-clients .scroll-slider-slide[data-order="5"], .home-clients .scroll-slider-slide[data-order="6"] {
+    opacity: 1;
+  }
+  .home-clients .scroll-slider-slide[data-order="5"]:hover img.bw, .home-clients .scroll-slider-slide[data-order="6"]:hover img.bw {
+    opacity: 0;
+  }
+  .home-clients .scroll-slider-slide[data-order="5"]:hover img.colored, .home-clients .scroll-slider-slide[data-order="6"]:hover img.colored {
+    opacity: 1;
+  }
+  .home-clients .scroll-slider-slide[data-order="5"] .client-block, .home-clients .scroll-slider-slide[data-order="6"] .client-block {
+    transition: box-shadow 400ms ease-in-out;
+  }
+  .home-clients .scroll-slider-slide[data-order="5"] .client-block:hover, .home-clients .scroll-slider-slide[data-order="6"] .client-block:hover {
+    box-shadow: 0 5px 15px var(--shadow);
   }
 }
 

@@ -633,7 +633,8 @@
   };
   var states = {
     shifting: 'shifting',
-    loaded: 'loaded'
+    loaded: 'loaded',
+    active: 'active'
   };
   var events = {
     changeSlide: 'scroll-slider_change_slide',
@@ -653,6 +654,15 @@
     var slideWidth = $slides[0].offsetWidth;
     var slidesCount = $slides.length;
     var activeSlide = 0;
+
+    function orderSlides(index) {
+      $slides.forEach(function (el, i) {
+        el.classList.toggle(states.active, i === index);
+        el.setAttribute('data-order', i - index + 1);
+      });
+    }
+
+    orderSlides(activeSlide);
     var x1 = 0,
         x2 = 0,
         initialX,
@@ -665,6 +675,7 @@
     function setActiveSlide(index) {
       activeSlide = index;
       emitter.emit(events.changeSlide);
+      orderSlides(index);
     }
 
     function scrollTo(x, smooth) {
