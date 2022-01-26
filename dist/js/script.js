@@ -104,6 +104,7 @@
 
   window.utils = window.utils || {};
   window.utils.createEmitter = createEmitter;
+  window.utils.emitter = createEmitter();
 })();
 "use strict";
 
@@ -511,366 +512,103 @@
 "use strict";
 
 (function () {
-  var $header = document.querySelector('.header');
-  if (!$header) return;
-  var $navigation = $header.querySelector('.header-navigation');
-  if (!$navigation) return;
-  var $itemsWithMenu = $navigation.querySelectorAll('[data-submenu]');
-  var items = [];
-  $itemsWithMenu.forEach(function ($item) {
-    var $panel = $item.querySelector(".header-navigation-pane");
-    if (!$panel) return;
-    items.push({
-      element: $item,
-      panel: $panel
-    });
-  });
-  var activeItem = null; // открытая вкладка
-
-  var fixedActiveItem = null; // зафиксированная (клик) вкладка
-
-  function openItem(item) {
-    item.panel.removeAttribute('hidden');
-  }
-
-  function closeItem(item) {
-    item.panel.setAttribute('hidden', true);
-  }
-
-  items.forEach(function (item) {
-    item.element.addEventListener('click', function (e) {
-      if (fixedActiveItem === item) {
-        if (item.panel.contains(e.target)) return;
-        fixedActiveItem = null;
-        activeItem = null;
-        closeItem(item);
-      } else if (activeItem === item) {
-        fixedActiveItem = item;
-      } else {
-        openItem(item);
-        activeItem = item;
-        fixedActiveItem = item;
-      }
-    });
-    item.element.addEventListener('mouseenter', function (e) {
-      if (e.target === e.currentTarget) {
-        if (activeItem === item) return;
-
-        if (fixedActiveItem && fixedActiveItem !== item) {
-          closeItem(fixedActiveItem);
-          fixedActiveItem = null;
-        }
-
-        activeItem = item;
-        openItem(item);
-      }
-    });
-    item.element.addEventListener('mouseleave', function (e) {
-      if (e.target === e.currentTarget) {
-        if (fixedActiveItem === item) return;
-
-        if (activeItem === item) {
-          closeItem(item, 'mouseleave');
-          activeItem = null;
-          if (fixedActiveItem === item) fixedActiveItem = null;
-        }
-      }
-    });
-  });
-  document.body.addEventListener('click', function (e) {
-    if (e.target.closest('.header-navigation-pane')) return;
-    if (e.target.closest('[data-submenu]')) return;
-    items.forEach(function (item) {
-      closeItem(item, 'click outside');
-      activeItem = null;
-      fixedActiveItem = null;
-    });
-  });
-})();
-"use strict";
-
-(function () {
-  var $header = document.querySelector('.header');
-  if (!$header) return;
-  var $toggler = $header.querySelector('.header-toggler');
-  var $pane = $header.querySelector('.header-pane');
-  if (!$toggler || !$pane) return;
-  var $headerView = $header.querySelector('.header-view');
-  var $paneMask = $pane.querySelector('.header-pane__mask');
-  var isLargeScreen = false;
-  utils.addMediaQueryListener('(min-width: 1280px)', function (state) {
-    isLargeScreen = state;
-
-    if (state) {
-      closePane();
-    }
-  });
-
-  function openPane() {
-    if (isLargeScreen) return;
-    var scrollbarWidth = utils.getScrollbarWidth();
-    $pane.removeAttribute('hidden');
-    document.body.style.overflow = 'hidden';
-    $toggler.removeAttribute('data-closed');
-    $headerView.style.paddingRight = scrollbarWidth + 'px';
-  }
-
-  function closePane() {
-    $pane.setAttribute('hidden', true);
-    document.body.style.overflow = '';
-    $toggler.setAttribute('data-closed', true);
-    $headerView.style.paddingRight = '';
-  }
-
-  function togglePane() {
-    var isHidden = $pane.hasAttribute('hidden');
-    if (isHidden) openPane();else closePane();
-  }
-
-  $toggler.addEventListener('click', function () {
-    togglePane();
-  });
-
-  if ($paneMask) {
-    $paneMask.addEventListener('click', function () {
-      closePane();
-    });
-  }
-})();
-"use strict";
-
-(function () {
-  var $header = document.querySelector('.header');
-  if (!$header) return;
-  document.addEventListener('scroll', function (e) {
-    $header.classList.toggle('fixed', document.documentElement.scrollTop > 10);
-  }, {
-    passive: true
-  });
-  var $menu = document.querySelector('.header-menu');
-
-  if ($menu) {
-    var $menuSections = $menu.querySelectorAll('.header-menu-section');
-    $menuSections.forEach(function ($section) {
-      var $toggler = $section.querySelector('.header-menu-section__toggler');
-      if (!$toggler) return;
-      var $sectionList = $section.querySelector('.header-menu-section__items');
-      if (!$sectionList) return;
-      var list = utils.collapsible($sectionList, 400);
-      $toggler.addEventListener('click', function () {
-        list.toggle();
-      });
-    });
-  }
-})();
-"use strict";
-
-(function () {
   var selectors = {
-    slider: '.s-slider',
-    wrapper: '.s-slider-wrapper',
-    container: '.s-slider-slides',
-    slide: '.s-slider-slide',
-    pagination: '.s-slider-pagination'
+    container: '.modal-container',
+    close: '.modal-close'
   };
-  var states = {
-    shifting: 'shifting',
-    loaded: 'loaded'
+  var classes = {
+    mask: 'modal-mask'
   };
   var events = {
-    changeSlide: 's-slider_change_slide',
-    clickPagination: 's-slider_click_pagination',
-    touched: 's-slider_touched'
+    show: 'modal-show',
+    hide: 'modal-hide',
+    countChanged: 'modals-count-changed'
   };
-  var THRESHOLD = 100;
-  var AUTO_MOVE_PERIOD = 4000;
+  var unique = 1;
+  var collection = {
+    modals: [],
+    add: function add(modal) {
+      this.modals.push(modal);
 
-  function SingleSlider($slider) {
-    var config = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-    if (!$slider) return;
-    var $container = $slider.querySelector(selectors.container);
-    if (!$container) return;
-    var $slides = $container.querySelectorAll(selectors.slide);
-    var slidesCount = $slides.length;
-    if (slidesCount < 2) return;
+      this._onChange();
+    },
+    remove: function remove(modal) {
+      this.modals = this.modals.filter(function (m) {
+        return m !== modal;
+      });
+
+      this._onChange();
+    },
+    _onChange: function _onChange() {
+      var count = this.modals.length;
+      document.body.classList.toggle('modals-shown', count > 0);
+      utils.emitter.emit(events.countChanged, count);
+    }
+  };
+  document.addEventListener('keydown', function (e) {
+    if (e.code === 'Escape') {
+      if (collection.modals.length) {
+        var lastModal = collection.modals[collection.modals.length - 1];
+        lastModal.hide();
+      }
+    }
+  });
+
+  function modal(element) {
+    if (!element) return;
+    document.body.append(element);
+    var $container = element.querySelector(selectors.container);
+    var isOpen = false;
+    var id = unique++;
     var emitter = utils.createEmitter();
-    var sliderWidth = $container.offsetWidth;
-    var currentIndex = 0;
-    var allowShift = true;
 
-    function changeIndex(newIndex) {
-      currentIndex = newIndex;
-      emitter.emit(events.changeSlide, newIndex);
+    function show() {
+      emitter.emit(events.show);
+      element.removeAttribute('hidden');
     }
 
-    var x1 = 0,
-        x2 = 0,
-        initialX,
-        finalX;
-    var $firstSlide = $slides[0];
-    var $lastSlide = $slides[slidesCount - 1];
-    var $firstSlideClone = $firstSlide.cloneNode(true);
-    var $lastSlideClone = $lastSlide.cloneNode(true);
-    $container.appendChild($firstSlideClone);
-    $container.insertBefore($lastSlideClone, $firstSlide);
-    $container.style.left = -1 * sliderWidth + 'px';
-
-    function shiftToSlide(slideIndex) {
-      if (currentIndex === slideIndex) return;
-      $container.classList.add(states.shifting);
-
-      if (allowShift) {
-        $container.style.left = -1 * (slideIndex + 1) * sliderWidth + 'px';
-        changeIndex(slideIndex);
-      }
+    function hide() {
+      emitter.emit(events.hide);
+      element.setAttribute('hidden', true);
     }
 
-    function shiftSlide(dir, action) {
-      $container.classList.add(states.shifting);
-
-      if (allowShift) {
-        if (!action) {
-          initialX = $container.offsetLeft;
-        }
-
-        if (dir == 1) {
-          $container.style.left = initialX - sliderWidth + 'px';
-          changeIndex(currentIndex + 1);
-        } else if (dir == -1) {
-          $container.style.left = initialX + sliderWidth + 'px';
-          changeIndex(currentIndex - 1);
-        }
-      }
-
-      allowShift = false;
-    }
-
-    function checkIndex() {
-      $container.classList.remove(states.shifting);
-
-      if (currentIndex == -1) {
-        $container.style.left = -(slidesCount * sliderWidth) + 'px';
-        changeIndex(slidesCount - 1);
-      }
-
-      if (currentIndex == slidesCount) {
-        $container.style.left = -(1 * sliderWidth) + 'px';
-        changeIndex(0);
-      }
-
-      allowShift = true;
-    }
-
-    function onDragStart(e) {
-      e = e || window.event;
-      e.preventDefault();
-      initialX = $container.offsetLeft;
-
-      if (e.type == 'touchstart') {
-        x1 = e.touches[0].clientX;
-      } else {
-        x1 = e.clientX;
-        document.onmouseup = onDragEnd;
-        document.onmousemove = onDragAction;
-      }
-    }
-
-    function onDragAction(e) {
-      e = e || window.event;
-
-      if (e.type == 'touchmove') {
-        x2 = x1 - e.touches[0].clientX;
-        x1 = e.touches[0].clientX;
-      } else {
-        x2 = x1 - e.clientX;
-        x1 = e.clientX;
-      }
-
-      $container.style.left = $container.offsetLeft - x2 + 'px';
-    }
-
-    function onDragEnd(e) {
-      finalX = $container.offsetLeft;
-
-      if (finalX - initialX < -THRESHOLD) {
-        shiftSlide(1, 'drag');
-        emitter.emit(events.touched);
-      } else if (finalX - initialX > THRESHOLD) {
-        shiftSlide(-1, 'drag');
-        emitter.emit(events.touched);
-      } else {
-        $container.style.left = initialX + 'px';
-      }
-
-      document.onmouseup = null;
-      document.onmousemove = null;
-    }
-
-    window.addEventListener('resize', function () {
-      sliderWidth = $container.offsetWidth;
-      var offset = -1 * (currentIndex * sliderWidth) - sliderWidth;
-      $container.style.left = offset + 'px';
+    var instance = {
+      show: show,
+      hide: hide,
+      id: id
+    };
+    emitter.on(events.show, function () {
+      utils.emitter.emit(events.show, id);
+      isOpen = true;
+      collection.add(instance);
     });
-    $container.onmousedown = onDragStart;
-    $container.addEventListener('touchstart', onDragStart);
-    $container.addEventListener('touchend', onDragEnd);
-    $container.addEventListener('touchmove', onDragAction);
-    $container.addEventListener('transitionend', checkIndex);
-    var $pagination = $slider.querySelector(selectors.pagination);
-
-    if ($pagination) {
-      var $paginationItems = Array(slidesCount).fill(null).map(function (_, i) {
-        var $item = document.createElement('div');
-        $item.dataset.slide = i;
-        $pagination.appendChild($item);
-        $item.addEventListener('click', function () {
-          shiftToSlide(i);
-          emitter.emit(events.clickPagination);
-        });
-        return $item;
+    emitter.on(events.hide, function () {
+      utils.emitter.emit(events.hide, id);
+      isOpen = false;
+      collection.remove(instance);
+    });
+    var $mask = document.createElement('div');
+    $mask.classList.add(classes.mask);
+    $container.insertBefore($mask, $container.children[0]);
+    $mask.addEventListener('click', function () {
+      return hide();
+    });
+    var $triggers = element.querySelectorAll(selectors.close);
+    $triggers.forEach(function ($el) {
+      $el.addEventListener('click', function () {
+        return hide();
       });
-      $paginationItems[0].classList.add('active');
-      emitter.on(events.changeSlide, function (index) {
-        $paginationItems.forEach(function ($item, i) {
-          $item.classList.toggle('active', i === index);
-        });
-      });
-    }
+    });
+    return instance;
+  }
 
-    if (config.autoMove) {
-      var autoMove = function autoMove() {
-        shiftSlide(1);
-        timerId = setTimeout(autoMove, AUTO_MOVE_PERIOD);
-      };
-
-      var timerId = null;
-
-      var cb = function cb() {
-        clearTimeout(timerId);
-        emitter.off([events.touched, events.clickPagination], cb);
-      };
-
-      timerId = setTimeout(autoMove, AUTO_MOVE_PERIOD);
-      emitter.on([events.touched, events.clickPagination], cb);
-    }
-
-    $slider.classList.add(states.loaded);
-  } // document.querySelectorAll(selectors.slider).forEach((el) => {
-  //   SingleSlider(el, {
-  //     autoMove: true
-  //   });
-  // });
-
+  window.components = window.components || {};
+  window.components.modal = modal;
+  window.components.modals = collection;
 })();
 "use strict";
 
 (function () {
-  document.documentElement.style.setProperty('--scrollbar-width', utils.getScrollbarWidth() + 'px');
-  window.addEventListener('resize', function () {
-    document.documentElement.style.setProperty('--scrollbar-width', utils.getScrollbarWidth() + 'px');
-  }, {
-    passive: true
-  });
   var selectors = {
     viewport: '.scroll-slider-viewport',
     container: '.scroll-slider-slides',
@@ -1019,6 +757,187 @@
   window.components.scrollSlider = scrollSlider;
 })();
 "use strict";
+
+(function () {
+  var $header = document.querySelector('.header');
+  if (!$header) return;
+  var $navigation = $header.querySelector('.header-navigation');
+  if (!$navigation) return;
+  var $itemsWithMenu = $navigation.querySelectorAll('[data-submenu]');
+  var items = [];
+  $itemsWithMenu.forEach(function ($item) {
+    var $panel = $item.querySelector(".header-navigation-pane");
+    if (!$panel) return;
+    items.push({
+      element: $item,
+      panel: $panel
+    });
+  });
+  var activeItem = null; // открытая вкладка
+
+  var fixedActiveItem = null; // зафиксированная (клик) вкладка
+
+  function openItem(item) {
+    item.panel.removeAttribute('hidden');
+  }
+
+  function closeItem(item) {
+    item.panel.setAttribute('hidden', true);
+  }
+
+  items.forEach(function (item) {
+    item.element.addEventListener('click', function (e) {
+      if (fixedActiveItem === item) {
+        if (item.panel.contains(e.target)) return;
+        fixedActiveItem = null;
+        activeItem = null;
+        closeItem(item);
+      } else if (activeItem === item) {
+        fixedActiveItem = item;
+      } else {
+        openItem(item);
+        activeItem = item;
+        fixedActiveItem = item;
+      }
+    });
+    item.element.addEventListener('mouseenter', function (e) {
+      if (e.target === e.currentTarget) {
+        if (activeItem === item) return;
+
+        if (fixedActiveItem && fixedActiveItem !== item) {
+          closeItem(fixedActiveItem);
+          fixedActiveItem = null;
+        }
+
+        activeItem = item;
+        openItem(item);
+      }
+    });
+    item.element.addEventListener('mouseleave', function (e) {
+      if (e.target === e.currentTarget) {
+        if (fixedActiveItem === item) return;
+
+        if (activeItem === item) {
+          closeItem(item, 'mouseleave');
+          activeItem = null;
+          if (fixedActiveItem === item) fixedActiveItem = null;
+        }
+      }
+    });
+  });
+  document.body.addEventListener('click', function (e) {
+    if (e.target.closest('.header-navigation-pane')) return;
+    if (e.target.closest('[data-submenu]')) return;
+    items.forEach(function (item) {
+      closeItem(item, 'click outside');
+      activeItem = null;
+      fixedActiveItem = null;
+    });
+  });
+})();
+"use strict";
+
+(function () {
+  var $header = document.querySelector('.header');
+  if (!$header) return;
+  var $toggler = $header.querySelector('.header-toggler');
+  var $pane = $header.querySelector('.header-pane');
+  if (!$toggler || !$pane) return;
+  var $headerView = $header.querySelector('.header-view');
+  var $paneMask = $pane.querySelector('.header-pane__mask');
+  var isLargeScreen = false;
+  utils.addMediaQueryListener('(min-width: 1280px)', function (state) {
+    isLargeScreen = state;
+
+    if (state) {
+      closePane();
+    }
+  });
+
+  function openPane() {
+    if (isLargeScreen) return;
+    var scrollbarWidth = utils.getScrollbarWidth();
+    $pane.removeAttribute('hidden');
+    document.body.style.overflow = 'hidden';
+    $toggler.removeAttribute('data-closed');
+    $headerView.style.paddingRight = scrollbarWidth + 'px';
+  }
+
+  function closePane() {
+    $pane.setAttribute('hidden', true);
+    document.body.style.overflow = '';
+    $toggler.setAttribute('data-closed', true);
+    $headerView.style.paddingRight = '';
+  }
+
+  function togglePane() {
+    var isHidden = $pane.hasAttribute('hidden');
+    if (isHidden) openPane();else closePane();
+  }
+
+  $toggler.addEventListener('click', function () {
+    togglePane();
+  });
+
+  if ($paneMask) {
+    $paneMask.addEventListener('click', function () {
+      closePane();
+    });
+  }
+
+  utils.emitter.on('modal-show', function () {
+    closePane();
+  });
+})();
+"use strict";
+
+(function () {
+  var $header = document.querySelector('.header');
+  if (!$header) return;
+  document.addEventListener('scroll', function (e) {
+    $header.classList.toggle('fixed', document.documentElement.scrollTop > 10);
+  }, {
+    passive: true
+  });
+  var $menu = document.querySelector('.header-menu');
+
+  if ($menu) {
+    var $menuSections = $menu.querySelectorAll('.header-menu-section');
+    $menuSections.forEach(function ($section) {
+      var $toggler = $section.querySelector('.header-menu-section__toggler');
+      if (!$toggler) return;
+      var $sectionList = $section.querySelector('.header-menu-section__items');
+      if (!$sectionList) return;
+      var list = utils.collapsible($sectionList, 400);
+      $toggler.addEventListener('click', function () {
+        list.toggle();
+      });
+    });
+  }
+})();
+"use strict";
+
+(function () {
+  var $questionModal = document.getElementById('question');
+  if (!$questionModal) return;
+  var modal = components.modal($questionModal);
+  var triggers = document.querySelectorAll('[data-ask-question]');
+  triggers.forEach(function (el) {
+    el.addEventListener('click', function () {
+      return modal.show();
+    });
+  });
+  window.parts = window.parts || {};
+  window.parts.questionModal = modal;
+})();
+"use strict";
+
+document.documentElement.style.setProperty('--scrollbar-width', utils.getScrollbarWidth() + 'px');
+window.addEventListener('resize', function () {
+  document.documentElement.style.setProperty('--scrollbar-width', utils.getScrollbarWidth() + 'px');
+}, {
+  passive: true
+});
 "use strict";
 
 (function () {

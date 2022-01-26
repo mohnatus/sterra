@@ -413,7 +413,7 @@
                   <div class="header-contacts__pane" hidden>
                     <div class="contacts-block">
                       <div class="contacts-block__question">
-                        <button class="btn btn-primary-inverse btn-block" type="button">Задать вопрос</button>
+                        <button class="btn btn-primary-inverse btn-block" type="button" data-ask-question>Задать вопрос</button>
                       </div>
                       <div class="contacts-block__mail">
                         <div class="contacts-block__label">Напишите нам</div><a href="mailto:information@s-terra.ru">information@s-terra.ru</a>
@@ -718,7 +718,7 @@
               <div class="header-pane__contacts">
                 <div class="contacts-block">
                   <div class="contacts-block__question">
-                    <button class="btn btn-primary-inverse btn-block" type="button">Задать вопрос</button>
+                    <button class="btn btn-primary-inverse btn-block" type="button" data-ask-question>Задать вопрос</button>
                   </div>
                   <div class="contacts-block__mail">
                     <div class="contacts-block__label">Напишите нам</div><a href="mailto:information@s-terra.ru">information@s-terra.ru</a>
@@ -749,6 +749,50 @@
           </div>
         </div>
       </header><!-- /HEADER -->
+            <div class="modal" id="question" tabindex="-1" role="dialog" hidden>
+              <div class="modal-container" role="document">
+                <div class="modal-window">
+                  <button class="close" type="button" data-dissmiss="modal" arial-label="Close"><span aria-hidden="true">&times;</span></button>
+                  <div class="modal-body">
+                    <form action="/question">
+                      <div class="form-field">
+                        <label class="form-label" for="question-name">ФИО*</label>
+                        <input class="form-control" id="question-name" name="name">
+                      </div>
+                      <div class="form-field">
+                        <label class="form-label" for="question-company">Название компании*</label>
+                        <input class="form-control" id="question-company" name="company">
+                      </div>
+                      <div class="row">
+                        <div class="col col-12 col-md-6">
+                          <div class="form-field">
+                            <label class="form-label" for="question-mail">Электронная почта*</label>
+                            <input class="form-control" id="question-mail" name="email">
+                          </div>
+                        </div>
+                        <div class="col col-12 col-md-6">
+                          <div class="form-field">
+                            <label class="form-label" for="question-phone">Номер телефона</label>
+                            <input class="form-control" id="question-phone" name="phone" placeholder="+7 (___) ___-__-__">
+                          </div>
+                        </div>
+                      </div>
+                      <div class="form-field">
+                        <label class="form-label" for="question-text">Ваш вопрос</label>
+                        <textarea class="form-control" id="question-text"></textarea>
+                      </div>
+                      <div class="form-field">
+                        <label class="checkbox">
+                          <input id="question-agreement" type="checkbox" name="agreement"><span class="checkbox-box"></span>
+                          <label class="checkbox-label">Даю согласие на обработку своих персональных данных в соответствии с <a href="#">Политикой обработки персональных данных ООО «С-Терра СиЭсПи»</a>.</label>
+                        </label>
+                      </div>
+                      <button class="btn btn-primary btn-block" type="submit">Отправить</button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
       <main>
         <div class="container">
           <div class="t-content"></div>

@@ -45,4 +45,8 @@
       closePane();
     });
   }
+
+  utils.emitter.on('modal-show', () => {
+    closePane();
+  });
 })();

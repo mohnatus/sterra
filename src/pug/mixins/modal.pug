@@ -1,0 +1,8 @@
+mixin modal(id)
+  .modal(id=id tabindex='-1' role='dialog' hidden)
+    .modal-container(role="document")
+      .modal-window
+        button.close(type="button" data-dissmiss="modal" arial-label="Close")
+          span(aria-hidden="true") &times;
+        .modal-body
+          block

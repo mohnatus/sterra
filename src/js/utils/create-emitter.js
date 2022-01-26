@@ -47,4 +47,6 @@
 
   window.utils = window.utils || {};
   window.utils.createEmitter = createEmitter;
+
+  window.utils.emitter = createEmitter();
 })();

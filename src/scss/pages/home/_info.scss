@@ -5,6 +5,9 @@ $circleGroupDelay: 357ms;
 .home-info {
   .home-info-company,
   .home-info-products {
+    display: block;
+    text-decoration: none;
+
     &__container {
       padding: 35px 30px 50px;
     }
@@ -23,10 +26,10 @@ $circleGroupDelay: 357ms;
 
   .home-info-company {
     @include cardShadow;
-    
+
     background: white;
     margin-bottom: var(--space-lg);
-    text-decoration: none;
+
     color: inherit;
 
     &__icons {
@@ -39,7 +42,7 @@ $circleGroupDelay: 357ms;
 
     background-color: var(--primary);
     color: var(--primary-contrast);
-    text-decoration: none;
+
     position: relative;
     overflow: hidden;
     min-height: 240px;
@@ -132,7 +135,8 @@ $circleGroupDelay: 357ms;
         margin-right: calc(-1 * var(--gap));
       }
 
-      &__icons, &__content {
+      &__icons,
+      &__content {
         padding-left: var(--gap);
         padding-right: var(--gap);
       }
@@ -147,8 +151,6 @@ $circleGroupDelay: 357ms;
       &__content {
         width: 62.5%;
       }
-
-
     }
     .home-info-products {
       flex-basis: 33.33%;

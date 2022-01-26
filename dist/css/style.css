@@ -1647,6 +1647,58 @@ textarea.form-control {
   background-image: url(../img/apps/sprite-color.png);
 }
 
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
+  z-index: 110;
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 400ms ease-in-out, visibility 400ms ease-in-out;
+}
+.modal[hidden] {
+  display: block;
+  opacity: 0;
+  visibility: hidden;
+}
+.modal-mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+  z-index: 1;
+}
+.modal-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: auto;
+  padding: var(--space-md);
+}
+.modal-window {
+  position: relative;
+  margin: auto;
+  background: white;
+  width: auto;
+  z-index: 2;
+}
+
+body.modals-shown {
+  overflow: hidden;
+  padding-right: var(--scrollbar-width);
+}
+
 .header-toggler {
   width: 20px;
   display: flex;
@@ -2062,7 +2114,7 @@ textarea.form-control {
   display: none;
 }
 
-.header + * {
+.page-main {
   margin-top: var(--header-height);
 }
 
@@ -2376,6 +2428,11 @@ textarea.form-control {
     }
   */
 }
+.home-info .home-info-company,
+.home-info .home-info-products {
+  display: block;
+  text-decoration: none;
+}
 .home-info .home-info-company__container,
 .home-info .home-info-products__container {
   padding: 35px 30px 50px;
@@ -2394,7 +2451,6 @@ textarea.form-control {
 .home-info .home-info-company {
   background: white;
   margin-bottom: var(--space-lg);
-  text-decoration: none;
   color: inherit;
 }
 .home-info .home-info-company:hover {
@@ -2406,7 +2462,6 @@ textarea.form-control {
 .home-info .home-info-products {
   background-color: var(--primary);
   color: var(--primary-contrast);
-  text-decoration: none;
   position: relative;
   overflow: hidden;
   min-height: 240px;

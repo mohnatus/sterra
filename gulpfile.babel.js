@@ -49,7 +49,7 @@ function css() {
 exports.css = css;
 
 function js() {
-  return src(['src/js/utils/*.js', 'src/js/components/*.js', 'src/js/script.js', 'src/js/pages/*.js'])
+  return src(['src/js/utils/*.js', 'src/js/components/*.js', 'src/js/parts/*.js', 'src/js/script.js', 'src/js/pages/*.js'])
     .pipe(
       babel({
         presets: ['@babel/preset-env']
