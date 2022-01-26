@@ -23,14 +23,13 @@
       &:not(:last-child) {
         margin-bottom: var(--space-unit);
       }
-
     }
 
     a {
       color: inherit;
       font-weight: 700;
 
-      &[href *= 'tel'] {
+      &[href*='tel'] {
         text-decoration: none;
       }
     }
@@ -38,6 +37,29 @@
 
   &-apps {
     margin-bottom: 35px;
+
+    .apps-list {
+      li {
+        position: relative;
+
+        a {
+          position: relative;
+          z-index: 2;
+        }
+
+        &:hover:before {
+          content: '';
+          position: absolute;
+          top: 1px;
+          bottom: 1px;
+          left: 3px;
+          right: 2px;
+          background: white;
+          z-index: 1;
+          border-radius: 50%;
+        }
+      }
+    }
   }
 
   &__links {
@@ -55,8 +77,6 @@
     color: inherit;
     margin-bottom: var(--space-unit);
   }
-
-
 
   @include tablet-up {
     &__wrapper {
