@@ -21,7 +21,6 @@
     let actualId = null;
 
     function updateList(items) {
-
       if (!items.length) {
         let el = document.createElement('li');
         el.classList.add('search-list-empty');
@@ -103,6 +102,13 @@
         resetList();
       });
     }
+
+    document.addEventListener('click', (e) => {
+      if ($field.includes(e.target)) return;
+      if ($list.includes(e.target)) return;
+
+      resetList();
+    });
   }
 
   window.components = window.components || {};
