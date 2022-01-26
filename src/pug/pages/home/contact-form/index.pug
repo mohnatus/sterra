@@ -8,20 +8,20 @@
       .home-contact-form__image
         img(src="./img/icons/contacts.png" width="405")
 
-      .home-contact-form__fields
+      form#home-contact-form.home-contact-form__fields
         .form-field
-          input.form-control(type="text" placeholder="ФИО*")
+          input.form-control(type="text" name="name" placeholder="ФИО*")
         .form-field
-          input.form-control(type="text" placeholder="Название компании*")
+          input.form-control(type="text" name="company" placeholder="Название компании*")
         .form-field
-          input.form-control(type="text" placeholder="Электронная почта*")
+          input.form-control(type="text" name="email" placeholder="Электронная почта*")
         .form-field
-          input.form-control(type="text" placeholder="Номер телефона*")
+          input.form-control(type="text" name="phone" placeholder="Номер телефона*")
         .form-field
-          textarea.form-control(placeholder="Комментарий")
+          textarea.form-control(name="comment" placeholder="Комментарий")
         .form-field.home-contact-form__confirm
           label.checkbox
-            input(type="checkbox")
+            input(type="checkbox" name="agreement")
             span.checkbox-box
             label.checkbox-label Даю согласие на обработку своих персональных данных в соответствии с #[a(href="#") Политикой обработки персональных данных ООО «С-Терра СиЭсПи»].
         .home-contact-form__submit

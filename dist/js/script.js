@@ -162,6 +162,161 @@
 })();
 "use strict";
 
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+(function () {
+  var events = {
+    touch: 'form-validator-touch',
+    changeStatus: 'form-validator-change-status'
+  };
+
+  function validateInput(field, rules) {
+    return {
+      isValid: true,
+      error: ''
+    };
+  }
+
+  function validateCheckbox(field, rules) {
+    return {
+      isValid: true,
+      error: ''
+    };
+  }
+
+  function validator(form, rules) {
+    var emitter = utils.createEmitter();
+    var submitted = false;
+    var $submitButton = form.querySelector('[type="submit"]');
+    $submitButton.classList.add('disabled');
+    var fields = Object.entries(rules).map(function (_ref) {
+      var _ref2 = _slicedToArray(_ref, 2),
+          fieldName = _ref2[0],
+          fieldRules = _ref2[1];
+
+      var field = form.elements[fieldName];
+      if (!field) return;
+      var validator;
+
+      if (field.tagName === 'TEXTAREA') {
+        validator = validateInput;
+      } else if (field.type === 'checkbox') {
+        validator = validateCheckbox;
+      } else if (field.type === 'text') {
+        validator = validateInput;
+      }
+
+      if (!validator) return;
+      var fieldData = {
+        name: fieldName,
+        element: field,
+        type: field.type,
+        rules: fieldRules,
+        touched: false,
+        errorText: false,
+        validator: validator,
+        $error: null
+      };
+
+      function setError() {
+        if (!submitted || fieldData.isValid) {
+          if (fieldData.$error) {
+            fieldData.$error.detach();
+          }
+
+          fieldData.element.classList.remove('invalid');
+        } else {
+          if (!fieldData.$error) {
+            fieldData.$error = document.createElement('div');
+            fieldData.$error.addClass('form-error');
+          }
+
+          fieldData.$error.textContent = fieldData.errorText;
+          fieldData.element.parentElement.insertBefore(fieldData.$error, fieldData.element.nextElementSibling);
+          fieldData.element.classList.add('invalid');
+        }
+      }
+
+      function onChange() {
+        if (!fieldData.touched) {
+          fieldData.touched = true;
+          emitter.emit(events.touch);
+        }
+
+        var _fieldData$validator = fieldData.validator(field, fieldRules),
+            error = _fieldData$validator.error,
+            isValid = _fieldData$validator.isValid;
+
+        fieldData.errorText = error;
+        fieldData.isValid = isValid;
+        setError();
+        emitter.emit(events.changeStatus);
+      }
+
+      field.addEventListener('change', onChange);
+      field.addEventListener('input', onChange);
+      return _objectSpread(_objectSpread({}, fieldData), {}, {
+        setError: setError
+      });
+    }).filter(Boolean);
+    emitter.on(events.changeStatus, function () {
+      var hasInvalidFields = fields.some(function (f) {
+        return !f.isValid;
+      });
+      console.log('changestatus', hasInvalidFields, submitted);
+
+      if (!hasInvalidFields) {
+        if (submitted) {
+          $submitButton.disabled = true;
+        } else {
+          $submitButton.classList.add('disabled');
+        }
+      } else {
+        $submitButton.disabled = false;
+        $submitButton.classList.remove('disabled');
+      }
+    });
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      if (!submitted) {
+        submitted = true;
+        fields.forEach(function (f) {
+          return f.setError();
+        });
+      }
+
+      var hasInvalidFields = fields.some(function (f) {
+        return !f.isValid;
+      });
+
+      if (!hasInvalidFields) {
+        form.submit();
+      }
+    });
+  }
+
+  window.utils = window.utils || {};
+  window.utils.validator = validator;
+})();
+"use strict";
+
 (function () {
   var selectors = {
     item: '.accordion-item',
@@ -1026,5 +1181,15 @@ window.addEventListener('resize', function () {
 
   if (faq) {
     components.accordion(faq);
+  }
+
+  var contactForm = document.getElementById('home-contact-form');
+
+  if (contactForm) {
+    utils.validator(contactForm, {
+      name: {
+        required: {}
+      }
+    });
   }
 })();

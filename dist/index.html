@@ -1224,32 +1224,32 @@
               <div class="container">
                 <div class="home-contact-form__wrapper">
                   <div class="home-contact-form__image"><img src="./img/icons/contacts.png" width="405"></div>
-                  <div class="home-contact-form__fields">
+                  <form class="home-contact-form__fields" id="home-contact-form">
                     <div class="form-field">
-                      <input class="form-control" type="text" placeholder="ФИО*">
+                      <input class="form-control" type="text" name="name" placeholder="ФИО*">
                     </div>
                     <div class="form-field">
-                      <input class="form-control" type="text" placeholder="Название компании*">
+                      <input class="form-control" type="text" name="company" placeholder="Название компании*">
                     </div>
                     <div class="form-field">
-                      <input class="form-control" type="text" placeholder="Электронная почта*">
+                      <input class="form-control" type="text" name="email" placeholder="Электронная почта*">
                     </div>
                     <div class="form-field">
-                      <input class="form-control" type="text" placeholder="Номер телефона*">
+                      <input class="form-control" type="text" name="phone" placeholder="Номер телефона*">
                     </div>
                     <div class="form-field">
-                      <textarea class="form-control" placeholder="Комментарий"></textarea>
+                      <textarea class="form-control" name="comment" placeholder="Комментарий"></textarea>
                     </div>
                     <div class="form-field home-contact-form__confirm">
                       <label class="checkbox">
-                        <input type="checkbox"><span class="checkbox-box"></span>
+                        <input type="checkbox" name="agreement"><span class="checkbox-box"></span>
                         <label class="checkbox-label">Даю согласие на обработку своих персональных данных в соответствии с <a href="#">Политикой обработки персональных данных ООО «С-Терра СиЭсПи»</a>.</label>
                       </label>
                     </div>
                     <div class="home-contact-form__submit">
                       <button class="btn btn-primary btn-block" type="submit">Отправить</button>
                     </div>
-                  </div>
+                  </form>
                 </div>
               </div>
             </div>

@@ -18,4 +18,15 @@
   if (faq) {
     components.accordion(faq);
   }
+
+  const contactForm = document.getElementById('home-contact-form');
+  if (contactForm) {
+    utils.validator(contactForm, {
+      name: {
+        required: {
+          
+        }
+      }
+    })
+  }
 })();

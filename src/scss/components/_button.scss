@@ -10,7 +10,7 @@
   font-weight: 500;
   border-radius: 40px;
 
- transition: all 250ms ease-in-out;
+  transition: all 250ms ease-in-out;
 }
 
 .btn-block {
@@ -118,6 +118,10 @@
 .btn[disabled],
 .btn.disabled {
   opacity: 0.5;
-  cursor: not-allowed;
+
   box-shadow: none;
+}
+
+.btn[disabled] {
+  cursor: not-allowed;
 }
