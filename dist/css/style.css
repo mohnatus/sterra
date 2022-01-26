@@ -2274,6 +2274,8 @@ body.modals-shown {
   }
   .header-search__search .search-list {
     margin-top: 23px;
+    position: static;
+    top: 0;
   }
   .header-view .header__navigation,
 .header-view .header__contacts {
