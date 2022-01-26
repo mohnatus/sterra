@@ -106,7 +106,7 @@
     document.addEventListener('click', (e) => {
       if ($field.contains(e.target)) return;
       if ($list.contains(e.target)) return;
-
+      $field.value = '';
       resetList();
     });
   }
