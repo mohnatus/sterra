@@ -104,8 +104,8 @@
     }
 
     document.addEventListener('click', (e) => {
-      if ($field.includes(e.target)) return;
-      if ($list.includes(e.target)) return;
+      if ($field.contains(e.target)) return;
+      if ($list.contains(e.target)) return;
 
       resetList();
     });
