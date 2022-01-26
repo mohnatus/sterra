@@ -626,7 +626,8 @@
     container: '.scroll-slider-slides',
     slide: '.scroll-slider-slide',
     prev: '.scroll-slider-prev',
-    next: '.scroll-slider-next'
+    next: '.scroll-slider-next',
+    controls: '.scroll-slider-controls'
   };
   var classes = {
     offset: 'scroll-slider-offset'
@@ -649,11 +650,26 @@
     if (!$viewport) return;
     var $container = element.querySelector(selectors.container);
     if (!$container) return;
-    var $slides = $container.querySelectorAll(selectors.slide);
+    var $slides = [];
     var emitter = utils.createEmitter();
-    var slideWidth = $slides[0].offsetWidth;
-    var slidesCount = $slides.length;
-    var activeSlide = 0;
+    var slideWidth,
+        slidesCount,
+        activeSlide = 0;
+    var x1 = 0,
+        x2 = 0,
+        initialX,
+        finalX;
+    var shifting = false;
+    element.addEventListener('click', function (e) {
+      if (shifting) e.preventDefault();
+    });
+    var $offset = document.createElement('div');
+    $offset.classList.add(classes.offset);
+    $container.insertBefore($offset, $container.children[0]);
+    $container.appendChild($offset.cloneNode(true));
+    var $prev = element.querySelector(selectors.prev);
+    var $next = element.querySelector(selectors.next);
+    var $controls = element.querySelector(selectors.controls);
 
     function orderSlides(index) {
       $slides.forEach(function (el, i) {
@@ -661,16 +677,6 @@
         el.setAttribute('data-order', i - index + 1);
       });
     }
-
-    orderSlides(activeSlide);
-    var x1 = 0,
-        x2 = 0,
-        initialX,
-        finalX;
-    var $offset = document.createElement('div');
-    $offset.classList.add(classes.offset);
-    $container.insertBefore($offset, $slides[0]);
-    $container.appendChild($offset.cloneNode(true));
 
     function setActiveSlide(index) {
       activeSlide = index;
@@ -683,6 +689,10 @@
         left: x,
         behavior: smooth && 'smooth'
       });
+      setTimeout(function () {
+        if ($next) $next.disabled = $viewport.scrollLeft + $viewport.offsetWidth >= $viewport.scrollWidth;
+        if ($prev) $prev.disabled = x < 10;
+      }, 400);
     }
 
     function scrollToActiveSlide(smooth) {
@@ -731,9 +741,11 @@
       finalX = $viewport.scrollLeft;
 
       if (finalX - initialX < -THRESHOLD) {
+        shifting = true;
         alignSlider(1);
         emitter.emit(events.touched);
       } else if (finalX - initialX > THRESHOLD) {
+        shifting = true;
         alignSlider(-1);
         emitter.emit(events.touched);
       } else {
@@ -744,6 +756,9 @@
       element.style.cursor = '';
       document.onmouseup = null;
       document.onmousemove = null;
+      setTimeout(function () {
+        shifting = false;
+      });
     }
 
     window.addEventListener('resize', function () {
@@ -754,8 +769,6 @@
     $container.addEventListener('touchstart', onDragStart);
     $container.addEventListener('touchend', onDragEnd);
     $container.addEventListener('touchmove', onDragAction);
-    var $prev = element.querySelector(selectors.prev);
-    var $next = element.querySelector(selectors.next);
 
     if ($prev) {
       $prev.addEventListener('click', function () {
@@ -768,12 +781,27 @@
 
     if ($next) {
       $next.addEventListener('click', function () {
-        if (activeSlide < slidesCount - 2) {
+        if ($viewport.scrollLeft + $viewport.offsetWidth < $viewport.scrollWidth) {
           setActiveSlide(activeSlide + 1);
           scrollToActiveSlide(true);
         }
       });
     }
+
+    function init() {
+      $slides = $container.querySelectorAll(selectors.slide);
+      slideWidth = $slides[0].offsetWidth;
+      slidesCount = $slides.length;
+      activeSlide = 0;
+      if ($prev) $prev.disabled = true;
+      orderSlides(activeSlide);
+
+      if ($viewport.scrollWidth - $viewport.offsetWidth <= 40) {
+        if ($controls) $controls.style.display = 'none';
+      }
+    }
+
+    init();
   }
 
   window.components = window.components || {};

@@ -4,7 +4,8 @@
     container: '.scroll-slider-slides',
     slide: '.scroll-slider-slide',
     prev: '.scroll-slider-prev',
-    next: '.scroll-slider-next'
+    next: '.scroll-slider-next',
+    controls: '.scroll-slider-controls'
   };
 
   const classes = {
@@ -31,12 +32,32 @@
     if (!$viewport) return;
     let $container = element.querySelector(selectors.container);
     if (!$container) return;
-    let $slides = $container.querySelectorAll(selectors.slide);
-
+    let $slides = [];
     const emitter = utils.createEmitter();
-    let slideWidth = $slides[0].offsetWidth;
-    let slidesCount = $slides.length;
-    let activeSlide = 0;
+    let slideWidth,
+      slidesCount,
+      activeSlide = 0;
+
+    let x1 = 0,
+      x2 = 0,
+      initialX,
+      finalX;
+
+    let shifting = false;
+
+    element.addEventListener('click', (e) => {
+      if (shifting) e.preventDefault();
+    });
+
+    let $offset = document.createElement('div');
+
+    $offset.classList.add(classes.offset);
+    $container.insertBefore($offset, $container.children[0]);
+    $container.appendChild($offset.cloneNode(true));
+
+    let $prev = element.querySelector(selectors.prev);
+    let $next = element.querySelector(selectors.next);
+    let $controls = element.querySelector(selectors.controls);
 
     function orderSlides(index) {
       $slides.forEach((el, i) => {
@@ -44,18 +65,6 @@
         el.setAttribute('data-order', i - index + 1);
       });
     }
-
-    orderSlides(activeSlide);
-
-    let x1 = 0,
-      x2 = 0,
-      initialX,
-      finalX;
-
-    let $offset = document.createElement('div');
-    $offset.classList.add(classes.offset);
-    $container.insertBefore($offset, $slides[0]);
-    $container.appendChild($offset.cloneNode(true));
 
     function setActiveSlide(index) {
       activeSlide = index;
@@ -69,6 +78,13 @@
         left: x,
         behavior: smooth && 'smooth'
       });
+      setTimeout(() => {
+        if ($next)
+          $next.disabled =
+            $viewport.scrollLeft + $viewport.offsetWidth >=
+            $viewport.scrollWidth;
+        if ($prev) $prev.disabled = x < 10;
+      }, 400);
     }
 
     function scrollToActiveSlide(smooth) {
@@ -124,9 +140,11 @@
       finalX = $viewport.scrollLeft;
 
       if (finalX - initialX < -THRESHOLD) {
+        shifting = true;
         alignSlider(1);
         emitter.emit(events.touched);
       } else if (finalX - initialX > THRESHOLD) {
+        shifting = true;
         alignSlider(-1);
         emitter.emit(events.touched);
       } else {
@@ -138,6 +156,10 @@
 
       document.onmouseup = null;
       document.onmousemove = null;
+
+      setTimeout(() => {
+        shifting = false;
+      });
     }
 
     window.addEventListener('resize', () => {
@@ -150,9 +172,6 @@
     $container.addEventListener('touchend', onDragEnd);
     $container.addEventListener('touchmove', onDragAction);
 
-    let $prev = element.querySelector(selectors.prev);
-    let $next = element.querySelector(selectors.next);
-
     if ($prev) {
       $prev.addEventListener('click', () => {
         if (activeSlide > 0) {
@@ -164,12 +183,32 @@
 
     if ($next) {
       $next.addEventListener('click', () => {
-        if (activeSlide < slidesCount - 2) {
+        if (
+          $viewport.scrollLeft + $viewport.offsetWidth <
+          $viewport.scrollWidth
+        ) {
           setActiveSlide(activeSlide + 1);
           scrollToActiveSlide(true);
         }
       });
     }
+
+    function init() {
+      $slides = $container.querySelectorAll(selectors.slide);
+      slideWidth = $slides[0].offsetWidth;
+      slidesCount = $slides.length;
+      activeSlide = 0;
+
+      if ($prev) $prev.disabled = true;
+
+      orderSlides(activeSlide);
+
+      if ($viewport.scrollWidth - $viewport.offsetWidth <= 40) {
+        if ($controls) $controls.style.display = 'none';
+      }
+    }
+
+    init();
   }
 
   window.components = window.components || {};

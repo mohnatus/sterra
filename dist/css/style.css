@@ -2773,6 +2773,7 @@ body.modals-shown {
   height: 116px;
   cursor: pointer;
   position: relative;
+  display: block;
 }
 .home-clients .client-block img {
   position: absolute;
