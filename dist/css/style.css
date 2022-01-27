@@ -1672,6 +1672,15 @@ textarea.form-control {
   background-image: url(../img/apps/sprite-color.png);
 }
 
+/* CARD */
+.card:hover {
+  cursor: pointer;
+  transition: box-shadow 400ms ease-in-out;
+}
+.card:hover:hover {
+  box-shadow: 0 5px 15px var(--shadow);
+}
+
 .modal {
   position: fixed;
   top: 0;
@@ -2621,29 +2630,19 @@ body.modals-shown {
   font-size: 13px;
 }
 .home-info .home-info-company {
-  cursor: pointer;
-  transition: box-shadow 400ms ease-in-out;
   background: white;
   margin-bottom: var(--space-lg);
   color: inherit;
-}
-.home-info .home-info-company:hover {
-  box-shadow: 0 5px 15px var(--shadow);
 }
 .home-info .home-info-company__icons {
   display: none;
 }
 .home-info .home-info-products {
-  cursor: pointer;
-  transition: box-shadow 400ms ease-in-out;
   background-color: var(--primary);
   color: var(--primary-contrast);
   position: relative;
   overflow: hidden;
   min-height: 240px;
-}
-.home-info .home-info-products:hover {
-  box-shadow: 0 5px 15px var(--shadow);
 }
 .home-info .home-info-products:before {
   content: "";
