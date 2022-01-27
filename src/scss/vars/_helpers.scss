@@ -28,9 +28,18 @@
 
 @mixin cardShadow {
   cursor: pointer;
-  
+
   transition: box-shadow 400ms ease-in-out;
   &:hover {
     box-shadow: 0 5px 15px var(--shadow);
   }
+}
+
+@mixin imgPlaceholder($size: 64px) {
+  background-color: var(--block-background);
+  background-image: url('../img/placeholders/image-icon.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: $size;
+  border: 1px solid var(--border)
 }

@@ -16,7 +16,7 @@ include ../../mixins/slider
                 text: 'Компании планируют создавать на базе собственных продуктов и услуг новые совместные комплексные решения по информационной безопасности, отвечающие на самые актуальные вызовы в сфере защиты от киберугроз.'
               },
               {
-                logo: "./img/cases/2.png",
+                logo: false,
                 title: '«Аквариус»',
                 text: 'Цель сотрудничества — импортозамещение в сфере информационной безопасности. Серверные системы Aquarius состоят в Едином реестре российской радиоэлектронной продукции Минпромторга России.'
               },
@@ -46,7 +46,10 @@ include ../../mixins/slider
             section.scroll-slider-slide.c-col-6.c-col-lg-4
               a.home-case(href="#")
                 .home-case__logo
-                  img(src=caseItem.logo)
+                  if caseItem.logo
+                    img(src=caseItem.logo)
+                  else
+                    .image-placeholder
                 h3.home-case__title !{caseItem.title}
                 .home-case__text !{caseItem.text}
 

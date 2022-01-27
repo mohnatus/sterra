@@ -26,7 +26,7 @@ include ../../mixins/slider.pug
               type: 'news',
             },
             {
-              img: './img/news/2.png',
+              img: false,
               link: "#",
               date: '9 июня 2021',
               title: 'С-Терра TLS Шлюз 4.3 успешно прошел испытания',
@@ -42,7 +42,7 @@ include ../../mixins/slider.pug
               type: 'updates',
             },
             {
-              img: './img/news/4.png',
+              img: false,
               link: "#",
               date: '30 марта 2020',
               title: 'Решения С-Терра для подключения к Единому Порталу Тестирования Ростехнадзора',
@@ -143,7 +143,10 @@ include ../../mixins/slider.pug
           section.scroll-slider-slide.c-col-6.c-col-md-4.c-col-lg-3
             a.home-news-article(href=article.link data-type=article.type)
               .home-news-article__img
-                img(src=article.img)
+                if article.img
+                  img(src=article.img)
+                else
+                  .image-placeholder
               .home-news-article__date= article.date
               h3.home-news-article__title= article.title
               .home-news-article__text !{article.text}
