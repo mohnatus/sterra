@@ -1119,7 +1119,69 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 (function () {
   var $header = document.querySelector('.header');
   if (!$header) return;
-  var $headerView = $header.querySelector('.header-view');
+  var $contactsBlock = $header.querySelector('.header-contacts');
+  if (!$contactsBlock) return;
+  var $trigger = $contactsBlock.querySelector('.header-contacts__trigger');
+  var $panel = $contactsBlock.querySelector('.header-contacts__pane');
+  if (!$trigger || !$panel) return;
+
+  function showPanel() {
+    $panel.removeAttribute('hidden');
+  }
+
+  function hidePanel() {
+    $panel.setAttribute('hidden', true);
+  }
+
+  var open = false;
+  var fixed = false;
+  $trigger.addEventListener('click', function () {
+    if (open) {
+      if (fixed) {
+        hidePanel();
+        open = false;
+        fixed = false;
+      } else {
+        fixed = true;
+      }
+    } else {
+      showPanel();
+      open = true;
+      fixed = true;
+    }
+  });
+  $trigger.addEventListener('mouseenter', function (e) {
+    if (e.target !== e.currentTarget) return;
+    if (open) return;
+    showPanel();
+    open = true;
+  });
+  $contactsBlock.addEventListener('mouseleave', function (e) {
+    if (e.target !== e.currentTarget) return;
+    if (!open) return;
+    if (fixed) return;
+    hidePanel();
+    open = false;
+  });
+  document.addEventListener('click', function (e) {
+    if (!open) return;
+    if (e.target.closest('.header-contacts')) return;
+    hidePanel();
+    open = false;
+    fixed = false;
+  });
+  utils.emitter.on('modal-show', function () {
+    if (!open) return;
+    hidePanel();
+    open = false;
+    fixed = false;
+  });
+})();
+"use strict";
+
+(function () {
+  var $header = document.querySelector('.header');
+  if (!$header) return;
   var $navigation = $header.querySelector('.header-navigation');
   if (!$navigation) return;
   var $itemsWithMenu = $navigation.querySelectorAll('[data-submenu]');
@@ -1184,7 +1246,8 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
       }
     });
   });
-  document.body.addEventListener('click', function (e) {
+  document.addEventListener('click', function (e) {
+    if (!activeItem) return;
     if (e.target.closest('.header-navigation-pane')) return;
     if (e.target.closest('[data-submenu]')) return;
     items.forEach(function (item) {

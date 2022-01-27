@@ -65,8 +65,11 @@
   }
 
   &.colored {
-    .app-icon:hover {
-      background-image: url(../img/apps/sprite-color.png);
+    .app-icon {
+      transition: background-image 400ms ease-in-out;
+      &:hover {
+        background-image: url(../img/apps/sprite-color.png);
+      }
     }
   }
 }

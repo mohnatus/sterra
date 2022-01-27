@@ -1656,6 +1656,9 @@ textarea.form-control {
   height: 37px;
   background-position: -235px -5px;
 }
+.apps.colored .app-icon {
+  transition: background-image 400ms ease-in-out;
+}
 .apps.colored .app-icon:hover {
   background-image: url(../img/apps/sprite-color.png);
 }
@@ -1749,6 +1752,8 @@ body.modals-shown {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
+  height: 100%;
+  justify-content: center;
 }
 .header-contacts__phone {
   font-size: 17px;
@@ -1779,53 +1784,20 @@ body.modals-shown {
   margin-left: var(--space-xxs);
   color: var(--accent);
 }
-.header-contacts-menu__title {
-  font-size: 13px;
-  text-align: right;
-  cursor: pointer;
-}
-.header-contacts-menu__toggler {
-  vertical-align: middle;
-  margin-left: var(--space-xxs);
-  transition: transform 250ms ease-in-out;
-}
-.header-contacts-menu__panel {
-  opacity: 0;
-  visibility: hidden;
-  z-index: 0;
-  pointer-events: none;
-  transition: all 250ms;
+.header-contacts__pane {
   position: absolute;
   top: 100%;
-  left: 0;
-  background: white;
-  width: 240px;
-  box-shadow: 0px 10px 20px rgba(0, 0, 102, 0.5);
-  border-top: 1px solid var(--primary);
-  z-index: 5;
+  right: 0;
+  background: var(--white);
   padding: var(--space-md);
-  text-align: left;
+  border-top: 1px solid var(--border);
+  box-shadow: 0px 5px 15px rgba(0, 0, 102, 0.15);
+  transition: opacity 400ms ease-in-out, visibility 400ms ease-in-out;
 }
-.header-contacts-menu-section:not(:last-child) {
-  margin-bottom: var(--space-md);
-}
-.header-contacts-menu-section__title {
-  color: var(--dark-blue);
-  font-size: 15px;
-  font-weight: 700;
-  margin-bottom: var(--space-xxs);
-}
-.header-contacts-menu-section__icons a:not(:last-child) {
-  margin-right: var(--space-sm);
-}
-.header-contacts:hover .contacts-menu__toggler {
-  transform: rotate(-180deg);
-}
-.header-contacts:hover .contacts-menu__panel {
-  opacity: 1;
-  visibility: visible;
-  z-index: 5;
-  pointer-events: all;
+.header-contacts__pane[hidden] {
+  display: block;
+  opacity: 0;
+  visibility: hidden;
 }
 
 .header-navigation {
