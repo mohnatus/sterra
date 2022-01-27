@@ -1303,8 +1303,75 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
       return modal.show();
     });
   });
+  var questionForm = document.getElementById('ask-question-form');
+
+  if (questionForm) {
+    var validator = utils.validator(questionForm, {
+      name: {
+        required: {
+          message: 'Обязательное поле'
+        }
+      },
+      company: {
+        required: {
+          message: 'Обязательное поле'
+        }
+      },
+      email: {
+        required: {
+          message: 'Обязательное поле'
+        },
+        email: {
+          message: 'Некорректный формат'
+        }
+      },
+      phone: {
+        mask: {
+          re: /^\+7 \(\d{3}\) \d{3}\-\d{2}\-\d{2}$/,
+          message: 'Некорректный формат'
+        }
+      },
+      agreement: {
+        required: {
+          message: 'Обязательное поле'
+        }
+      }
+    }, {
+      parent: '.form-field',
+      submit: function submit() {
+        questionForm.classList.add('pending');
+        utils.submitForm(questionForm, function (response) {
+          questionForm.classList.remove('pending');
+
+          if (response.success) {
+            if (parts.successModal) {
+              parts.successModal.show();
+            }
+          } else {
+            console.error(response);
+          }
+        });
+      }
+    });
+  }
+
   window.parts = window.parts || {};
   window.parts.questionModal = modal;
+})();
+"use strict";
+
+(function () {
+  window.parts = window.parts || {};
+
+  window.parts.successModal = function () {
+    var $successModal = document.getElementById('success-modal');
+
+    if ($successModal) {
+      return components.modal($successModal);
+    }
+
+    return null;
+  }();
 })();
 "use strict";
 
@@ -1389,19 +1456,4 @@ window.addEventListener('resize', function () {
       }
     });
   }
-})();
-"use strict";
-
-(function () {
-  window.parts = window.parts || {};
-
-  window.parts.successModal = function () {
-    var $successModal = document.getElementById('success-modal');
-
-    if ($successModal) {
-      return components.modal($successModal);
-    }
-
-    return null;
-  }();
 })();

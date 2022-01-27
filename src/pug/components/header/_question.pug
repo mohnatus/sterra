@@ -1,6 +1,8 @@
 include ../../mixins/modal.pug
 +modal('question')
-  form(action="/question")
+  // TODO установить экшен и метод
+  // метод GET для тестового запроса к JSON-файлу
+  form#ask-question-form(action="./backend/question-form.json" method="GET")
     .form-field
       label.form-label(for="question-name") ФИО*
       input#question-name.form-control(name="name")
@@ -11,11 +13,11 @@ include ../../mixins/modal.pug
       .col.col-12.col-md-6
         .form-field
           label.form-label(for="question-mail") Электронная почта*
-          input#question-mail.form-control(name="email")
+          input#question-mail.form-control(name="email" inputmode="email")
       .col.col-12.col-md-6
         .form-field
           label.form-label(for="question-phone") Номер телефона
-          input#question-phone.form-control(name="phone" placeholder="+7 (___) ___-__-__")
+          input#question-phone.form-control(data-mask="phone" inputmode="number" name="phone" placeholder="+7 (___) ___-__-__")
     .form-field
       label.form-label(for="question-text") Ваш вопрос
       textarea#question-text.form-control
@@ -23,5 +25,5 @@ include ../../mixins/modal.pug
       label.checkbox
         input#question-agreement(type="checkbox" name="agreement")
         span.checkbox-box
-        label.checkbox-label Даю согласие на обработку своих персональных данных в соответствии с #[a(href="#") Политикой обработки персональных данных ООО «С-Терра СиЭсПи»].
+        .checkbox-label Даю согласие на обработку своих персональных данных в соответствии с #[a(href="#") Политикой обработки персональных данных ООО «С-Терра СиЭсПи»].
     button.btn.btn-primary.btn-block(type="submit") Отправить

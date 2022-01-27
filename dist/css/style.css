@@ -1057,11 +1057,11 @@ body {
   border-bottom: none;
 }
 
-.d--none {
+.d-none {
   display: none;
 }
 
-.d--block {
+.d-block {
   display: block;
 }
 

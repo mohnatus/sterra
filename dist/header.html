@@ -758,7 +758,9 @@
                 <div class="modal-window">
                   <button class="close" type="button" data-dissmiss="modal" arial-label="Close"><span aria-hidden="true">&times;</span></button>
                   <div class="modal-body">
-                    <form action="/question">
+                    <!-- TODO установить экшен и метод-->
+                    <!-- метод GET для тестового запроса к JSON-файлу-->
+                    <form id="ask-question-form" action="./backend/question-form.json" method="GET">
                       <div class="form-field">
                         <label class="form-label" for="question-name">ФИО*</label>
                         <input class="form-control" id="question-name" name="name">
@@ -771,13 +773,13 @@
                         <div class="col col-12 col-md-6">
                           <div class="form-field">
                             <label class="form-label" for="question-mail">Электронная почта*</label>
-                            <input class="form-control" id="question-mail" name="email">
+                            <input class="form-control" id="question-mail" name="email" inputmode="email">
                           </div>
                         </div>
                         <div class="col col-12 col-md-6">
                           <div class="form-field">
                             <label class="form-label" for="question-phone">Номер телефона</label>
-                            <input class="form-control" id="question-phone" name="phone" placeholder="+7 (___) ___-__-__">
+                            <input class="form-control" id="question-phone" data-mask="phone" inputmode="number" name="phone" placeholder="+7 (___) ___-__-__">
                           </div>
                         </div>
                       </div>
@@ -788,7 +790,7 @@
                       <div class="form-field">
                         <label class="checkbox">
                           <input id="question-agreement" type="checkbox" name="agreement"><span class="checkbox-box"></span>
-                          <label class="checkbox-label">Даю согласие на обработку своих персональных данных в соответствии с <a href="#">Политикой обработки персональных данных ООО «С-Терра СиЭсПи»</a>.</label>
+                          <div class="checkbox-label">Даю согласие на обработку своих персональных данных в соответствии с <a href="#">Политикой обработки персональных данных ООО «С-Терра СиЭсПи»</a>.</div>
                         </label>
                       </div>
                       <button class="btn btn-primary btn-block" type="submit">Отправить</button>
