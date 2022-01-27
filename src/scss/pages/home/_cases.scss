@@ -1,8 +1,25 @@
+@mixin visibleCaseSlide {
+  opacity: 1;
+
+  .home-case {
+    @include cardShadow;
+
+    pointer-events: all;
+  }
+}
+
 .home-cases {
   .scroll-slider {
     &-slide {
       min-width: 340px;
 
+      opacity: 0.5;
+
+
+
+      &[data-order='1'] {
+        @include visibleCaseSlide();
+      }
     }
     &-control,
     &-link {
@@ -20,6 +37,7 @@
     text-decoration: none;
     display: block;
     height: 100%;
+    pointer-events: all;
 
     &__logo {
       margin-bottom: 24px;
@@ -27,18 +45,29 @@
 
     &__title {
       margin-bottom: 12px;
-      font-size: 24px;
+      font-size: 20px;
       font-weight: 700;
-      color: var(--dark);
+      color: var(--header);
     }
 
     &__text {
+      color: var(--text);
+      font-size: 13px;
+      line-height: 1.4;
     }
   }
 
   @include tablet-up {
     &__title {
       margin-bottom: 40px;
+    }
+
+    .scroll-slider {
+      &-slide {
+        &[data-order='2'] {
+          @include visibleCaseSlide;
+        }
+      }
     }
   }
 
@@ -48,6 +77,18 @@
     }
     &__title {
       margin-bottom: 50px;
+      font-size: 24px;
+    }
+    &__text {
+      font-size: 15px;
+    }
+
+    .scroll-slider {
+      &-slide {
+        &[data-order='3'] {
+          @include visibleCaseSlide;
+        }
+      }
     }
   }
 }
