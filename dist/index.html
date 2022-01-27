@@ -181,11 +181,15 @@
 <!-- /SVG SPRITE -->
 
     <div class="page home-page"><!-- HEADER -->
+      <!-- Элемент списка (может быть со вложенным списком)-->
+      <!-- Секция меню в плашке на мобильных-->
       <header class="header">
         <div class="header-view">
           <div class="container">
             <div class="header-view__wrapper"><a class="header-logo" href="/"><img src="./img/logo.png" alt="S-Terra logo"></a>
               <div class="header__navigation">
+                <!-- Элемент списка (может быть со вложенным списком)-->
+                <!-- Секция меню в плашке на мобильных-->
                 <nav class="header-navigation">
                   <ul>
                     <li data-submenu="about"><a href="javascript:void(0)">О компании
@@ -447,11 +451,8 @@
                                       <use xlink:href="#i-search" href="#i-search"></use>
                                     </svg>
                   </button>
-                  <div class="header-search__search"><!-- SEARCH -->
-                    <form class="search" data-search action="./backend/data.json" method="GET">
-                      <!-- TODO: указать экшен для ajax-запроса-->
-                      <!-- @param q {String}-->
-                      <!-- @result items[ <text, link> ]-->
+                  <div class="header-search__search"><!-- SEARCH FORM -->
+                    <form class="search" data-search action="./backend/search.json" method="GET">
                       <div class="search-field">
                         <div class="search-field__icon">
                                               <svg width="14" height="14">
@@ -466,7 +467,7 @@
                         </button>
                       </div>
                       <ul class="search-list" data-list hidden></ul>
-                    </form><!-- /SEARCH -->
+                    </form><!-- /SEARCH FORM -->
                   </div>
                 </div><a class="btn btn-round btn-sm btn-primary-inverse header-account" href="#">
                                       <svg width="16" height="16">
@@ -487,11 +488,8 @@
           <div class="header-pane__mask"></div>
           <div class="header-pane__content">
             <div class="container">
-              <div class="header-pane__search"><!-- SEARCH -->
-                <form class="search" data-search action="./backend/data.json" method="GET">
-                  <!-- TODO: указать экшен для ajax-запроса-->
-                  <!-- @param q {String}-->
-                  <!-- @result items[ <text, link> ]-->
+              <div class="header-pane__search"><!-- SEARCH FORM -->
+                <form class="search" data-search action="./backend/search.json" method="GET">
                   <div class="search-field">
                     <div class="search-field__icon">
                                       <svg width="14" height="14">
@@ -506,7 +504,7 @@
                     </button>
                   </div>
                   <ul class="search-list" data-list hidden></ul>
-                </form><!-- /SEARCH -->
+                </form><!-- /SEARCH FORM -->
               </div>
               <div class="header-pane__nav">
                 <div class="header-menu">
@@ -746,7 +744,7 @@
             </div>
           </div>
         </div>
-      </header><!-- /HEADER -->
+      </header><!-- /HEADER --><!-- QUESTION FORM -->
             <div class="modal" id="question" tabindex="-1" role="dialog" hidden>
               <div class="modal-container" role="document">
                 <div class="modal-window">
@@ -756,8 +754,6 @@
                             </svg></span></button>
                   <div class="modal-body">
                     <h2 class="modal-title">Задать вопрос</h2>
-                    <!-- TODO установить экшен и метод-->
-                    <!-- метод GET для тестового запроса к JSON-файлу-->
                     <form id="ask-question-form" action="./backend/question-form.json" method="GET">
                       <div class="form-field">
                         <label class="form-label" for="question-name">ФИО*</label>
@@ -783,7 +779,7 @@
                       </div>
                       <div class="form-field">
                         <label class="form-label" for="question-text">Ваш вопрос</label>
-                        <textarea class="form-control" id="question-text"></textarea>
+                        <textarea class="form-control" id="question-text" name="question"></textarea>
                       </div>
                       <div class="form-field">
                         <label class="checkbox">
@@ -796,14 +792,15 @@
                   </div>
                 </div>
               </div>
-            </div>
+            </div><!-- /QUESTION FORM -->
       <main class="page-main">
         <div class="bg-block">
-          <div class="home-page__jumbotron">
+          <div class="home-page__jumbotron"><!-- JUMBOTRON -->
             <div class="jumbotron">
               <div class="container">
                 <div class="fade-slider" id="home-slider" data-auto>
                   <div class="fade-slider-slides">
+                    <!-- SLIDE-->
                     <section class="fade-slider-slide active">
                       <div class="home-banner">
                         <div class="home-banner__content">
@@ -813,6 +810,7 @@
                         <div class="home-banner__img"><img src="./img/icons/lighthouse.png" alt=""></div>
                       </div>
                     </section>
+                    <!-- SLIDE-->
                     <section class="fade-slider-slide">
                       <div class="home-banner">
                         <div class="home-banner__content">
@@ -822,6 +820,7 @@
                         <div class="home-banner__img"><img src="./img/icons/lighthouse.png" alt=""></div>
                       </div>
                     </section>
+                    <!-- SLIDE-->
                     <section class="fade-slider-slide">
                       <div class="home-banner">
                         <div class="home-banner__content">
@@ -835,9 +834,9 @@
                   <div class="fade-slider-pagination"></div>
                 </div>
               </div>
-            </div>
+            </div><!-- /JUMBOTRON -->
           </div>
-          <div class="home-page__stats">
+          <div class="home-page__stats"><!-- STATS -->
             <div class="home-stats">
               <div class="container">
                 <div class="home-stats__wrapper">
@@ -868,9 +867,9 @@
                   </div>
                 </div>
               </div>
-            </div>
+            </div><!-- /STATS -->
           </div>
-          <div class="home-page__info">
+          <div class="home-page__info"><!-- INFO -->
             <div class="home-info">
               <div class="container">
                 <div class="home-info__wrapper"><a class="home-info-company card" href="#">
@@ -888,22 +887,32 @@
                       <div class="home-info-products__link"><span class="btn btn-accent">Перейти в каталог</span></div>
                     </div></a></div>
               </div>
-            </div>
+            </div><!-- /INFO -->
           </div>
-          <div class="home-page__clients">
+          <div class="home-page__clients"><!-- CLIENTS -->
             <div class="home-clients">
               <div class="scroll-slider">
                 <div class="scroll-slider-viewport">
                   <div class="scroll-slider-slides">
+                    <!-- SLIDE-->
                     <div class="scroll-slider-slide c-col-4 c-col-md-3 c-col-lg-2"><a class="client-block" href="#" target="_blank" rel="noopener noreferrer nofollow"><img class="bw" src="./img/partners/1.png" alt=""><img class="colored" src="./img/partners/1-colored.png" alt=""></a></div>
+                    <!-- SLIDE-->
                     <div class="scroll-slider-slide c-col-4 c-col-md-3 c-col-lg-2"><a class="client-block" href="#" target="_blank" rel="noopener noreferrer nofollow"><img class="bw" src="./img/partners/2.png" alt=""><img class="colored" src="./img/partners/2-colored.png" alt=""></a></div>
+                    <!-- SLIDE-->
                     <div class="scroll-slider-slide c-col-4 c-col-md-3 c-col-lg-2"><a class="client-block" href="#" target="_blank" rel="noopener noreferrer nofollow"><img class="bw" src="./img/partners/3.png" alt=""><img class="colored" src="./img/partners/3-colored.png" alt=""></a></div>
+                    <!-- SLIDE-->
                     <div class="scroll-slider-slide c-col-4 c-col-md-3 c-col-lg-2"><a class="client-block" href="#" target="_blank" rel="noopener noreferrer nofollow"><img class="bw" src="./img/partners/4.png" alt=""><img class="colored" src="./img/partners/4-colored.png" alt=""></a></div>
+                    <!-- SLIDE-->
                     <div class="scroll-slider-slide c-col-4 c-col-md-3 c-col-lg-2"><a class="client-block" href="#" target="_blank" rel="noopener noreferrer nofollow"><img class="bw" src="./img/partners/5.png" alt=""><img class="colored" src="./img/partners/5-colored.png" alt=""></a></div>
+                    <!-- SLIDE-->
                     <div class="scroll-slider-slide c-col-4 c-col-md-3 c-col-lg-2"><a class="client-block" href="#" target="_blank" rel="noopener noreferrer nofollow"><img class="bw" src="./img/partners/1.png" alt=""><img class="colored" src="./img/partners/1-colored.png" alt=""></a></div>
+                    <!-- SLIDE-->
                     <div class="scroll-slider-slide c-col-4 c-col-md-3 c-col-lg-2"><a class="client-block" href="#" target="_blank" rel="noopener noreferrer nofollow"><img class="bw" src="./img/partners/2.png" alt=""><img class="colored" src="./img/partners/2-colored.png" alt=""></a></div>
+                    <!-- SLIDE-->
                     <div class="scroll-slider-slide c-col-4 c-col-md-3 c-col-lg-2"><a class="client-block" href="#" target="_blank" rel="noopener noreferrer nofollow"><img class="bw" src="./img/partners/3.png" alt=""><img class="colored" src="./img/partners/3-colored.png" alt=""></a></div>
+                    <!-- SLIDE-->
                     <div class="scroll-slider-slide c-col-4 c-col-md-3 c-col-lg-2"><a class="client-block" href="#" target="_blank" rel="noopener noreferrer nofollow"><img class="bw" src="./img/partners/4.png" alt=""><img class="colored" src="./img/partners/4-colored.png" alt=""></a></div>
+                    <!-- SLIDE-->
                     <div class="scroll-slider-slide c-col-4 c-col-md-3 c-col-lg-2"><a class="client-block" href="#" target="_blank" rel="noopener noreferrer nofollow"><img class="bw" src="./img/partners/5.png" alt=""><img class="colored" src="./img/partners/5-colored.png" alt=""></a></div>
                   </div>
                 </div>
@@ -922,10 +931,10 @@
                               </div>
                 </div>
               </div>
-            </div>
+            </div><!-- /CLIENTS -->
           </div>
         </div>
-        <div class="home-page__solutions">
+        <div class="home-page__solutions"><!-- SOLUTIONS -->
           <section class="home-solutions">
             <div class="container">
               <header class="home-solutions__header">
@@ -946,38 +955,47 @@
             <div class="scroll-slider">
               <div class="scroll-slider-viewport">
                 <div class="scroll-slider-slides">
+                  <!-- SLIDE-->
                   <section class="scroll-slider-slide c-col-6 c-col-lg-4"><a class="home-solution" href="#" data-type="complex">
                       <div class="home-solution__group">Комплексное решение</div>
                       <h3 class="home-solution__title">Защита удаленного доступа</h3>
                       <div class="home-solution__icon"><img src="./img/solutions/1.png" alt=""></div></a></section>
+                  <!-- SLIDE-->
                   <section class="scroll-slider-slide c-col-6 c-col-lg-4"><a class="home-solution" href="#" data-type="sector">
                       <div class="home-solution__group">Отраслевое решение</div>
                       <h3 class="home-solution__title">Защита персональных данных</h3>
                       <div class="home-solution__icon"><img src="./img/solutions/2.png" alt=""></div></a></section>
+                  <!-- SLIDE-->
                   <section class="scroll-slider-slide c-col-6 c-col-lg-4"><a class="home-solution" href="#" data-type="complex">
                       <div class="home-solution__group">Комплексное решение</div>
                       <h3 class="home-solution__title">Защита межфилиальных взаимодействий</h3>
                       <div class="home-solution__icon"><img src="./img/solutions/3.png" alt=""></div></a></section>
+                  <!-- SLIDE-->
                   <section class="scroll-slider-slide c-col-6 c-col-lg-4"><a class="home-solution" href="#" data-type="sector">
                       <div class="home-solution__group">Отраслевое решение</div>
                       <h3 class="home-solution__title">Защита удаленного доступа</h3>
                       <div class="home-solution__icon"><img src="./img/solutions/1.png" alt=""></div></a></section>
+                  <!-- SLIDE-->
                   <section class="scroll-slider-slide c-col-6 c-col-lg-4"><a class="home-solution" href="#" data-type="complex">
                       <div class="home-solution__group">Комплексное решение</div>
                       <h3 class="home-solution__title">Защита персональных данных</h3>
                       <div class="home-solution__icon"><img src="./img/solutions/2.png" alt=""></div></a></section>
+                  <!-- SLIDE-->
                   <section class="scroll-slider-slide c-col-6 c-col-lg-4"><a class="home-solution" href="#" data-type="sector">
                       <div class="home-solution__group">Отраслевое решение</div>
                       <h3 class="home-solution__title">Защита межфилиальных взаимодействий</h3>
                       <div class="home-solution__icon"><img src="./img/solutions/3.png" alt=""></div></a></section>
+                  <!-- SLIDE-->
                   <section class="scroll-slider-slide c-col-6 c-col-lg-4"><a class="home-solution" href="#" data-type="complex">
                       <div class="home-solution__group">Комплексное решение</div>
                       <h3 class="home-solution__title">Защита удаленного доступа</h3>
                       <div class="home-solution__icon"><img src="./img/solutions/1.png" alt=""></div></a></section>
+                  <!-- SLIDE-->
                   <section class="scroll-slider-slide c-col-6 c-col-lg-4"><a class="home-solution" href="#" data-type="sector">
                       <div class="home-solution__group">Отраслевое решение</div>
                       <h3 class="home-solution__title">Защита персональных данных</h3>
                       <div class="home-solution__icon"><img src="./img/solutions/2.png" alt=""></div></a></section>
+                  <!-- SLIDE-->
                   <section class="scroll-slider-slide c-col-6 c-col-lg-4"><a class="home-solution" href="#" data-type="complex">
                       <div class="home-solution__group">Комплексное решение</div>
                       <h3 class="home-solution__title">Защита межфилиальных взаимодействий</h3>
@@ -999,9 +1017,9 @@
                           </div>
               </div>
             </div>
-          </section>
+          </section><!-- /SOLUTIONS -->
         </div>
-        <div class="home-page__tech">
+        <div class="home-page__tech"><!-- TECH BANNERS -->
           <div class="home-tech">
             <div class="container">
               <div class="home-tech__wrapper"><a class="home-tech-item card" href="#">
@@ -1018,9 +1036,9 @@
                                   <use xlink:href="#i-chevron-right" href="#i-chevron-right"></use>
                                 </svg></span></div></a></div>
             </div>
-          </div>
+          </div><!-- /TECH BANNERS -->
         </div>
-        <div class="home-page__faq">
+        <div class="home-page__faq"><!-- FAQ -->
           <section class="home-faq">
             <div class="container">
               <h2 class="h2 home-faq__title">Как начать работать с нами</h2>
@@ -1056,10 +1074,10 @@
                 </div>
               </div>
             </div>
-          </section>
+          </section><!-- FAQ -->
         </div>
         <div class="bg-block">
-          <div class="home-page__cases">
+          <div class="home-page__cases"><!-- CASES -->
             <div class="home-cases">
               <div class="container">
                 <h2 class="h1 home-cases__title">Истории сотрудничества</h2>
@@ -1068,32 +1086,38 @@
                 <div class="scroll-slider">
                   <div class="scroll-slider-viewport">
                     <div class="scroll-slider-slides">
+                      <!-- SLIDE-->
                       <section class="scroll-slider-slide c-col-6 c-col-lg-4"><a class="home-case" href="#">
                           <div class="home-case__logo"><img src="./img/cases/1.png">
                           </div>
                           <h3 class="home-case__title">«Ростелеком-Солар», компания группы ПАО «Ростелеком»</h3>
                           <div class="home-case__text">Компании планируют создавать на базе собственных продуктов и услуг новые совместные комплексные решения по информационной безопасности, отвечающие на самые актуальные вызовы в сфере защиты от киберугроз.</div></a></section>
+                      <!-- SLIDE-->
                       <section class="scroll-slider-slide c-col-6 c-col-lg-4"><a class="home-case" href="#">
                           <div class="home-case__logo">
                             <div class="image-placeholder"></div>
                           </div>
                           <h3 class="home-case__title">«Аквариус»</h3>
                           <div class="home-case__text">Цель сотрудничества — импортозамещение в сфере информационной безопасности. Серверные системы Aquarius состоят в Едином реестре российской радиоэлектронной продукции Минпромторга России.</div></a></section>
+                      <!-- SLIDE-->
                       <section class="scroll-slider-slide c-col-6 c-col-lg-4"><a class="home-case" href="#">
                           <div class="home-case__logo"><img src="./img/cases/3.png">
                           </div>
                           <h3 class="home-case__title">«АТБ Электроника»</h3>
                           <div class="home-case__text">Созданный альянс способствует развитию импортозамещения на российском рынке информационной безопасности. Сертифицированные ФСБ России VPN-шлюзы С-Терра, состоящие в Едином реестре российских программ для ЭВМ и баз данных, получат российскую серверную часть «АТБ-АТОМ».</div></a></section>
+                      <!-- SLIDE-->
                       <section class="scroll-slider-slide c-col-6 c-col-lg-4"><a class="home-case" href="#">
                           <div class="home-case__logo"><img src="./img/cases/1.png">
                           </div>
                           <h3 class="home-case__title">«Ростелеком-Солар», компания группы ПАО «Ростелеком»</h3>
                           <div class="home-case__text">Компании планируют создавать на базе собственных продуктов и услуг новые совместные комплексные решения по информационной безопасности, отвечающие на самые актуальные вызовы в сфере защиты от киберугроз.</div></a></section>
+                      <!-- SLIDE-->
                       <section class="scroll-slider-slide c-col-6 c-col-lg-4"><a class="home-case" href="#">
                           <div class="home-case__logo"><img src="./img/cases/2.png">
                           </div>
                           <h3 class="home-case__title">«Аквариус»</h3>
                           <div class="home-case__text">Цель сотрудничества — импортозамещение в сфере информационной безопасности. Серверные системы Aquarius состоят в Едином реестре российской радиоэлектронной продукции Минпромторга России.</div></a></section>
+                      <!-- SLIDE-->
                       <section class="scroll-slider-slide c-col-6 c-col-lg-4"><a class="home-case" href="#">
                           <div class="home-case__logo"><img src="./img/cases/3.png">
                           </div>
@@ -1117,10 +1141,10 @@
                   </div>
                 </div>
               </div>
-            </div>
+            </div><!-- /CASES -->
           </div>
         </div>
-        <div class="home-page__news">
+        <div class="home-page__news"><!-- NEWS -->
           <div class="home-news">
             <div class="container">
               <header class="home-news__header">
@@ -1141,12 +1165,14 @@
             <div class="scroll-slider">
               <div class="scroll-slider-viewport">
                 <div class="scroll-slider-slides">
+                  <!-- SLIDE-->
                   <section class="scroll-slider-slide c-col-6 c-col-md-4 c-col-lg-3"><a class="home-news-article" href="#" data-type="news">
                       <div class="home-news-article__img"><img src="./img/news/1.png">
                       </div>
                       <div class="home-news-article__date">7 октября 2021</div>
                       <h3 class="home-news-article__title">С-Терра на GIS Days 2021</h3>
                       <div class="home-news-article__text">Компания «С-Терра СиЭсПи» принимает участие в форуме «Global Information Security Days 2021», посвященном технологической безопасности и новой киберреальности. </div></a></section>
+                  <!-- SLIDE-->
                   <section class="scroll-slider-slide c-col-6 c-col-md-4 c-col-lg-3"><a class="home-news-article" href="#" data-type="events">
                       <div class="home-news-article__img">
                         <div class="image-placeholder"></div>
@@ -1154,12 +1180,14 @@
                       <div class="home-news-article__date">9 июня 2021</div>
                       <h3 class="home-news-article__title">С-Терра TLS Шлюз 4.3 успешно прошел испытания</h3>
                       <div class="home-news-article__text">Доказана совместимость С‑Терра TLS Шлюз 4.3 и эталонной реализации российских криптоалгоритмов для протокола TLS 1.2.</div></a></section>
+                  <!-- SLIDE-->
                   <section class="scroll-slider-slide c-col-6 c-col-md-4 c-col-lg-3"><a class="home-news-article" href="#" data-type="updates">
                       <div class="home-news-article__img"><img src="./img/news/3.png">
                       </div>
                       <div class="home-news-article__date">21 мая 2021</div>
                       <h3 class="home-news-article__title">Итоги вебинара про С-Терра КП и С-Терра Клиент</h3>
                       <div class="home-news-article__text">20 мая 2021 г «С‑Терра СиЭсПи» провела вебинар «Версия 4.3. С‑Терра КП и С‑Терра Клиент». Презентация и запись вебинара размещены на сайте</div></a></section>
+                  <!-- SLIDE-->
                   <section class="scroll-slider-slide c-col-6 c-col-md-4 c-col-lg-3"><a class="home-news-article" href="#" data-type="news">
                       <div class="home-news-article__img">
                         <div class="image-placeholder"></div>
@@ -1167,66 +1195,77 @@
                       <div class="home-news-article__date">30 марта 2020</div>
                       <h3 class="home-news-article__title">Решения С-Терра для подключения к Единому Порталу Тестирования Ростехнадзора</h3>
                       <div class="home-news-article__text">Решения С-Терра защищают доступ при аттестации работников в области промышленной безопасности.</div></a></section>
+                  <!-- SLIDE-->
                   <section class="scroll-slider-slide c-col-6 c-col-md-4 c-col-lg-3"><a class="home-news-article" href="#" data-type="events">
                       <div class="home-news-article__img"><img src="./img/news/1.png">
                       </div>
                       <div class="home-news-article__date">7 октября 2021</div>
                       <h3 class="home-news-article__title">С-Терра на GIS Days 2021</h3>
                       <div class="home-news-article__text">Компания «С-Терра СиЭсПи» принимает участие в форуме «Global Information Security Days 2021», посвященном технологической безопасности и новой киберреальности. </div></a></section>
+                  <!-- SLIDE-->
                   <section class="scroll-slider-slide c-col-6 c-col-md-4 c-col-lg-3"><a class="home-news-article" href="#" data-type="updates">
                       <div class="home-news-article__img"><img src="./img/news/2.png">
                       </div>
                       <div class="home-news-article__date">9 июня 2021</div>
                       <h3 class="home-news-article__title">С-Терра TLS Шлюз 4.3 успешно прошел испытания</h3>
                       <div class="home-news-article__text">Доказана совместимость С‑Терра TLS Шлюз 4.3 и эталонной реализации российских криптоалгоритмов для протокола TLS 1.2.</div></a></section>
+                  <!-- SLIDE-->
                   <section class="scroll-slider-slide c-col-6 c-col-md-4 c-col-lg-3"><a class="home-news-article" href="#" data-type="news">
                       <div class="home-news-article__img"><img src="./img/news/3.png">
                       </div>
                       <div class="home-news-article__date">21 мая 2021</div>
                       <h3 class="home-news-article__title">Итоги вебинара про С-Терра КП и С-Терра Клиент</h3>
                       <div class="home-news-article__text">20 мая 2021 г «С‑Терра СиЭсПи» провела вебинар «Версия 4.3. С‑Терра КП и С‑Терра Клиент». Презентация и запись вебинара размещены на сайте</div></a></section>
+                  <!-- SLIDE-->
                   <section class="scroll-slider-slide c-col-6 c-col-md-4 c-col-lg-3"><a class="home-news-article" href="#" data-type="events">
                       <div class="home-news-article__img"><img src="./img/news/4.png">
                       </div>
                       <div class="home-news-article__date">30 марта 2020</div>
                       <h3 class="home-news-article__title">Решения С-Терра для подключения к Единому Порталу Тестирования Ростехнадзора</h3>
                       <div class="home-news-article__text">Решения С-Терра защищают доступ при аттестации работников в области промышленной безопасности.</div></a></section>
+                  <!-- SLIDE-->
                   <section class="scroll-slider-slide c-col-6 c-col-md-4 c-col-lg-3"><a class="home-news-article" href="#" data-type="events">
                       <div class="home-news-article__img"><img src="./img/news/4.png">
                       </div>
                       <div class="home-news-article__date">30 марта 2020</div>
                       <h3 class="home-news-article__title">Решения С-Терра для подключения к Единому Порталу Тестирования Ростехнадзора</h3>
                       <div class="home-news-article__text">Решения С-Терра защищают доступ при аттестации работников в области промышленной безопасности.</div></a></section>
+                  <!-- SLIDE-->
                   <section class="scroll-slider-slide c-col-6 c-col-md-4 c-col-lg-3"><a class="home-news-article" href="#" data-type="events">
                       <div class="home-news-article__img"><img src="./img/news/4.png">
                       </div>
                       <div class="home-news-article__date">30 марта 2020</div>
                       <h3 class="home-news-article__title">Решения С-Терра для подключения к Единому Порталу Тестирования Ростехнадзора</h3>
                       <div class="home-news-article__text">Решения С-Терра защищают доступ при аттестации работников в области промышленной безопасности.</div></a></section>
+                  <!-- SLIDE-->
                   <section class="scroll-slider-slide c-col-6 c-col-md-4 c-col-lg-3"><a class="home-news-article" href="#" data-type="events">
                       <div class="home-news-article__img"><img src="./img/news/4.png">
                       </div>
                       <div class="home-news-article__date">30 марта 2020</div>
                       <h3 class="home-news-article__title">Решения С-Терра для подключения к Единому Порталу Тестирования Ростехнадзора</h3>
                       <div class="home-news-article__text">Решения С-Терра защищают доступ при аттестации работников в области промышленной безопасности.</div></a></section>
+                  <!-- SLIDE-->
                   <section class="scroll-slider-slide c-col-6 c-col-md-4 c-col-lg-3"><a class="home-news-article" href="#" data-type="events">
                       <div class="home-news-article__img"><img src="./img/news/4.png">
                       </div>
                       <div class="home-news-article__date">30 марта 2020</div>
                       <h3 class="home-news-article__title">Решения С-Терра для подключения к Единому Порталу Тестирования Ростехнадзора</h3>
                       <div class="home-news-article__text">Решения С-Терра защищают доступ при аттестации работников в области промышленной безопасности.</div></a></section>
+                  <!-- SLIDE-->
                   <section class="scroll-slider-slide c-col-6 c-col-md-4 c-col-lg-3"><a class="home-news-article" href="#" data-type="events">
                       <div class="home-news-article__img"><img src="./img/news/4.png">
                       </div>
                       <div class="home-news-article__date">30 марта 2020</div>
                       <h3 class="home-news-article__title">Решения С-Терра для подключения к Единому Порталу Тестирования Ростехнадзора</h3>
                       <div class="home-news-article__text">Решения С-Терра защищают доступ при аттестации работников в области промышленной безопасности.</div></a></section>
+                  <!-- SLIDE-->
                   <section class="scroll-slider-slide c-col-6 c-col-md-4 c-col-lg-3"><a class="home-news-article" href="#" data-type="events">
                       <div class="home-news-article__img"><img src="./img/news/4.png">
                       </div>
                       <div class="home-news-article__date">30 марта 2020</div>
                       <h3 class="home-news-article__title">Решения С-Терра для подключения к Единому Порталу Тестирования Ростехнадзора</h3>
                       <div class="home-news-article__text">Решения С-Терра защищают доступ при аттестации работников в области промышленной безопасности.</div></a></section>
+                  <!-- SLIDE-->
                   <section class="scroll-slider-slide c-col-6 c-col-md-4 c-col-lg-3"><a class="home-news-article" href="#" data-type="events">
                       <div class="home-news-article__img"><img src="./img/news/4.png">
                       </div>
@@ -1250,10 +1289,10 @@
                           </div>
               </div>
             </div>
-          </div>
+          </div><!-- /NEWS -->
         </div>
         <div class="bg-block">
-          <div class="home-page__form">
+          <div class="home-page__form"><!-- CONTACT FORM -->
             <div class="home-contact-form colored-block">
               <div class="container">
                 <h2 class="h1 home-contact-form__title">Закажите бесплатную консультацию</h2>
@@ -1262,8 +1301,6 @@
               <div class="container">
                 <div class="home-contact-form__wrapper">
                   <div class="home-contact-form__image"><img src="./img/icons/contacts.png" width="405"></div>
-                  <!-- TODO: установить экшен и метод POST-->
-                  <!-- GET - Для тестового запроса к JSON-файлу-->
                   <form class="home-contact-form__fields" id="home-contact-form" action="./backend/contact-form.json" method="GET">
                     <div class="form-field">
                       <input class="form-control" type="text" name="name" placeholder="ФИО*">
@@ -1292,10 +1329,10 @@
                   </form>
                 </div>
               </div>
-            </div>
+            </div><!-- /CONTACT FORM -->
           </div>
         </div>
-      </main>
+      </main><!-- FOOTER -->
       <div class="top-button">
         <div class="container">
           <button class="btn btn-primary-inverse btn-round" hidden type="button">
@@ -1353,7 +1390,7 @@
             <div class="footer__column footer-menu"></div>
           </div>
         </div>
-      </footer>
+      </footer><!-- /FOOTER -->
     </div>
         <div class="modal" id="success-modal" tabindex="-1" role="dialog" hidden>
           <div class="modal-container" role="document">

@@ -1184,7 +1184,6 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
   });
   window.addEventListener('scroll', function () {
     var scroll = document.documentElement.scrollTop || document.body.scrollTop;
-    console.log('scroll', scroll);
 
     if (scroll > SCROLL_LIMIT) {
       showButton();

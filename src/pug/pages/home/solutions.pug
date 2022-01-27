@@ -1,4 +1,7 @@
-include ../../mixins/slider.pug
+<!-- SOLUTIONS -->
+
+include ../../mixins/slider
+include ../../data/solutions
 
 section.home-solutions
   .container
@@ -15,66 +18,9 @@ section.home-solutions
   .scroll-slider
     .scroll-slider-viewport
       .scroll-slider-slides
-        -
-          var solutions = [
-            {
-              title: 'Защита удаленного доступа',
-              icon: "./img/solutions/1.png",
-              type: 'complex',
-              link: '#',
-            },
-            {
-              title: 'Защита персональных данных',
-              icon: "./img/solutions/2.png",
-              type: 'sector',
-              link: '#',
-            },
-            {
-              title: 'Защита межфилиальных взаимодействий',
-              icon: "./img/solutions/3.png",
-              type: 'complex',
-              link: '#',
-            },
-            {
-              title: 'Защита удаленного доступа',
-              icon: "./img/solutions/1.png",
-              type: 'sector',
-              link: '#',
-            },
-            {
-              title: 'Защита персональных данных',
-              icon: "./img/solutions/2.png",
-              type: 'complex',
-              link: '#',
-            },
-            {
-              group: 'Комплексное решение',
-              title: 'Защита межфилиальных взаимодействий',
-              icon: "./img/solutions/3.png",
-              type: 'sector',
-              link: '#',
-            },
-            {
-              title: 'Защита удаленного доступа',
-              icon: "./img/solutions/1.png",
-              type: 'complex',
-              link: '#',
-            },
-            {
-              title: 'Защита персональных данных',
-              icon: "./img/solutions/2.png",
-              type: 'sector',
-              link: '#',
-            },
-            {
-              title: 'Защита межфилиальных взаимодействий',
-              icon: "./img/solutions/3.png",
-              type: 'complex',
-              link: '#',
-            }
-          ]
 
         each solution in solutions
+          // SLIDE
           section.scroll-slider-slide.c-col-6.c-col-lg-4
             a.home-solution(href=solution.link data-type=solution.type)
               .home-solution__group #{solution.type === 'complex' ? 'Комплексное решение' : 'Отраслевое решение'}
@@ -87,3 +33,5 @@ section.home-solutions
         link: '#',
         name: 'Каталог решений'
       })
+
+<!-- /SOLUTIONS -->

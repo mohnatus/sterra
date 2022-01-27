@@ -1,10 +1,17 @@
+<!-- FOOTER -->
+
+
 include ../apps/index.pug
 include '../../../../mixins/icon.pug
+
+
 
 .top-button
   .container
     button.btn.btn-primary-inverse.btn-round(hidden, type="button")
       +svg-icon('arrow-top', 14, 14)
+
+
 
 footer.footer
   .container
@@ -18,18 +25,15 @@ footer.footer
           .col.col-12.col-sm-6
             .footer-contacts
               .footer-contacts__title Контакты
-
               p
                 b Офис:
                 br
                 |124460  г. Зеленоград, ул. Конструктора Лукина, д. 14, стр. 12, Технополис Москва
-
               p
                 |Телефон/факс:
                 br
                 a(href="tel: 84999409061")
                   b 8 (499) 940-90-61
-
               p
                 |Почта
                 br
@@ -40,21 +44,21 @@ footer.footer
               +apps(true)
 
 
+
       .footer__links.col.col-12.col-md-4
         .row
           .col.col-12.col-sm-8.col-md-12
             a.footer-logo
               img(src='./img/logo-white.png' alt="S-Terra logo")
-
             a.footer-link(href="#") Предупреждение об информации на сайте
-
             a.footer-link(href="#") Политика обработки персональных данных ООО «С-Терра СиЭсПи»
-
             .footer-copyright
               |© ООО «С-Терра СиЭсПи», 2021
               br
               |Все права защищены.
 
 
-
       .footer__column.footer-menu
+
+      
+<!-- /FOOTER -->

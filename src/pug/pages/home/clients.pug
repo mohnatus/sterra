@@ -1,74 +1,15 @@
-include ../../mixins/slider.pug
+<!-- CLIENTS -->
+include ../../mixins/slider
+include ../../data/clients
 
 .home-clients
   .scroll-slider
     .scroll-slider-viewport
       .scroll-slider-slides
-        -
-          var partners = [
-            {
-              img: "./img/partners/1.png",
-              coloredImg: "./img/partners/1-colored.png",
-              alt: '',
-              link: '#'
-            },
-            {
-              img: "./img/partners/2.png",
-              coloredImg: "./img/partners/2-colored.png",
-              alt: '',
-              link: '#'
-            },
-            {
-              img: "./img/partners/3.png",
-              coloredImg: "./img/partners/3-colored.png",
-              alt: '',
-              link: '#'
-            },
-            {
-              img: "./img/partners/4.png",
-              coloredImg: "./img/partners/4-colored.png",
-              alt: '',
-              link: '#'
-            },
-            {
-              img: "./img/partners/5.png",
-              coloredImg: "./img/partners/5-colored.png",
-              alt: '',
-              link: '#'
-            },
-            {
-              img: "./img/partners/1.png",
-              coloredImg: "./img/partners/1-colored.png",
-              alt: '',
-              link: '#'
-            },
-            {
-              img: "./img/partners/2.png",
-              coloredImg: "./img/partners/2-colored.png",
-              alt: '',
-              link: '#'
-            },
-            {
-              img: "./img/partners/3.png",
-              coloredImg: "./img/partners/3-colored.png",
-              alt: '',
-              link: '#'
-            },
-            {
-              img: "./img/partners/4.png",
-              coloredImg: "./img/partners/4-colored.png",
-              alt: '',
-              link: '#'
-            },
-            {
-              img: "./img/partners/5.png",
-              coloredImg: "./img/partners/5-colored.png",
-              alt: '',
-              link: '#'
-            },
-          ]
+
 
         each partner in partners
+          // SLIDE
           .scroll-slider-slide.c-col-4.c-col-md-3.c-col-lg-2
             a.client-block(href=partner.link target="_blank" rel="noopener noreferrer nofollow")
               img.bw(src=partner.img alt=partner.alt)
@@ -76,3 +17,4 @@ include ../../mixins/slider.pug
 
     .container
       +slider-controls()
+<!-- /CLIENTS -->

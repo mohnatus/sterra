@@ -1,4 +1,4 @@
-
+<!-- CONTACT FORM -->
 
 .home-contact-form.colored-block
   .container
@@ -10,8 +10,6 @@
       .home-contact-form__image
         img(src="./img/icons/contacts.png" width="405")
 
-      // TODO: установить экшен и метод POST
-      // GET - Для тестового запроса к JSON-файлу
       form#home-contact-form.home-contact-form__fields(action="./backend/contact-form.json" method="GET")
         .form-field
           input.form-control(type="text" name="name" placeholder="ФИО*" )
@@ -30,3 +28,5 @@
             .checkbox-label Даю согласие на обработку своих персональных данных в соответствии с #[a(href="#") Политикой обработки персональных данных ООО «С-Терра СиЭсПи»].
         .home-contact-form__submit
           button.btn.btn-primary.btn-block(type="submit") Отправить
+
+<!-- /CONTACT FORM -->

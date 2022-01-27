@@ -187,11 +187,15 @@
 <!-- /SVG SPRITE -->
 
     <div class="page"><!-- HEADER -->
+      <!-- Элемент списка (может быть со вложенным списком)-->
+      <!-- Секция меню в плашке на мобильных-->
       <header class="header">
         <div class="header-view">
           <div class="container">
             <div class="header-view__wrapper"><a class="header-logo" href="/"><img src="./img/logo.png" alt="S-Terra logo"></a>
               <div class="header__navigation">
+                <!-- Элемент списка (может быть со вложенным списком)-->
+                <!-- Секция меню в плашке на мобильных-->
                 <nav class="header-navigation">
                   <ul>
                     <li data-submenu="about"><a href="javascript:void(0)">О компании
@@ -453,11 +457,8 @@
                                       <use xlink:href="#i-search" href="#i-search"></use>
                                     </svg>
                   </button>
-                  <div class="header-search__search"><!-- SEARCH -->
-                    <form class="search" data-search action="./backend/data.json" method="GET">
-                      <!-- TODO: указать экшен для ajax-запроса-->
-                      <!-- @param q {String}-->
-                      <!-- @result items[ <text, link> ]-->
+                  <div class="header-search__search"><!-- SEARCH FORM -->
+                    <form class="search" data-search action="./backend/search.json" method="GET">
                       <div class="search-field">
                         <div class="search-field__icon">
                                               <svg width="14" height="14">
@@ -472,7 +473,7 @@
                         </button>
                       </div>
                       <ul class="search-list" data-list hidden></ul>
-                    </form><!-- /SEARCH -->
+                    </form><!-- /SEARCH FORM -->
                   </div>
                 </div><a class="btn btn-round btn-sm btn-primary-inverse header-account" href="#">
                                       <svg width="16" height="16">
@@ -493,11 +494,8 @@
           <div class="header-pane__mask"></div>
           <div class="header-pane__content">
             <div class="container">
-              <div class="header-pane__search"><!-- SEARCH -->
-                <form class="search" data-search action="./backend/data.json" method="GET">
-                  <!-- TODO: указать экшен для ajax-запроса-->
-                  <!-- @param q {String}-->
-                  <!-- @result items[ <text, link> ]-->
+              <div class="header-pane__search"><!-- SEARCH FORM -->
+                <form class="search" data-search action="./backend/search.json" method="GET">
                   <div class="search-field">
                     <div class="search-field__icon">
                                       <svg width="14" height="14">
@@ -512,7 +510,7 @@
                     </button>
                   </div>
                   <ul class="search-list" data-list hidden></ul>
-                </form><!-- /SEARCH -->
+                </form><!-- /SEARCH FORM -->
               </div>
               <div class="header-pane__nav">
                 <div class="header-menu">
@@ -752,7 +750,7 @@
             </div>
           </div>
         </div>
-      </header><!-- /HEADER -->
+      </header><!-- /HEADER --><!-- QUESTION FORM -->
             <div class="modal" id="question" tabindex="-1" role="dialog" hidden>
               <div class="modal-container" role="document">
                 <div class="modal-window">
@@ -762,8 +760,6 @@
                             </svg></span></button>
                   <div class="modal-body">
                     <h2 class="modal-title">Задать вопрос</h2>
-                    <!-- TODO установить экшен и метод-->
-                    <!-- метод GET для тестового запроса к JSON-файлу-->
                     <form id="ask-question-form" action="./backend/question-form.json" method="GET">
                       <div class="form-field">
                         <label class="form-label" for="question-name">ФИО*</label>
@@ -789,7 +785,7 @@
                       </div>
                       <div class="form-field">
                         <label class="form-label" for="question-text">Ваш вопрос</label>
-                        <textarea class="form-control" id="question-text"></textarea>
+                        <textarea class="form-control" id="question-text" name="question"></textarea>
                       </div>
                       <div class="form-field">
                         <label class="checkbox">
@@ -802,7 +798,7 @@
                   </div>
                 </div>
               </div>
-            </div>
+            </div><!-- /QUESTION FORM -->
       <main>
         <div class="container">
           <div class="t-content"></div>

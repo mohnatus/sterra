@@ -29,7 +29,6 @@
     () => {
       let scroll =
         document.documentElement.scrollTop || document.body.scrollTop;
-      console.log('scroll', scroll);
       if (scroll > SCROLL_LIMIT) {
         showButton();
       } else {

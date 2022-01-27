@@ -1,3 +1,5 @@
+// Элемент списка (может быть со вложенным списком)
+
 mixin list-item(item, level = -1, currentLevel = 1)
   li(data-level=currentLevel class=item.active && 'active')
     a(href=item.link)= item.name
@@ -5,6 +7,8 @@ mixin list-item(item, level = -1, currentLevel = 1)
       ul(class=item.class)
         each subItem in item.items
           +list-item(subItem, level, currentLevel + 1)
+
+// Секция меню в плашке на мобильных
 
 mixin menu-section(item)
   include ../../mixins/icon.pug

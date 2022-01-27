@@ -1,7 +1,8 @@
-
 <!-- HEADER -->
-include ../../mixins/icon.pug
 
+include ../../data/navigation.pug
+include ../../mixins/icon.pug
+include _mixins.pug
 
 header.header
   .header-view
@@ -36,8 +37,6 @@ header.header
         .header-pane__search
           include components/search.pug
         .header-pane__nav
-          include _mixins.pug
-          include data/menu.pug
 
           .header-menu
             +menu-section({
@@ -55,6 +54,7 @@ header.header
 
         .header-pane__contacts
           include components/contacts.pug
+
 <!-- /HEADER -->
 
 include _question.pug
