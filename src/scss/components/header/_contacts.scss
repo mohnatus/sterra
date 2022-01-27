@@ -13,7 +13,6 @@
     align-items: flex-end;
     height: 100%;
     justify-content: center;
-
   }
 
   &__phone {
@@ -33,12 +32,19 @@
     svg {
       margin-left: var(--space-xxs);
       color: var(--accent);
+      transition: transform 400ms ease-in-out;
+    }
+
+    &.opened {
+      svg {
+        transform: rotate(-180deg);
+      }
     }
   }
 
   &__pane {
     position: absolute;
-    top:100%;
+    top: 100%;
     right: 0;
     background: var(--white);
     padding: var(--space-md);

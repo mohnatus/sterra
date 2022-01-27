@@ -1783,6 +1783,10 @@ body.modals-shown {
 .header-contacts__trigger svg {
   margin-left: var(--space-xxs);
   color: var(--accent);
+  transition: transform 400ms ease-in-out;
+}
+.header-contacts__trigger.opened svg {
+  transform: rotate(-180deg);
 }
 .header-contacts__pane {
   position: absolute;

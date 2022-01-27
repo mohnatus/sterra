@@ -21,49 +21,59 @@
   let open = false;
   let fixed = false;
 
+  const emitter = utils.createEmitter();
+
+  emitter.on('show', () => {
+    showPanel();
+    open = true;
+    $trigger.classList.add('opened');
+  });
+
+  emitter.on('fix', () => {
+    fixed = true;
+  });
+
+  emitter.on('hide', () => {
+    hidePanel();
+    open = false;
+    fixed = false;
+    $trigger.classList.remove('opened');
+  });
+
   $trigger.addEventListener('click', () => {
     if (open) {
       if (fixed) {
-        hidePanel();
-        open = false;
-        fixed = false;
+        emitter.emit('hide');
       } else {
-        fixed = true;
+        emitter.emit('fix');
       }
     } else {
-      showPanel();
-      open = true;
-      fixed = true;
+      emitter.emit('show');
+      emitter.emit('fix');
     }
   });
 
   $trigger.addEventListener('mouseenter', (e) => {
     if (e.target !== e.currentTarget) return;
     if (open) return;
-    showPanel();
-    open = true;
+    emitter.emit('show');
   });
 
   $contactsBlock.addEventListener('mouseleave', (e) => {
     if (e.target !== e.currentTarget) return;
     if (!open) return;
     if (fixed) return;
-    hidePanel();
-    open = false;
+    emitter.emit('hide');
   });
 
   document.addEventListener('click', (e) => {
     if (!open) return;
     if (e.target.closest('.header-contacts')) return;
-    hidePanel();
-    open = false;
-    fixed = false;
+    emitter.emit('hide');
   });
 
   utils.emitter.on('modal-show', () => {
     if (!open) return;
-    hidePanel();
-    open = false;
-    fixed = false;
+    emitter.emit('hide');
   });
 })();

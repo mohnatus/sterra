@@ -1135,46 +1135,52 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
   var open = false;
   var fixed = false;
+  var emitter = utils.createEmitter();
+  emitter.on('show', function () {
+    showPanel();
+    open = true;
+    $trigger.classList.add('opened');
+  });
+  emitter.on('fix', function () {
+    fixed = true;
+  });
+  emitter.on('hide', function () {
+    hidePanel();
+    open = false;
+    fixed = false;
+    $trigger.classList.remove('opened');
+  });
   $trigger.addEventListener('click', function () {
     if (open) {
       if (fixed) {
-        hidePanel();
-        open = false;
-        fixed = false;
+        emitter.emit('hide');
       } else {
-        fixed = true;
+        emitter.emit('fix');
       }
     } else {
-      showPanel();
-      open = true;
-      fixed = true;
+      emitter.emit('show');
+      emitter.emit('fix');
     }
   });
   $trigger.addEventListener('mouseenter', function (e) {
     if (e.target !== e.currentTarget) return;
     if (open) return;
-    showPanel();
-    open = true;
+    emitter.emit('show');
   });
   $contactsBlock.addEventListener('mouseleave', function (e) {
     if (e.target !== e.currentTarget) return;
     if (!open) return;
     if (fixed) return;
-    hidePanel();
-    open = false;
+    emitter.emit('hide');
   });
   document.addEventListener('click', function (e) {
     if (!open) return;
     if (e.target.closest('.header-contacts')) return;
-    hidePanel();
-    open = false;
-    fixed = false;
+    emitter.emit('hide');
   });
   utils.emitter.on('modal-show', function () {
     if (!open) return;
-    hidePanel();
-    open = false;
-    fixed = false;
+    emitter.emit('hide');
   });
 })();
 "use strict";
