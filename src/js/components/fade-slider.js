@@ -19,6 +19,7 @@
   };
 
   const THRESHOLD = 100;
+  const AUTO_SLIDING_INTERVAL = 4000;
 
   function fadeSlider(element) {
     if (!element) return;
@@ -99,7 +100,7 @@
     function onDragEnd(e) {
       let finalX = x2;
 
-      console.log(offset, THRESHOLD)
+      console.log(offset, THRESHOLD);
 
       if (offset < -1 * THRESHOLD) {
         next();
@@ -133,6 +134,7 @@
           $item.dataset.slide = i;
           $pagination.appendChild($item);
           $item.addEventListener('click', () => {
+            emitter.emit(events.touched);
             toSlide(i);
           });
           return $item;
@@ -146,6 +148,20 @@
       emitter.on(events.changeSlide, (slideIndex) =>
         setActivePaginationItem(slideIndex)
       );
+    }
+
+    if (element.hasAttribute('data-auto')) {
+      let timer = null;
+      function tick() {
+        timer = setTimeout(() => {
+          next();
+          tick();
+        }, AUTO_SLIDING_INTERVAL);
+      }
+      tick();
+      emitter.on(events.touched, () => {
+        clearTimeout(timer);
+      });
     }
   }
 

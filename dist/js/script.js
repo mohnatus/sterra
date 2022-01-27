@@ -658,6 +658,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
     paginationActive: 'active'
   };
   var THRESHOLD = 100;
+  var AUTO_SLIDING_INTERVAL = 4000;
 
   function fadeSlider(element) {
     if (!element) return;
@@ -769,6 +770,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
         $item.dataset.slide = i;
         $pagination.appendChild($item);
         $item.addEventListener('click', function () {
+          emitter.emit(events.touched);
           toSlide(i);
         });
         return $item;
@@ -776,6 +778,21 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
       setActivePaginationItem(activeSlide);
       emitter.on(events.changeSlide, function (slideIndex) {
         return setActivePaginationItem(slideIndex);
+      });
+    }
+
+    if (element.hasAttribute('data-auto')) {
+      var tick = function tick() {
+        timer = setTimeout(function () {
+          next();
+          tick();
+        }, AUTO_SLIDING_INTERVAL);
+      };
+
+      var timer = null;
+      tick();
+      emitter.on(events.touched, function () {
+        clearTimeout(timer);
       });
     }
   }
