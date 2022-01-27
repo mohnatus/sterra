@@ -162,6 +162,35 @@
 })();
 "use strict";
 
+(function () {
+  function submitForm(form, cb) {
+    var formData = new FormData(form);
+    var method = form.method;
+
+    if (method.toUpperCase() === 'GET') {
+      var params = new URLSearchParams(formData).toString();
+      fetch(form.action + '?' + params).then(function (res) {
+        return res.json();
+      }).then(function (data) {
+        return cb(data);
+      });
+    } else {
+      fetch(form.action, {
+        method: method,
+        body: formData
+      }).then(function (res) {
+        return res.json();
+      }).then(function (data) {
+        return cb(data);
+      });
+    }
+  }
+
+  window.utils = window.utils || {};
+  window.utils.submitForm = submitForm;
+})();
+"use strict";
+
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -269,14 +298,6 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
     return el;
   }
 
-  function submitForm(form) {
-    var formData = new FormData(form);
-    fetch(form.action, {
-      method: 'POST',
-      body: formData
-    });
-  }
-
   function validator(form, rules) {
     var config = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
     var emitter = utils.createEmitter();
@@ -364,7 +385,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
         return !f.isValid;
       });
 
-      if (!hasInvalidFields) {
+      if (hasInvalidFields) {
         if (submitted) {
           $submitButton.disabled = true;
         } else {
@@ -388,10 +409,9 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
       var hasInvalidFields = fields.some(function (f) {
         return !f.isValid;
       });
-      console.log('submit', hasInvalidFields, fields);
 
       if (!hasInvalidFields) {
-        submitForm(form);
+        config && config.submit();
       }
     });
     return {
@@ -873,8 +893,9 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
       var matrix = '+7 (___) ___-__-__',
           i = 0,
           def = matrix.replace(/\D/g, ''),
-          val = this.value.replace(/\D/g, ''),
-          new_value = matrix.replace(/[_\d]/g, function (a) {
+          val = this.value.replace(/\D/g, '');
+      if (val.length === 11 && val[0] === '8') val = '7' + val.slice(1);
+      var new_value = matrix.replace(/[_\d]/g, function (a) {
         return i < val.length ? val.charAt(i++) || def.charAt(i) : a;
       });
       i = new_value.indexOf('_');
@@ -1317,7 +1338,7 @@ window.addEventListener('resize', function () {
   var contactForm = document.getElementById('home-contact-form');
 
   if (contactForm) {
-    window.contactForm = utils.validator(contactForm, {
+    var validator = utils.validator(contactForm, {
       name: {
         required: {
           message: 'Обязательное поле'
@@ -1351,7 +1372,36 @@ window.addEventListener('resize', function () {
         }
       }
     }, {
-      parent: '.form-field'
+      parent: '.form-field',
+      submit: function submit() {
+        contactForm.classList.add('pending');
+        utils.submitForm(contactForm, function (response) {
+          contactForm.classList.remove('pending');
+
+          if (response.success) {
+            if (parts.successModal) {
+              parts.successModal.show();
+            }
+          } else {
+            console.error(response);
+          }
+        });
+      }
     });
   }
+})();
+"use strict";
+
+(function () {
+  window.parts = window.parts || {};
+
+  window.parts.successModal = function () {
+    var $successModal = document.getElementById('success-modal');
+
+    if ($successModal) {
+      return components.modal($successModal);
+    }
+
+    return null;
+  }();
 })();

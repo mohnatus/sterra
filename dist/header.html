@@ -454,7 +454,7 @@
                                     </svg>
                   </button>
                   <div class="header-search__search"><!-- SEARCH -->
-                    <form class="search" data-search action="./test/data.json" method="GET">
+                    <form class="search" data-search action="./backend/data.json" method="GET">
                       <!-- TODO: указать экшен для ajax-запроса-->
                       <!-- @param q {String}-->
                       <!-- @result items[ <text, link> ]-->
@@ -494,7 +494,7 @@
           <div class="header-pane__content">
             <div class="container">
               <div class="header-pane__search"><!-- SEARCH -->
-                <form class="search" data-search action="./test/data.json" method="GET">
+                <form class="search" data-search action="./backend/data.json" method="GET">
                   <!-- TODO: указать экшен для ajax-запроса-->
                   <!-- @param q {String}-->
                   <!-- @result items[ <text, link> ]-->
@@ -803,6 +803,16 @@
         </div>
       </main>
     </div>
+        <div class="modal" id="success-modal" tabindex="-1" role="dialog" hidden>
+          <div class="modal-container" role="document">
+            <div class="modal-window">
+              <button class="close" type="button" data-dissmiss="modal" arial-label="Close"><span aria-hidden="true">&times;</span></button>
+              <div class="modal-body">
+                <div>Информация успешно отправлена. Мы свяжемся с вами в ближайшее время.</div>
+              </div>
+            </div>
+          </div>
+        </div>
     <script src="./js/script.js" async></script>
   </body>
 </html>

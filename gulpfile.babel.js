@@ -14,13 +14,13 @@ function assets() {
 
 exports.assets = assets;
 
-function test() {
-  return src('src/test/**/*.*')
-    .pipe(dest('dist/test'))
+function backend() {
+  return src('src/backend/**/*.*')
+    .pipe(dest('dist/backend'))
     .pipe(browserSync.stream());
 }
 
-exports.test = test;
+exports.backend = backend;
 
 function html() {
   return src('src/pug/*.pug')
@@ -79,7 +79,7 @@ function myServer() {
   watch('src/scss/**/*.scss', { usePolling: true }, css);
   watch('src/js/**/*.js', { usePolling: true }, js);
   watch('src/img/**/*.*', { usePolling: true }, assets);
-  watch('src/test/**/*.*', { usePolling: true }, test);
+  watch('src/backend/**/*.*', { usePolling: true }, backend);
 }
 
-exports.default = series(clean, assets, test, css, js,  html, myServer);
+exports.default = series(clean, assets, backend, css, js,  html, myServer);

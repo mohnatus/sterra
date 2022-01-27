@@ -1,3 +1,5 @@
+
+
 .home-contact-form.colored-block
   .container
     h2.h1.home-contact-form__title Закажите бесплатную консультацию
@@ -8,21 +10,23 @@
       .home-contact-form__image
         img(src="./img/icons/contacts.png" width="405")
 
-      form#home-contact-form.home-contact-form__fields(action="/contacts" method="POST")
+      // TODO: установить экшен и метод POST
+      // GET - Для тестового запроса к JSON-файлу
+      form#home-contact-form.home-contact-form__fields(action="./backend/contact-form.json" method="GET")
         .form-field
-          input.form-control(type="text" name="name" placeholder="ФИО*")
+          input.form-control(type="text" name="name" placeholder="ФИО*" )
         .form-field
-          input.form-control(type="text" name="company" placeholder="Название компании*")
+          input.form-control(type="text" name="company" placeholder="Название компании*" )
         .form-field
-          input.form-control(type="text" name="email" placeholder="Электронная почта*")
+          input.form-control(type="text" name="email" placeholder="Электронная почта*" inputmode="email")
         .form-field
-          input.form-control(data-mask="phone" type="text" name="phone" placeholder="Номер телефона*")
+          input.form-control(data-mask="phone" type="text" name="phone" placeholder="Номер телефона*" inputmode="number")
         .form-field
           textarea.form-control(name="comment" placeholder="Комментарий")
         .form-field.home-contact-form__confirm
           label.checkbox
             input(type="checkbox" name="agreement")
             span.checkbox-box
-            label.checkbox-label Даю согласие на обработку своих персональных данных в соответствии с #[a(href="#") Политикой обработки персональных данных ООО «С-Терра СиЭсПи»].
+            .checkbox-label Даю согласие на обработку своих персональных данных в соответствии с #[a(href="#") Политикой обработки персональных данных ООО «С-Терра СиЭсПи»].
         .home-contact-form__submit
           button.btn.btn-primary.btn-block(type="submit") Отправить

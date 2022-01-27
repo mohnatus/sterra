@@ -78,13 +78,7 @@
     return el;
   }
 
-  function submitForm(form) {
-    let formData = new FormData(form);
-    fetch(form.action, {
-      method: 'POST',
-      body: formData
-    });
-  }
+  
 
   function validator(form, rules, config = {}) {
     const emitter = utils.createEmitter();
@@ -112,7 +106,6 @@
 
         let parent = config && config.parent && field.closest(config.parent);
         if (!parent) parent = field.parentElement;
-
 
         let fieldData = {
           name: fieldName,
@@ -171,7 +164,7 @@
 
     emitter.on(events.changeStatus, () => {
       let hasInvalidFields = fields.some((f) => !f.isValid);
-      if (!hasInvalidFields) {
+      if (hasInvalidFields) {
         if (submitted) {
           $submitButton.disabled = true;
         } else {
@@ -190,9 +183,9 @@
         fields.forEach((f) => f.setError());
       }
       let hasInvalidFields = fields.some((f) => !f.isValid);
-      console.log('submit', hasInvalidFields, fields);
+
       if (!hasInvalidFields) {
-        submitForm(form);
+        config && config.submit();
       }
     });
 
