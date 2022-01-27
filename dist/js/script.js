@@ -162,12 +162,6 @@
 })();
 "use strict";
 
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -185,30 +179,114 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
     touch: 'form-validator-touch',
     changeStatus: 'form-validator-change-status'
   };
+  var REQUIRED = 'required';
+  var EMAIL = 'email';
+  var MASK = 'mask';
+  var EMAIL_RE = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
 
-  function validateInput(field, rules) {
+  function validateInput(field) {
+    var rules = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+    var isValid = true;
+    var error = '';
+    var value = field.value;
+    Object.entries(rules).forEach(function (_ref) {
+      var _ref2 = _slicedToArray(_ref, 2),
+          ruleName = _ref2[0],
+          rule = _ref2[1];
+
+      if (!isValid) return;
+
+      switch (ruleName) {
+        case REQUIRED:
+          if (!value) {
+            isValid = false;
+            error = rule.message;
+          }
+
+          break;
+
+        case EMAIL:
+          if (value) {
+            var isEmail = EMAIL_RE.test(value);
+
+            if (!isEmail) {
+              isValid = false;
+              error = rule.message;
+            }
+          }
+
+          break;
+
+        case MASK:
+          if (value) {
+            var re = rule.re;
+            var isCorrect = re.test(value);
+
+            if (!isCorrect) {
+              isValid = false;
+              error = rule.message;
+            }
+          }
+
+          break;
+      }
+    });
     return {
-      isValid: true,
-      error: ''
+      isValid: isValid,
+      error: error
     };
   }
 
-  function validateCheckbox(field, rules) {
+  function validateCheckbox(field) {
+    var rules = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+    var isValid = true;
+    var error = '';
+    var checked = field.checked;
+    Object.entries(rules).forEach(function (_ref3) {
+      var _ref4 = _slicedToArray(_ref3, 2),
+          ruleName = _ref4[0],
+          rule = _ref4[1];
+
+      switch (ruleName) {
+        case REQUIRED:
+          if (!checked) {
+            isValid = false;
+            error = rule.message;
+          }
+
+          break;
+      }
+    });
     return {
-      isValid: true,
-      error: ''
+      isValid: isValid,
+      error: error
     };
+  }
+
+  function createError() {
+    var el = document.createElement('div');
+    el.classList.add('form-error');
+    return el;
+  }
+
+  function submitForm(form) {
+    var formData = new FormData(form);
+    fetch(form.action, {
+      method: 'POST',
+      body: formData
+    });
   }
 
   function validator(form, rules) {
+    var config = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
     var emitter = utils.createEmitter();
     var submitted = false;
     var $submitButton = form.querySelector('[type="submit"]');
     $submitButton.classList.add('disabled');
-    var fields = Object.entries(rules).map(function (_ref) {
-      var _ref2 = _slicedToArray(_ref, 2),
-          fieldName = _ref2[0],
-          fieldRules = _ref2[1];
+    var fields = Object.entries(rules).map(function (_ref5) {
+      var _ref6 = _slicedToArray(_ref5, 2),
+          fieldName = _ref6[0],
+          fieldRules = _ref6[1];
 
       var field = form.elements[fieldName];
       if (!field) return;
@@ -223,9 +301,12 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
       }
 
       if (!validator) return;
+      var parent = config && config.parent && field.closest(config.parent);
+      if (!parent) parent = field.parentElement;
       var fieldData = {
         name: fieldName,
         element: field,
+        parent: parent,
         type: field.type,
         rules: fieldRules,
         touched: false,
@@ -237,24 +318,23 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
       function setError() {
         if (!submitted || fieldData.isValid) {
           if (fieldData.$error) {
-            fieldData.$error.detach();
+            fieldData.$error.remove();
           }
 
           fieldData.element.classList.remove('invalid');
         } else {
           if (!fieldData.$error) {
-            fieldData.$error = document.createElement('div');
-            fieldData.$error.addClass('form-error');
+            fieldData.$error = createError();
           }
 
           fieldData.$error.textContent = fieldData.errorText;
-          fieldData.element.parentElement.insertBefore(fieldData.$error, fieldData.element.nextElementSibling);
+          fieldData.parent.appendChild(fieldData.$error);
           fieldData.element.classList.add('invalid');
         }
       }
 
-      function onChange() {
-        if (!fieldData.touched) {
+      function onChange(touch) {
+        if (touch && !fieldData.touched) {
           fieldData.touched = true;
           emitter.emit(events.touch);
         }
@@ -269,17 +349,20 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
         emitter.emit(events.changeStatus);
       }
 
-      field.addEventListener('change', onChange);
-      field.addEventListener('input', onChange);
-      return _objectSpread(_objectSpread({}, fieldData), {}, {
-        setError: setError
+      onChange();
+      field.addEventListener('change', function () {
+        return onChange(true);
       });
+      field.addEventListener('input', function () {
+        return onChange(true);
+      });
+      fieldData.setError = setError;
+      return fieldData;
     }).filter(Boolean);
     emitter.on(events.changeStatus, function () {
       var hasInvalidFields = fields.some(function (f) {
         return !f.isValid;
       });
-      console.log('changestatus', hasInvalidFields, submitted);
 
       if (!hasInvalidFields) {
         if (submitted) {
@@ -305,11 +388,15 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
       var hasInvalidFields = fields.some(function (f) {
         return !f.isValid;
       });
+      console.log('submit', hasInvalidFields, fields);
 
       if (!hasInvalidFields) {
-        form.submit();
+        submitForm(form);
       }
     });
+    return {
+      fields: fields
+    };
   }
 
   window.utils = window.utils || {};
@@ -776,6 +863,50 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 "use strict";
 
 (function () {
+  function phoneMask(input) {
+    var keyCode;
+
+    function mask(event) {
+      event.keyCode && (keyCode = event.keyCode);
+      var pos = this.selectionStart;
+      if (pos < 3) event.preventDefault();
+      var matrix = '+7 (___) ___-__-__',
+          i = 0,
+          def = matrix.replace(/\D/g, ''),
+          val = this.value.replace(/\D/g, ''),
+          new_value = matrix.replace(/[_\d]/g, function (a) {
+        return i < val.length ? val.charAt(i++) || def.charAt(i) : a;
+      });
+      i = new_value.indexOf('_');
+
+      if (i != -1) {
+        i < 5 && (i = 3);
+        new_value = new_value.slice(0, i);
+      }
+
+      var reg = matrix.substr(0, this.value.length).replace(/_+/g, function (a) {
+        return '\\d{1,' + a.length + '}';
+      }).replace(/[+()]/g, '\\$&');
+      reg = new RegExp('^' + reg + '$');
+      if (!reg.test(this.value) || this.value.length < 5 || keyCode > 47 && keyCode < 58) this.value = new_value;
+      if (event.type == 'blur' && this.value.length < 5) this.value = '';
+    }
+
+    input.addEventListener('input', mask, false);
+    input.addEventListener('focus', mask, false);
+    input.addEventListener('blur', mask, false);
+    input.addEventListener('keydown', mask, false);
+  }
+
+  window.components = window.components || {};
+  window.components.phoneMask = phoneMask;
+  document.querySelectorAll('[data-mask="phone"]').forEach(function (el) {
+    return phoneMask(el);
+  });
+})();
+"use strict";
+
+(function () {
   var selectors = {
     viewport: '.scroll-slider-viewport',
     container: '.scroll-slider-slides',
@@ -1186,10 +1317,41 @@ window.addEventListener('resize', function () {
   var contactForm = document.getElementById('home-contact-form');
 
   if (contactForm) {
-    utils.validator(contactForm, {
+    window.contactForm = utils.validator(contactForm, {
       name: {
-        required: {}
+        required: {
+          message: 'Обязательное поле'
+        }
+      },
+      company: {
+        required: {
+          message: 'Обязательное поле'
+        }
+      },
+      email: {
+        required: {
+          message: 'Обязательное поле'
+        },
+        email: {
+          message: 'Некорректный формат'
+        }
+      },
+      phone: {
+        required: {
+          message: 'Обязательное поле'
+        },
+        mask: {
+          re: /^\+7 \(\d{3}\) \d{3}\-\d{2}\-\d{2}$/,
+          message: 'Некорректный формат'
+        }
+      },
+      agreement: {
+        required: {
+          message: 'Обязательное поле'
+        }
       }
+    }, {
+      parent: '.form-field'
     });
   }
 })();

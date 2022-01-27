@@ -8,7 +8,7 @@
       .home-contact-form__image
         img(src="./img/icons/contacts.png" width="405")
 
-      form#home-contact-form.home-contact-form__fields
+      form#home-contact-form.home-contact-form__fields(action="/contacts" method="POST")
         .form-field
           input.form-control(type="text" name="name" placeholder="ФИО*")
         .form-field
@@ -16,7 +16,7 @@
         .form-field
           input.form-control(type="text" name="email" placeholder="Электронная почта*")
         .form-field
-          input.form-control(type="text" name="phone" placeholder="Номер телефона*")
+          input.form-control(data-mask="phone" type="text" name="phone" placeholder="Номер телефона*")
         .form-field
           textarea.form-control(name="comment" placeholder="Комментарий")
         .form-field.home-contact-form__confirm

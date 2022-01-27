@@ -4,15 +4,89 @@
     changeStatus: 'form-validator-change-status'
   };
 
-  function validateInput(field, rules) {
-    return { isValid: true, error: '' };
+  const REQUIRED = 'required';
+  const EMAIL = 'email';
+  const MASK = 'mask';
+
+  const EMAIL_RE =
+    /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
+
+  function validateInput(field, rules = {}) {
+    let isValid = true;
+    let error = '';
+
+    let value = field.value;
+
+    Object.entries(rules).forEach(([ruleName, rule]) => {
+      if (!isValid) return;
+
+      switch (ruleName) {
+        case REQUIRED:
+          if (!value) {
+            isValid = false;
+            error = rule.message;
+          }
+          break;
+        case EMAIL:
+          if (value) {
+            let isEmail = EMAIL_RE.test(value);
+            if (!isEmail) {
+              isValid = false;
+              error = rule.message;
+            }
+          }
+          break;
+        case MASK:
+          if (value) {
+            let re = rule.re;
+            let isCorrect = re.test(value);
+            if (!isCorrect) {
+              isValid = false;
+              error = rule.message;
+            }
+          }
+          break;
+      }
+    });
+
+    return { isValid, error };
   }
 
-  function validateCheckbox(field, rules) {
-    return { isValid: true, error: '' };
+  function validateCheckbox(field, rules = {}) {
+    let isValid = true;
+    let error = '';
+
+    let checked = field.checked;
+
+    Object.entries(rules).forEach(([ruleName, rule]) => {
+      switch (ruleName) {
+        case REQUIRED:
+          if (!checked) {
+            isValid = false;
+            error = rule.message;
+          }
+          break;
+      }
+    });
+
+    return { isValid, error };
   }
 
-  function validator(form, rules) {
+  function createError() {
+    let el = document.createElement('div');
+    el.classList.add('form-error');
+    return el;
+  }
+
+  function submitForm(form) {
+    let formData = new FormData(form);
+    fetch(form.action, {
+      method: 'POST',
+      body: formData
+    });
+  }
+
+  function validator(form, rules, config = {}) {
     const emitter = utils.createEmitter();
     let submitted = false;
 
@@ -36,9 +110,14 @@
 
         if (!validator) return;
 
+        let parent = config && config.parent && field.closest(config.parent);
+        if (!parent) parent = field.parentElement;
+
+
         let fieldData = {
           name: fieldName,
           element: field,
+          parent,
           type: field.type,
           rules: fieldRules,
           touched: false,
@@ -50,25 +129,23 @@
         function setError() {
           if (!submitted || fieldData.isValid) {
             if (fieldData.$error) {
-              fieldData.$error.detach();
+              fieldData.$error.remove();
             }
             fieldData.element.classList.remove('invalid');
           } else {
             if (!fieldData.$error) {
-              fieldData.$error = document.createElement('div');
-              fieldData.$error.addClass('form-error');
+              fieldData.$error = createError();
             }
             fieldData.$error.textContent = fieldData.errorText;
-            fieldData.element.parentElement.insertBefore(
-              fieldData.$error,
-              fieldData.element.nextElementSibling
-            );
+
+            fieldData.parent.appendChild(fieldData.$error);
+
             fieldData.element.classList.add('invalid');
           }
         }
 
-        function onChange() {
-          if (!fieldData.touched) {
+        function onChange(touch) {
+          if (touch && !fieldData.touched) {
             fieldData.touched = true;
             emitter.emit(events.touch);
           }
@@ -82,19 +159,18 @@
           emitter.emit(events.changeStatus);
         }
 
-        field.addEventListener('change', onChange);
-        field.addEventListener('input', onChange);
+        onChange();
 
-        return {
-          ...fieldData,
-          setError
-        };
+        field.addEventListener('change', () => onChange(true));
+        field.addEventListener('input', () => onChange(true));
+
+        fieldData.setError = setError;
+        return fieldData;
       })
       .filter(Boolean);
 
     emitter.on(events.changeStatus, () => {
       let hasInvalidFields = fields.some((f) => !f.isValid);
-      console.log('changestatus', hasInvalidFields, submitted);
       if (!hasInvalidFields) {
         if (submitted) {
           $submitButton.disabled = true;
@@ -114,10 +190,15 @@
         fields.forEach((f) => f.setError());
       }
       let hasInvalidFields = fields.some((f) => !f.isValid);
+      console.log('submit', hasInvalidFields, fields);
       if (!hasInvalidFields) {
-        form.submit();
+        submitForm(form);
       }
     });
+
+    return {
+      fields
+    };
   }
 
   window.utils = window.utils || {};

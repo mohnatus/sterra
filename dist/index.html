@@ -1224,7 +1224,7 @@
               <div class="container">
                 <div class="home-contact-form__wrapper">
                   <div class="home-contact-form__image"><img src="./img/icons/contacts.png" width="405"></div>
-                  <form class="home-contact-form__fields" id="home-contact-form">
+                  <form class="home-contact-form__fields" id="home-contact-form" action="/contacts" method="POST">
                     <div class="form-field">
                       <input class="form-control" type="text" name="name" placeholder="ФИО*">
                     </div>
@@ -1235,7 +1235,7 @@
                       <input class="form-control" type="text" name="email" placeholder="Электронная почта*">
                     </div>
                     <div class="form-field">
-                      <input class="form-control" type="text" name="phone" placeholder="Номер телефона*">
+                      <input class="form-control" data-mask="phone" type="text" name="phone" placeholder="Номер телефона*">
                     </div>
                     <div class="form-field">
                       <textarea class="form-control" name="comment" placeholder="Комментарий"></textarea>

@@ -1384,21 +1384,21 @@ textarea.form-control {
 }
 .checkbox .checkbox-box {
   border: 1px solid var(--border);
+  outline: none;
   width: 22px;
   height: 22px;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-}
-.checkbox .checkbox-box:invalid, .checkbox .checkbox-box.invalid, .invalid .checkbox .checkbox-box {
-  border-color: var(--error);
+  cursor: pointer;
 }
 .checkbox input:focus + .checkbox-box {
   border-color: #918cff;
   box-shadow: 0px 0px 6px rgba(30, 29, 133, 0.5);
+  outline: none;
 }
-.checkbox input:invalid + .checkbox-box:invalid, .checkbox input:invalid + .checkbox-box.invalid, .invalid .checkbox input:invalid + .checkbox-box {
+.checkbox input.invalid + .checkbox-box {
   border-color: var(--error);
 }
 .checkbox input[disabled] ~ .checkbox-box,

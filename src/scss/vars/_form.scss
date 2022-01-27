@@ -1,19 +1,16 @@
 @mixin form-control-view {
   border: 1px solid var(--border);
+  outline: none;
 }
 
 @mixin form-control-invalid {
-  &:invalid,
-  &.invalid,
-  .invalid & {
-    border-color: var(--error);
-  }
+  border-color: var(--error);
 }
 
 @mixin form-control-focus {
   border-color: #918cff;
   box-shadow: 0px 0px 6px rgba(30, 29, 133, 0.5);
-
+  outline: none;
 }
 
 @mixin form-control-disabled {
@@ -21,26 +18,23 @@
 }
 
 @mixin form-control {
-
-
-  border: 1px solid var(--border);
-  outline: none;
+  @include form-control-view();
 
   &:focus,
   &.focus {
-    border-color: #918cff;
-    box-shadow: 0px 0px 6px rgba(30, 29, 133, 0.5);
-    outline: none;
+    @include form-control-focus();
   }
 
   &:invalid,
   &.invalid,
   .invalid & {
-    border-color: var(--error);
+    @include form-control-invalid();
   }
 
-  &[disabled], &.disabled, .disabled & {
-    opacity: 0.5;
+  &[disabled],
+  &.disabled,
+  .disabled & {
+    @include form-control-disabled();
   }
 }
 
