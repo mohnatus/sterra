@@ -672,7 +672,8 @@ body {
 :root {
   --gap: var(--space-xs);
   --max-content-width: 1360px;
-  --content-width: calc(100vw - 2 * var(--gap));
+  --viewport-width: calc(100vw - var(--scrollbar-width, 0));
+  --content-width: calc(min(var(--viewport-width), var(--max-content-width)) - 2 * var(--gap));
   --content-side-offset: calc((100vw - var(--content-width)) / 2);
 }
 @media (min-width: 768px) {
@@ -686,11 +687,6 @@ body {
   }
 }
 
-@media (min-width: 1360px) {
-  :root {
-    --content-width: calc(var(--max-content-width) - 2 * var(--gap));
-  }
-}
 .container {
   margin-left: auto;
   margin-right: auto;
