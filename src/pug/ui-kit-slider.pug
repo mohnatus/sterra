@@ -1,0 +1,38 @@
+extends helpers/uikit-layout
+
+
+block content
+  include mixins/slider
+  include data/solutions
+
+  .container
+
+    h1.h1.m-b-sm UI Kit
+
+    h2.h2.m-b-sm Слайдеры
+
+  section.home-solutions
+    .scroll-slider
+      .scroll-slider-viewport
+        .scroll-slider-slides
+
+          each solution in solutions
+            // SLIDE
+            section.scroll-slider-slide.c-col-6.c-col-lg-4
+              a.home-solution(href=solution.link data-type=solution.type)
+                .home-solution__group #{solution.type === 'complex' ? 'Комплексное решение' : 'Отраслевое решение'}
+                h3.home-solution__title= solution.title
+                .home-solution__icon
+                  img(src=solution.icon alt="")
+
+      .container
+        +slider-controls({
+          link: '#',
+          name: 'Каталог решений'
+        })
+
+block scripts
+  script.
+    document.addEventListener('DOMContentLoaded', () => {
+      components.scrollSlider(document.querySelector('.scroll-slider'))
+    })

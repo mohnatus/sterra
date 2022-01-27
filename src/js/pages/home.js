@@ -1,8 +1,9 @@
 (() => {
   // PAGES.HOME_PAGE
-  const isHomePage = document
-    .querySelector('.page')
-    .classList.contains('home-page');
+  let page = document.querySelector('.page');
+  if (!page) return;
+  
+  const isHomePage = page.classList.contains('home-page');
   if (!isHomePage) return;
 
   const homeSlider = document.getElementById('home-slider');

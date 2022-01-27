@@ -1575,7 +1575,9 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
 (function () {
   // PAGES.HOME_PAGE
-  var isHomePage = document.querySelector('.page').classList.contains('home-page');
+  var page = document.querySelector('.page');
+  if (!page) return;
+  var isHomePage = page.classList.contains('home-page');
   if (!isHomePage) return;
   var homeSlider = document.getElementById('home-slider');
 

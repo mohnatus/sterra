@@ -1,0 +1,125 @@
+extends helpers/uikit-layout.pug
+
+
+
+block content
+  include mixins/icon.pug
+
+  .container
+    h1.m-b UI Kit
+
+    h2.m-b Цвета
+
+    -
+      var colors = [
+
+        'primary', 'primary-contract', 'primary-variant',
+        'accent', 'accent-contrast', 'accent-variant', 'error',
+        'background', 'text', 'block-background', 'label', 'link', 'link-variant', 'dark-block-background', 'header', 'border', 'active-control'
+      ]
+    .row.m-b
+      each color in colors
+        .col.col-6.col-md-4.col-lg-3
+          .d-flex.m-b
+            div.color.m-r(style="background-color: var(--" + color + ")")
+            div --#{color}
+
+    h2.m-b Кнопки
+
+    .row
+      .col.col-12.m-b
+        button.btn.btn-accent.btn-lg.m-b Выбрать решение
+        button.btn.btn-accent.btn-lg.m-b
+          .btn-icon
+            +svg-icon('upload')
+          |Презентация о компании
+        button.btn.btn-accent.btn-lg.m-b(disabled)
+          .btn-icon
+            +svg-icon('upload')
+          |Презентация о компании
+      .col.col-12.m-b
+        button.btn.btn-accent.m-b Перейти в каталог
+        button.btn.btn-accent.m-b
+          .btn-icon
+            +svg-icon('upload')
+          |Презентация о компании
+        button.btn.btn-accent.m-b(disabled)
+          .btn-icon
+            +svg-icon('upload')
+          |Презентация о компании
+      .col.col-12.m-b
+        button.btn.btn-primary.btn-lg.m-b Записаться на курс
+        button.btn.btn-primary.btn-lg.m-b(disabled) Записаться на курс
+      .col.col-12.m-b
+        button.btn.btn-primary.m-b Записаться на курс
+      .col.col-12.m-b
+        button.btn.btn-primary-inverse.btn-lg.m-b
+          .btn-icon
+            +svg-icon('link')
+          |Программа
+        button.btn.btn-primary-inverse.btn-lg.m-b(disabled)
+          .btn-icon
+            +svg-icon('link')
+          |Программа
+      .col.col-12.m-b
+        button.btn.btn-primary-inverse.m-b Подробнее
+        button.btn.btn-primary-inverse.m-b
+          .btn-icon
+            +svg-icon('upload')
+          |Скачать
+        button.btn.btn-primary-inverse.m-b(disabled)
+          .btn-icon
+            +svg-icon('upload')
+          |Скачать
+      .col.col-12.m-b
+        button.btn.btn-primary-inverse.btn-round(type="button")
+          +svg-icon('search', 14, 14)
+        button.btn.btn-primary-inverse.btn-round(type="button")
+          +svg-icon('user', 16, 16)
+
+    h2.m-b Формы
+
+    .row
+      .col.col-12.col-md-6.col-lg-4.m-b
+        .form-field
+          label.form-label Ваше имя
+          input.form-control(placeholder="Введите имя")
+      .col.col-12.col-md-6.col-lg-4.m-b
+        .form-field
+          label.form-label Ваше имя
+          input.form-control.invalid(placeholder="Введите имя")
+          .form-error Некорректное значение
+    .row
+      .col.col-12.col-md-6.col-lg-4.m-b
+        .form-field
+          label.form-label Ваше имя
+          input.form-control(disabled placeholder="Введите имя")
+      .col.col-12.col-md-6.col-lg-4.m-b
+        .form-field
+          label.form-label Ваше имя
+          input.form-control(disabled value="Иванов Иван" placeholder="Введите имя")
+    .row
+      .col.col-12.col-md-6.col-lg-4.m-b
+        .form-field
+          label.form-label Ваш вопрос
+          textarea.form-control(placeholder="Введите вопрос")
+    .row
+      .col.col-12.col-md-6.col-lg-4.m-b
+        .form-field
+          label.checkbox
+            input(type="checkbox")
+            .checkbox-box
+            .checkbox-label  Подтвердите согласие
+      .col.col-12.col-md-6.col-lg-4.m-b
+        .form-field
+          label.checkbox
+            input.invalid(type="checkbox" )
+            .checkbox-box
+            .checkbox-label  Подтвердите согласие
+          .form-error Некорректное значение
+      .col.col-12.col-md-6.col-lg-4.m-b
+        .form-field
+          label.checkbox
+            input(type="checkbox" disabled)
+            .checkbox-box
+            .checkbox-label  Подтвердите согласие

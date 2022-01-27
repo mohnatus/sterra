@@ -1,0 +1,13 @@
+extends helpers/uikit-layout.pug
+block append head
+  style.
+    .t-content {
+      background: var(--grey);
+      height: 200vh;
+    }
+block content
+  include components/header/index.pug
+
+  main
+    .container
+      .t-content
