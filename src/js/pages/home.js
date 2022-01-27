@@ -75,4 +75,53 @@
       }
     );
   }
+
+  const $solutions = document.querySelector('.home-solutions');
+
+  if ($solutions) {
+    let $slider = $solutions.querySelector('.scroll-slider');
+    let $slides = [...$slider.querySelectorAll('.home-solution')].map((el) => {
+      return {
+        element: el.parentElement,
+        type: el.dataset.type
+      };
+    });
+    let scrollSlider = $slider.scrollSlider;
+
+    let $filters = [
+      ...$solutions.querySelectorAll('.home-solutions__filter')
+    ].map((el) => {
+      return {
+        element: el,
+        type: el.dataset.type
+      };
+    });
+
+    let activeFilter = null;
+    function applyFilter(filter) {
+      if (activeFilter === filter) return;
+      activeFilter = filter;
+
+      $filters.forEach((filter) => {
+        filter.element.classList.toggle('active', filter === activeFilter);
+      });
+
+      $slides.forEach((slide) => {
+        if (!filter.type || filter.type === slide.type) {
+          slide.element.removeAttribute('hidden');
+        } else {
+          slide.element.setAttribute('hidden', true);
+        }
+      });
+      scrollSlider.update();
+    }
+
+    applyFilter($filters[0]);
+
+    $filters.forEach((filter) => {
+      filter.element.addEventListener('click', () => {
+        applyFilter(filter);
+      });
+    });
+  }
 })();

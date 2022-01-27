@@ -944,6 +944,18 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 })();
 "use strict";
 
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
 (function () {
   var selectors = {
     viewport: '.scroll-slider-viewport',
@@ -1113,11 +1125,15 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
     }
 
     function init() {
-      $slides = $container.querySelectorAll(selectors.slide);
+      $slides = _toConsumableArray($container.querySelectorAll(selectors.slide)).filter(function (el) {
+        return !el.hasAttribute('hidden');
+      });
       slideWidth = $slides[0].offsetWidth;
       slidesCount = $slides.length;
       activeSlide = 0;
       if ($prev) $prev.disabled = true;
+      if ($next) $next.disabled = false;
+      $viewport.scrollLeft = 0;
       orderSlides(activeSlide);
 
       if ($viewport.scrollWidth - $viewport.offsetWidth <= 40) {
@@ -1126,6 +1142,11 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
     }
 
     init();
+    element.scrollSlider = {
+      update: function update() {
+        init();
+      }
+    };
   }
 
   window.components = window.components || {};
@@ -1469,6 +1490,18 @@ window.addEventListener('resize', function () {
 });
 "use strict";
 
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
 (function () {
   var isHomePage = document.querySelector('.page').classList.contains('home-page');
   if (!isHomePage) return;
@@ -1540,6 +1573,52 @@ window.addEventListener('resize', function () {
           }
         });
       }
+    });
+  }
+
+  var $solutions = document.querySelector('.home-solutions');
+
+  if ($solutions) {
+    var applyFilter = function applyFilter(filter) {
+      if (activeFilter === filter) return;
+      activeFilter = filter;
+      $filters.forEach(function (filter) {
+        filter.element.classList.toggle('active', filter === activeFilter);
+      });
+      $slides.forEach(function (slide) {
+        if (!filter.type || filter.type === slide.type) {
+          slide.element.removeAttribute('hidden');
+        } else {
+          slide.element.setAttribute('hidden', true);
+        }
+      });
+      scrollSlider.update();
+    };
+
+    var $slider = $solutions.querySelector('.scroll-slider');
+
+    var $slides = _toConsumableArray($slider.querySelectorAll('.home-solution')).map(function (el) {
+      return {
+        element: el.parentElement,
+        type: el.dataset.type
+      };
+    });
+
+    var scrollSlider = $slider.scrollSlider;
+
+    var $filters = _toConsumableArray($solutions.querySelectorAll('.home-solutions__filter')).map(function (el) {
+      return {
+        element: el,
+        type: el.dataset.type
+      };
+    });
+
+    var activeFilter = null;
+    applyFilter($filters[0]);
+    $filters.forEach(function (filter) {
+      filter.element.addEventListener('click', function () {
+        applyFilter(filter);
+      });
     });
   }
 })();

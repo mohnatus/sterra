@@ -30,7 +30,6 @@
 
       opacity: 0.5;
 
-
       &[data-order='1'] {
         @include visibleSolutionSlide();
       }
@@ -69,8 +68,10 @@
     }
 
     .scroll-slider {
-      &[data-order='2'] {
-        @include visibleSolutionSlide;
+      &-slide {
+        &[data-order='2'] {
+          @include visibleSolutionSlide;
+        }
       }
     }
   }
@@ -93,8 +94,10 @@
     }
 
     .scroll-slider {
-      &[data-order='3'] {
-        @include visibleSolutionSlide;
+      &-slide {
+        &[data-order='3'] {
+          @include visibleSolutionSlide;
+        }
       }
     }
   }

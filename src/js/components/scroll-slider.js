@@ -194,12 +194,17 @@
     }
 
     function init() {
-      $slides = $container.querySelectorAll(selectors.slide);
+      $slides = [...$container.querySelectorAll(selectors.slide)].filter(
+        (el) => !el.hasAttribute('hidden')
+      );
       slideWidth = $slides[0].offsetWidth;
       slidesCount = $slides.length;
       activeSlide = 0;
 
       if ($prev) $prev.disabled = true;
+      if ($next) $next.disabled = false;
+
+      $viewport.scrollLeft = 0;
 
       orderSlides(activeSlide);
 
@@ -209,6 +214,12 @@
     }
 
     init();
+
+    element.scrollSlider = {
+      update() {
+        init();
+      }
+    };
   }
 
   window.components = window.components || {};
