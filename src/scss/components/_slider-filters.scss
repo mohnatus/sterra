@@ -1,4 +1,4 @@
-.slider-menu {
+.slider-filters {
   display: flex;
   list-style: none;
   font-size: 13px;
@@ -12,7 +12,7 @@
       margin-right: var(--space-unit);
     }
 
-    button {
+    .slider-filter {
       @include button;
       background: transparent;
       color: var(--primary);

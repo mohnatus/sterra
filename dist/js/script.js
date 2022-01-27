@@ -995,7 +995,8 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         x2 = 0,
         initialX,
         finalX;
-    var shifting = false;
+    var shifting = false,
+        blocked = false;
     element.addEventListener('click', function (e) {
       if (shifting) e.preventDefault();
     });
@@ -1044,6 +1045,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     }
 
     function onDragStart(e) {
+      if (blocked) return;
       element.style.userSelect = 'none';
       element.style.cursor = 'grabbing';
       e = e || window.event;
@@ -1060,6 +1062,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     }
 
     function onDragAction(e) {
+      if (blocked) return;
       e = e || window.event;
 
       if (e.type == 'touchmove') {
@@ -1137,7 +1140,11 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       orderSlides(activeSlide);
 
       if ($viewport.scrollWidth - $viewport.offsetWidth <= 40) {
-        if ($controls) $controls.style.display = 'none';
+        blocked = true;
+        if ($next) $next.disabled = true;
+      } else {
+        blocked = false;
+        if ($next) $next.disabled = false;
       }
     }
 
@@ -1576,37 +1583,21 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     });
   }
 
-  var $solutions = document.querySelector('.home-solutions');
+  function handleSliders(element) {
+    if (!element) return;
+    var $slider = element.querySelector('.scroll-slider');
 
-  if ($solutions) {
-    var applyFilter = function applyFilter(filter) {
-      if (activeFilter === filter) return;
-      activeFilter = filter;
-      $filters.forEach(function (filter) {
-        filter.element.classList.toggle('active', filter === activeFilter);
-      });
-      $slides.forEach(function (slide) {
-        if (!filter.type || filter.type === slide.type) {
-          slide.element.removeAttribute('hidden');
-        } else {
-          slide.element.setAttribute('hidden', true);
-        }
-      });
-      scrollSlider.update();
-    };
-
-    var $slider = $solutions.querySelector('.scroll-slider');
-
-    var $slides = _toConsumableArray($slider.querySelectorAll('.home-solution')).map(function (el) {
+    var $slides = _toConsumableArray($slider.querySelectorAll('.scroll-slider-slide')).map(function (el) {
+      var block = el.querySelector('[data-type]');
       return {
-        element: el.parentElement,
-        type: el.dataset.type
+        element: el,
+        type: block.dataset.type
       };
     });
 
     var scrollSlider = $slider.scrollSlider;
 
-    var $filters = _toConsumableArray($solutions.querySelectorAll('.home-solutions__filter')).map(function (el) {
+    var $filters = _toConsumableArray(element.querySelectorAll('.slider-filter')).map(function (el) {
       return {
         element: el,
         type: el.dataset.type
@@ -1614,6 +1605,25 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     });
 
     var activeFilter = null;
+
+    function applyFilter(filter) {
+      if (activeFilter === filter) return;
+      activeFilter = filter;
+      $filters.forEach(function (filter) {
+        filter.element.classList.toggle('active', filter === activeFilter);
+      });
+      $slides.forEach(function (slide) {
+        console.log(slide, slide.type, filter.type);
+
+        if (!filter.type || filter.type === slide.type) {
+          slide.element.removeAttribute('hidden');
+        } else {
+          slide.element.setAttribute('hidden', true);
+        }
+      });
+      scrollSlider.update();
+    }
+
     applyFilter($filters[0]);
     $filters.forEach(function (filter) {
       filter.element.addEventListener('click', function () {
@@ -1621,4 +1631,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       });
     });
   }
+
+  handleSliders(document.querySelector('.home-solutions'));
+  handleSliders(document.querySelector('.home-news'));
 })();

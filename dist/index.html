@@ -926,15 +926,15 @@
             <div class="container">
               <header class="home-solutions__header">
                 <h2 class="h1 home-solutions__title">Наши решения</h2>
-                <ul class="slider-menu">
-                  <li class="slider-menu__item">
-                    <button class="home-solutions__filter active" type="button">Все</button>
+                <ul class="slider-filters">
+                  <li class="slider-filters__item">
+                    <button class="slider-filter active" type="button">Все</button>
                   </li>
-                  <li class="slider-menu__item">
-                    <button class="home-solutions__filter" type="button" data-type="complex">Комплексные</button>
+                  <li class="slider-filters__item">
+                    <button class="slider-filter" type="button" data-type="complex">Комплексные</button>
                   </li>
-                  <li class="slider-menu__item">
-                    <button class="home-solutions__filter" type="button" data-type="sector">Отраслевые</button>
+                  <li class="slider-filters__item">
+                    <button class="slider-filter" type="button" data-type="sector">Отраслевые</button>
                   </li>
                 </ul>
               </header>
@@ -1114,15 +1114,15 @@
             <div class="container">
               <header class="home-news__header">
                 <h2 class="h1 home-news__title">Новости и события</h2>
-                <ul class="slider-menu">
-                  <li class="slider-menu__item">
-                    <button class="active" type="button">Новости</button>
+                <ul class="slider-filters">
+                  <li class="slider-filters__item">
+                    <button class="slider-filter active" type="button" data-type="news">Новости</button>
                   </li>
-                  <li class="slider-menu__item">
-                    <button type="button">Мероприятия</button>
+                  <li class="slider-filters__item">
+                    <button class="slider-filter" type="button" data-type="events">Мероприятия</button>
                   </li>
-                  <li class="slider-menu__item">
-                    <button type="button">Обновления</button>
+                  <li class="slider-filters__item">
+                    <button class="slider-filter" type="button" data-type="updates">Обновления</button>
                   </li>
                 </ul>
               </header>
@@ -1130,42 +1130,77 @@
             <div class="scroll-slider">
               <div class="scroll-slider-viewport">
                 <div class="scroll-slider-slides">
-                  <section class="scroll-slider-slide c-col-6 c-col-md-4 c-col-lg-3"><a class="home-news-article" href="#">
+                  <section class="scroll-slider-slide c-col-6 c-col-md-4 c-col-lg-3"><a class="home-news-article" href="#" data-type="news">
                       <div class="home-news-article__img"><img src="./img/news/1.png"></div>
                       <div class="home-news-article__date">7 октября 2021</div>
                       <h3 class="home-news-article__title">С-Терра на GIS Days 2021</h3>
                       <div class="home-news-article__text">Компания «С-Терра СиЭсПи» принимает участие в форуме «Global Information Security Days 2021», посвященном технологической безопасности и новой киберреальности. </div></a></section>
-                  <section class="scroll-slider-slide c-col-6 c-col-md-4 c-col-lg-3"><a class="home-news-article" href="#">
+                  <section class="scroll-slider-slide c-col-6 c-col-md-4 c-col-lg-3"><a class="home-news-article" href="#" data-type="events">
                       <div class="home-news-article__img"><img src="./img/news/2.png"></div>
                       <div class="home-news-article__date">9 июня 2021</div>
                       <h3 class="home-news-article__title">С-Терра TLS Шлюз 4.3 успешно прошел испытания</h3>
                       <div class="home-news-article__text">Доказана совместимость С‑Терра TLS Шлюз 4.3 и эталонной реализации российских криптоалгоритмов для протокола TLS 1.2.</div></a></section>
-                  <section class="scroll-slider-slide c-col-6 c-col-md-4 c-col-lg-3"><a class="home-news-article" href="#">
+                  <section class="scroll-slider-slide c-col-6 c-col-md-4 c-col-lg-3"><a class="home-news-article" href="#" data-type="updates">
                       <div class="home-news-article__img"><img src="./img/news/3.png"></div>
                       <div class="home-news-article__date">21 мая 2021</div>
                       <h3 class="home-news-article__title">Итоги вебинара про С-Терра КП и С-Терра Клиент</h3>
                       <div class="home-news-article__text">20 мая 2021 г «С‑Терра СиЭсПи» провела вебинар «Версия 4.3. С‑Терра КП и С‑Терра Клиент». Презентация и запись вебинара размещены на сайте</div></a></section>
-                  <section class="scroll-slider-slide c-col-6 c-col-md-4 c-col-lg-3"><a class="home-news-article" href="#">
+                  <section class="scroll-slider-slide c-col-6 c-col-md-4 c-col-lg-3"><a class="home-news-article" href="#" data-type="news">
                       <div class="home-news-article__img"><img src="./img/news/4.png"></div>
                       <div class="home-news-article__date">30 марта 2020</div>
                       <h3 class="home-news-article__title">Решения С-Терра для подключения к Единому Порталу Тестирования Ростехнадзора</h3>
                       <div class="home-news-article__text">Решения С-Терра защищают доступ при аттестации работников в области промышленной безопасности.</div></a></section>
-                  <section class="scroll-slider-slide c-col-6 c-col-md-4 c-col-lg-3"><a class="home-news-article" href="#">
+                  <section class="scroll-slider-slide c-col-6 c-col-md-4 c-col-lg-3"><a class="home-news-article" href="#" data-type="events">
                       <div class="home-news-article__img"><img src="./img/news/1.png"></div>
                       <div class="home-news-article__date">7 октября 2021</div>
                       <h3 class="home-news-article__title">С-Терра на GIS Days 2021</h3>
                       <div class="home-news-article__text">Компания «С-Терра СиЭсПи» принимает участие в форуме «Global Information Security Days 2021», посвященном технологической безопасности и новой киберреальности. </div></a></section>
-                  <section class="scroll-slider-slide c-col-6 c-col-md-4 c-col-lg-3"><a class="home-news-article" href="#">
+                  <section class="scroll-slider-slide c-col-6 c-col-md-4 c-col-lg-3"><a class="home-news-article" href="#" data-type="updates">
                       <div class="home-news-article__img"><img src="./img/news/2.png"></div>
                       <div class="home-news-article__date">9 июня 2021</div>
                       <h3 class="home-news-article__title">С-Терра TLS Шлюз 4.3 успешно прошел испытания</h3>
                       <div class="home-news-article__text">Доказана совместимость С‑Терра TLS Шлюз 4.3 и эталонной реализации российских криптоалгоритмов для протокола TLS 1.2.</div></a></section>
-                  <section class="scroll-slider-slide c-col-6 c-col-md-4 c-col-lg-3"><a class="home-news-article" href="#">
+                  <section class="scroll-slider-slide c-col-6 c-col-md-4 c-col-lg-3"><a class="home-news-article" href="#" data-type="news">
                       <div class="home-news-article__img"><img src="./img/news/3.png"></div>
                       <div class="home-news-article__date">21 мая 2021</div>
                       <h3 class="home-news-article__title">Итоги вебинара про С-Терра КП и С-Терра Клиент</h3>
                       <div class="home-news-article__text">20 мая 2021 г «С‑Терра СиЭсПи» провела вебинар «Версия 4.3. С‑Терра КП и С‑Терра Клиент». Презентация и запись вебинара размещены на сайте</div></a></section>
-                  <section class="scroll-slider-slide c-col-6 c-col-md-4 c-col-lg-3"><a class="home-news-article" href="#">
+                  <section class="scroll-slider-slide c-col-6 c-col-md-4 c-col-lg-3"><a class="home-news-article" href="#" data-type="events">
+                      <div class="home-news-article__img"><img src="./img/news/4.png"></div>
+                      <div class="home-news-article__date">30 марта 2020</div>
+                      <h3 class="home-news-article__title">Решения С-Терра для подключения к Единому Порталу Тестирования Ростехнадзора</h3>
+                      <div class="home-news-article__text">Решения С-Терра защищают доступ при аттестации работников в области промышленной безопасности.</div></a></section>
+                  <section class="scroll-slider-slide c-col-6 c-col-md-4 c-col-lg-3"><a class="home-news-article" href="#" data-type="events">
+                      <div class="home-news-article__img"><img src="./img/news/4.png"></div>
+                      <div class="home-news-article__date">30 марта 2020</div>
+                      <h3 class="home-news-article__title">Решения С-Терра для подключения к Единому Порталу Тестирования Ростехнадзора</h3>
+                      <div class="home-news-article__text">Решения С-Терра защищают доступ при аттестации работников в области промышленной безопасности.</div></a></section>
+                  <section class="scroll-slider-slide c-col-6 c-col-md-4 c-col-lg-3"><a class="home-news-article" href="#" data-type="events">
+                      <div class="home-news-article__img"><img src="./img/news/4.png"></div>
+                      <div class="home-news-article__date">30 марта 2020</div>
+                      <h3 class="home-news-article__title">Решения С-Терра для подключения к Единому Порталу Тестирования Ростехнадзора</h3>
+                      <div class="home-news-article__text">Решения С-Терра защищают доступ при аттестации работников в области промышленной безопасности.</div></a></section>
+                  <section class="scroll-slider-slide c-col-6 c-col-md-4 c-col-lg-3"><a class="home-news-article" href="#" data-type="events">
+                      <div class="home-news-article__img"><img src="./img/news/4.png"></div>
+                      <div class="home-news-article__date">30 марта 2020</div>
+                      <h3 class="home-news-article__title">Решения С-Терра для подключения к Единому Порталу Тестирования Ростехнадзора</h3>
+                      <div class="home-news-article__text">Решения С-Терра защищают доступ при аттестации работников в области промышленной безопасности.</div></a></section>
+                  <section class="scroll-slider-slide c-col-6 c-col-md-4 c-col-lg-3"><a class="home-news-article" href="#" data-type="events">
+                      <div class="home-news-article__img"><img src="./img/news/4.png"></div>
+                      <div class="home-news-article__date">30 марта 2020</div>
+                      <h3 class="home-news-article__title">Решения С-Терра для подключения к Единому Порталу Тестирования Ростехнадзора</h3>
+                      <div class="home-news-article__text">Решения С-Терра защищают доступ при аттестации работников в области промышленной безопасности.</div></a></section>
+                  <section class="scroll-slider-slide c-col-6 c-col-md-4 c-col-lg-3"><a class="home-news-article" href="#" data-type="events">
+                      <div class="home-news-article__img"><img src="./img/news/4.png"></div>
+                      <div class="home-news-article__date">30 марта 2020</div>
+                      <h3 class="home-news-article__title">Решения С-Терра для подключения к Единому Порталу Тестирования Ростехнадзора</h3>
+                      <div class="home-news-article__text">Решения С-Терра защищают доступ при аттестации работников в области промышленной безопасности.</div></a></section>
+                  <section class="scroll-slider-slide c-col-6 c-col-md-4 c-col-lg-3"><a class="home-news-article" href="#" data-type="events">
+                      <div class="home-news-article__img"><img src="./img/news/4.png"></div>
+                      <div class="home-news-article__date">30 марта 2020</div>
+                      <h3 class="home-news-article__title">Решения С-Терра для подключения к Единому Порталу Тестирования Ростехнадзора</h3>
+                      <div class="home-news-article__text">Решения С-Терра защищают доступ при аттестации работников в области промышленной безопасности.</div></a></section>
+                  <section class="scroll-slider-slide c-col-6 c-col-md-4 c-col-lg-3"><a class="home-news-article" href="#" data-type="events">
                       <div class="home-news-article__img"><img src="./img/news/4.png"></div>
                       <div class="home-news-article__date">30 марта 2020</div>
                       <h3 class="home-news-article__title">Решения С-Терра для подключения к Единому Порталу Тестирования Ростехнадзора</h3>

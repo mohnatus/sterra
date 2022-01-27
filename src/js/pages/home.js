@@ -76,20 +76,21 @@
     );
   }
 
-  const $solutions = document.querySelector('.home-solutions');
+  function handleSliders(element) {
+    if (!element) return;
 
-  if ($solutions) {
-    let $slider = $solutions.querySelector('.scroll-slider');
-    let $slides = [...$slider.querySelectorAll('.home-solution')].map((el) => {
+    let $slider = element.querySelector('.scroll-slider');
+    let $slides = [...$slider.querySelectorAll('.scroll-slider-slide')].map((el) => {
+      let block = el.querySelector('[data-type]');
       return {
-        element: el.parentElement,
-        type: el.dataset.type
+        element: el,
+        type: block.dataset.type
       };
     });
     let scrollSlider = $slider.scrollSlider;
 
     let $filters = [
-      ...$solutions.querySelectorAll('.home-solutions__filter')
+      ...element.querySelectorAll('.slider-filter')
     ].map((el) => {
       return {
         element: el,
@@ -107,6 +108,7 @@
       });
 
       $slides.forEach((slide) => {
+        console.log(slide, slide.type, filter.type)
         if (!filter.type || filter.type === slide.type) {
           slide.element.removeAttribute('hidden');
         } else {
@@ -124,4 +126,7 @@
       });
     });
   }
+
+  handleSliders(document.querySelector('.home-solutions'));
+  handleSliders(document.querySelector('.home-news'));
 })();

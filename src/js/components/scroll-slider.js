@@ -43,7 +43,7 @@
       initialX,
       finalX;
 
-    let shifting = false;
+    let shifting = false, blocked = false;
 
     element.addEventListener('click', (e) => {
       if (shifting) e.preventDefault();
@@ -106,6 +106,7 @@
     }
 
     function onDragStart(e) {
+      if (blocked) return;
       element.style.userSelect = 'none';
       element.style.cursor = 'grabbing';
 
@@ -123,6 +124,7 @@
     }
 
     function onDragAction(e) {
+      if (blocked) return;
       e = e || window.event;
 
       if (e.type == 'touchmove') {
@@ -209,7 +211,11 @@
       orderSlides(activeSlide);
 
       if ($viewport.scrollWidth - $viewport.offsetWidth <= 40) {
-        if ($controls) $controls.style.display = 'none';
+        blocked = true;
+        if ($next) $next.disabled = true;
+      } else {
+        blocked = false;
+        if ($next) $next.disabled = false;
       }
     }
 

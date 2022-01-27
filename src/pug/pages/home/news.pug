@@ -4,13 +4,13 @@ include ../../mixins/slider.pug
   .container
     header.home-news__header
       h2.h1.home-news__title Новости и события
-      ul.slider-menu
-        li.slider-menu__item
-          button.active(type="button") Новости
-        li.slider-menu__item
-          button(type="button") Мероприятия
-        li.slider-menu__item
-          button(type="button") Обновления
+      ul.slider-filters
+        li.slider-filters__item
+          button.slider-filter.active(type="button" data-type="news") Новости
+        li.slider-filters__item
+          button.slider-filter(type="button" data-type="events") Мероприятия
+        li.slider-filters__item
+          button.slider-filter(type="button" data-type="updates") Обновления
 
   .scroll-slider
     .scroll-slider-viewport
@@ -23,6 +23,7 @@ include ../../mixins/slider.pug
               date: '7 октября 2021',
               title: 'С-Терра на GIS Days 2021',
               text: 'Компания «С-Терра СиЭсПи» принимает участие в форуме «Global Information Security Days 2021», посвященном технологической безопасности и новой киберреальности. ',
+              type: 'news',
             },
             {
               img: './img/news/2.png',
@@ -30,6 +31,7 @@ include ../../mixins/slider.pug
               date: '9 июня 2021',
               title: 'С-Терра TLS Шлюз 4.3 успешно прошел испытания',
               text: 'Доказана совместимость С‑Терра TLS Шлюз 4.3 и эталонной реализации российских криптоалгоритмов для протокола TLS 1.2.',
+              type: 'events',
             },
             {
               img: './img/news/3.png',
@@ -37,6 +39,7 @@ include ../../mixins/slider.pug
               date: '21 мая 2021',
               title: 'Итоги вебинара про С-Терра КП и С-Терра Клиент',
               text: '20 мая 2021 г «С‑Терра СиЭсПи» провела вебинар «Версия 4.3. С‑Терра КП и С‑Терра Клиент». Презентация и запись вебинара размещены на сайте',
+              type: 'updates',
             },
             {
               img: './img/news/4.png',
@@ -44,6 +47,7 @@ include ../../mixins/slider.pug
               date: '30 марта 2020',
               title: 'Решения С-Терра для подключения к Единому Порталу Тестирования Ростехнадзора',
               text: 'Решения С-Терра защищают доступ при аттестации работников в области промышленной безопасности.',
+              type: 'news',
             },
             {
               img: './img/news/1.png',
@@ -51,6 +55,7 @@ include ../../mixins/slider.pug
               date: '7 октября 2021',
               title: 'С-Терра на GIS Days 2021',
               text: 'Компания «С-Терра СиЭсПи» принимает участие в форуме «Global Information Security Days 2021», посвященном технологической безопасности и новой киберреальности. ',
+              type: 'events',
             },
             {
               img: './img/news/2.png',
@@ -58,6 +63,7 @@ include ../../mixins/slider.pug
               date: '9 июня 2021',
               title: 'С-Терра TLS Шлюз 4.3 успешно прошел испытания',
               text: 'Доказана совместимость С‑Терра TLS Шлюз 4.3 и эталонной реализации российских криптоалгоритмов для протокола TLS 1.2.',
+              type: 'updates',
             },
             {
               img: './img/news/3.png',
@@ -65,6 +71,7 @@ include ../../mixins/slider.pug
               date: '21 мая 2021',
               title: 'Итоги вебинара про С-Терра КП и С-Терра Клиент',
               text: '20 мая 2021 г «С‑Терра СиЭсПи» провела вебинар «Версия 4.3. С‑Терра КП и С‑Терра Клиент». Презентация и запись вебинара размещены на сайте',
+              type: 'news',
             },
             {
               img: './img/news/4.png',
@@ -72,12 +79,69 @@ include ../../mixins/slider.pug
               date: '30 марта 2020',
               title: 'Решения С-Терра для подключения к Единому Порталу Тестирования Ростехнадзора',
               text: 'Решения С-Терра защищают доступ при аттестации работников в области промышленной безопасности.',
+              type: 'events',
+            },
+            {
+              img: './img/news/4.png',
+              link: "#",
+              date: '30 марта 2020',
+              title: 'Решения С-Терра для подключения к Единому Порталу Тестирования Ростехнадзора',
+              text: 'Решения С-Терра защищают доступ при аттестации работников в области промышленной безопасности.',
+              type: 'events',
+            },
+            {
+              img: './img/news/4.png',
+              link: "#",
+              date: '30 марта 2020',
+              title: 'Решения С-Терра для подключения к Единому Порталу Тестирования Ростехнадзора',
+              text: 'Решения С-Терра защищают доступ при аттестации работников в области промышленной безопасности.',
+              type: 'events',
+            },
+            {
+              img: './img/news/4.png',
+              link: "#",
+              date: '30 марта 2020',
+              title: 'Решения С-Терра для подключения к Единому Порталу Тестирования Ростехнадзора',
+              text: 'Решения С-Терра защищают доступ при аттестации работников в области промышленной безопасности.',
+              type: 'events',
+            },
+            {
+              img: './img/news/4.png',
+              link: "#",
+              date: '30 марта 2020',
+              title: 'Решения С-Терра для подключения к Единому Порталу Тестирования Ростехнадзора',
+              text: 'Решения С-Терра защищают доступ при аттестации работников в области промышленной безопасности.',
+              type: 'events',
+            },
+            {
+              img: './img/news/4.png',
+              link: "#",
+              date: '30 марта 2020',
+              title: 'Решения С-Терра для подключения к Единому Порталу Тестирования Ростехнадзора',
+              text: 'Решения С-Терра защищают доступ при аттестации работников в области промышленной безопасности.',
+              type: 'events',
+            },
+            {
+              img: './img/news/4.png',
+              link: "#",
+              date: '30 марта 2020',
+              title: 'Решения С-Терра для подключения к Единому Порталу Тестирования Ростехнадзора',
+              text: 'Решения С-Терра защищают доступ при аттестации работников в области промышленной безопасности.',
+              type: 'events',
+            },
+            {
+              img: './img/news/4.png',
+              link: "#",
+              date: '30 марта 2020',
+              title: 'Решения С-Терра для подключения к Единому Порталу Тестирования Ростехнадзора',
+              text: 'Решения С-Терра защищают доступ при аттестации работников в области промышленной безопасности.',
+              type: 'events',
             }
           ]
 
         each article in articles
           section.scroll-slider-slide.c-col-6.c-col-md-4.c-col-lg-3
-            a.home-news-article(href=article.link)
+            a.home-news-article(href=article.link data-type=article.type)
               .home-news-article__img
                 img(src=article.img)
               .home-news-article__date= article.date
