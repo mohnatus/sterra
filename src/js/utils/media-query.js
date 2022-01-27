@@ -1,4 +1,5 @@
 (() => {
+  // UTILS.MEDIA_QUERY
   function addMediaQueryListener(query, cb) {
     const mqList = window.matchMedia(query);
     cb(mqList.matches);

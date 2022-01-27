@@ -1,4 +1,5 @@
 (() => {
+  // PARTS.QUESTION_FORM
   const $questionModal = document.getElementById('question');
   if (!$questionModal) return;
 

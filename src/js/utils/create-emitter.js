@@ -1,4 +1,5 @@
 (() => {
+  // UTILS.CREATE_EMITTER
   function createEmitter() {
     const cbs = {};
 

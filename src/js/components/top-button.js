@@ -1,4 +1,5 @@
 (() => {
+  // COMPONENTS.TOP_BUTTON
   let $topButtonContainer = document.querySelector('.top-button');
   if (!$topButtonContainer) return;
 

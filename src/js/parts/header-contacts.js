@@ -1,4 +1,5 @@
 (() => {
+  // PARTS.CONTACTS
   const $header = document.querySelector('.header');
   if (!$header) return;
 

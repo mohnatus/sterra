@@ -1,15 +1,20 @@
-document.documentElement.style.setProperty(
-  '--scrollbar-width',
-  utils.getScrollbarWidth() + 'px'
-);
+// Общие скрипты для всех страниц
 
-window.addEventListener(
-  'resize',
-  () => {
-    document.documentElement.style.setProperty(
-      '--scrollbar-width',
-      utils.getScrollbarWidth() + 'px'
-    );
-  },
-  { passive: true }
-);
+(() => {
+  // Ширина скроллбара
+  document.documentElement.style.setProperty(
+    '--scrollbar-width',
+    utils.getScrollbarWidth() + 'px'
+  );
+
+  window.addEventListener(
+    'resize',
+    () => {
+      document.documentElement.style.setProperty(
+        '--scrollbar-width',
+        utils.getScrollbarWidth() + 'px'
+      );
+    },
+    { passive: true }
+  );
+})()

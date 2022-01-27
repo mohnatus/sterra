@@ -1,4 +1,5 @@
 (() => {
+  // UTILS.SCROLLBAR_WIDTH
   function getScrollbarWidth() {
     var documentWidth = parseInt(document.documentElement.clientWidth);
     var windowsWidth = parseInt(window.innerWidth);

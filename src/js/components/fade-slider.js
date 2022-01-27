@@ -1,4 +1,5 @@
 (() => {
+  // COMPONENTS.FADE_SLIDER
   const selectors = {
     container: '.fade-slider-slides',
     slide: '.fade-slider-slide',

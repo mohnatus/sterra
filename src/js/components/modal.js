@@ -1,4 +1,5 @@
 (() => {
+  // COMPONENTS.MODAL
   const selectors = {
     container: '.modal-container',
     close: '.modal-close'

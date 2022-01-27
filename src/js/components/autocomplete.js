@@ -1,4 +1,5 @@
 (() => {
+  // COMPONENTS.AUTOCOMPLETE
   const selectors = {
     field: '[data-field]',
     reset: '[data-reset]',

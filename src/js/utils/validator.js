@@ -1,4 +1,5 @@
 (() => {
+  // UTILS.VALIDATOR
   const events = {
     touch: 'form-validator-touch',
     changeStatus: 'form-validator-change-status'
@@ -77,8 +78,6 @@
     el.classList.add('form-error');
     return el;
   }
-
-  
 
   function validator(form, rules, config = {}) {
     const emitter = utils.createEmitter();

@@ -1,4 +1,5 @@
 (() => {
+  // PARTS.HEADER_PANE
   const $header = document.querySelector('.header');
   if (!$header) return;
 

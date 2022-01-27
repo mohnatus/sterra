@@ -1,4 +1,5 @@
 (() => {
+  // COMPONENTS.PHONE_MASK
   function phoneMask(input) {
     var keyCode;
     function mask(event) {

@@ -1,4 +1,5 @@
 (() => {
+  // COMPONENTS.SCROLL_SLIDER
   const selectors = {
     viewport: '.scroll-slider-viewport',
     container: '.scroll-slider-slides',

@@ -1,6 +1,7 @@
 "use strict";
 
 (function () {
+  // UTILS.COLLSPSIBLE
   function collapsible(el, duration) {
     el.style.height = 0;
     el.style.overflow = 'hidden';
@@ -51,6 +52,7 @@
 "use strict";
 
 (function () {
+  // UTILS.CREATE_EMITTER
   function createEmitter() {
     var cbs = {};
 
@@ -109,6 +111,7 @@
 "use strict";
 
 (function () {
+  // UTILS.DEBOUNCE
   function debounce(func, wait, immediate) {
     var timeout;
     return function executedFunction() {
@@ -133,6 +136,7 @@
 "use strict";
 
 (function () {
+  // UTILS.MEDIA_QUERY
   function addMediaQueryListener(query, cb) {
     var mqList = window.matchMedia(query);
     cb(mqList.matches);
@@ -150,6 +154,7 @@
 "use strict";
 
 (function () {
+  // UTILS.SCROLLBAR_WIDTH
   function getScrollbarWidth() {
     var documentWidth = parseInt(document.documentElement.clientWidth);
     var windowsWidth = parseInt(window.innerWidth);
@@ -163,6 +168,7 @@
 "use strict";
 
 (function () {
+  // UTILS.SUBMIT_FORM
   function submitForm(form, cb) {
     var formData = new FormData(form);
     var method = form.method;
@@ -204,6 +210,7 @@ function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Sy
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 (function () {
+  // UTILS.VALIDATOR
   var events = {
     touch: 'form-validator-touch',
     changeStatus: 'form-validator-change-status'
@@ -425,6 +432,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 "use strict";
 
 (function () {
+  // COMPONENTS.ACCORDION
   var selectors = {
     item: '.accordion-item',
     trigger: '.accordion-trigger',
@@ -494,6 +502,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 "use strict";
 
 (function () {
+  // COMPONENTS.AUTO_HEIGHT
   function autoHeight(element) {
     var defaultHeight = 50;
 
@@ -522,6 +531,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 "use strict";
 
 (function () {
+  // COMPONENTS.AUTOCOMPLETE
   var selectors = {
     field: '[data-field]',
     reset: '[data-reset]',
@@ -642,6 +652,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 "use strict";
 
 (function () {
+  // COMPONENTS.FADE_SLIDER
   var selectors = {
     container: '.fade-slider-slides',
     slide: '.fade-slider-slide',
@@ -799,6 +810,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 "use strict";
 
 (function () {
+  // COMPONENTS.MODAL
   var selectors = {
     container: '.modal-container',
     close: '.modal-close'
@@ -896,6 +908,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 "use strict";
 
 (function () {
+  // COMPONENTS.PHONE_MASK
   function phoneMask(input) {
     var keyCode;
 
@@ -953,6 +966,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToAr
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 
 (function () {
+  // COMPONENTS.SCROLL_SLIDER
   var selectors = {
     viewport: '.scroll-slider-viewport',
     container: '.scroll-slider-slides',
@@ -1158,6 +1172,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 "use strict";
 
 (function () {
+  // COMPONENTS.TOP_BUTTON
   var $topButtonContainer = document.querySelector('.top-button');
   if (!$topButtonContainer) return;
   var $topButton = $topButtonContainer.querySelector('button');
@@ -1197,6 +1212,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 "use strict";
 
 (function () {
+  // PARTS.CONTACTS
   var $header = document.querySelector('.header');
   if (!$header) return;
   var $contactsBlock = $header.querySelector('.header-contacts');
@@ -1266,6 +1282,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 "use strict";
 
 (function () {
+  // PARTS.HEADER_NAVIGATION
   var $header = document.querySelector('.header');
   if (!$header) return;
   var $navigation = $header.querySelector('.header-navigation');
@@ -1346,6 +1363,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 "use strict";
 
 (function () {
+  // PARTS.HEADER_PANE
   var $header = document.querySelector('.header');
   if (!$header) return;
   var $toggler = $header.querySelector('.header-toggler');
@@ -1402,6 +1420,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 "use strict";
 
 (function () {
+  // PARTS.HEADER_SEARCH
   var $header = document.querySelector('.header');
   if (!$header) return;
   var $headerView = $header.querySelector('.header-view');
@@ -1417,6 +1436,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 "use strict";
 
 (function () {
+  // PARTS.HEADER
   var $header = document.querySelector('.header');
   if (!$header) return;
   document.addEventListener('scroll', function (e) {
@@ -1443,6 +1463,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 "use strict";
 
 (function () {
+  // PARTS.QUESTION_FORM
   var $questionModal = document.getElementById('question');
   if (!$questionModal) return;
   var modal = components.modal($questionModal);
@@ -1513,6 +1534,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 "use strict";
 
 (function () {
+  // PARTS.SUCCESS_MODAL
   window.parts = window.parts || {};
 
   window.parts.successModal = function () {
@@ -1527,12 +1549,16 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 })();
 "use strict";
 
-document.documentElement.style.setProperty('--scrollbar-width', utils.getScrollbarWidth() + 'px');
-window.addEventListener('resize', function () {
+// Общие скрипты для всех страниц
+(function () {
+  // Ширина скроллбара
   document.documentElement.style.setProperty('--scrollbar-width', utils.getScrollbarWidth() + 'px');
-}, {
-  passive: true
-});
+  window.addEventListener('resize', function () {
+    document.documentElement.style.setProperty('--scrollbar-width', utils.getScrollbarWidth() + 'px');
+  }, {
+    passive: true
+  });
+})();
 "use strict";
 
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
@@ -1548,6 +1574,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToAr
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 
 (function () {
+  // PAGES.HOME_PAGE
   var isHomePage = document.querySelector('.page').classList.contains('home-page');
   if (!isHomePage) return;
   var homeSlider = document.getElementById('home-slider');

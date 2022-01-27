@@ -1,4 +1,5 @@
 (() => {
+  // COMPONENTS.AUTO_HEIGHT
   function autoHeight(element) {
     let defaultHeight = 50;
 

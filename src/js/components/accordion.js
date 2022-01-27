@@ -1,4 +1,5 @@
 (() => {
+  // COMPONENTS.ACCORDION
   const selectors = {
     item: '.accordion-item',
     trigger: '.accordion-trigger',

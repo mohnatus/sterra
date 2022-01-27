@@ -1,4 +1,5 @@
 (() => {
+  // UTILS.COLLSPSIBLE
   function collapsible(el, duration) {
     el.style.height = 0;
     el.style.overflow = 'hidden';

@@ -1,4 +1,5 @@
 (() => {
+  // PARTS.SUCCESS_MODAL
   window.parts = window.parts || {};
   window.parts.successModal = (() => {
     let $successModal = document.getElementById(

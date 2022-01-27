@@ -1,4 +1,5 @@
 (() => {
+  // PARTS.HEADER_SEARCH
   const $header = document.querySelector('.header');
   if (!$header) return;
 

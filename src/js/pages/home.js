@@ -1,4 +1,5 @@
 (() => {
+  // PAGES.HOME_PAGE
   const isHomePage = document
     .querySelector('.page')
     .classList.contains('home-page');

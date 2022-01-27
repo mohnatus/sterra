@@ -1,4 +1,5 @@
 (() => {
+  // PARTS.HEADER
   const $header = document.querySelector('.header');
 
   if (!$header) return;
@@ -32,5 +33,5 @@
     })
   }
 
-  
+
 })();
