@@ -1,4 +1,5 @@
 @charset "UTF-8";
+/********** UTILS **********/
 /* RESET */
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap");
 * {
@@ -1020,7 +1021,6 @@ body {
   display: flex;
 }
 
-/* BORDER */
 .border {
   border: 1px solid var(--border);
 }
@@ -1098,6 +1098,8 @@ body {
   clip: rect(0 0 0 0);
 }
 
+/********** /UTILS **********/
+/********** COMPONENTS **********/
 /* LINK */
 .link {
   text-decoration: none;
@@ -2442,6 +2444,8 @@ body.modals-shown {
   }
 }
 
+/********** /COMPONENTS **********/
+/********** HOME PAGE **********/
 .home-page__jumbotron .fade-slider {
   height: 250px;
 }
@@ -2641,20 +2645,6 @@ body.modals-shown {
   }
 }
 
-.home-info {
-  /*
-  .home-info-products {
-    min-height: 370px;
-  }
-    .home-info-company {
-      width: calc((100% + 24px) * 2 / 3 - 24px);
-    margin-right: 24px;
-    flex-shrink: 0;
-
-
-    }
-  */
-}
 .home-info .home-info-company,
 .home-info .home-info-products {
   display: block;
@@ -3545,3 +3535,5 @@ body.modals-shown {
     padding-bottom: 125px;
   }
 }
+
+/********** /HOME PAGE **********/

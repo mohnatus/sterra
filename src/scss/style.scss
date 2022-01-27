@@ -3,6 +3,7 @@
 @import 'vars/helpers';
 @import 'vars/form';
 
+/********** UTILS **********/
 @import 'utils/reset';
 @import 'utils/typography';
 @import 'utils/colors';
@@ -12,7 +13,9 @@
 @import 'utils/border';
 @import 'utils/visibility';
 @import 'utils/helpers';
+/********** /UTILS **********/
 
+/********** COMPONENTS **********/
 @import 'components/link';
 @import 'components/button';
 @import 'components/icon-button';
@@ -28,8 +31,8 @@
 @import 'components/card';
 @import 'components/modal';
 @import 'components/top-button';
-
 @import 'components/header/style';
 @import 'components/footer';
+/********** /COMPONENTS **********/
 
 @import 'pages/home/style';
