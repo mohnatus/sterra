@@ -18,56 +18,66 @@ section.home-solutions
         -
           var solutions = [
             {
-              group: 'Комплексное решение',
               title: 'Защита удаленного доступа',
-              icon: "./img/solutions/1.png"
+              icon: "./img/solutions/1.png",
+              type: 'complex',
+              link: '#',
             },
             {
-              group: 'Комплексное решение',
               title: 'Защита персональных данных',
-              icon: "./img/solutions/2.png"
+              icon: "./img/solutions/2.png",
+              type: 'sector',
+              link: '#',
+            },
+            {
+              title: 'Защита межфилиальных взаимодействий',
+              icon: "./img/solutions/3.png",
+              type: 'complex',
+              link: '#',
+            },
+            {
+              title: 'Защита удаленного доступа',
+              icon: "./img/solutions/1.png",
+              type: 'sector',
+              link: '#',
+            },
+            {
+              title: 'Защита персональных данных',
+              icon: "./img/solutions/2.png",
+              type: 'complex',
+              link: '#',
             },
             {
               group: 'Комплексное решение',
               title: 'Защита межфилиальных взаимодействий',
-              icon: "./img/solutions/3.png"
+              icon: "./img/solutions/3.png",
+              type: 'sector',
+              link: '#',
             },
             {
-              group: 'Комплексное решение',
               title: 'Защита удаленного доступа',
-              icon: "./img/solutions/1.png"
+              icon: "./img/solutions/1.png",
+              type: 'complex',
+              link: '#',
             },
             {
-              group: 'Комплексное решение',
               title: 'Защита персональных данных',
-              icon: "./img/solutions/2.png"
+              icon: "./img/solutions/2.png",
+              type: 'sector',
+              link: '#',
             },
             {
-              group: 'Комплексное решение',
               title: 'Защита межфилиальных взаимодействий',
-              icon: "./img/solutions/3.png"
-            },
-            {
-              group: 'Комплексное решение',
-              title: 'Защита удаленного доступа',
-              icon: "./img/solutions/1.png"
-            },
-            {
-              group: 'Комплексное решение',
-              title: 'Защита персональных данных',
-              icon: "./img/solutions/2.png"
-            },
-            {
-              group: 'Комплексное решение',
-              title: 'Защита межфилиальных взаимодействий',
-              icon: "./img/solutions/3.png"
+              icon: "./img/solutions/3.png",
+              type: 'complex',
+              link: '#',
             }
           ]
 
         each solution in solutions
           section.scroll-slider-slide.c-col-6.c-col-lg-4
-            .home-solution
-              .home-solution__group= solution.group
+            a.home-solution(href=solution.link data-type=solution.type)
+              .home-solution__group #{solution.type === 'complex' ? 'Комплексное решение' : 'Отраслевое решение'}
               h3.home-solution__title= solution.title
               .home-solution__icon
                 img(src=solution.icon alt="")

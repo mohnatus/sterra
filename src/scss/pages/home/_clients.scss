@@ -1,4 +1,4 @@
-@mixin visibleSlide {
+@mixin visibleClientSlide {
   opacity: 1;
 
   &:hover {
@@ -23,25 +23,19 @@
       border: none;
     }
 
-    &-viewport {
-      padding-top: 20px;
-      padding-bottom: 20px;
-      margin-top: -20px;
-      margin-bottom: -20px;
-    }
+
 
 
     &-slide {
       flex-shrink: 0;
       min-width: 170px;
 
-
       opacity: 0.5;
-      transition: opacity 400ms ease-in-out;
+
 
       &[data-order='1'],
       &[data-order='2'] {
-        @include visibleSlide;
+        @include visibleClientSlide;
       }
     }
   }
@@ -78,7 +72,7 @@
 
     .scroll-slider-slide {
       &[data-order='3'] {
-        @include visibleSlide;
+        @include visibleClientSlide;
       }
     }
   }
@@ -86,7 +80,7 @@
   @include lg-tablet-up {
     .scroll-slider-slide {
       &[data-order='4'] {
-        @include visibleSlide;
+        @include visibleClientSlide;
       }
     }
   }
@@ -95,7 +89,7 @@
     .scroll-slider-slide {
       &[data-order='5'],
       &[data-order='6'] {
-        @include visibleSlide;
+        @include visibleClientSlide;
       }
     }
   }

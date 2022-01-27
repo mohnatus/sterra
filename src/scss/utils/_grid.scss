@@ -27,8 +27,14 @@
   }
 
   --max-content-width: 1360px;
-  --content-width: calc(min(100vw, var(--max-content-width)) - 2 * var(--gap));
+  --content-width: calc(100vw - 2 * var(--gap));
   --content-side-offset: calc((100vw - var(--content-width)) / 2);
+}
+
+@include max-width-up {
+  :root {
+    --content-width: calc(var(--max-content-width) - 2 * var(--gap));
+  }
 }
 
 .container {
@@ -69,6 +75,13 @@
   @include grid-generator('-lg');
 }
 
+:root {
+  --c-columns-content-width: var(--content-width);
+
+  @include max-width-up {
+  }
+}
+
 @mixin generate-content-grid($prefix: null) {
   $classPrefix: '';
   @if ($prefix) {
@@ -77,40 +90,40 @@
 
   &#{$classPrefix} {
     &-1 {
-      width: calc(var(--content-width) / 12 * 1);
+      width: calc(var(--c-columns-content-width) / 12 * 1);
     }
     &-2 {
-      width: calc(var(--content-width) / 12 * 2);
+      width: calc(var(--c-columns-content-width) / 12 * 2);
     }
     &-3 {
-      width: calc(var(--content-width) / 12 * 3);
+      width: calc(var(--c-columns-content-width) / 12 * 3);
     }
     &-4 {
-      width: calc(var(--content-width) / 12 * 4);
+      width: calc(var(--c-columns-content-width) / 12 * 4);
     }
     &-5 {
-      width: calc(var(--content-width) / 12 * 5);
+      width: calc(var(--c-columns-content-width) / 12 * 5);
     }
     &-6 {
-      width: calc(var(--content-width) / 12 * 6);
+      width: calc(var(--c-columns-content-width) / 12 * 6);
     }
     &-7 {
-      width: calc(var(--content-width) / 12 * 7);
+      width: calc(var(--c-columns-content-width) / 12 * 7);
     }
     &-8 {
-      width: calc(var(--content-width) / 12 * 8);
+      width: calc(var(--c-columns-content-width) / 12 * 8);
     }
     &-9 {
-      width: calc(var(--content-width) / 12 * 9);
+      width: calc(var(--c-columns-content-width) / 12 * 9);
     }
     &-10 {
-      width: calc(var(--content-width) / 12 * 10);
+      width: calc(var(--c-columns-content-width) / 12 * 10);
     }
     &-11 {
-      width: calc(var(--content-width) / 12 * 11);
+      width: calc(var(--c-columns-content-width) / 12 * 11);
     }
     &-12 {
-      width: calc(var(--content-width) / 12 * 12);
+      width: calc(var(--c-columns-content-width) / 12 * 12);
     }
   }
 }

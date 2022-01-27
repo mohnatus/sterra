@@ -1,3 +1,20 @@
+@mixin visibleSolutionSlide {
+  opacity: 1;
+
+  &:hover {
+    img.bw {
+      opacity: 0;
+    }
+    img.colored {
+      opacity: 1;
+    }
+  }
+
+  .home-solution {
+    @include cardShadow;
+  }
+}
+
 .home-solutions {
   &__header {
     margin-bottom: var(--space-md);
@@ -7,15 +24,21 @@
     margin-bottom: var(--space-sm);
   }
 
-
-
   .scroll-slider {
     &-slide {
       min-width: 340px;
+
+      opacity: 0.5;
+
+
+      &[data-order='1'] {
+        @include visibleSolutionSlide();
+      }
     }
   }
 
   .home-solution {
+    text-decoration: none;
     padding: 40px 30px;
     border: 1px solid var(--border);
     display: flex;
@@ -23,14 +46,14 @@
     min-height: 270px;
 
     &__group {
-      color: var(--secondary);
+      color: var(--label);
       font-size: 12px;
       text-transform: uppercase;
       margin-bottom: 12px;
     }
 
     &__title {
-      color: var(--dark);
+      color: var(--header);
       font-size: 24px;
       font-weight: 700;
     }
@@ -43,6 +66,12 @@
   @include tablet-up {
     &__title {
       margin-bottom: var(--space-lg);
+    }
+
+    .scroll-slider {
+      &[data-order='2'] {
+        @include visibleSolutionSlide;
+      }
     }
   }
 
@@ -61,6 +90,12 @@
     }
     &__title {
       margin-bottom: 0;
+    }
+
+    .scroll-slider {
+      &[data-order='3'] {
+        @include visibleSolutionSlide;
+      }
     }
   }
 }

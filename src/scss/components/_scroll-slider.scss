@@ -2,7 +2,12 @@
   &-viewport {
     width: 100%;
     overflow: hidden;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    margin-top: -20px;
+    margin-bottom: -20px;
   }
+
   &-slides {
     display: flex;
     margin-left: calc(-1 * var(--gap));
@@ -12,6 +17,7 @@
     flex-shrink: 0;
     padding-left: var(--gap);
     padding-right: var(--gap);
+    transition: opacity 400ms ease-in-out;
   }
   &-offset {
     width: calc(2 * var(--gap));

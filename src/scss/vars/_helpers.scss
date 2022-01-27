@@ -27,6 +27,8 @@
 }
 
 @mixin cardShadow {
+  cursor: pointer;
+  
   transition: box-shadow 400ms ease-in-out;
   &:hover {
     box-shadow: 0 5px 15px var(--shadow);
