@@ -8,10 +8,14 @@
       var matrix = '+7 (___) ___-__-__',
         i = 0,
         def = matrix.replace(/\D/g, ''),
-        val = this.value.replace(/\D/g, ''),
-        new_value = matrix.replace(/[_\d]/g, function (a) {
-          return i < val.length ? val.charAt(i++) || def.charAt(i) : a;
-        });
+        val = this.value.replace(/\D/g, '');
+
+      if (val.length === 11 && val[0] === '8') val = '7' + val.slice(1);
+
+      var new_value = matrix.replace(/[_\d]/g, function (a) {
+        return i < val.length ? val.charAt(i++) || def.charAt(i) : a;
+      });
+
       i = new_value.indexOf('_');
       if (i != -1) {
         i < 5 && (i = 3);
@@ -24,6 +28,7 @@
         })
         .replace(/[+()]/g, '\\$&');
       reg = new RegExp('^' + reg + '$');
+
       if (
         !reg.test(this.value) ||
         this.value.length < 5 ||
