@@ -1,8 +1,10 @@
 mixin modal(id)
+  include icon.pug
   .modal(id=id tabindex='-1' role='dialog' hidden)
     .modal-container(role="document")
       .modal-window
-        button.close(type="button" data-dissmiss="modal" arial-label="Close")
-          span(aria-hidden="true") &times;
+        button.icon-btn.modal-close(type="button" data-dissmiss="modal" arial-label="Close")
+          span.color-primary(aria-hidden="true")
+            +svg-icon('times', 20, 20)
         .modal-body
           block

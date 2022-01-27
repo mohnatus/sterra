@@ -48,7 +48,6 @@
     }
 
     function toSlide(index) {
-      console.log(index, activeSlide);
       $slides[activeSlide].classList.remove(states.active);
       $slides[index].classList.add(states.active);
       changeSlide(index);
@@ -98,10 +97,6 @@
     }
 
     function onDragEnd(e) {
-      let finalX = x2;
-
-      console.log(offset, THRESHOLD);
-
       if (offset < -1 * THRESHOLD) {
         next();
         emitter.emit(events.touched);

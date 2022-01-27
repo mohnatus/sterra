@@ -38,7 +38,6 @@
     align-items: center;
     justify-content: center;
     overflow: auto;
-    padding: var(--space-md);
   }
 
   &-window {
@@ -47,6 +46,36 @@
     background: white;
     width: auto;
     z-index: 2;
+    max-width: 700px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 102, 0.15);
+  }
+
+  &-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    cursor: pointer;
+    color: var(--primary);
+  }
+
+  &-body {
+    padding: 55px 20px 60px;
+  }
+
+  &-title {
+    font-size: 25px;
+    margin-bottom: 20px;
+  }
+
+  @include tablet-up {
+    &-container {
+      padding: var(--space-md);
+    }
+
+    &-title {
+      font-size: 40px;
+      margin-bottom: 25px;
+    }
   }
 }
 
