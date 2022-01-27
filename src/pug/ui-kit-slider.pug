@@ -33,6 +33,7 @@ block content
 
 block scripts
   script.
-    document.addEventListener('DOMContentLoaded', () => {
+    window.delayedScripts = window.delayedScripts || [];
+    window.delayedScripts.push(function() {
       components.scrollSlider(document.querySelector('.scroll-slider'))
-    })
+    });

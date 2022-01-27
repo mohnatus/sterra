@@ -300,9 +300,10 @@
         </div>
     <script src="./js/script.js" async></script>
     <script>
-      document.addEventListener('DOMContentLoaded', () => {
+      window.delayedScripts = window.delayedScripts || [];
+      window.delayedScripts.push(function() {
         components.scrollSlider(document.querySelector('.scroll-slider'))
-      })
+      });
     </script>
   </body>
 </html>

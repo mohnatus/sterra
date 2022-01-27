@@ -1703,3 +1703,11 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
   handleSliders(document.querySelector('.home-solutions'));
   handleSliders(document.querySelector('.home-news'));
 })();
+"use strict";
+
+(function () {
+  var cbs = window.delayedScripts || [];
+  cbs.forEach(function (cb) {
+    return cb();
+  });
+})();
