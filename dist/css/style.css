@@ -1757,6 +1757,27 @@ body.modals-shown {
   padding-right: var(--scrollbar-width);
 }
 
+.top-button {
+  position: sticky;
+  bottom: 50px;
+  z-index: 50;
+}
+.top-button .container {
+  position: relative;
+}
+.top-button button {
+  position: absolute;
+  right: calc(2 * var(--gap));
+  top: 0;
+  transform: translateY(-50%);
+  transition: opacity 400ms ease-in-out, visibility 400ms ease-in-out;
+}
+.top-button button[hidden] {
+  display: block;
+  opacity: 0;
+  visibility: hidden;
+}
+
 .header-toggler {
   width: 20px;
   display: flex;
@@ -2345,6 +2366,7 @@ body.modals-shown {
   padding-bottom: 50px;
   font-size: 13px;
   line-height: 1.4;
+  position: relative;
 }
 .footer__logo {
   margin-bottom: 30px;

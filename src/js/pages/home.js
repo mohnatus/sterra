@@ -21,6 +21,7 @@
 
   const contactForm = document.getElementById('home-contact-form');
   if (contactForm) {
+    let $submit = contactForm.querySelector('[type="submit"]');
     let validator = utils.validator(
       contactForm,
       {
@@ -61,8 +62,10 @@
         parent: '.form-field',
         submit: () => {
           contactForm.classList.add('pending');
+          if ($submit) $submit.disabled = true;
           utils.submitForm(contactForm, (response) => {
             contactForm.classList.remove('pending');
+            if ($submit) $submit.disabled = false;
             if (response.success) {
               if (parts.successModal) {
                 parts.successModal.show();
@@ -108,7 +111,6 @@
       });
 
       $slides.forEach((slide) => {
-        console.log(slide, slide.type, filter.type)
         if (!filter.type || filter.type === slide.type) {
           slide.element.removeAttribute('hidden');
         } else {

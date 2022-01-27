@@ -10,7 +10,10 @@
 
   const questionForm = document.getElementById('ask-question-form');
 
+
   if (questionForm) {
+    let $submit = questionForm.querySelector('[type="submit"]');
+
     let validator = utils.validator(
       questionForm,
       {
@@ -48,7 +51,9 @@
         parent: '.form-field',
         submit: () => {
           questionForm.classList.add('pending');
+          if ($submit) $submit.disabled = true;
           utils.submitForm(questionForm, (response) => {
+            if ($submit) $submit.disabled = false;
             questionForm.classList.remove('pending');
             if (response.success) {
               if (parts.successModal) {

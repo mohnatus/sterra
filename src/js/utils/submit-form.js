@@ -2,6 +2,8 @@
   function submitForm(form, cb) {
     let formData = new FormData(form);
     let method = form.method;
+    
+
 
     if (method.toUpperCase() === 'GET') {
       let params = new URLSearchParams(formData).toString();

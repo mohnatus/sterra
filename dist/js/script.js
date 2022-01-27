@@ -1158,6 +1158,46 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 "use strict";
 
 (function () {
+  var $topButtonContainer = document.querySelector('.top-button');
+  if (!$topButtonContainer) return;
+  var $topButton = $topButtonContainer.querySelector('button');
+  if (!$topButton) return;
+  var SCROLL_LIMIT = 200;
+
+  function hideButton() {
+    $topButton.setAttribute('hidden', true);
+  }
+
+  function showButton() {
+    $topButton.removeAttribute('hidden');
+  }
+
+  function toTop() {
+    document.documentElement.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  }
+
+  $topButton.addEventListener('click', function () {
+    return toTop();
+  });
+  window.addEventListener('scroll', function () {
+    var scroll = document.documentElement.scrollTop || document.body.scrollTop;
+    console.log('scroll', scroll);
+
+    if (scroll > SCROLL_LIMIT) {
+      showButton();
+    } else {
+      hideButton();
+    }
+  }, {
+    passive: true
+  });
+})();
+"use strict";
+
+(function () {
   var $header = document.querySelector('.header');
   if (!$header) return;
   var $contactsBlock = $header.querySelector('.header-contacts');
@@ -1416,6 +1456,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
   var questionForm = document.getElementById('ask-question-form');
 
   if (questionForm) {
+    var $submit = questionForm.querySelector('[type="submit"]');
     var validator = utils.validator(questionForm, {
       name: {
         required: {
@@ -1450,7 +1491,9 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       parent: '.form-field',
       submit: function submit() {
         questionForm.classList.add('pending');
+        if ($submit) $submit.disabled = true;
         utils.submitForm(questionForm, function (response) {
+          if ($submit) $submit.disabled = false;
           questionForm.classList.remove('pending');
 
           if (response.success) {
@@ -1527,6 +1570,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
   var contactForm = document.getElementById('home-contact-form');
 
   if (contactForm) {
+    var $submit = contactForm.querySelector('[type="submit"]');
     var validator = utils.validator(contactForm, {
       name: {
         required: {
@@ -1564,8 +1608,10 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       parent: '.form-field',
       submit: function submit() {
         contactForm.classList.add('pending');
+        if ($submit) $submit.disabled = true;
         utils.submitForm(contactForm, function (response) {
           contactForm.classList.remove('pending');
+          if ($submit) $submit.disabled = false;
 
           if (response.success) {
             if (parts.successModal) {
@@ -1609,8 +1655,6 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         filter.element.classList.toggle('active', filter === activeFilter);
       });
       $slides.forEach(function (slide) {
-        console.log(slide, slide.type, filter.type);
-
         if (!filter.type || filter.type === slide.type) {
           slide.element.removeAttribute('hidden');
         } else {

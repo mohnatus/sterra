@@ -1,4 +1,10 @@
 include ../apps/index.pug
+include '../../../../mixins/icon.pug
+
+.top-button
+  .container
+    button.btn.btn-primary-inverse.btn-round(hidden, type="button")
+      +svg-icon('arrow-top', 14, 14)
 
 footer.footer
   .container
