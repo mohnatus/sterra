@@ -53,6 +53,12 @@
     &__icon {
       margin-top: auto;
     }
+
+    &[data-type="sector"] {
+      .home-solution__title {
+        font-weight: 500;
+      }
+    }
   }
 
   @include tablet-up {

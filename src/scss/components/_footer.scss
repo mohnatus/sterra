@@ -80,6 +80,12 @@
   }
 
   @include tablet-up {
+    padding-top: 50px;
+
+    &-contacts {
+      margin-bottom: 0;
+    }
+
     &__wrapper {
       display: flex;
     }
@@ -99,5 +105,9 @@
     &__data {
       order: 2;
     }
+  }
+
+  @include sm-desktop-up {
+    padding-top: 57px;
   }
 }
