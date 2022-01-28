@@ -55,6 +55,10 @@
   padding-top: 45px;
   padding-bottom: 65px;
 
+  .row {
+    flex-wrap: nowrap;
+  }
+
   &:after {
     content: '';
     top: 100%;
@@ -79,6 +83,9 @@
   }
 
   .header-section {
+    &__info {
+      width: calc(335px - var(--gap));
+    }
     &__name {
       display: block;
       font-size: 38px;
@@ -89,9 +96,19 @@
     &__description {
       font-size: 13px;
       color: var(--text);
+      line-height: 1.4;
+    }
+    .col {
+      &:not(:last-child) {
+        .header-section__list {
+          max-width: 280px;
+        }
+      }
     }
     &__list {
       padding-top: 12px;
+      padding-right: 30px;
+
       ul {
         display: block;
         color: var(--primary);
@@ -108,17 +125,20 @@
           }
 
           &.active {
+
             text-decoration: none;
             color: var(--accent);
+
           }
         }
 
         li {
-          margin-bottom: 15px;
+          margin-bottom: 20px;
+          margin-right: 0;
           display: block;
 
           &.active {
-            a {
+            & > a {
               text-decoration: none;
               color: var(--accent);
             }
@@ -133,6 +153,11 @@
           & > ul {
             font-size: 15px;
             font-weight: 400;
+            margin-top: 18px;
+
+            li {
+              margin-bottom: 15px;
+            }
           }
         }
       }

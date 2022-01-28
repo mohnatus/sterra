@@ -12,11 +12,11 @@ nav.header-navigation
       .header-navigation-pane(data-pane="about" hidden)
         .container
           .row.header-section
-            .col-3
+            .col.col-auto
               .header-section__info
                 a.header-section__name(href="#") О компании
                 .header-section__description Разрабатываем и производим средства сетевой информационной безопасности на основе технологии IPsec
-            .col-9
+            .col.col-auto
               .header-section__list
                 ul
                   each item in about.items
@@ -29,24 +29,18 @@ nav.header-navigation
       .header-navigation-pane(data-pane="catalog" hidden)
         .container
           .row.header-section
-            .col.col-3
+            .col.col-auto
               .header-section__info
                 a.header-section__name(href="#") Каталог
                 .header-section__description Поможем защитить информационную систему любого масштаба
-            .col.col-3
+            .col.col-auto
               .header-section__list
                 ul
-                  each item in [catalog.items[0], catalog.items[3]]
-                    +list-item(item, 1)
-            .col.col-3
+                  +list-item(catalog.items[0], 2)
+            .col.col-auto
               .header-section__list
                 ul
-                  each item in [catalog.items[1]]
-                    +list-item(item, 1)
-            .col.col-3
-              .header-section__list
-                ul
-                  each item in [catalog.items[2]]
+                  each item in [catalog.items[1], catalog.items[2], catalog.items[3]]
                     +list-item(item, 1)
 
     li(data-submenu="support")
@@ -56,21 +50,21 @@ nav.header-navigation
       .header-navigation-pane(data-pane="support" hidden)
         .container
           .row.header-section
-            .col.col-3
+            .col.col-auto
               .header-section__info
                 a.header-section__name(href="#") Поддержка
                 .header-section__description Квалифицированные консультации и помощь в решении технических проблем
-            .col.col-3
+            .col.col-auto
               .header-section__list
                 ul
                   each item in [support.items[0], support.items[1], support.items[2]]
                     +list-item(item)
-            .col.col-3
+            .col.col-auto
               .header-section__list
                 ul
                   +list-item(support.items[3])
 
-            .col.col-3
+            .col.col-auto
               .header-section__list
                 ul
                   +list-item(support.items[4])
@@ -88,12 +82,12 @@ nav.header-navigation
               .header-section__info
                 a.header-section__name(href="#") Пресс-центр
                 .header-section__description Будьте первыми в курсе новостей и обновлений нашей компании
-            .col.col-3
+            .col.col-auto
               .header-section__list
                 ul
                   each item in press.items.slice(0, 3)
                     +list-item(item)
-            .col.col-3
+            .col.col-auto
               .header-section__list
                 ul
                   each item in press.items.slice(3)

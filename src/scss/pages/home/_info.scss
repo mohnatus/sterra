@@ -114,6 +114,11 @@ $circleGroupDelay: 357ms;
       &__title {
         font-size: 28px;
       }
+
+      &:before {
+        top: auto;
+        bottom: 30px;
+      }
     }
   }
 

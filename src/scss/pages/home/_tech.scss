@@ -24,14 +24,13 @@
 
     &__link {
       margin-top: auto;
+      font-size: 15px;
+      font-weight: 500;
 
-      a {
-        color: inherit;
 
-        img {
-          margin-left: 15px;
-          display: inline-block;
-        }
+      svg {
+        margin-left: 15px;
+        display: inline-block;
       }
     }
 
@@ -110,6 +109,9 @@
       padding: var(--space-lg);
       &__title {
         font-size: 28px;
+      }
+      &__icon {
+        margin-bottom: 0;
       }
     }
   }
