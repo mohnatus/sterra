@@ -46,27 +46,53 @@
 .header-navigation-pane {
   position: absolute;
   top: 100%;
-  margin-top: -1px;
+  height: calc(100vh - var(--header-height));
+  padding-top: -1px;
   left: 0;
   right: 0;
-  background: var(--white);
+  overflow: auto;
+
   z-index: $headerPaneZIndex;
   border-top: 1px solid var(--border);
-  padding-top: 45px;
-  padding-bottom: 65px;
+
+  &__mask {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.7);
+    cursor: pointer;
+    z-index: 1;
+  }
+
+  &__block {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: var(--white);
+    padding-top: 45px;
+    padding-bottom: 65px;
+    z-index: 2;
+
+    &:after {
+      content: '';
+      top: 100%;
+      left: 0;
+      right: 0;
+      position: absolute;
+      height: 15px;
+      background: linear-gradient(
+        to bottom,
+        rgba(0, 0, 102, 0.15),
+        transparent
+      );
+    }
+  }
 
   .row {
     flex-wrap: nowrap;
-  }
-
-  &:after {
-    content: '';
-    top: 100%;
-    left: 0;
-    right: 0;
-    position: absolute;
-    height: 15px;
-    background: linear-gradient(to bottom, rgba(0, 0, 102, 0.15), transparent);
   }
 
   opacity: 1;
@@ -125,10 +151,8 @@
           }
 
           &.active {
-
             text-decoration: none;
             color: var(--accent);
-
           }
         }
 
@@ -157,6 +181,38 @@
 
             li {
               margin-bottom: 15px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.header-navigation {
+  [data-submenu='catalog'] {
+    .header-section__list {
+      max-width: 300px;
+
+      & > ul {
+        &.products {
+          li[data-level='2'] {
+            margin-bottom: 22px;
+            white-space: nowrap;
+            & > a {
+              font-weight: 500;
+            }
+
+            & > ul {
+              padding-left: 15px;
+              margin-top: 15px;
+            }
+          }
+        }
+        &:not(.products) {
+          li[data-level='1'] {
+            & > ul {
+              padding-left: 15px;
             }
           }
         }

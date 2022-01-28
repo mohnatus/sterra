@@ -22,53 +22,77 @@
     }
   }
   .app-icon {
-    background-image: url(../img/apps/sprite.png);
+    // background-image: url(../img/apps/sprite.png);
     background-repeat: no-repeat;
+    background-size: auto;
+    background-position: center;
     display: block;
+    width: 36px;
+    height: 37px;
     cursor: pointer;
 
     &-fb {
-      width: 36px;
-      height: 37px;
-      background-position: -5px -5px;
+      background-image: url(../img/apps/fb.png);
     }
 
     &-in {
-      width: 36px;
-      height: 37px;
-      background-position: -51px -5px;
+      background-image: url(../img/apps/in.png);
     }
 
     &-tg {
-      width: 36px;
-      height: 37px;
-      background-position: -97px -5px;
+      background-image: url(../img/apps/tg.png);
     }
 
     &-vk {
-      width: 36px;
-      height: 37px;
-      background-position: -143px -5px;
+      background-image: url(../img/apps/vk.png);
     }
 
     &-wa {
-      width: 36px;
-      height: 37px;
-      background-position: -189px -5px;
+      background-image: url(../img/apps/wa.png);
     }
 
     &-yt {
-      width: 36px;
-      height: 37px;
-      background-position: -235px -5px;
+      background-image: url(../img/apps/yt.png);
     }
   }
 
   &.colored {
     .app-icon {
       transition: background-image 400ms ease-in-out;
-      &:hover {
-        background-image: url(../img/apps/sprite-color.png);
+      &-fb {
+        &:hover {
+          background-image: url(../img/apps/fb-color.png);
+        }
+      }
+
+      &-in {
+        &:hover {
+          background-image: url(../img/apps/in-color.png);
+        }
+      }
+
+      &-tg {
+        &:hover {
+          background-image: url(../img/apps/tg-color.png);
+        }
+      }
+
+      &-vk {
+        &:hover {
+          background-image: url(../img/apps/vk-color.png);
+        }
+      }
+
+      &-wa {
+        &:hover {
+          background-image: url(../img/apps/wa-color.png);
+        }
+      }
+
+      &-yt {
+        &:hover {
+          background-image: url(../img/apps/yt-color.png);
+        }
       }
     }
   }

@@ -48,7 +48,7 @@
           z-index: 2;
         }
 
-        &:hover:before {
+        &:before {
           content: '';
           position: absolute;
           top: 1px;
@@ -58,6 +58,13 @@
           background: white;
           z-index: 1;
           border-radius: 50%;
+          opacity: 0;
+
+          transition: opacity 250ms ease-in-out;
+        }
+
+        &:hover:before {
+          opacity: 1;
         }
       }
     }

@@ -12,9 +12,17 @@
     let $panel = $item.querySelector(`.header-navigation-pane`);
     if (!$panel) return;
 
+    let $mask = document.createElement('div');
+    $mask.classList.add('header-navigation-pane__mask');
+    $panel.insertBefore($mask, $panel.children[0]);
+
+    let $block = $panel.querySelector('.header-navigation-pane__block');
+
     items.push({
       element: $item,
-      panel: $panel
+      block: $block,
+      panel: $panel,
+      mask: $mask
     });
   });
 
@@ -23,14 +31,16 @@
 
   function openItem(item) {
     item.panel.removeAttribute('hidden');
+    document.body.classList.add('header-pane-opened');
   }
   function closeItem(item) {
     item.panel.setAttribute('hidden', true);
+    document.body.classList.remove('header-pane-opened');
   }
 
   items.forEach((item) => {
     item.element.addEventListener('click', (e) => {
-
+      if (e.target.classList.contains('header-navigation-pane__mask')) return;
       if (fixedActiveItem === item) {
         if (item.panel.contains(e.target)) return;
         fixedActiveItem = null;
@@ -55,6 +65,25 @@
         activeItem = item;
         openItem(item);
       }
+    });
+
+    item.mask.addEventListener('mouseenter', (e) => {
+      if (e.target === e.currentTarget) {
+        if (activeItem === item && fixedActiveItem !== item) {
+          closeItem(item);
+        }
+      }
+    });
+
+    item.mask.addEventListener('click', (e) => {
+      console.log('mask click', item, activeItem)
+
+        if (activeItem === item) {
+          closeItem(item);
+          activeItem = null;
+          fixedActiveItem = null;
+        }
+
     });
 
     item.element.addEventListener('mouseleave', (e) => {

@@ -1292,9 +1292,15 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
   $itemsWithMenu.forEach(function ($item) {
     var $panel = $item.querySelector(".header-navigation-pane");
     if (!$panel) return;
+    var $mask = document.createElement('div');
+    $mask.classList.add('header-navigation-pane__mask');
+    $panel.insertBefore($mask, $panel.children[0]);
+    var $block = $panel.querySelector('.header-navigation-pane__block');
     items.push({
       element: $item,
-      panel: $panel
+      block: $block,
+      panel: $panel,
+      mask: $mask
     });
   });
   var activeItem = null; // открытая вкладка
@@ -1303,14 +1309,18 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
   function openItem(item) {
     item.panel.removeAttribute('hidden');
+    document.body.classList.add('header-pane-opened');
   }
 
   function closeItem(item) {
     item.panel.setAttribute('hidden', true);
+    document.body.classList.remove('header-pane-opened');
   }
 
   items.forEach(function (item) {
     item.element.addEventListener('click', function (e) {
+      if (e.target.classList.contains('header-navigation-pane__mask')) return;
+
       if (fixedActiveItem === item) {
         if (item.panel.contains(e.target)) return;
         fixedActiveItem = null;
@@ -1335,6 +1345,22 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
         activeItem = item;
         openItem(item);
+      }
+    });
+    item.mask.addEventListener('mouseenter', function (e) {
+      if (e.target === e.currentTarget) {
+        if (activeItem === item && fixedActiveItem !== item) {
+          closeItem(item);
+        }
+      }
+    });
+    item.mask.addEventListener('click', function (e) {
+      console.log('mask click', item, activeItem);
+
+      if (activeItem === item) {
+        closeItem(item);
+        activeItem = null;
+        fixedActiveItem = null;
       }
     });
     item.element.addEventListener('mouseleave', function (e) {
@@ -1382,20 +1408,15 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
   function openPane() {
     if (isLargeScreen) return;
-    var scrollbarWidth = utils.getScrollbarWidth();
     $pane.removeAttribute('hidden');
-    document.body.style.overflow = 'hidden';
     $toggler.removeAttribute('data-closed');
-    $headerView.style.paddingRight = scrollbarWidth + 'px';
-    $headerView.classList.add('header-pane-opened');
+    document.body.classList.add('header-pane-opened');
   }
 
   function closePane() {
     $pane.setAttribute('hidden', true);
-    document.body.style.overflow = '';
     $toggler.setAttribute('data-closed', true);
-    $headerView.style.paddingRight = '';
-    $headerView.classList.remove('header-pane-opened');
+    document.body.classList.remove('header-pane-opened');
   }
 
   function togglePane() {

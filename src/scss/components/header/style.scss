@@ -38,8 +38,17 @@
   }
 
   &.fixed {
-    .header-view:not(.header-pane-opened) {
+    .header-view {
       box-shadow: 0px 5px 15px rgba(0, 0, 102, 0.15);
+    }
+  }
+}
+
+body.header-pane-opened {
+  .header {
+    .header-view {
+      box-shadow: none;
+      padding-right: var(--scrollbar-width);
     }
   }
 }
