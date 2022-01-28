@@ -8,6 +8,7 @@ $circleGroupDelay: 357ms;
     display: block;
     text-decoration: none;
 
+
     &__container {
       padding: 35px 30px 50px;
     }
@@ -21,6 +22,7 @@ $circleGroupDelay: 357ms;
     &__text {
       margin-bottom: calc(2 * var(--space-sm));
       font-size: 13px;
+      line-height: 1.4;
     }
   }
 
@@ -69,16 +71,8 @@ $circleGroupDelay: 357ms;
   }
 
   @include tablet-up {
-    &__wrapper {
-      display: flex;
-      margin-left: calc(-1 * var(--space-sm));
-      margin-right: calc(-1 * var(--space-sm));
-    }
     .home-info-company,
     .home-info-products {
-      margin-left: var(--space-sm);
-      margin-right: var(--space-sm);
-      flex-basis: 50%;
       min-height: 400px;
     }
     .home-info-company {
@@ -125,18 +119,22 @@ $circleGroupDelay: 357ms;
 
   @include sm-desktop-up {
     .home-info-company {
-      flex-basis: 66.66%;
 
       &__container {
         display: flex;
         margin-left: calc(-1 * var(--gap));
         margin-right: calc(-1 * var(--gap));
+        padding-left: 0;
+        padding-right: 0;
       }
 
-      &__icons,
+      &__icons {
+        padding-left: calc(var(--gap) * 2);
+      }
+
       &__content {
         padding-left: var(--gap);
-        padding-right: var(--gap);
+        padding-right: calc(var(--gap) + 40px);
       }
 
       &__icons {
@@ -149,9 +147,6 @@ $circleGroupDelay: 357ms;
       &__content {
         width: 62.5%;
       }
-    }
-    .home-info-products {
-      flex-basis: 33.33%;
     }
   }
 }

@@ -19,7 +19,7 @@ block content
       ]
     .row.m-b
       each color in colors
-        .col.col-6.col-md-4.col-lg-3
+        .col.col-6.col-sm-4.col-md-3
           .d-flex.m-b
             div.color.m-r(style="background-color: var(--" + color + ")")
             div --#{color}
@@ -80,44 +80,44 @@ block content
     h2.m-b Формы
 
     .row
-      .col.col-12.col-md-6.col-lg-4.m-b
+      .col.col-12.col-sm-6.col-md-4.m-b
         .form-field
           label.form-label Ваше имя
           input.form-control(placeholder="Введите имя")
-      .col.col-12.col-md-6.col-lg-4.m-b
+      .col.col-12.col-sm-6.col-md-4.m-b
         .form-field
           label.form-label Ваше имя
           input.form-control.invalid(placeholder="Введите имя")
           .form-error Некорректное значение
     .row
-      .col.col-12.col-md-6.col-lg-4.m-b
+      .col.col-12.col-sm-6.col-md-4.m-b
         .form-field
           label.form-label Ваше имя
           input.form-control(disabled placeholder="Введите имя")
-      .col.col-12.col-md-6.col-lg-4.m-b
+      .col.col-12.col-sm-6.col-md-4.m-b
         .form-field
           label.form-label Ваше имя
           input.form-control(disabled value="Иванов Иван" placeholder="Введите имя")
     .row
-      .col.col-12.col-md-6.col-lg-4.m-b
+      .col.col-12.col-sm-6.col-md-4.m-b
         .form-field
           label.form-label Ваш вопрос
           textarea.form-control(placeholder="Введите вопрос")
     .row
-      .col.col-12.col-md-6.col-lg-4.m-b
+      .col.col-12.col-sm-6.col-md-4.m-b
         .form-field
           label.checkbox
             input(type="checkbox")
             .checkbox-box
             .checkbox-label  Подтвердите согласие
-      .col.col-12.col-md-6.col-lg-4.m-b
+      .col.col-12.col-sm-6.col-md-4.m-b
         .form-field
           label.checkbox
             input.invalid(type="checkbox" )
             .checkbox-box
             .checkbox-label  Подтвердите согласие
           .form-error Некорректное значение
-      .col.col-12.col-md-6.col-lg-4.m-b
+      .col.col-12.col-sm-6.col-md-4.m-b
         .form-field
           label.checkbox
             input(type="checkbox" disabled)

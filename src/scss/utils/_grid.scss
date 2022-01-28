@@ -1,7 +1,9 @@
 @use 'sass:math';
 
 /* GRID
-* md - tablet-up (>=768px)
+* xs - lg-phone-up
+* sm - tablet-up (>=768px)
+* md - lg-tablet-up (>= 1024px)
 * lg - sm-desktop-up (>=1280px)
 */
 
@@ -26,7 +28,7 @@
     --gap: var(--space-unit);
   }
 
-  --max-content-width: 1360px;
+  --max-content-width: 1380px;
   --viewport-width: calc(100vw - var(--scrollbar-width, 0));
   --content-width: calc(min(var(--viewport-width), var(--max-content-width)) - 2 * var(--gap));
   --content-side-offset: calc((100vw - var(--content-width)) / 2);
@@ -56,17 +58,22 @@
 
 @include grid-generator('');
 
-/* sm GRID: LG-PHONE-UP */
+/* xs GRID: LG-PHONE-UP */
 @include lg-phone-up {
+  @include grid-generator('-xs');
+}
+
+/* sm GRID: TABLET-UP */
+@include tablet-up {
   @include grid-generator('-sm');
 }
 
-/* md GRID: TABLET-UP */
-@include tablet-up {
+/* md GRID: LG-TABLET-UP */
+@include lg-tablet-up {
   @include grid-generator('-md');
 }
 
-/* lg GRID: SM-DESKTOP-UP */
+/* lg GRID: DESKTOP-UP */
 @include sm-desktop-up {
   @include grid-generator('-lg');
 }
