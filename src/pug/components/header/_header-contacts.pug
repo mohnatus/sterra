@@ -6,7 +6,8 @@ include ../../mixins/icon.pug
     button.header-contacts__trigger(type="button")
       |Написать нам
       +svg-icon('chevron-bottom', 12, 7)
-      
+
 
   .header-contacts__pane(hidden)
-    include components/contacts.pug
+    .header-contacts__wrapper
+      include components/contacts.pug

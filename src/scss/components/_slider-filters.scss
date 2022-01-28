@@ -44,5 +44,11 @@
 
   @include lg-tablet-up {
     font-size: 17px;
+
+    &__item {
+      &:not(:last-child) {
+        margin-right: calc(2 * var(--space-unit));
+      }
+    }
   }
 }
