@@ -20,11 +20,7 @@
 
   .scroll-slider {
     &-control {
-      border: none;
     }
-
-
-
 
     &-slide {
       flex-shrink: 0;
@@ -41,13 +37,11 @@
   }
 
   .client-block {
-    background: white;
     width: 100%;
     height: 116px;
-    cursor: pointer;
+
     position: relative;
     display: block;
-    border: 1px solid var(--border);
 
     img {
       position: absolute;

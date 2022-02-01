@@ -1,6 +1,16 @@
 /* CARD */
 
 .card {
+  border: 1px solid var(--border);
+  background: white;
+  cursor: pointer;
+
+  &--dark {
+    border: none;
+    background: var(--primary);
+    color: var(--primary-contrast);
+  }
+
   &:hover {
     @include cardShadow;
   }

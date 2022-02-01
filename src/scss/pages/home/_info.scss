@@ -27,11 +27,7 @@ $circleGroupDelay: 357ms;
   }
 
   .home-info-company {
-
-    background: white;
     margin-bottom: var(--space-lg);
-
-    color: inherit;
 
     &__icons {
       display: none;
@@ -39,9 +35,6 @@ $circleGroupDelay: 357ms;
   }
 
   .home-info-products {
-
-    background-color: var(--primary);
-    color: var(--primary-contrast);
 
     position: relative;
     overflow: hidden;

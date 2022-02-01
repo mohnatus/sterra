@@ -24,9 +24,10 @@
 
       &.active {
         color: var(--accent);
+        cursor: default;
 
         &:hover {
-          color: var(--accent-dark);
+          color: var(--accent);
         }
 
         &:before {

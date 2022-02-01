@@ -99,7 +99,7 @@
       padding-bottom: 85px;
     }
     &__solutions {
-      padding-top: 120px;
+      padding-top: 100px;
     }
     &__tech {
       margin-top: 70px;
@@ -134,6 +134,12 @@
     }
     &__form {
       padding-bottom: 125px;
+    }
+  }
+
+  @include desktop-up {
+    &__solutions {
+      padding-top: 120px;
     }
   }
 }

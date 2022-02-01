@@ -19,10 +19,6 @@
         @include visibleCaseSlide();
       }
     }
-    &-control,
-    &-link {
-      border: none;
-    }
   }
 
   &__title {
@@ -30,13 +26,12 @@
   }
 
   .home-case {
-    background: white;
+
     padding: 45px 30px;
     text-decoration: none;
     display: block;
     height: 100%;
     pointer-events: all;
-    border: 1px solid var(--border);
 
     &__logo {
       margin-bottom: 24px;
