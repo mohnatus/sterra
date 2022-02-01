@@ -1,0 +1,34 @@
+.ask-question-form {
+  &__confirm {
+    .checkbox {
+      &-label {
+        font-size: 11px;
+        padding-top: 4px;
+        font-weight: 300;
+
+        a {
+          font-weight: 400;
+        }
+      }
+    }
+  }
+
+  .form-field {
+    margin-bottom: var(--space-md);
+  }
+
+  @include lg-tablet-up {
+    &__confirm {
+      .checkbox {
+        &-label {
+          font-size: 12px;
+        }
+      }
+    }
+
+    .btn[type="submit"] {
+      height: 50px;
+      font-size: 17px;
+    }
+  }
+}

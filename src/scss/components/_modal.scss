@@ -6,7 +6,7 @@
   bottom: 0;
   overflow: hidden;
   z-index: $modalZIndex;
-
+  font-size: 15px;
   opacity: 1;
   visibility: visible;
   transition: opacity 400ms ease-in-out, visibility 400ms ease-in-out;
@@ -76,7 +76,14 @@
       font-size: 40px;
       margin-bottom: 25px;
     }
+
+    &-body {
+      padding-left: 60px;
+      padding-right: 60px;
+    }
   }
+
+
 }
 
 body.modals-shown {

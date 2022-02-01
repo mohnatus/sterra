@@ -4,7 +4,7 @@ include ../../mixins/modal.pug
 +modal('question')
   h2.modal-title Задать вопрос
 
-  form#ask-question-form(action="./backend/question-form.json" method="GET")
+  form#ask-question-form.ask-question-form(action="./backend/question-form.json" method="GET")
     .form-field
       label.form-label(for="question-name") ФИО*
       input#question-name.form-control(name="name")
@@ -23,7 +23,7 @@ include ../../mixins/modal.pug
     .form-field
       label.form-label(for="question-text") Ваш вопрос
       textarea#question-text.form-control(name="question")
-    .form-field
+    .form-field.ask-question-form__confirm
       label.checkbox
         input#question-agreement(type="checkbox" name="agreement")
         span.checkbox-box

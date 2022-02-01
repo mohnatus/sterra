@@ -800,7 +800,7 @@
                             </svg></span></button>
                   <div class="modal-body">
                     <h2 class="modal-title">Задать вопрос</h2>
-                    <form id="ask-question-form" action="./backend/question-form.json" method="GET">
+                    <form class="ask-question-form" id="ask-question-form" action="./backend/question-form.json" method="GET">
                       <div class="form-field">
                         <label class="form-label" for="question-name">ФИО*</label>
                         <input class="form-control" id="question-name" name="name">
@@ -827,7 +827,7 @@
                         <label class="form-label" for="question-text">Ваш вопрос</label>
                         <textarea class="form-control" id="question-text" name="question"></textarea>
                       </div>
-                      <div class="form-field">
+                      <div class="form-field ask-question-form__confirm">
                         <label class="checkbox">
                           <input id="question-agreement" type="checkbox" name="agreement"><span class="checkbox-box"></span>
                           <div class="checkbox-label">Даю согласие на обработку своих персональных данных в соответствии с <a href="#">Политикой обработки персональных данных ООО «С-Терра СиЭсПи»</a>.</div>
@@ -1434,7 +1434,7 @@
                         <use xlink:href="#i-times" href="#i-times"></use>
                       </svg></span></button>
               <div class="modal-body">
-                <div class="text">Информация успешно отправлена. Мы свяжемся с вами в ближайшее время.</div>
+                <div>Информация успешно отправлена. Мы свяжемся с вами в ближайшее время.</div>
               </div>
             </div>
           </div>

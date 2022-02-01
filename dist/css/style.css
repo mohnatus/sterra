@@ -1816,6 +1816,7 @@ textarea.form-control {
   bottom: 0;
   overflow: hidden;
   z-index: 110;
+  font-size: 15px;
   opacity: 1;
   visibility: visible;
   transition: opacity 400ms ease-in-out, visibility 400ms ease-in-out;
@@ -1876,6 +1877,10 @@ textarea.form-control {
   .modal-title {
     font-size: 40px;
     margin-bottom: 25px;
+  }
+  .modal-body {
+    padding-left: 60px;
+    padding-right: 60px;
   }
 }
 
@@ -2559,6 +2564,27 @@ body.header-pane-opened .header .header-view {
     display: none;
   }
 }
+.ask-question-form__confirm .checkbox-label {
+  font-size: 11px;
+  padding-top: 4px;
+  font-weight: 300;
+}
+.ask-question-form__confirm .checkbox-label a {
+  font-weight: 400;
+}
+.ask-question-form .form-field {
+  margin-bottom: var(--space-md);
+}
+@media (min-width: 1024px) {
+  .ask-question-form__confirm .checkbox-label {
+    font-size: 12px;
+  }
+  .ask-question-form .btn[type=submit] {
+    height: 50px;
+    font-size: 17px;
+  }
+}
+
 .footer {
   background: var(--primary);
   color: white;
@@ -3413,6 +3439,9 @@ body.header-pane-opened .header .header-view {
     padding-left: var(--gap);
     padding-right: var(--gap);
   }
+  .home-contact-form__confirm .checkbox-label {
+    font-size: 12px;
+  }
   .home-contact-form__image {
     display: block;
     position: relative;
@@ -3550,6 +3579,7 @@ body.header-pane-opened .header .header-view {
   }
   .home-page__faq {
     padding-top: 110px;
+    padding-bottom: 143px;
   }
   .home-page__form {
     padding-bottom: 125px;

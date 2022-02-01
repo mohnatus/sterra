@@ -1867,7 +1867,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       },
       agreement: {
         required: {
-          message: 'Обязательное поле'
+          message: 'Согласие на обработку своих персональных данных обязательно для обратной связи'
         }
       }
     }, {
@@ -2077,7 +2077,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       },
       agreement: {
         required: {
-          message: 'Обязательное поле'
+          message: 'Согласие на обработку своих персональных данных обязательно для обратной связи'
         }
       }
     }, {
