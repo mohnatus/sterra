@@ -47,6 +47,7 @@
     cursor: pointer;
     position: relative;
     display: block;
+    border: 1px solid var(--border);
 
     img {
       position: absolute;

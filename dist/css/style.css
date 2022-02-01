@@ -2955,6 +2955,7 @@ body.header-pane-opened .header .header-view {
   cursor: pointer;
   position: relative;
   display: block;
+  border: 1px solid var(--border);
 }
 .home-clients .client-block img {
   position: absolute;
@@ -3072,6 +3073,10 @@ body.header-pane-opened .header .header-view {
   font-weight: 700;
   hyphens: auto;
   word-break: break-word;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
 }
 .home-solutions .home-solution__icon {
   margin-top: auto;
@@ -3319,6 +3324,7 @@ body.header-pane-opened .header .header-view {
   display: block;
   height: 100%;
   pointer-events: all;
+  border: 1px solid var(--border);
 }
 .home-cases .home-case__logo {
   margin-bottom: 24px;
