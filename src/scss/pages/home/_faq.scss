@@ -1,6 +1,6 @@
 .home-faq {
   &__title {
-    margin-bottom: calc(2 * var(--space-unit));
+    margin-bottom: 30px;
   }
 
   .home-faq-item {
@@ -29,6 +29,7 @@
 
     &__content {
       padding-top: 16px;
+      padding-right: 35px;
     }
 
     &__state {
@@ -92,6 +93,9 @@
   }
 
   @include lg-tablet-up {
+    &__title {
+      margin-bottom: 40px;
+    }
     .home-faq-item {
       &__title {
         font-size: 24px;

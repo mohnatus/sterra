@@ -24,7 +24,7 @@ section.home-solutions
           section.scroll-slider-slide.c-col-6.c-col-lg-4
             a.home-solution(href=solution.link data-type=solution.type)
               .home-solution__group #{solution.type === 'complex' ? 'Комплексное решение' : 'Отраслевое решение'}
-              h3.home-solution__title= solution.title
+              h3.home-solution__title !{solution.title}
               .home-solution__icon
                 img(src=solution.icon alt="")
 

@@ -129,6 +129,22 @@
     }
   }
 
+  @include desktop-up {
+    &__fields, &__image {
+      width: 407px;
+      padding: 0;
+    }
+    &__fields {
+      margin-left: 45px;
+    }
+
+    &__image {
+      margin-right: 45px;
+      img {
+        right: 0;
+      }
+    }
+  }
 }
 
 // @keyframes computerMove {

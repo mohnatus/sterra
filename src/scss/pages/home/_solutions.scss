@@ -46,18 +46,15 @@
 
     &__title {
       color: var(--header);
-      font-size: 24px;
+      font-size: 20px;
       font-weight: 700;
+      hyphens: auto;
+
+      word-break: break-word;
     }
 
     &__icon {
       margin-top: auto;
-    }
-
-    &[data-type="sector"] {
-      .home-solution__title {
-        font-weight: 500;
-      }
     }
   }
 
@@ -78,6 +75,11 @@
   @include lg-tablet-up {
     &__title {
       margin-bottom: 30px;
+    }
+    .home-solution {
+      &__title {
+        font-size: 24px;
+      }
     }
   }
 
