@@ -80,7 +80,8 @@ $circleGroupDelay: 357ms;
     }
     .home-info-products {
       &:before {
-        top: 200px;
+        top: auto;
+        bottom: 60px;
       }
     }
   }

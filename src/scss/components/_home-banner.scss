@@ -45,8 +45,9 @@
         // lighthouse
         right: 0;
         bottom: var(--space-md);
-        max-height: calc(100% - 2 * var(--space-md));
+        height: calc(100% - 2 * var(--space-md));
         width: auto;
+        max-width: none;
       }
     }
     &__text {
@@ -64,7 +65,7 @@
     &__text {
       font-size: 42px;
     }
-    
+
     &__content {
       padding-bottom: 90px;
       padding-top: 30px;

@@ -22,78 +22,37 @@
     }
   }
   .app-icon {
-    // background-image: url(../img/apps/sprite.png);
-    background-repeat: no-repeat;
-    background-size: auto;
-    background-position: center;
     display: block;
-    width: 36px;
-    height: 37px;
     cursor: pointer;
 
-    &-fb {
-      background-image: url(../img/apps/fb.png);
+    width: 36px;
+    height: 37px;
+
+    position: relative;
+
+    .icon, .colored-icon {
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 36px;
+      height: auto;
     }
 
-    &-in {
-      background-image: url(../img/apps/in.png);
+
+    .colored-icon {
+      opacity: 0;
     }
 
-    &-tg {
-      background-image: url(../img/apps/tg.png);
-    }
-
-    &-vk {
-      background-image: url(../img/apps/vk.png);
-    }
-
-    &-wa {
-      background-image: url(../img/apps/wa.png);
-    }
-
-    &-yt {
-      background-image: url(../img/apps/yt.png);
-    }
-  }
-
-  &.colored {
-    .app-icon {
-      transition: background-image 400ms ease-in-out;
-      &-fb {
-        &:hover {
-          background-image: url(../img/apps/fb-color.png);
-        }
+    &:hover {
+      .icon {
+        opacity: 0;
       }
-
-      &-in {
-        &:hover {
-          background-image: url(../img/apps/in-color.png);
-        }
-      }
-
-      &-tg {
-        &:hover {
-          background-image: url(../img/apps/tg-color.png);
-        }
-      }
-
-      &-vk {
-        &:hover {
-          background-image: url(../img/apps/vk-color.png);
-        }
-      }
-
-      &-wa {
-        &:hover {
-          background-image: url(../img/apps/wa-color.png);
-        }
-      }
-
-      &-yt {
-        &:hover {
-          background-image: url(../img/apps/yt-color.png);
-        }
+      .colored-icon {
+        opacity: 1;
       }
     }
   }
+
+
 }

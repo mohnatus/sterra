@@ -1,5 +1,5 @@
 .header-menu {
-  color: var(--header);
+  color: var(--primary);
 
   a {
     color: inherit;
@@ -46,7 +46,7 @@
 
       & > ul {
         padding-top: var(--space-sm);
-        font-size: 17px;
+        font-size: 15px;
         font-weight: 700;
         margin-bottom: calc(-1 * var(--space-sm));
 
@@ -75,6 +75,9 @@
 
   @include tablet-up {
     &-section {
+      &__title {
+        font-size: 25px;
+      }
       &__toggler {
         display: none;
       }
