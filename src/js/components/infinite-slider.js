@@ -68,7 +68,7 @@
       return {
         ...config,
         ...config.breakpoints[activeBreakpoint]
-      }
+      };
     }
     return config;
   }
@@ -79,6 +79,9 @@
     if (!$viewport) return;
     let $container = element.querySelector(selectors.container);
     if (!$container) return;
+
+    let $prev = element.querySelector(selectors.prev);
+    let $next = element.querySelector(selectors.next);
 
     const emitter = utils.createEmitter();
 
@@ -95,11 +98,9 @@
       lastCheckX; // величина сдвига при последнем перемещение слайдов
 
     function init() {
-
       pageWidth = document.body.offsetWidth;
 
       let activeConfig = getActiveConfig(pageWidth, config);
-
       activeSlidesCount = activeConfig.slides;
 
       removeClones($container);
@@ -111,7 +112,14 @@
 
       slideWidth = $visibleSlides[0].offsetWidth;
       let setWidth = slideWidth * $visibleSlides.length;
-      sideOffset = Math.round((pageWidth - slideWidth * activeSlidesCount) / 2);
+
+      if (pageWidth <= setWidth) {
+        sideOffset = 0;
+      } else {
+        sideOffset = Math.round(
+          (pageWidth - slideWidth * activeSlidesCount) / 2
+        );
+      }
 
       let setsCount = Math.ceil(pageWidth / setWidth) + 1;
       let cloneSetsCount = Math.max(setsCount - 1, 2);
@@ -120,24 +128,43 @@
         addCloneSet($container, $visibleSlides, i);
       }
 
-      sliderShift =
-        -1 * ((Math.floor(sideOffset / setWidth) + 1) * setWidth - sideOffset);
+      if (pageWidth <= setWidth) {
+        sliderShift = -1 * setWidth;
+      } else {
+        sliderShift =
+          -1 *
+          ((Math.floor(sideOffset / setWidth) + 1) * setWidth - sideOffset);
+      }
+
       $container.style.marginLeft = sliderShift + 'px';
 
       initialX = 0;
+      lastCheckX = 0;
 
       setTrackShift(0);
+      updateActiveSlides();
     }
 
-    function setTrackShift(shift) {
+    function setFirstActiveSlide(index) {
+      let lastActiveSlide = index + activeSlidesCount - 1;
+      getVisibleSlides($container).forEach((slide, i) => {
+        if (i >= index && i <= lastActiveSlide) {
+          slide.classList.add(states.active);
+        } else {
+          slide.classList.remove(states.active);
+        }
+      });
+    }
+
+    function setTrackShift(shift, withoutCheck) {
       trackShift = shift;
       $container.style.transform = `translateX(${trackShift}px)`;
-      checkSlidesCountOnTheSides();
+      if (!withoutCheck) checkSlidesCountOnTheSides();
     }
 
     function checkSlidesCountOnTheSides() {
       let checkDiff = trackShift - lastCheckX;
-      if (Math.abs(checkDiff) > slideWidth) {
+      if (Math.abs(checkDiff) >= slideWidth) {
         moveSlide(checkDiff);
         lastCheckX = trackShift;
       }
@@ -154,8 +181,12 @@
       }
     }
 
-    function alignSlider() {
-      let distance = Math.abs(sliderShift + trackShift) + sideOffset;
+    function getDistanceToFirstActiveSlide() {
+      return Math.abs(sliderShift + trackShift) + sideOffset;
+    }
+
+    function alignSlider(dir) {
+      let distance = getDistanceToFirstActiveSlide();
       let activeSlidesCount = Math.floor(distance / slideWidth);
       let diff = distance - activeSlidesCount * slideWidth;
 
@@ -164,13 +195,52 @@
       } else {
         activeSlidesCount = Math.floor(distance / slideWidth);
       }
+
+      tempTransition(() => {
+        checkSlidesCountOnTheSides();
+        updateActiveSlides();
+      });
+
       setTrackShift(
-        -1 * sliderShift + sideOffset - activeSlidesCount * slideWidth
+        -1 * sliderShift + sideOffset - activeSlidesCount * slideWidth,
+        'withoutCheck'
       );
     }
 
     function updateActiveSlides() {
-      
+      let distance = getDistanceToFirstActiveSlide();
+      let activeSlideIndex = Math.floor(distance / slideWidth);
+
+      setFirstActiveSlide(activeSlideIndex);
+    }
+
+    function tempTransition(cb) {
+      $container.style.transition = `transform 400ms ease-in-out`;
+      $container.addEventListener('transitionend', () => {
+        $container.style.transition = '';
+        setTimeout(() => {
+          cb();
+        });
+      });
+    }
+
+    function toPrevSlide() {
+      tempTransition(() => {
+        checkSlidesCountOnTheSides();
+        updateActiveSlides();
+      });
+
+      // lastCheckX = trackShift;
+      setTrackShift(trackShift + slideWidth, 'withoutCheck');
+    }
+
+    function toNextSlide() {
+      tempTransition(() => {
+        checkSlidesCountOnTheSides();
+        updateActiveSlides();
+      });
+      // lastCheckX = trackShift;
+      setTrackShift(trackShift - slideWidth, 'withoutCheck');
     }
 
     function onDragStart(e) {
@@ -226,6 +296,13 @@
       }),
       500
     );
+
+    if ($prev) {
+      $prev.addEventListener('click', toPrevSlide);
+    }
+    if ($next) {
+      $next.addEventListener('click', toNextSlide);
+    }
   }
 
   window.components = window.components || {};

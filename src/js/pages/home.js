@@ -11,25 +11,40 @@
     components.fadeSlider(homeSlider);
   }
 
-  const clientsSlider = document.getElementById('clients-slider');
-  if (clientsSlider) {
-    components.infiniteSlider(clientsSlider, {
-      slides: 3,
-      breakpoints: {
-        1024: {
-          slides: 4
-        },
-        1280: {
-          slides: 6
-        }
-      }
-    })
-  }
+  // const clientsSlider = document.getElementById('clients-slider');
+  // if (clientsSlider) {
+  //   components.infiniteSlider(clientsSlider, {
+  //     slides: 3,
+  //     breakpoints: {
+  //       1024: {
+  //         slides: 4
+  //       },
+  //       1280: {
+  //         slides: 6
+  //       }
+  //     }
+  //   })
+  // }
 
-  // const sliders = document.querySelectorAll('.scroll-slider');
-  // sliders.forEach((s) => {
-  //   components.scrollSlider(s);
-  // });
+  const sliders = document.querySelectorAll('.scroll-slider');
+  sliders.forEach((s) => {
+    if (s.id === 'clients-slider') {
+      components.infiniteSlider(s, {
+        slides: 2,
+        breakpoints: {
+          768: {
+            slides: 3,
+          },
+          1024: {
+            slides: 4
+          },
+          1280: {
+            slides: 6
+          }
+        }
+      });
+    } else components.scrollSlider(s);
+  });
 
   const faq = document.getElementById('home-faq');
   if (faq) {
@@ -100,18 +115,18 @@
     if (!element) return;
 
     let $slider = element.querySelector('.scroll-slider');
-    let $slides = [...$slider.querySelectorAll('.scroll-slider-slide')].map((el) => {
-      let block = el.querySelector('[data-type]');
-      return {
-        element: el,
-        type: block.dataset.type
-      };
-    });
+    let $slides = [...$slider.querySelectorAll('.scroll-slider-slide')].map(
+      (el) => {
+        let block = el.querySelector('[data-type]');
+        return {
+          element: el,
+          type: block.dataset.type
+        };
+      }
+    );
     let scrollSlider = $slider.scrollSlider;
 
-    let $filters = [
-      ...element.querySelectorAll('.slider-filter')
-    ].map((el) => {
+    let $filters = [...element.querySelectorAll('.slider-filter')].map((el) => {
       return {
         element: el,
         type: el.dataset.type

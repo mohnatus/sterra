@@ -901,6 +901,8 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     if (!$viewport) return;
     var $container = element.querySelector(selectors.container);
     if (!$container) return;
+    var $prev = element.querySelector(selectors.prev);
+    var $next = element.querySelector(selectors.next);
     var emitter = utils.createEmitter();
     var pageWidth, // ширина всей страницы
     activeSlidesCount, // кол-во активных слайдов
@@ -924,7 +926,13 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       });
       slideWidth = $visibleSlides[0].offsetWidth;
       var setWidth = slideWidth * $visibleSlides.length;
-      sideOffset = Math.round((pageWidth - slideWidth * activeSlidesCount) / 2);
+
+      if (pageWidth <= setWidth) {
+        sideOffset = 0;
+      } else {
+        sideOffset = Math.round((pageWidth - slideWidth * activeSlidesCount) / 2);
+      }
+
       var setsCount = Math.ceil(pageWidth / setWidth) + 1;
       var cloneSetsCount = Math.max(setsCount - 1, 2);
 
@@ -932,22 +940,40 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         addCloneSet($container, $visibleSlides, i);
       }
 
-      sliderShift = -1 * ((Math.floor(sideOffset / setWidth) + 1) * setWidth - sideOffset);
+      if (pageWidth <= setWidth) {
+        sliderShift = -1 * setWidth;
+      } else {
+        sliderShift = -1 * ((Math.floor(sideOffset / setWidth) + 1) * setWidth - sideOffset);
+      }
+
       $container.style.marginLeft = sliderShift + 'px';
       initialX = 0;
+      lastCheckX = 0;
       setTrackShift(0);
+      updateActiveSlides();
     }
 
-    function setTrackShift(shift) {
+    function setFirstActiveSlide(index) {
+      var lastActiveSlide = index + activeSlidesCount - 1;
+      getVisibleSlides($container).forEach(function (slide, i) {
+        if (i >= index && i <= lastActiveSlide) {
+          slide.classList.add(states.active);
+        } else {
+          slide.classList.remove(states.active);
+        }
+      });
+    }
+
+    function setTrackShift(shift, withoutCheck) {
       trackShift = shift;
       $container.style.transform = "translateX(".concat(trackShift, "px)");
-      checkSlidesCountOnTheSides();
+      if (!withoutCheck) checkSlidesCountOnTheSides();
     }
 
     function checkSlidesCountOnTheSides() {
       var checkDiff = trackShift - lastCheckX;
 
-      if (Math.abs(checkDiff) > slideWidth) {
+      if (Math.abs(checkDiff) >= slideWidth) {
         moveSlide(checkDiff);
         lastCheckX = trackShift;
       }
@@ -965,8 +991,12 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       }
     }
 
-    function alignSlider() {
-      var distance = Math.abs(sliderShift + trackShift) + sideOffset;
+    function getDistanceToFirstActiveSlide() {
+      return Math.abs(sliderShift + trackShift) + sideOffset;
+    }
+
+    function alignSlider(dir) {
+      var distance = getDistanceToFirstActiveSlide();
       var activeSlidesCount = Math.floor(distance / slideWidth);
       var diff = distance - activeSlidesCount * slideWidth;
 
@@ -976,10 +1006,46 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         activeSlidesCount = Math.floor(distance / slideWidth);
       }
 
-      setTrackShift(-1 * sliderShift + sideOffset - activeSlidesCount * slideWidth);
+      tempTransition(function () {
+        checkSlidesCountOnTheSides();
+        updateActiveSlides();
+      });
+      setTrackShift(-1 * sliderShift + sideOffset - activeSlidesCount * slideWidth, 'withoutCheck');
     }
 
-    function updateActiveSlides() {}
+    function updateActiveSlides() {
+      var distance = getDistanceToFirstActiveSlide();
+      var activeSlideIndex = Math.floor(distance / slideWidth);
+      setFirstActiveSlide(activeSlideIndex);
+    }
+
+    function tempTransition(cb) {
+      $container.style.transition = "transform 400ms ease-in-out";
+      $container.addEventListener('transitionend', function () {
+        $container.style.transition = '';
+        setTimeout(function () {
+          cb();
+        });
+      });
+    }
+
+    function toPrevSlide() {
+      tempTransition(function () {
+        checkSlidesCountOnTheSides();
+        updateActiveSlides();
+      }); // lastCheckX = trackShift;
+
+      setTrackShift(trackShift + slideWidth, 'withoutCheck');
+    }
+
+    function toNextSlide() {
+      tempTransition(function () {
+        checkSlidesCountOnTheSides();
+        updateActiveSlides();
+      }); // lastCheckX = trackShift;
+
+      setTrackShift(trackShift - slideWidth, 'withoutCheck');
+    }
 
     function onDragStart(e) {
       element.style.userSelect = 'none';
@@ -1027,6 +1093,14 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     window.addEventListener('resize', utils.debounce(function () {
       init();
     }), 500);
+
+    if ($prev) {
+      $prev.addEventListener('click', toPrevSlide);
+    }
+
+    if ($next) {
+      $next.addEventListener('click', toNextSlide);
+    }
   }
 
   window.components = window.components || {};
@@ -1829,28 +1903,41 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
   if (homeSlider) {
     components.fadeSlider(homeSlider);
-  }
+  } // const clientsSlider = document.getElementById('clients-slider');
+  // if (clientsSlider) {
+  //   components.infiniteSlider(clientsSlider, {
+  //     slides: 3,
+  //     breakpoints: {
+  //       1024: {
+  //         slides: 4
+  //       },
+  //       1280: {
+  //         slides: 6
+  //       }
+  //     }
+  //   })
+  // }
 
-  var clientsSlider = document.getElementById('clients-slider');
 
-  if (clientsSlider) {
-    components.infiniteSlider(clientsSlider, {
-      slides: 3,
-      breakpoints: {
-        1024: {
-          slides: 4
-        },
-        1280: {
-          slides: 6
+  var sliders = document.querySelectorAll('.scroll-slider');
+  sliders.forEach(function (s) {
+    if (s.id === 'clients-slider') {
+      components.infiniteSlider(s, {
+        slides: 2,
+        breakpoints: {
+          768: {
+            slides: 3
+          },
+          1024: {
+            slides: 4
+          },
+          1280: {
+            slides: 6
+          }
         }
-      }
-    });
-  } // const sliders = document.querySelectorAll('.scroll-slider');
-  // sliders.forEach((s) => {
-  //   components.scrollSlider(s);
-  // });
-
-
+      });
+    } else components.scrollSlider(s);
+  });
   var faq = document.getElementById('home-faq');
 
   if (faq) {
