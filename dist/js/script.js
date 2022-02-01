@@ -809,6 +809,231 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 })();
 "use strict";
 
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+(function () {
+  // COMPONENTS.INFINITE_SLIDER
+  var selectors = {
+    viewport: '.scroll-slider-viewport',
+    container: '.scroll-slider-slides',
+    slide: '.scroll-slider-slide',
+    prev: '.scroll-slider-prev',
+    next: '.scroll-slider-next',
+    controls: '.scroll-slider-controls'
+  };
+  var states = {
+    shifting: 'shifting',
+    loaded: 'loaded',
+    active: 'active'
+  };
+  var events = {
+    changeSlide: 'scroll-slider_change_slide',
+    clickPagination: 'scroll-slider_click_pagination',
+    touched: 'scroll-slider_touched'
+  };
+
+  function removeClones($container) {
+    var $slides = $container.querySelectorAll(selectors.slide);
+    $slides.forEach(function ($slide) {
+      if ($slide.dataset.clone) $slide.remove();
+    });
+  }
+
+  function getVisibleSlides($container) {
+    var $visibleSlides = _toConsumableArray($container.querySelectorAll(selectors.slide));
+
+    $visibleSlides = $visibleSlides.filter(function (el) {
+      if (el.hasAttribute('hidden')) return false;
+      return true;
+    });
+    return $visibleSlides;
+  }
+
+  function createClone($slide, index, setIndex) {
+    var $clone = $slide.cloneNode(true);
+    $clone.dataset.clone = true;
+    $clone.dataset.index = index;
+    $clone.dataset.set = setIndex;
+    return $clone;
+  }
+
+  function addCloneSet($container, $slides, setIndex) {
+    var fragment = document.createDocumentFragment();
+    $slides.forEach(function ($slide, i) {
+      var $clone = createClone($slide, i, setIndex);
+      fragment.appendChild($clone);
+    });
+    $container.appendChild(fragment, $container.children[0]);
+  }
+
+  function getActiveConfig(pageWidth, config) {
+    if (!config.breakpoints) return config;
+    var activeBreakpoint = Object.keys(config.breakpoints).reverse().find(function (key) {
+      if (key <= pageWidth) return true;
+    });
+
+    if (activeBreakpoint) {
+      return _objectSpread(_objectSpread({}, config), config.breakpoints[activeBreakpoint]);
+    }
+
+    return config;
+  }
+
+  function infiniteSlider(element, config) {
+    if (!element) return;
+    var $viewport = element.querySelector(selectors.viewport);
+    if (!$viewport) return;
+    var $container = element.querySelector(selectors.container);
+    if (!$container) return;
+    var emitter = utils.createEmitter();
+    var pageWidth, // ширина всей страницы
+    activeSlidesCount, // кол-во активных слайдов
+    slideWidth, // ширина одного слайда
+    sliderShift, // сдвиг слайда влево за пределы страницы
+    sideOffset; // расстояние от начала страницы до первого активного слайда
+
+    var trackShift, // смещение трека со слайдами относительно слайдера
+    initialX, // начало перемещения
+    x1, x2, // координаты текущего перемещения
+    lastCheckX; // величина сдвига при последнем перемещение слайдов
+
+    function init() {
+      pageWidth = document.body.offsetWidth;
+      var activeConfig = getActiveConfig(pageWidth, config);
+      activeSlidesCount = activeConfig.slides;
+      removeClones($container);
+      var $visibleSlides = getVisibleSlides($container);
+      $visibleSlides.forEach(function (el, i) {
+        el.dataset.index = i;
+      });
+      slideWidth = $visibleSlides[0].offsetWidth;
+      var setWidth = slideWidth * $visibleSlides.length;
+      sideOffset = Math.round((pageWidth - slideWidth * activeSlidesCount) / 2);
+      var setsCount = Math.ceil(pageWidth / setWidth) + 1;
+      var cloneSetsCount = Math.max(setsCount - 1, 2);
+
+      for (var i = 0; i < cloneSetsCount; i++) {
+        addCloneSet($container, $visibleSlides, i);
+      }
+
+      sliderShift = -1 * ((Math.floor(sideOffset / setWidth) + 1) * setWidth - sideOffset);
+      $container.style.marginLeft = sliderShift + 'px';
+      initialX = 0;
+      setTrackShift(0);
+    }
+
+    function setTrackShift(shift) {
+      trackShift = shift;
+      $container.style.transform = "translateX(".concat(trackShift, "px)");
+      checkSlidesCountOnTheSides();
+    }
+
+    function checkSlidesCountOnTheSides() {
+      var checkDiff = trackShift - lastCheckX;
+
+      if (Math.abs(checkDiff) > slideWidth) {
+        moveSlide(checkDiff);
+        lastCheckX = trackShift;
+      }
+    }
+
+    function moveSlide(diff) {
+      var slides = getVisibleSlides($container);
+
+      if (diff < 0) {
+        $container.appendChild(slides[0]);
+        setTrackShift(trackShift + slideWidth);
+      } else {
+        $container.insertBefore(slides[slides.length - 1], slides[0]);
+        setTrackShift(trackShift - slideWidth);
+      }
+    }
+
+    function alignSlider() {
+      var distance = Math.abs(sliderShift + trackShift) + sideOffset;
+      var activeSlidesCount = Math.floor(distance / slideWidth);
+      var diff = distance - activeSlidesCount * slideWidth;
+
+      if (diff > slideWidth / 2) {
+        activeSlidesCount = Math.ceil(distance / slideWidth);
+      } else {
+        activeSlidesCount = Math.floor(distance / slideWidth);
+      }
+
+      setTrackShift(-1 * sliderShift + sideOffset - activeSlidesCount * slideWidth);
+    }
+
+    function updateActiveSlides() {}
+
+    function onDragStart(e) {
+      element.style.userSelect = 'none';
+      element.style.cursor = 'grabbing';
+      e = e || window.event;
+      e.preventDefault();
+      initialX = trackShift;
+      lastCheckX = trackShift;
+
+      if (e.type == 'touchstart') {
+        x1 = e.touches[0].clientX;
+      } else {
+        x1 = e.clientX;
+        document.onmouseup = onDragEnd;
+        document.onmousemove = onDragAction;
+      }
+    }
+
+    function onDragEnd() {
+      document.onmouseup = null;
+      document.onmousemove = null;
+      alignSlider();
+      updateActiveSlides();
+    }
+
+    function onDragAction(e) {
+      e = e || window.event;
+
+      if (e.type == 'touchmove') {
+        x2 = x1 - e.touches[0].clientX;
+        x1 = e.touches[0].clientX;
+      } else {
+        x2 = x1 - e.clientX;
+        x1 = e.clientX;
+      }
+
+      setTrackShift(trackShift - x2);
+    }
+
+    $container.onmousedown = onDragStart;
+    $container.addEventListener('touchstart', onDragStart);
+    $container.addEventListener('touchend', onDragEnd);
+    $container.addEventListener('touchmove', onDragAction);
+    init();
+    window.addEventListener('resize', utils.debounce(function () {
+      init();
+    }), 500);
+  }
+
+  window.components = window.components || {};
+  window.components.infiniteSlider = infiniteSlider;
+})();
+"use strict";
+
 (function () {
   // COMPONENTS.MODAL
   var selectors = {
@@ -1606,10 +1831,26 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     components.fadeSlider(homeSlider);
   }
 
-  var sliders = document.querySelectorAll('.scroll-slider');
-  sliders.forEach(function (s) {
-    components.scrollSlider(s);
-  });
+  var clientsSlider = document.getElementById('clients-slider');
+
+  if (clientsSlider) {
+    components.infiniteSlider(clientsSlider, {
+      slides: 3,
+      breakpoints: {
+        1024: {
+          slides: 4
+        },
+        1280: {
+          slides: 6
+        }
+      }
+    });
+  } // const sliders = document.querySelectorAll('.scroll-slider');
+  // sliders.forEach((s) => {
+  //   components.scrollSlider(s);
+  // });
+
+
   var faq = document.getElementById('home-faq');
 
   if (faq) {

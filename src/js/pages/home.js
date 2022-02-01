@@ -2,7 +2,7 @@
   // PAGES.HOME_PAGE
   let page = document.querySelector('.page');
   if (!page) return;
-  
+
   const isHomePage = page.classList.contains('home-page');
   if (!isHomePage) return;
 
@@ -11,10 +11,25 @@
     components.fadeSlider(homeSlider);
   }
 
-  const sliders = document.querySelectorAll('.scroll-slider');
-  sliders.forEach((s) => {
-    components.scrollSlider(s);
-  });
+  const clientsSlider = document.getElementById('clients-slider');
+  if (clientsSlider) {
+    components.infiniteSlider(clientsSlider, {
+      slides: 3,
+      breakpoints: {
+        1024: {
+          slides: 4
+        },
+        1280: {
+          slides: 6
+        }
+      }
+    })
+  }
+
+  // const sliders = document.querySelectorAll('.scroll-slider');
+  // sliders.forEach((s) => {
+  //   components.scrollSlider(s);
+  // });
 
   const faq = document.getElementById('home-faq');
   if (faq) {
