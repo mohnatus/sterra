@@ -29,6 +29,8 @@
   &-controls {
     margin-top: calc(2 * var(--space-sm));
     margin-bottom: calc(-1 * var(--space-sm));
+    display: flex;
+    flex-wrap: wrap;
   }
   &-control {
     margin-bottom: var(--space-sm);
