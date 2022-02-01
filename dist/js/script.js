@@ -1055,7 +1055,6 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
     function onDragStart(e) {
       element.style.userSelect = 'none';
-      element.style.cursor = 'grabbing';
       e = e || window.event;
       initialX = trackShift;
       lastCheckX = trackShift;
@@ -1064,6 +1063,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         x1 = e.touches[0].clientX;
         y1 = e.touches[0].clientY;
       } else {
+        e.preventDefault();
         x1 = e.clientX;
         y1 = e.clientY;
         document.onmouseup = onDragEnd;
@@ -1072,11 +1072,14 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     }
 
     function onDragEnd() {
-      shifting = false;
+      element.style.cursor = '';
       document.onmouseup = null;
       document.onmousemove = null;
       alignSlider();
       updateActiveSlides();
+      setTimeout(function () {
+        return shifting = false;
+      });
     }
 
     function onDragAction(e) {
@@ -1087,25 +1090,32 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         x1 = e.touches[0].clientX;
         y2 = y1 - e.touches[0].clientY;
         y1 = e.touches[0].clientY;
+
+        if (shifting) {
+          if (e.cancelable) {
+            e.preventDefault();
+          }
+
+          setTrackShift(trackShift - x2);
+          return;
+        }
+
+        tmpTrackShift = tmpTrackShift - x2;
+
+        if (Math.abs(tmpTrackShift) > 5 && e.cancelable) {
+          e.preventDefault();
+          element.style.cursor = 'grabbing';
+          shifting = true;
+          setTrackShift(tmpTrackShift);
+        }
       } else {
         x2 = x1 - e.clientX;
         x1 = e.clientX;
         y2 = y1 - e.clientY;
         y1 = e.clientY;
-      }
-
-      if (shifting) {
-        e.preventDefault();
-        setTrackShift(trackShift - x2);
-        return;
-      }
-
-      tmpTrackShift = tmpTrackShift - x2;
-
-      if (Math.abs(tmpTrackShift) > 10) {
-        e.preventDefault();
         shifting = true;
-        setTrackShift(tmpTrackShift);
+        if (e.cancelable) e.preventDefault();
+        setTrackShift(trackShift - x2);
       }
     }
 
@@ -1126,6 +1136,9 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       $next.addEventListener('click', toNextSlide);
     }
 
+    element.addEventListener('click', function (e) {
+      if (shifting) e.preventDefault();
+    });
     element.infiniteSlider = {
       update: function update() {
         init();

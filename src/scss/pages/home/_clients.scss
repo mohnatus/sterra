@@ -1,40 +1,5 @@
-@mixin visibleClientSlide {
-  opacity: 1;
-
-  &:hover {
-    img.bw {
-      opacity: 0;
-    }
-    img.colored {
-      opacity: 1;
-    }
-  }
-
-  .client-block {
-    @include cardShadow;
-  }
-}
-
 .home-clients {
   --client-logo-offset: 16px;
-
-  .scroll-slider {
-    &-control {
-    }
-
-    &-slide {
-      flex-shrink: 0;
-      min-width: 170px;
-
-      opacity: 0.5;
-
-
-      &[data-order='1'],
-      &[data-order='2'] {
-        @include visibleClientSlide;
-      }
-    }
-  }
 
   .client-block {
     width: 100%;
@@ -60,32 +25,29 @@
         opacity: 0;
       }
     }
+
+    &:hover {
+      img.bw {
+        opacity: 0;
+      }
+      img.colored {
+        opacity: 1;
+      }
+    }
+  }
+
+  .scroll-slider {
+    &-control {
+    }
+
+    &-slide {
+      flex-shrink: 0;
+      min-width: 170px;
+    }
   }
 
   @include tablet-up {
     --client-logo-offset: 20px;
-
-    .scroll-slider-slide {
-      &[data-order='3'] {
-        @include visibleClientSlide;
-      }
-    }
   }
 
-  @include lg-tablet-up {
-    .scroll-slider-slide {
-      &[data-order='4'] {
-        @include visibleClientSlide;
-      }
-    }
-  }
-
-  @include sm-desktop-up {
-    .scroll-slider-slide {
-      &[data-order='5'],
-      &[data-order='6'] {
-        @include visibleClientSlide;
-      }
-    }
-  }
 }

@@ -1,23 +1,8 @@
-@mixin visibleCaseSlide {
-  opacity: 1;
-
-  .home-case {
-    @include cardShadow;
-
-    pointer-events: all;
-  }
-}
 
 .home-cases {
   .scroll-slider {
     &-slide {
       min-width: 340px;
-
-      opacity: 0.5;
-
-      &[data-order='1'] {
-        @include visibleCaseSlide();
-      }
     }
   }
 
@@ -78,13 +63,7 @@
       margin-bottom: 40px;
     }
 
-    .scroll-slider {
-      &-slide {
-        &[data-order='2'] {
-          @include visibleCaseSlide;
-        }
-      }
-    }
+
   }
 
   @include lg-tablet-up {
@@ -103,12 +82,5 @@
       margin-bottom: 50px;
     }
 
-    .scroll-slider {
-      &-slide {
-        &[data-order='3'] {
-          @include visibleCaseSlide;
-        }
-      }
-    }
   }
 }

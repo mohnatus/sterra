@@ -1,11 +1,4 @@
-@mixin visibleSolutionSlide {
-  opacity: 1;
 
-  .home-solution {
-    @include cardShadow;
-    pointer-events: all;
-  }
-}
 
 .home-solutions {
   &__header {
@@ -19,12 +12,6 @@
   .scroll-slider {
     &-slide {
       min-width: 340px;
-
-      opacity: 0.5;
-
-      &[data-order='1'] {
-        @include visibleSolutionSlide();
-      }
     }
   }
 
@@ -67,13 +54,6 @@
       margin-bottom: var(--space-lg);
     }
 
-    .scroll-slider {
-      &-slide {
-        &[data-order='2'] {
-          @include visibleSolutionSlide;
-        }
-      }
-    }
   }
 
   @include lg-tablet-up {
@@ -98,12 +78,5 @@
       margin-bottom: 0;
     }
 
-    .scroll-slider {
-      &-slide {
-        &[data-order='3'] {
-          @include visibleSolutionSlide;
-        }
-      }
-    }
   }
 }

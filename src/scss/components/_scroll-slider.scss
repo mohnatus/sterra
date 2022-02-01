@@ -18,22 +18,14 @@
     padding-left: var(--gap);
     padding-right: var(--gap);
     transition: opacity 400ms ease-in-out;
-  }
-  &-offset {
-    width: calc(2 * var(--gap));
-    flex-shrink: 0;
 
-    @include max-width-up {
-      width: calc(
-        (100vw - var(--max-content-width) - var(--scrollbar-width, 0px)) / 2 + 2 *
-          var(--gap)
-      );
-    }
-
-    &:last-child {
-      margin-left: calc(-1 * var(--gap));
+    &:not(.active) {
+      opacity: 0.5;
+      cursor: default;
+      pointer-events: none;
     }
   }
+
   &-controls {
     margin-top: calc(2 * var(--space-sm));
     margin-bottom: calc(-1 * var(--space-sm));

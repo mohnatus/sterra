@@ -257,7 +257,6 @@
 
     function onDragStart(e) {
       element.style.userSelect = 'none';
-      element.style.cursor = 'grabbing';
 
       e = e || window.event;
       initialX = trackShift;
@@ -267,6 +266,8 @@
         x1 = e.touches[0].clientX;
         y1 = e.touches[0].clientY;
       } else {
+        e.preventDefault();
+
         x1 = e.clientX;
         y1 = e.clientY;
         document.onmouseup = onDragEnd;
@@ -275,11 +276,13 @@
     }
 
     function onDragEnd() {
-      shifting = false;
+      element.style.cursor = '';
       document.onmouseup = null;
       document.onmousemove = null;
       alignSlider();
       updateActiveSlides();
+
+      setTimeout(() => shifting = false)
     }
 
     function onDragAction(e) {
@@ -290,25 +293,32 @@
         x1 = e.touches[0].clientX;
         y2 = y1 - e.touches[0].clientY;
         y1 = e.touches[0].clientY;
+
+        if (shifting) {
+          if (e.cancelable) {
+            e.preventDefault();
+          }
+
+          setTrackShift(trackShift - x2);
+          return;
+        }
+
+        tmpTrackShift = tmpTrackShift - x2;
+
+        if (Math.abs(tmpTrackShift) > 5 && e.cancelable) {
+          e.preventDefault();
+          element.style.cursor = 'grabbing';
+          shifting = true;
+          setTrackShift(tmpTrackShift);
+        }
       } else {
         x2 = x1 - e.clientX;
         x1 = e.clientX;
         y2 = y1 - e.clientY;
         y1 = e.clientY;
-      }
-
-      if (shifting) {
-        e.preventDefault();
-        setTrackShift(trackShift - x2);
-        return;
-      }
-
-      tmpTrackShift = tmpTrackShift - x2;
-
-      if (Math.abs(tmpTrackShift) > 10) {
-        e.preventDefault();
         shifting = true;
-        setTrackShift(tmpTrackShift);
+        if (e.cancelable) e.preventDefault();
+        setTrackShift(trackShift - x2);
       }
     }
 
@@ -333,6 +343,10 @@
     if ($next) {
       $next.addEventListener('click', toNextSlide);
     }
+
+    element.addEventListener('click', (e) => {
+      if (shifting) e.preventDefault();
+    });
 
     element.infiniteSlider = {
       update() {
