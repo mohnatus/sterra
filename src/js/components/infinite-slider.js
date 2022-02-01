@@ -92,16 +92,24 @@
       sideOffset; // расстояние от начала страницы до первого активного слайда
 
     let trackShift, // смещение трека со слайдами относительно слайдера
+      tmpTrackShift,
       initialX, // начало перемещения
       x1,
-      x2, // координаты текущего перемещения
+      x2,
+      y1,
+      y2, // координаты текущего перемещения
       lastCheckX; // величина сдвига при последнем перемещение слайдов
+
+    let shifting;
 
     function init() {
       pageWidth = document.body.offsetWidth;
 
       let activeConfig = getActiveConfig(pageWidth, config);
       activeSlidesCount = activeConfig.slides;
+
+      let offset = activeConfig.offset || 0;
+      let isCenter = activeConfig.center;
 
       removeClones($container);
       const $visibleSlides = getVisibleSlides($container);
@@ -111,10 +119,15 @@
       });
 
       slideWidth = $visibleSlides[0].offsetWidth;
+
+      let isFit = pageWidth > slideWidth * activeSlidesCount;
+
       let setWidth = slideWidth * $visibleSlides.length;
 
-      if (pageWidth <= setWidth) {
-        sideOffset = 0;
+      if (!isCenter) {
+        sideOffset = offset;
+      } else if (!isFit) {
+        sideOffset = offset;
       } else {
         sideOffset = Math.round(
           (pageWidth - slideWidth * activeSlidesCount) / 2
@@ -128,8 +141,8 @@
         addCloneSet($container, $visibleSlides, i);
       }
 
-      if (pageWidth <= setWidth) {
-        sliderShift = -1 * setWidth;
+      if (!isFit || !isCenter) {
+        sliderShift = -1 * setWidth + offset;
       } else {
         sliderShift =
           -1 *
@@ -158,6 +171,7 @@
 
     function setTrackShift(shift, withoutCheck) {
       trackShift = shift;
+      tmpTrackShift = shift;
       $container.style.transform = `translateX(${trackShift}px)`;
       if (!withoutCheck) checkSlidesCountOnTheSides();
     }
@@ -185,7 +199,7 @@
       return Math.abs(sliderShift + trackShift) + sideOffset;
     }
 
-    function alignSlider(dir) {
+    function alignSlider() {
       let distance = getDistanceToFirstActiveSlide();
       let activeSlidesCount = Math.floor(distance / slideWidth);
       let diff = distance - activeSlidesCount * slideWidth;
@@ -230,7 +244,6 @@
         updateActiveSlides();
       });
 
-      // lastCheckX = trackShift;
       setTrackShift(trackShift + slideWidth, 'withoutCheck');
     }
 
@@ -239,7 +252,6 @@
         checkSlidesCountOnTheSides();
         updateActiveSlides();
       });
-      // lastCheckX = trackShift;
       setTrackShift(trackShift - slideWidth, 'withoutCheck');
     }
 
@@ -248,20 +260,22 @@
       element.style.cursor = 'grabbing';
 
       e = e || window.event;
-      e.preventDefault();
       initialX = trackShift;
       lastCheckX = trackShift;
 
       if (e.type == 'touchstart') {
         x1 = e.touches[0].clientX;
+        y1 = e.touches[0].clientY;
       } else {
         x1 = e.clientX;
+        y1 = e.clientY;
         document.onmouseup = onDragEnd;
         document.onmousemove = onDragAction;
       }
     }
 
     function onDragEnd() {
+      shifting = false;
       document.onmouseup = null;
       document.onmousemove = null;
       alignSlider();
@@ -274,12 +288,28 @@
       if (e.type == 'touchmove') {
         x2 = x1 - e.touches[0].clientX;
         x1 = e.touches[0].clientX;
+        y2 = y1 - e.touches[0].clientY;
+        y1 = e.touches[0].clientY;
       } else {
         x2 = x1 - e.clientX;
         x1 = e.clientX;
+        y2 = y1 - e.clientY;
+        y1 = e.clientY;
       }
 
-      setTrackShift(trackShift - x2);
+      if (shifting) {
+        e.preventDefault();
+        setTrackShift(trackShift - x2);
+        return;
+      }
+
+      tmpTrackShift = tmpTrackShift - x2;
+
+      if (Math.abs(tmpTrackShift) > 10) {
+        e.preventDefault();
+        shifting = true;
+        setTrackShift(tmpTrackShift);
+      }
     }
 
     $container.onmousedown = onDragStart;
@@ -303,6 +333,12 @@
     if ($next) {
       $next.addEventListener('click', toNextSlide);
     }
+
+    element.infiniteSlider = {
+      update() {
+        init();
+      }
+    };
   }
 
   window.components = window.components || {};

@@ -11,40 +11,92 @@
     components.fadeSlider(homeSlider);
   }
 
-  // const clientsSlider = document.getElementById('clients-slider');
-  // if (clientsSlider) {
-  //   components.infiniteSlider(clientsSlider, {
-  //     slides: 3,
-  //     breakpoints: {
-  //       1024: {
-  //         slides: 4
-  //       },
-  //       1280: {
-  //         slides: 6
-  //       }
-  //     }
-  //   })
-  // }
-
-  const sliders = document.querySelectorAll('.scroll-slider');
-  sliders.forEach((s) => {
-    if (s.id === 'clients-slider') {
-      components.infiniteSlider(s, {
-        slides: 2,
-        breakpoints: {
-          768: {
-            slides: 3,
-          },
-          1024: {
-            slides: 4
-          },
-          1280: {
-            slides: 6
-          }
+  const clientsSlider = document.getElementById('clients-slider');
+  if (clientsSlider) {
+    components.infiniteSlider(clientsSlider, {
+      slides: 2,
+      offset: 10,
+      breakpoints: {
+        768: {
+          slides: 3,
+          center: true
+        },
+        1024: {
+          slides: 4,
+          center: true
+        },
+        1280: {
+          slides: 6,
+          center: true
         }
-      });
-    } else components.scrollSlider(s);
-  });
+      }
+    });
+  }
+
+  const solutionsSlider = document.getElementById('solutions-slider');
+  if (solutionsSlider) {
+    components.infiniteSlider(solutionsSlider, {
+      slides: 1,
+      offset: 10,
+      breakpoints: {
+        768: {
+          slides: 2,
+          center: true
+        },
+        1280: {
+          slides: 3,
+          center: true
+        }
+      }
+    });
+  }
+
+  const casesSlider = document.getElementById('cases-slider');
+  if (casesSlider) {
+    components.infiniteSlider(casesSlider, {
+      slides: 1,
+      offset: 10,
+      breakpoints: {
+        768: {
+          slides: 2,
+          center: true
+        },
+        1280: {
+          slides: 3,
+          center: true
+        }
+      }
+    });
+  }
+
+
+  const newsSlider = document.getElementById('news-slider');
+  if (newsSlider) {
+    components.infiniteSlider(newsSlider, {
+      slides: 1,
+      offset: 10,
+      breakpoints: {
+        768: {
+          slides: 2,
+          center: true
+        },
+        1024: {
+          slides: 3,
+          center: true,
+        },
+        1280: {
+          slides: 4,
+          center: true
+        }
+      }
+    });
+  }
+
+  // const sliders = document.querySelectorAll('.scroll-slider');
+  // sliders.forEach((s) => {
+  //   if (s.id === 'clients-slider') {
+  //   } else components.scrollSlider(s);
+  // });
 
   const faq = document.getElementById('home-faq');
   if (faq) {
@@ -124,7 +176,7 @@
         };
       }
     );
-    let scrollSlider = $slider.scrollSlider;
+    let scrollSlider = $slider.infiniteSlider;
 
     let $filters = [...element.querySelectorAll('.slider-filter')].map((el) => {
       return {

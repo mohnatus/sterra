@@ -911,24 +911,31 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     sideOffset; // расстояние от начала страницы до первого активного слайда
 
     var trackShift, // смещение трека со слайдами относительно слайдера
-    initialX, // начало перемещения
-    x1, x2, // координаты текущего перемещения
+    tmpTrackShift, initialX, // начало перемещения
+    x1, x2, y1, y2, // координаты текущего перемещения
     lastCheckX; // величина сдвига при последнем перемещение слайдов
+
+    var shifting;
 
     function init() {
       pageWidth = document.body.offsetWidth;
       var activeConfig = getActiveConfig(pageWidth, config);
       activeSlidesCount = activeConfig.slides;
+      var offset = activeConfig.offset || 0;
+      var isCenter = activeConfig.center;
       removeClones($container);
       var $visibleSlides = getVisibleSlides($container);
       $visibleSlides.forEach(function (el, i) {
         el.dataset.index = i;
       });
       slideWidth = $visibleSlides[0].offsetWidth;
+      var isFit = pageWidth > slideWidth * activeSlidesCount;
       var setWidth = slideWidth * $visibleSlides.length;
 
-      if (pageWidth <= setWidth) {
-        sideOffset = 0;
+      if (!isCenter) {
+        sideOffset = offset;
+      } else if (!isFit) {
+        sideOffset = offset;
       } else {
         sideOffset = Math.round((pageWidth - slideWidth * activeSlidesCount) / 2);
       }
@@ -940,8 +947,8 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         addCloneSet($container, $visibleSlides, i);
       }
 
-      if (pageWidth <= setWidth) {
-        sliderShift = -1 * setWidth;
+      if (!isFit || !isCenter) {
+        sliderShift = -1 * setWidth + offset;
       } else {
         sliderShift = -1 * ((Math.floor(sideOffset / setWidth) + 1) * setWidth - sideOffset);
       }
@@ -966,6 +973,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
     function setTrackShift(shift, withoutCheck) {
       trackShift = shift;
+      tmpTrackShift = shift;
       $container.style.transform = "translateX(".concat(trackShift, "px)");
       if (!withoutCheck) checkSlidesCountOnTheSides();
     }
@@ -995,7 +1003,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       return Math.abs(sliderShift + trackShift) + sideOffset;
     }
 
-    function alignSlider(dir) {
+    function alignSlider() {
       var distance = getDistanceToFirstActiveSlide();
       var activeSlidesCount = Math.floor(distance / slideWidth);
       var diff = distance - activeSlidesCount * slideWidth;
@@ -1033,8 +1041,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       tempTransition(function () {
         checkSlidesCountOnTheSides();
         updateActiveSlides();
-      }); // lastCheckX = trackShift;
-
+      });
       setTrackShift(trackShift + slideWidth, 'withoutCheck');
     }
 
@@ -1042,8 +1049,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       tempTransition(function () {
         checkSlidesCountOnTheSides();
         updateActiveSlides();
-      }); // lastCheckX = trackShift;
-
+      });
       setTrackShift(trackShift - slideWidth, 'withoutCheck');
     }
 
@@ -1051,20 +1057,22 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       element.style.userSelect = 'none';
       element.style.cursor = 'grabbing';
       e = e || window.event;
-      e.preventDefault();
       initialX = trackShift;
       lastCheckX = trackShift;
 
       if (e.type == 'touchstart') {
         x1 = e.touches[0].clientX;
+        y1 = e.touches[0].clientY;
       } else {
         x1 = e.clientX;
+        y1 = e.clientY;
         document.onmouseup = onDragEnd;
         document.onmousemove = onDragAction;
       }
     }
 
     function onDragEnd() {
+      shifting = false;
       document.onmouseup = null;
       document.onmousemove = null;
       alignSlider();
@@ -1077,12 +1085,28 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       if (e.type == 'touchmove') {
         x2 = x1 - e.touches[0].clientX;
         x1 = e.touches[0].clientX;
+        y2 = y1 - e.touches[0].clientY;
+        y1 = e.touches[0].clientY;
       } else {
         x2 = x1 - e.clientX;
         x1 = e.clientX;
+        y2 = y1 - e.clientY;
+        y1 = e.clientY;
       }
 
-      setTrackShift(trackShift - x2);
+      if (shifting) {
+        e.preventDefault();
+        setTrackShift(trackShift - x2);
+        return;
+      }
+
+      tmpTrackShift = tmpTrackShift - x2;
+
+      if (Math.abs(tmpTrackShift) > 10) {
+        e.preventDefault();
+        shifting = true;
+        setTrackShift(tmpTrackShift);
+      }
     }
 
     $container.onmousedown = onDragStart;
@@ -1101,6 +1125,12 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     if ($next) {
       $next.addEventListener('click', toNextSlide);
     }
+
+    element.infiniteSlider = {
+      update: function update() {
+        init();
+      }
+    };
   }
 
   window.components = window.components || {};
@@ -1903,41 +1933,97 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
   if (homeSlider) {
     components.fadeSlider(homeSlider);
-  } // const clientsSlider = document.getElementById('clients-slider');
-  // if (clientsSlider) {
-  //   components.infiniteSlider(clientsSlider, {
-  //     slides: 3,
-  //     breakpoints: {
-  //       1024: {
-  //         slides: 4
-  //       },
-  //       1280: {
-  //         slides: 6
-  //       }
-  //     }
-  //   })
-  // }
+  }
 
+  var clientsSlider = document.getElementById('clients-slider');
 
-  var sliders = document.querySelectorAll('.scroll-slider');
-  sliders.forEach(function (s) {
-    if (s.id === 'clients-slider') {
-      components.infiniteSlider(s, {
-        slides: 2,
-        breakpoints: {
-          768: {
-            slides: 3
-          },
-          1024: {
-            slides: 4
-          },
-          1280: {
-            slides: 6
-          }
+  if (clientsSlider) {
+    components.infiniteSlider(clientsSlider, {
+      slides: 2,
+      offset: 10,
+      breakpoints: {
+        768: {
+          slides: 3,
+          center: true
+        },
+        1024: {
+          slides: 4,
+          center: true
+        },
+        1280: {
+          slides: 6,
+          center: true
         }
-      });
-    } else components.scrollSlider(s);
-  });
+      }
+    });
+  }
+
+  var solutionsSlider = document.getElementById('solutions-slider');
+
+  if (solutionsSlider) {
+    components.infiniteSlider(solutionsSlider, {
+      slides: 1,
+      offset: 10,
+      breakpoints: {
+        768: {
+          slides: 2,
+          center: true
+        },
+        1280: {
+          slides: 3,
+          center: true
+        }
+      }
+    });
+  }
+
+  var casesSlider = document.getElementById('cases-slider');
+
+  if (casesSlider) {
+    components.infiniteSlider(casesSlider, {
+      slides: 1,
+      offset: 10,
+      breakpoints: {
+        768: {
+          slides: 2,
+          center: true
+        },
+        1280: {
+          slides: 3,
+          center: true
+        }
+      }
+    });
+  }
+
+  var newsSlider = document.getElementById('news-slider');
+
+  if (newsSlider) {
+    components.infiniteSlider(newsSlider, {
+      slides: 1,
+      offset: 10,
+      breakpoints: {
+        768: {
+          slides: 2,
+          center: true
+        },
+        1024: {
+          slides: 3,
+          center: true
+        },
+        1280: {
+          slides: 4,
+          center: true
+        }
+      }
+    });
+  } // const sliders = document.querySelectorAll('.scroll-slider');
+  // sliders.forEach((s) => {
+  //   if (s.id === 'clients-slider') {
+  //   } else components.scrollSlider(s);
+  // });
+
+
   var faq = document.getElementById('home-faq');
 
   if (faq) {
@@ -2014,7 +2100,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       };
     });
 
-    var scrollSlider = $slider.scrollSlider;
+    var scrollSlider = $slider.infiniteSlider;
 
     var $filters = _toConsumableArray(element.querySelectorAll('.slider-filter')).map(function (el) {
       return {
