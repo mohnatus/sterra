@@ -3350,6 +3350,9 @@ body.header-pane-opened .header .header-view {
   color: black;
   font-size: 13px;
 }
+.home-news-article:hover .home-news-article__title {
+  text-decoration: underline;
+}
 @media (min-width: 768px) {
   .home-news .scroll-slider-slide {
     min-width: 0;

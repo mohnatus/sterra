@@ -64,6 +64,12 @@
       color: black;
       font-size: 13px;
     }
+
+    &:hover {
+      .home-news-article__title {
+        text-decoration: underline;
+      }
+    }
   }
 
   @include tablet-up {
