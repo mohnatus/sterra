@@ -1,6 +1,7 @@
 @mixin form-control-view {
   border: 1px solid var(--border);
   outline: none;
+  background: white;
 }
 
 @mixin form-control-invalid {
