@@ -3005,7 +3005,6 @@ body.header-pane-opened .header .header-view {
   display: flex;
   flex-direction: column;
   min-height: 270px;
-  pointer-events: none;
 }
 .home-solutions .home-solution__group {
   color: var(--label);
