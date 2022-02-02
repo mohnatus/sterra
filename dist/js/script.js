@@ -669,7 +669,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
     paginationActive: 'active'
   };
   var THRESHOLD = 100;
-  var AUTO_SLIDING_INTERVAL = 4000;
+  var AUTO_SLIDING_INTERVAL = 8000;
 
   function fadeSlider(element) {
     if (!element) return;

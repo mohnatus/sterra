@@ -20,7 +20,7 @@
   };
 
   const THRESHOLD = 100;
-  const AUTO_SLIDING_INTERVAL = 4000;
+  const AUTO_SLIDING_INTERVAL = 8000;
 
   function fadeSlider(element) {
     if (!element) return;
