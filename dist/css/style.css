@@ -3303,7 +3303,7 @@ body.header-pane-opened .header .header-view {
 .home-news-article {
   display: block;
   text-decoration: none;
-  pointer-events: none;
+  cursor: pointer;
 }
 .home-news-article__img {
   width: 100%;

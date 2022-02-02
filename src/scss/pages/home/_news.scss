@@ -16,7 +16,7 @@
   &-article {
     display: block;
     text-decoration: none;
-    pointer-events: none;
+    cursor: pointer;
 
     &__img {
       width: 100%;
