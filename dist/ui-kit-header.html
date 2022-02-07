@@ -543,7 +543,9 @@
                                     </svg>
                   </button>
                   <div class="header-search__search"><!-- SEARCH FORM -->
-                    <form class="search" data-search action="./backend/search.json" method="GET">
+                    <!-- data-autocomplete - урл для подгрузки 10 результатов-->
+                    <!-- action - урл для отправки формы (переход на страницу поиска)-->
+                    <form class="search" data-search data-autocomplete="./backend/search.json" action="./search-page" method="GET">
                       <div class="search-field">
                         <div class="search-field__icon">
                                               <svg width="14" height="14">
@@ -580,7 +582,9 @@
           <div class="header-pane__content">
             <div class="container">
               <div class="header-pane__search"><!-- SEARCH FORM -->
-                <form class="search" data-search action="./backend/search.json" method="GET">
+                <!-- data-autocomplete - урл для подгрузки 10 результатов-->
+                <!-- action - урл для отправки формы (переход на страницу поиска)-->
+                <form class="search" data-search data-autocomplete="./backend/search.json" action="./search-page" method="GET">
                   <div class="search-field">
                     <div class="search-field__icon">
                                       <svg width="14" height="14">

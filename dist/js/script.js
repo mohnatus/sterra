@@ -537,6 +537,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
     reset: '[data-reset]',
     list: '[data-list]'
   };
+  var actionAttr = 'data-autocomplete';
   var MIN_LENGTH = 2;
   var id = 1;
 
@@ -545,8 +546,8 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
     var $reset = el.querySelector(selectors.reset);
     var $list = el.querySelector(selectors.list);
     if (!$field || !$list) return;
-    var action = el.action;
-    var method = el.method;
+    var action = el.getAttribute(actionAttr);
+    var method = 'GET';
     var actualId = null;
 
     function updateList(items) {
@@ -622,10 +623,6 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
       });
     }, 500);
     $field.addEventListener('input', onInput);
-    el.addEventListener('submit', function (e) {
-      e.preventDefault();
-      onInput();
-    });
 
     if ($reset) {
       $reset.addEventListener('click', function () {

@@ -6,6 +6,8 @@
     list: '[data-list]'
   };
 
+  const actionAttr = 'data-autocomplete';
+
   const MIN_LENGTH = 2;
   let id = 1;
 
@@ -16,8 +18,8 @@
 
     if (!$field || !$list) return;
 
-    let action = el.action;
-    let method = el.method;
+    let action = el.getAttribute(actionAttr);
+    let method = 'GET';
 
     let actualId = null;
 
@@ -91,10 +93,7 @@
     }, 500);
 
     $field.addEventListener('input', onInput);
-    el.addEventListener('submit', (e) => {
-      e.preventDefault();
-      onInput();
-    });
+    
 
     if ($reset) {
       $reset.addEventListener('click', () => {

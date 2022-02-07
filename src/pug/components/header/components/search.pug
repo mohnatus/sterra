@@ -2,7 +2,10 @@
 
 include ../../../mixins/icon.pug
 
-form.search(data-search action="./backend/search.json" method="GET")
+// data-autocomplete - урл для подгрузки 10 результатов
+// action - урл для отправки формы (переход на страницу поиска)
+
+form.search(data-search data-autocomplete="./backend/search.json" action="./search-page" method="GET")
   .search-field
     .search-field__icon
       +svg-icon('search', 14, 14)
