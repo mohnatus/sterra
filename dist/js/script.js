@@ -567,7 +567,9 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
         var el = document.createElement('div');
         var link = document.createElement('a');
         link.href = item.link;
-        link.textContent = item.text;
+        var wrapper = document.createElement('span');
+        wrapper.innerHTML = item.text;
+        link.append(wrapper);
         el.appendChild(link);
         fragment.appendChild(el);
       });
@@ -1937,7 +1939,9 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
   // PAGES.HOME_PAGE
   var page = document.querySelector('.page');
   if (!page) return;
-  var isHomePage = page.classList.contains('home-page');
+  var main = page.querySelector('.page-main');
+  if (!main) return;
+  var isHomePage = main.classList.contains('home-page');
   if (!isHomePage) return;
   var homeSlider = document.getElementById('home-slider');
 

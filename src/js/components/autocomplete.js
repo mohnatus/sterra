@@ -37,7 +37,9 @@
         let el = document.createElement('div');
         let link = document.createElement('a');
         link.href = item.link;
-        link.textContent = item.text;
+        let wrapper = document.createElement('span');
+        wrapper.innerHTML = item.text;
+        link.append(wrapper);
         el.appendChild(link);
         fragment.appendChild(el);
       });
@@ -93,7 +95,7 @@
     }, 500);
 
     $field.addEventListener('input', onInput);
-    
+
 
     if ($reset) {
       $reset.addEventListener('click', () => {
