@@ -1658,11 +1658,15 @@ textarea.form-control {
   right: 0;
   bottom: 0;
   opacity: 0;
-  transition-property: opacity;
+  visibility: hidden;
+  pointer-events: none;
+  transition-property: opacity, visibility;
   transition-duration: 1000ms;
 }
 .fade-slider-slide.active {
   opacity: 1;
+  visibility: visible;
+  pointer-events: all;
   transition-duration: 2000ms;
   transition-delay: 500ms;
 }

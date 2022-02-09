@@ -17,12 +17,16 @@
     right: 0;
     bottom: 0;
     opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
 
-    transition-property: opacity;
+    transition-property: opacity, visibility;
     transition-duration: 1000ms;
 
     &.active {
       opacity: 1;
+      visibility: visible;
+      pointer-events: all;
       transition-duration: 2000ms;
       transition-delay: 500ms;
     }
